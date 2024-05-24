@@ -1,11 +1,16 @@
 import React from "react";
 
-const HomePage = () => {
+const HomePage = ({}) => {
     
+    
+
+
     return (
-        <div>
-            <p>Sup big boy come stay at brooke farms yo</p>
-        </div>
+        <div className="Home">
+            <p>Brooke Farm Glamping</p>
+        
+            
+    </div>
     )
 }
 
