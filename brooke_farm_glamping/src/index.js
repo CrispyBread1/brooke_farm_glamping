@@ -16,6 +16,7 @@ root.render(
 const firebaseConfig = {
   apiKey: "AIzaSyAms2TxN-V_0N0q56ERISmsZnzv5RTdnmY",
   authDomain: "brooke-farm-glamping.firebaseapp.com",
+  databaseURL: "https://brooke-farm-glamping-default-rtdb.firebaseio.com",
   projectId: "brooke-farm-glamping",
   storageBucket: "brooke-farm-glamping.appspot.com",
   messagingSenderId: "900497975699",
@@ -27,7 +28,7 @@ const app = initializeApp(firebaseConfig);
 const writeToDB = (userId, userName, userAge) => {
   
   const db = getDatabase();
-  const reference = ref(db, 'users/' = userId)
+  const reference = ref(db, 'users/' + userId)
 
   set(reference, {
     userID: userId,
@@ -36,7 +37,7 @@ const writeToDB = (userId, userName, userAge) => {
   })
 }
 
-writeToDB("111", "Dan", "24")
+// writeToDB("111", "Dan", "24")
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
