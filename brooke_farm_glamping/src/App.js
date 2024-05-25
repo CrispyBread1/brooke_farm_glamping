@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import HomePage from './Containers/homePage';
 import BookingPage from './Containers/bookingPage';
 
-function App() {
+function App({newBooking}) {
 
   const [home, setHome] = useState(true)
   const [booking, setBooking] = useState(false)
@@ -30,7 +30,7 @@ function App() {
 
     <div className="Rendering pages">
       {home && <HomePage />}
-      {booking && <BookingPage />}
+      {booking && <BookingPage newBooking={newBooking}/>}
     </div>
     </div>
   );
