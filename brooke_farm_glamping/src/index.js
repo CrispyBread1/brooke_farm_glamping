@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {addBooking, editBooking, retreiveBooking, cancelBooking} from './Scripts/databaseControls.js';
+import { logInEmailPassword } from './Scripts/authenicationControls';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -11,9 +12,13 @@ const newBooking = () => {
   addBooking('222', 'ashley', '26');
 }
 
+const logInAttempt = (email, password) => {
+  logInEmailPassword(email, password)
+}
+
 root.render(
   <React.StrictMode>
-    <App newBooking={newBooking}/>
+    <App newBooking={newBooking} logInAttempt={logInAttempt}/>
   </React.StrictMode>
 );
 

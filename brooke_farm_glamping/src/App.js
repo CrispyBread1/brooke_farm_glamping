@@ -4,7 +4,7 @@ import HomePage from './Containers/homePage';
 import BookingPage from './Containers/bookingPage';
 import LogInPage from './Containers/logInPage';
 
-function App({newBooking}) {
+function App({newBooking, logInAttempt}) {
 
   const [home, setHome] = useState(true)
   const [booking, setBooking] = useState(false)
@@ -42,7 +42,7 @@ function App({newBooking}) {
     <div className="Rendering pages">
       {home && <HomePage />}
       {booking && <BookingPage newBooking={newBooking}/>}
-      {logIn && <LogInPage/>}
+      {logIn && <LogInPage logInAttempt={logInAttempt}/>}
     </div>
     </div>
   );
