@@ -20,8 +20,8 @@ const logInEmailPassword = async (logInEmail, logInPassword) => {
         const userCredentials = await signInWithEmailAndPassword(auth, logInEmail, logInPassword)
     }
     catch(error) {
-        console.log(error)
-        return (error)
+        // console.log(error.code)
+        return (error.code)
     }
 };
 

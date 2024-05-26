@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { getAuth } from "firebase/auth";
+import { AuthErrorCodes, getAuth } from "firebase/auth";
 
 const LogInPage = ({logInAttempt}) => {
 
@@ -30,7 +30,14 @@ const LogInPage = ({logInAttempt}) => {
             // registerNewAccount();
             return
         }
-        logInAttempt(email, password)
+        logIn(logInAttempt(email, password))
+    }
+
+    const logIn = (error) => {
+        console.log(error)
+        // if (error == AuthErrorCodes.INVALID_EMAIL) {
+        //     return "InvalidEmail"
+        // }
     }
 
     const switchBetweenRegisterLogIn = () => {
