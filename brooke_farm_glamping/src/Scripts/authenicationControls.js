@@ -26,7 +26,20 @@ const logInEmailPassword = async (logInEmail, logInPassword) => {
         return error.code
         
     }
-};
+}
+
+const registerNewAccountEmailPassword = async (registerEmail, registerPassword) => {
+    try {
+        const userCredentials = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
+        console.log(userCredentials)
+    }
+    catch(error) {
+        console.log(error)
+        // return handleError(error)
+        return error.code
+        
+    }
+}
 
 // const handleError = (err) => {
 //     // return err.code
@@ -43,4 +56,4 @@ const logInEmailPassword = async (logInEmail, logInPassword) => {
     
 // }
 
-export {logInEmailPassword};
+export {logInEmailPassword, registerNewAccountEmailPassword};

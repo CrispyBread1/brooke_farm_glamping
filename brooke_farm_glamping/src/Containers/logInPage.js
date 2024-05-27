@@ -2,10 +2,12 @@ import React from "react";
 import { useState } from "react";
 import { AuthErrorCodes, getAuth } from "firebase/auth";
 
-const LogInPage = ({logInAttempt}) => {
+const LogInPage = ({logInAttempt, registerNewAccountAttempt}) => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [confirmEmail, setConfirmEamil] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
     const [registering, setRegistering] = useState(false)
     // const[hiddenPassword, setHiddenPassword] = useState("")
 
@@ -24,11 +26,25 @@ const LogInPage = ({logInAttempt}) => {
         // console.log(x.type)
     }
 
+    const switchBetweenRegisterLogIn = () => {
+        var x = document.querySelector(".register");
+        // var y = document.querySelector(".log-in");
+        if (x.id == "register") {
+            setRegistering(true)
+            x.id = "log-in";
+            x.innerHTML = '<p>Log in</p>';
+        } else {
+            setRegistering(false)
+            x.id = "register";
+            x.innerHTML = '<p>Register new account</p>';
+        }
+        
+    }
+
     const handleFormSubmit = (evt) => {
         evt.preventDefault();
         if (registering){
-            // registerNewAccount();
-            return
+            registerNewAccount();
         }
         // logIn(logInAttempt(email, password))
         logIn();
@@ -38,9 +54,10 @@ const LogInPage = ({logInAttempt}) => {
         // console.log(error)
          
         // console.log(logInAttempt(email, password))
+        var response = ''
+        logInAttempt(email, password).then((res) => console.log("log in attempt" + res))
 
-        logInAttempt(email, password).then((res) => console.log(res))
-
+        // console.log(response)
         // console.log(message)
         // if (message == AuthErrorCodes.INVALID_EMAIL){
             // console.log("invalid email")
@@ -58,19 +75,8 @@ const LogInPage = ({logInAttempt}) => {
         // }
     }
 
-    const switchBetweenRegisterLogIn = () => {
-        var x = document.querySelector(".register");
-        // var y = document.querySelector(".log-in");
-        if (x.id == "register") {
-            setRegistering(true)
-            x.id = "log-in";
-            x.innerHTML = '<p>Log in</p>';
-        } else {
-            setRegistering(false)
-            x.id = "register";
-            x.innerHTML = '<p>Register new account</p>';
-        }
-        
+    const registerNewAccount = () => {
+        registerNewAccountAttempt(email, password).then((res) => console.log("register attempt"+ res))
     }
 
 
