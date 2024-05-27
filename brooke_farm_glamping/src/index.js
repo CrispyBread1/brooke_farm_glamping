@@ -8,6 +8,8 @@ import { logInEmailPassword, registerNewAccountEmailPassword } from './Scripts/a
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+
+
 const newBooking = () => {
   addBooking('222', 'ashley', '26');
 }

@@ -1,14 +1,24 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import HomePage from './Containers/homePage';
 import BookingPage from './Containers/bookingPage';
 import LogInPage from './Containers/logInPage';
+import { monitorAuthState } from './Scripts/authenicationControls';
 
 function App({newBooking, logInAttempt, registerNewAccountAttempt}) {
 
   const [home, setHome] = useState(true)
   const [booking, setBooking] = useState(false)
   const [logIn, setLogIn] = useState(false)
+  const [user, setUser] = useState({})
+
+  useEffect(() => {
+    monitorAuthState()
+    .then((res) => setUser(res))
+    .then((res) => console.log(user))
+
+    
+  }, [])
 
   const changeHomePage = () => {
     setHome(true);
@@ -28,6 +38,7 @@ function App({newBooking, logInAttempt, registerNewAccountAttempt}) {
     setLogIn(true);
   }
 
+  // userLoggedIn();
 
   return (
     <div className= "Homepage">
@@ -48,5 +59,7 @@ function App({newBooking, logInAttempt, registerNewAccountAttempt}) {
   );
 
 }
+
+
 
 export default App;

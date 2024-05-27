@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, AuthErrorCodes } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, AuthErrorCodes, onAuthStateChanged } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = initializeApp({
@@ -18,10 +18,10 @@ const auth = getAuth(firebaseConfig);
 const logInEmailPassword = async (logInEmail, logInPassword) => {
     try {
         const userCredentials = await signInWithEmailAndPassword(auth, logInEmail, logInPassword)
-        console.log(userCredentials)
+        // console.log(userCredentials)
     }
     catch(error) {
-        console.log(error)
+        // console.log(error)
         // return handleError(error)
         return error.code
         
@@ -31,7 +31,7 @@ const logInEmailPassword = async (logInEmail, logInPassword) => {
 const registerNewAccountEmailPassword = async (registerEmail, registerPassword) => {
     try {
         const userCredentials = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
-        console.log(userCredentials)
+        // console.log(userCredentials)
     }
     catch(error) {
         console.log(error)
@@ -39,6 +39,17 @@ const registerNewAccountEmailPassword = async (registerEmail, registerPassword) 
         return error.code
         
     }
+}
+
+const monitorAuthState = async () => {
+    onAuthStateChanged(auth, user => {
+        if(user) {
+            return user
+        }
+        else {
+            console.log("Logged out bro")
+        }
+    })
 }
 
 // const handleError = (err) => {
@@ -56,4 +67,4 @@ const registerNewAccountEmailPassword = async (registerEmail, registerPassword) 
     
 // }
 
-export {logInEmailPassword, registerNewAccountEmailPassword};
+export {logInEmailPassword, registerNewAccountEmailPassword, monitorAuthState};
