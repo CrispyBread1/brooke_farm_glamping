@@ -30,13 +30,31 @@ const LogInPage = ({logInAttempt}) => {
             // registerNewAccount();
             return
         }
-        logIn(logInAttempt(email, password))
+        // logIn(logInAttempt(email, password))
+        logIn();
     }
 
-    const logIn = (error) => {
-        console.log(error)
+    const logIn = () => {
+        // console.log(error)
+         
+        // console.log(logInAttempt(email, password))
+
+        logInAttempt(email, password).then((res) => console.log(res))
+
+        // console.log(message)
+        // if (message == AuthErrorCodes.INVALID_EMAIL){
+            // console.log("invalid email")
+        // } else {
+            // console.log("dontlike you")
+            // console.log(message);
+        // }
+        // .then((res) => if(res.code == AuthErrorCodes.INVALID_EMAIL){
+        //     console.log('hello');
+        // })
+        // console.log(message)
+        
         // if (error == AuthErrorCodes.INVALID_EMAIL) {
-        //     return "InvalidEmail"
+        //     console.log("InvalidEmail")
         // }
     }
 

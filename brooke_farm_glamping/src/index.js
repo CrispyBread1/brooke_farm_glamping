@@ -13,7 +13,7 @@ const newBooking = () => {
 }
 
 const logInAttempt = (email, password) => {
-  logInEmailPassword(email, password)
+  return (logInEmailPassword(email, password))
 }
 
 root.render(

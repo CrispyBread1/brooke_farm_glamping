@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, AuthErrorCodes } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = initializeApp({
@@ -18,11 +18,29 @@ const auth = getAuth(firebaseConfig);
 const logInEmailPassword = async (logInEmail, logInPassword) => {
     try {
         const userCredentials = await signInWithEmailAndPassword(auth, logInEmail, logInPassword)
+        console.log(userCredentials)
     }
     catch(error) {
-        // console.log(error.code)
-        return (error.code)
+        console.log(error)
+        // return handleError(error)
+        return error.code
+        
     }
 };
+
+// const handleError = (err) => {
+//     // return err.code
+//     if(err.code == AuthErrorCodes.INVALID_EMAIL) {
+//         return "working"
+//     } else return ("not working bud")
+
+//     // {
+//     //     "code": "auth/invalid-email",
+//     //     "customData": {},
+//     //     "name": "FirebaseError"
+//     // }
+    
+    
+// }
 
 export {logInEmailPassword};
