@@ -54,8 +54,15 @@ const LogInPage = ({logInAttempt, registerNewAccountAttempt}) => {
         // console.log(error)
          
         // console.log(logInAttempt(email, password))
-        var response = ''
-        logInAttempt(email, password).then((res) => console.log("log in attempt " + res))
+        // var response = logInAttempt(email, password)
+        // if (response) {
+        //     console.log("log in page: " + response)
+        // }
+        logInAttempt(email, password).then((res) => {
+            if (res) {
+            console.log("log in attempt " + res)
+            }
+        })
 
         // console.log(response)
         // console.log(message)

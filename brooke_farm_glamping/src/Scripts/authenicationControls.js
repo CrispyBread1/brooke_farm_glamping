@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, AuthErrorCodes, onAuthStateChanged } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, AuthErrorCodes, onAuthStateChanged, signOut} from "firebase/auth";
+// import {userLogIn} from "../App.js"
 
 // Your web app's Firebase configuration
 const firebaseConfig = initializeApp({
@@ -15,17 +16,18 @@ const firebaseConfig = initializeApp({
 // Initialize Firebase
 const auth = getAuth(firebaseConfig);
 
-const logInEmailPassword = async (logInEmail, logInPassword) => {
-    try {
-        const userCredentials = await signInWithEmailAndPassword(auth, logInEmail, logInPassword)
-        // console.log(userCredentials)
-    }
-    catch(error) {
-        // console.log(error)
-        // return handleError(error)
-        return error.code
+const logInEmailPassword = (logInEmail, logInPassword) => {
+    return signInWithEmailAndPassword(auth, logInEmail, logInPassword)
+    // try {
+    //     const userCredentials = await signInWithEmailAndPassword(auth, logInEmail, logInPassword)
+    //     // console.log(userCredentials)
+    // }
+    // catch(error) {
+    //     // console.log(error)
+    //     // return handleError(error)
+    //     return error.code
         
-    }
+    // }
 }
 
 const registerNewAccountEmailPassword = async (registerEmail, registerPassword) => {
@@ -44,12 +46,33 @@ const registerNewAccountEmailPassword = async (registerEmail, registerPassword) 
 const monitorAuthState = async () => {
     onAuthStateChanged(auth, user => {
         if(user) {
-            return user
+            // console.log(user)
+            var userAccount = user
+            return userAccount
+            // userLogIn(user.email)
         }
         else {
             console.log("Logged out bro")
         }
     })
+}
+
+
+// const monitorAuthState = () => {
+//     return new Promise((resolve, reject) => {
+//       const unsubscribe = onAuthStateChanged(auth, user => {
+//         unsubscribe(); // Stop listening after the first state change
+//         if (user) {
+//           resolve(user);
+//         } else {
+//           reject(new Error('No user is signed in'));
+//         }
+//       });
+//     });
+//   };
+
+const logOut = async () => {
+    await signOut(auth)
 }
 
 // const handleError = (err) => {
@@ -67,4 +90,4 @@ const monitorAuthState = async () => {
     
 // }
 
-export {logInEmailPassword, registerNewAccountEmailPassword, monitorAuthState};
+export {logInEmailPassword, registerNewAccountEmailPassword, monitorAuthState, logOut};
