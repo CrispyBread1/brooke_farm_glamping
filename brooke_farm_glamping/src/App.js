@@ -3,9 +3,8 @@ import React, { useEffect, useState } from 'react';
 import HomePage from './Containers/homePage';
 import BookingPage from './Containers/bookingPage';
 import LogInPage from './Containers/logInPage';
-import { monitorAuthState } from './Scripts/authenicationControls';
-import {addBooking, editBooking, retreiveBooking, cancelBooking} from './Scripts/databaseControls.js';
-import { logInEmailPassword, registerNewAccountEmailPassword, logOut } from './Scripts/authenicationControls';
+import { addBooking, editBooking, retreiveBooking, cancelBooking} from './Scripts/databaseControls.js';
+import { logInEmailPassword, registerNewAccountEmailPassword, logOut, monitorAuthState } from './Scripts/authenicationControls';
 
 function App({}) {
 
@@ -29,9 +28,6 @@ function App({}) {
   // }, [home])
 
   const checkLoggedIn = () => {
-    // setUser(tok1)
-    // monitorAuthState()
-    // .then((res) => {userLogIn(res)})
     console.log(user)
   }
 
@@ -60,28 +56,11 @@ function App({}) {
   const logInAttempt = async (email, password) => {
     try {
           const userCredentials = await logInEmailPassword(email, password)
-          // console.log(userCredentials)
           setUser(userCredentials)
       }
       catch(error) {
-          // console.log(error)
-          // return handleError(error)
           return error.code
-          
       }
-    // return (
-    //   logInEmailPassword(email, password)
-    //   .then((res) => {
-    //     if (res) {
-    //       return res
-    //       // monitorAuthState()
-    //       // .then((res) => setUser(res))
-    //       // .then((res) => console.log(res))
-    //     // } else return res
-    //     }
-    //   })
-      
-    //   )
   }
   
   const registerNewAccountAttempt = (email, password) => {
@@ -89,7 +68,7 @@ function App({}) {
   }
 
   const logUserOut = () => {
-    setUser()
+    setUser({})
     logOut();
   }
 
@@ -109,7 +88,7 @@ function App({}) {
 
     <div className="Rendering pages">
       {home && <HomePage />}
-      {booking && <BookingPage newBooking={newBooking}/>}
+      {booking && <BookingPage newBooking={newBooking} user={user}/>}
       {logIn && <LogInPage logInAttempt={logInAttempt} registerNewAccountAttempt={registerNewAccountAttempt}/>}
     </div>
     </div>
