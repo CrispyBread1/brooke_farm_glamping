@@ -5,6 +5,7 @@ import BookingPage from './Containers/bookingPage';
 import LogInPage from './Containers/logInPage';
 import { addBooking, editBooking, retreiveBooking, cancelBooking} from './Scripts/databaseControls.js';
 import { logInEmailPassword, registerNewAccountEmailPassword, logOut, monitorAuthState } from './Scripts/authenicationControls';
+import logInButton from './JPGs/LogIn.png'
 
 function App({}) {
 
@@ -81,7 +82,7 @@ function App({}) {
     <div className="NavButtons">
             <div id="Home-Button"  onClick={changeHomePage} value="Home">Home</div>
             <div id="Book-Button" onClick={changeBookingPage} value="Book">Book</div>
-            <div id="LogIn-Button" onClick={changeLogInPage} value="LogIn">Log in</div>
+            <div id="LogIn-Button" onClick={changeLogInPage} value="LogIn" ><img className="logIn-images"src={logInButton}/></div>
             <div id="LogOut-Button" onClick={logUserOut} value="LogOut">Log out</div>
             <div id="is-user-logged-in" onClick={checkLoggedIn} value="is-user-logged-in">Logged in?</div>
     </div>
