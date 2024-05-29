@@ -18,16 +18,6 @@ const auth = getAuth(firebaseConfig);
 
 const logInEmailPassword = (logInEmail, logInPassword) => {
     return signInWithEmailAndPassword(auth, logInEmail, logInPassword)
-    // try {
-    //     const userCredentials = await signInWithEmailAndPassword(auth, logInEmail, logInPassword)
-    //     // console.log(userCredentials)
-    // }
-    // catch(error) {
-    //     // console.log(error)
-    //     // return handleError(error)
-    //     return error.code
-        
-    // }
 }
 
 const registerNewAccountEmailPassword = async (registerEmail, registerPassword) => {

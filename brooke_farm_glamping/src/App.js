@@ -5,28 +5,20 @@ import BookingPage from './Containers/bookingPage';
 import LogInPage from './Containers/logInPage';
 import { addBooking, editBooking, retreiveBooking, cancelBooking} from './Scripts/databaseControls.js';
 import { logInEmailPassword, registerNewAccountEmailPassword, logOut, monitorAuthState } from './Scripts/authenicationControls';
-import logInButton from './JPGs/LogIn.png'
+import logInButton from './JPGs/LoginButton/LogIn.png'
+import logInButtonFire1 from './JPGs/LoginButton/LogInFire1.png'
+import logInButtonFire2 from './JPGs/LoginButton/LogInFire2.png'
+import logInButtonFire3 from './JPGs/LoginButton/LogInFire3.png'
+
 
 function App({}) {
 
   const [home, setHome] = useState(true)
   const [booking, setBooking] = useState(false)
   const [logIn, setLogIn] = useState(false)
+  const [logInImage, setLogInImage] = useState(logInButton)
   const [user, setUser] = useState({})
-
-  // useEffect(() => {
-    // userLogIn()
-    // setUser(monitorAuthState())
-    // monitorAuthState()
-    // .then((res) => {userLogIn(res)})
-    // .then((res) => console.log(user.email))
-    // console.log(user)
-
-    // Promise.resolve(monitorAuthState()).then((v) => {
-    //   console.log(v); // 42
-    // });
-
-  // }, [home])
+  
 
   const checkLoggedIn = () => {
     console.log(user)
@@ -73,6 +65,25 @@ function App({}) {
     logOut();
   }
 
+  const changeLogInImage = () => {
+    var logInFireImage = [logInButtonFire1, logInButtonFire2, logInButtonFire3]
+    var x = Math.floor(Math.random() * logInFireImage.length)
+    var i = 1
+    console.log("234")
+    while (i > 0) {
+      // console.log('lol')
+      setTimeout(function() {setLogInImage(logInFireImage[x])}, 100);
+      i++
+    }
+    
+
+    
+  }
+
+  const resetLogInImage = () => {
+    setLogInImage(logInButton)
+  }
+
   // userLoggedIn();
 
   return (
@@ -82,7 +93,12 @@ function App({}) {
     <div className="NavButtons">
             <div id="Home-Button"  onClick={changeHomePage} value="Home">Home</div>
             <div id="Book-Button" onClick={changeBookingPage} value="Book">Book</div>
-            <div id="LogIn-Button" onClick={changeLogInPage} value="LogIn" ><img className="logIn-images"src={logInButton}/></div>
+            <div id="LogIn-Button" onClick={changeLogInPage} value="LogIn" >
+              <img className="logIn-images" onMouseOver={changeLogInImage} onMouseLeave={resetLogInImage} src={logInImage}/>
+              {/* <img className="logInFire1-images"src={logInButtonFire1}/>
+              <img className="logInFire2-images"src={logInButtonFire2}/>
+              <img className="logInFire3-images"src={logInButtonFire3}/> */}
+              </div>
             <div id="LogOut-Button" onClick={logUserOut} value="LogOut">Log out</div>
             <div id="is-user-logged-in" onClick={checkLoggedIn} value="is-user-logged-in">Logged in?</div>
     </div>

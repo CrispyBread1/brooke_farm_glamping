@@ -2,7 +2,86 @@
   text-align: center;
 }
 
+#LogIn-Button {
+  position: relative;
+}
+
 .logIn-images {
   height: auto;
-  width: 20vw;
+  width: 25vw;
+  position: absolute;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
 }
+
+/* .logIn-images:hover {
+  opacity: 0;
+  transition-delay: 0s;
+} */
+
+.logInFire1-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: auto;
+  width: 25vw;
+}
+
+/* .logInFire1-images:hover {
+  opacity: 1;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-delay: -1s;
+} */
+
+.logInFire2-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: auto;
+  width: 25vw;
+}
+
+/* .logInFire2-images:hover {
+  opacity: 1;
+  animation-name: fadeIn2;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-delay: -1.5s;
+} */
+
+.logInFire3-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: auto;
+  width: 25vw;
+}
+
+/* .logInFire3-images:hover {
+  opacity: 1;
+  animation-name: fadeIn3;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-delay: -2s;
+} */
+
+/* @keyframes fadeIn {
+  0% {opacity: 1;}
+  50% {opacity: 1;}
+  100% {opacity: 0;}
+}
+@keyframes fadeIn2 {
+  0% {opacity: 1;}
+  50% {opacity: 1;}
+  100% {opacity: 0;}
+}
+@keyframes fadeIn3 {
+  0% {opacity: 1;}
+  50% {opacity: 1;}
+  100% {opacity: 0;}
+} */
