@@ -18,6 +18,7 @@ function App({}) {
   const [logIn, setLogIn] = useState(false)
   const [logInImage, setLogInImage] = useState(logInButton)
   const [user, setUser] = useState({})
+  const [hovering, setHovering] = useState(false)
   
 
   const checkLoggedIn = () => {
@@ -65,23 +66,54 @@ function App({}) {
     logOut();
   }
 
-  const changeLogInImage = () => {
-    var logInFireImage = [logInButtonFire1, logInButtonFire2, logInButtonFire3]
-    var x = Math.floor(Math.random() * logInFireImage.length)
-    var i = 1
-    console.log("234")
-    while (i > 0) {
-      // console.log('lol')
-      setTimeout(function() {setLogInImage(logInFireImage[x])}, 100);
-      i++
-    }
-    
+  const hoveringLogIn = () => {
+    setHovering(true)
+    animateLogIn()
+  }
 
-    
+  const animateLogIn = () => {
+    // setHovering(true)
+    // var animationFinsihed = true
+    // if (animationFinsihed) {
+      
+    // }
+    console.log('entering box')
+    // console.log('inside animate log in')
+    // let id = null;
+    // let frameAmount = 250
+    // clearInterval(id);
+    // id = setInterval(frame, 250);
+    // function frame() {
+    //   if (hovering) {
+    //     clearInterval(id);
+    //     resetLogInImage()
+    //     // animationFinsihed = false;
+    //     // setHovering(false)
+    //     // setLogInImage(logInButton)
+    //     return;
+    //     } else {
+    //       // changeLogInImage()
+    //       var logInFireImage = [logInButtonFire1, logInButtonFire2, logInButtonFire3]
+    //       var x = Math.floor(Math.random() * logInFireImage.length)
+    //       setTimeout(function() {setLogInImage(logInFireImage[x])}, 100);
+    //       if(!hovering) {
+    //         resetLogInImage()
+    //         // console.log('bad bad')
+    //       }
+    //       // console.log('bfkfk')
+    //       // console.log('hello')
+    //         // posY+= 0.18; 
+    //         // posX+= 1;
+    //         // frog.style.top = posY + 'vw'; 
+    //         // frog.style.left = posX + 'vw'; 
+    //       }
+    // }
   }
 
   const resetLogInImage = () => {
     setLogInImage(logInButton)
+    setHovering(false)
+    console.log('leaving box')
   }
 
   // userLoggedIn();
@@ -94,10 +126,10 @@ function App({}) {
             <div id="Home-Button"  onClick={changeHomePage} value="Home">Home</div>
             <div id="Book-Button" onClick={changeBookingPage} value="Book">Book</div>
             <div id="LogIn-Button" onClick={changeLogInPage} value="LogIn" >
-              <img className="logIn-images" onMouseOver={changeLogInImage} onMouseLeave={resetLogInImage} src={logInImage}/>
-              {/* <img className="logInFire1-images"src={logInButtonFire1}/>
+              <img className="logIn-images" onMouseOver={hoveringLogIn} onMouseLeave={resetLogInImage} src={logInImage}/>
+              <img className="logInFire1-images"src={logInButtonFire1}/>
               <img className="logInFire2-images"src={logInButtonFire2}/>
-              <img className="logInFire3-images"src={logInButtonFire3}/> */}
+              <img className="logInFire3-images"src={logInButtonFire3}/>
               </div>
             <div id="LogOut-Button" onClick={logUserOut} value="LogOut">Log out</div>
             <div id="is-user-logged-in" onClick={checkLoggedIn} value="is-user-logged-in">Logged in?</div>
