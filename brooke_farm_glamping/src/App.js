@@ -5,6 +5,7 @@ import BookingPage from './Containers/bookingPage';
 import LogInPage from './Containers/logInPage';
 import { addBooking, editBooking, retreiveBooking, cancelBooking} from './Scripts/databaseControls.js';
 import { logInEmailPassword, registerNewAccountEmailPassword, logOut, monitorAuthState } from './Scripts/authenicationControls';
+import headerImage from './JPGs/BrookFarmGlampinglogo.png'
 import logInButton from './JPGs/LoginButton/LogIn.png'
 import logInButtonFire1 from './JPGs/LoginButton/LogInFire1.png'
 import logInButtonFire2 from './JPGs/LoginButton/LogInFire2.png'
@@ -72,7 +73,9 @@ function App({}) {
 
   return (
     <div className= "Homepage">
-
+      <div className= "Header">
+        <img id="header-Image" src={headerImage}></img>
+      </div>
 
     <div className="NavButtons">
             <div id="Home-Button"  onClick={changeHomePage} value="Home">

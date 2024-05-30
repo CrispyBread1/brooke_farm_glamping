@@ -2,6 +2,16 @@
   text-align: center;
   
 }
+.Header {
+  height: 10vw;
+  width: auto;
+}
+
+#header-Image {
+  height: 5.5vw;
+  width: auto;
+}
+
 
 .NavButtons {
   position: absolute;
@@ -11,8 +21,8 @@
   align-items: center;
   margin: 0.5vw 0;
   width: 1vw;
-  right: 44vw;
-  top: 1vw;
+  right: 23vw;
+  top: 2vw;
 }
 
 .NavButtons > div:not(:last-child)::after {
@@ -21,7 +31,7 @@
   right: 0;
   top: 55%;
   transform: translateY(-50%);
-  width: 1px;
+  width: 1.5px;
   height: 45%; /* Adjust the height as needed */
   background-color: #ccc; /* Color of the line */
 }
@@ -30,13 +40,13 @@
 /* Home button  */
 #Home-Button { /* Container ------ -------*/
   position:relative;
-  height: 6vw;
+  height: 3.2vw;
   width: auto;
   opacity: 1;
 }
 
 #home-Image { /* Image */
-  height: 6vw;
+  height: 3.2vw;
   width: auto;
   /* position: absolute; */
   /* margin: 1vw; */
@@ -47,13 +57,13 @@
 /* Book button  */
 #Book-Button { /* Container ------ -------*/
   position:relative;
-  height: 6vw;
+  height: 3.2vw;
   width: auto;
   opacity: 1;
 }
 
 #book-Image { /* Image */
-  height: 6vw;
+  height: 3.2vw;
   width: auto;
   /* position: absolute; */
   /* margin: 1vw; */
@@ -65,7 +75,7 @@
 /* Log In button  */
 #LogIn-Button { /* Container ------ -------*/
   position:relative;
-  height: 6vw;
+  height: 3.2vw;
   width: auto;
   opacity: 1; 
   /* margin: 1vw; */
@@ -73,7 +83,7 @@
 }
 
 .logIn-images { /* Image */
-  height: 6vw;
+  height: 3.2vw;
   width: auto;
   position: absolute;
  } 
@@ -83,7 +93,7 @@
   top: 0;
   left: 0;
   opacity: 0;
-  height: 6vw;
+  height: 3.2vw;
   width: auto;
 }
 
@@ -92,7 +102,7 @@
   top: 0;
   left: 0;
   opacity: 0;
-  height: 6vw;
+  height: 3.2vw;
   width: auto;
 }
 
@@ -101,7 +111,7 @@
   top: 0;
   left: 0;
   opacity: 0;
-  height: 6vw;
+  height: 3.2vw;
   width: auto;
 }
 

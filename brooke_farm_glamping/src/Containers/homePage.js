@@ -7,7 +7,7 @@ const HomePage = ({}) => {
 
     return (
         <div className="Home">
-            <p>Brooke Farm Glamping</p>
+            <p>home page bro</p>
         
             
     </div>
