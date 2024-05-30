@@ -81,7 +81,7 @@ function App({}) {
             <div id="Book-Button" onClick={changeBookingPage} value="Book">
               <img id="book-Image"  src={bookButton} />
             </div>
-            <div id="LogIn-Button" onClick={changeLogInPage} value="LogIn" >
+            <div id="LogIn-Button"  onClick={changeLogInPage} value="LogIn" >
               <img id="logInFire1Image" className="logInFire1-images" src={logInButtonFire1} />
               <img id="logInFire2Image" className="logInFire2-images" src={logInButtonFire2} />
               <img id="logInFire3Image" className="logInFire3-images" src={logInButtonFire3} />

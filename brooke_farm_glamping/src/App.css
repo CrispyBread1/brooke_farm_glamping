@@ -1,30 +1,45 @@
 .App {
   text-align: center;
+  
 }
 
 .NavButtons {
+  position: absolute;
   display: flex;
   justify-content: space-around;
-  grid-template-columns: 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr; */
   align-items: center;
-  margin: 2vw 0;
+  margin: 0.5vw 0;
+  width: 1vw;
+  right: 44vw;
+  top: 1vw;
 }
 
+.NavButtons > div:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 55%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 45%; /* Adjust the height as needed */
+  background-color: #ccc; /* Color of the line */
+}
 
 
 /* Home button  */
 #Home-Button { /* Container ------ -------*/
   position:relative;
-  height: auto;
-  width: 16vw;
+  height: 6vw;
+  width: auto;
   opacity: 1;
 }
 
 #home-Image { /* Image */
-  height: auto;
-  width: 16vw;
+  height: 6vw;
+  width: auto;
   /* position: absolute; */
-  margin: 1vw;
+  /* margin: 1vw; */
 }
 
 
@@ -32,16 +47,16 @@
 /* Book button  */
 #Book-Button { /* Container ------ -------*/
   position:relative;
-  height: auto;
-  width: 16vw;
+  height: 6vw;
+  width: auto;
   opacity: 1;
 }
 
 #book-Image { /* Image */
-  height: auto;
-  width: 16vw;
+  height: 6vw;
+  width: auto;
   /* position: absolute; */
-  margin: 1vw;
+  /* margin: 1vw; */
 
 }
 
@@ -49,45 +64,45 @@
 
 /* Log In button  */
 #LogIn-Button { /* Container ------ -------*/
-  position:absolute;
-  height: auto;
-  width: 20vw;
+  position:relative;
+  height: 6vw;
+  width: auto;
   opacity: 1; 
-  margin: 1vw;
+  /* margin: 1vw; */
 
 }
 
 .logIn-images { /* Image */
-  height: auto;
-  width: 20vw;
-  position: auto;
+  height: 6vw;
+  width: auto;
+  position: absolute;
  } 
  
 .logInFire1-images { /* Image */
-  /* position: auto; */
+  position: absolute;
   top: 0;
   left: 0;
   opacity: 0;
-  height: auto;
-  width: 20vw;
+  height: 6vw;
+  width: auto;
 }
 
 .logInFire2-images { /* Image */
-  /* position: auto; */
+  position: absolute;
   top: 0;
   left: 0;
   opacity: 0;
-  height: auto;
-  width: 20vw;
+  height: 6vw;
+  width: auto;
 }
 
 .logInFire3-images { /* Image */
-  /* position: auto; */
+  position: absolute;
   top: 0;
   left: 0;
   opacity: 0;
-  height: auto;
-  width: 20vw;
+  height: 6vw;
+  width: auto;
 }
 
 #LogIn-Button:hover > #logInFire1Image{
