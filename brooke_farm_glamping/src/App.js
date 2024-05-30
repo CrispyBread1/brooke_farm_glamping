@@ -19,6 +19,8 @@ function App({}) {
   const [logInImage, setLogInImage] = useState(logInButton)
   const [user, setUser] = useState({})
   const [hovering, setHovering] = useState(false)
+
+  let intervalId;
   
 
   const checkLoggedIn = () => {
@@ -67,54 +69,91 @@ function App({}) {
   }
 
   const hoveringLogIn = () => {
-    setHovering(true)
-    animateLogIn()
+    // setHovering(true)
+    // if (intervalId) {
+    //   console.log("Task is already running");
+    //   return;
+    // }
+    // console.log("Starting the repeating task");
+  
+    // intervalId = setInterval(() => {
+    //   // console.log("Task is running");
+    //   animateLogIn()
+    // }, 1000); 
+    // animateLogIn()
   }
 
   const animateLogIn = () => {
-    // setHovering(true)
-    // var animationFinsihed = true
-    // if (animationFinsihed) {
-      
-    // }
-    console.log('entering box')
-    // console.log('inside animate log in')
-    // let id = null;
-    // let frameAmount = 250
-    // clearInterval(id);
-    // id = setInterval(frame, 250);
-    // function frame() {
-    //   if (hovering) {
-    //     clearInterval(id);
-    //     resetLogInImage()
-    //     // animationFinsihed = false;
-    //     // setHovering(false)
-    //     // setLogInImage(logInButton)
-    //     return;
-    //     } else {
-    //       // changeLogInImage()
-    //       var logInFireImage = [logInButtonFire1, logInButtonFire2, logInButtonFire3]
-    //       var x = Math.floor(Math.random() * logInFireImage.length)
-    //       setTimeout(function() {setLogInImage(logInFireImage[x])}, 100);
-    //       if(!hovering) {
-    //         resetLogInImage()
-    //         // console.log('bad bad')
-    //       }
-    //       // console.log('bfkfk')
-    //       // console.log('hello')
-    //         // posY+= 0.18; 
-    //         // posX+= 1;
-    //         // frog.style.top = posY + 'vw'; 
-    //         // frog.style.left = posX + 'vw'; 
-    //       }
-    // }
+    // var logInFireImage = [logInButtonFire1, logInButtonFire2, logInButtonFire3]
+    // var x = Math.floor(Math.random() * logInFireImage.length)
+    // setLogInImage(logInFireImage[x])
   }
+  //   setHovering(true)
+  //   var animationFinsihed = true
+  //   if (animationFinsihed) {
+      
+  //   }
+  //   console.log('entering box')
+  //   let id = null;
+  //   var timer = 0
+  //   clearInterval(id);
+  //   id = setInterval(frame, 300);
+  //   function frame() {
+  //     if (timer >= 100) {
+  //       clearInterval(id);
+  //       // resetLogInImage()
+  //       console.log('ended')
+  //       } else {
+          
+  //         // console.log(timer)
+  //         var logInFireImage = [logInButtonFire1, logInButtonFire2, logInButtonFire3]
+  //         var x = Math.floor(Math.random() * logInFireImage.length)
+  //         setTimeout(function() {
+  //           timer++
+  //           setLogInImage(logInFireImage[x])
+  //         }, 100);
+  //         // setLogInImage(logInFireImage[x])
+          
+
+  //         }
+  //   }
+  // }
+  // document.getElementById('logIn-images').addEventListener('mouseenter', function(){
+  //   this.classList.add('logInFire2-images-hover');
+  //   setTimeout(() => {
+  //     this.classList.remove('logInFire2-images-hover')
+  //   }, 3000);
+  // })
 
   const resetLogInImage = () => {
-    setLogInImage(logInButton)
-    setHovering(false)
-    console.log('leaving box')
+    // setLogInImage(logInButton)
+    // // timer = 100
+    // setHovering(false)
+    // console.log('leaving box')
+    // if (intervalId) {
+    //   clearInterval(intervalId);
+    //   intervalId = null;
+    //   console.log("Stopped the repeating task");
+    // } else {
+    //   console.log("No task is running");
+    // }
+    
   }
+
+  // const handleMouseOver = (elementId, hoverClass) => {
+  //   setHovering(true);
+  //   const element = document.getElementById(elementId);
+  //   element.classList.add(hoverClass);
+  // };
+
+  // const handleMouseLeave = (elementId, hoverClass) => {
+  //   // setHovering(false);
+  //   const element = document.getElementById(elementId);
+  //   element.classList.remove(hoverClass);
+  //   resetLogInImage();
+  //   setLogInImage(logInButton)
+  // };
+
 
   // userLoggedIn();
 
@@ -126,11 +165,38 @@ function App({}) {
             <div id="Home-Button"  onClick={changeHomePage} value="Home">Home</div>
             <div id="Book-Button" onClick={changeBookingPage} value="Book">Book</div>
             <div id="LogIn-Button" onClick={changeLogInPage} value="LogIn" >
+              
+
+              <img
+                id="logInFire1Image"
+                className="logInFire1-images"
+                src={logInButtonFire1}
+                // onMouseOver={() => handleMouseOver('logInFire1image', 'hover')}
+                // onMouseLeave={() => handleMouseLeave('logInFire1Image', 'hover')}
+                alt="fire image"
+              />
+              <img
+                id="logInFire2Image"
+                className="logInFire2-images"
+                src={logInButtonFire2}
+                // onMouseOver={() => handleMouseOver('logInFire2Image', 'hover')}
+                // onMouseLeave={() => handleMouseLeave('logInFire2Image', 'hover')}
+                alt="fire image"
+              />
+              <img
+                id="logInFire3Image"
+                className="logInFire3-images"
+                src={logInButtonFire3}
+                // onMouseOver={() => handleMouseOver('logInFire3Image', 'hover')}
+                // onMouseLeave={() => handleMouseLeave('logInFire3Image', 'hover')}
+                // alt="fire image"
+              />
               <img className="logIn-images" onMouseOver={hoveringLogIn} onMouseLeave={resetLogInImage} src={logInImage}/>
-              <img className="logInFire1-images"src={logInButtonFire1}/>
-              <img className="logInFire2-images"src={logInButtonFire2}/>
-              <img className="logInFire3-images"src={logInButtonFire3}/>
-              </div>
+            </div>
+              {/* <img className="logInFire1-images"src={logInButtonFire1}/> */}
+              {/* <img className="logInFire2-images"src={logInButtonFire2}/>
+              <img className="logInFire3-images"src={logInButtonFire3}/> */}
+              
             <div id="LogOut-Button" onClick={logUserOut} value="LogOut">Log out</div>
             <div id="is-user-logged-in" onClick={checkLoggedIn} value="is-user-logged-in">Logged in?</div>
     </div>
