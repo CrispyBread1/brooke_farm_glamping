@@ -79,7 +79,7 @@ function App({}) {
               <img id="home-Image"  src={homeButton} />
             </div>
             <div id="Book-Button" onClick={changeBookingPage} value="Book">
-            <img id="book-Image"  src={bookButton} />
+              <img id="book-Image"  src={bookButton} />
             </div>
             <div id="LogIn-Button" onClick={changeLogInPage} value="LogIn" >
               <img id="logInFire1Image" className="logInFire1-images" src={logInButtonFire1} />
@@ -88,8 +88,8 @@ function App({}) {
               <img className="logIn-images" src={logInImage}/>
             </div>
               
-            <div id="LogOut-Button" onClick={logUserOut} value="LogOut">Log out</div>
-            <div id="is-user-logged-in" onClick={checkLoggedIn} value="is-user-logged-in">Logged in?</div>
+            {/* <div id="LogOut-Button" onClick={logUserOut} value="LogOut">Log out</div> */}
+            {/* <div id="is-user-logged-in" onClick={checkLoggedIn} value="is-user-logged-in">Logged in?</div> */}
     </div>
 
     <div className="Rendering pages">

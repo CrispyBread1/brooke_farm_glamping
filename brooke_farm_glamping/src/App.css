@@ -2,40 +2,92 @@
   text-align: center;
 }
 
+.NavButtons {
+  display: flex;
+  justify-content: space-around;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin: 2vw 0;
+}
+
+
+
 /* Home button  */
-#Home-Button {
-  position:fixed;
+#Home-Button { /* Container ------ -------*/
+  position:relative;
   height: auto;
   width: 16vw;
   opacity: 1;
 }
 
-#home-Image {
+#home-Image { /* Image */
   height: auto;
   width: 16vw;
-  position: absolute;
+  /* position: absolute; */
+  margin: 1vw;
 }
+
+
 
 /* Book button  */
-#Book-Button {
-  position:fixed;
+#Book-Button { /* Container ------ -------*/
+  position:relative;
   height: auto;
   width: 16vw;
   opacity: 1;
 }
 
-#book-Image {
+#book-Image { /* Image */
   height: auto;
   width: 16vw;
-  position: absolute;
+  /* position: absolute; */
+  margin: 1vw;
+
 }
 
+
+
 /* Log In button  */
-#LogIn-Button {
-  position:fixed;
+#LogIn-Button { /* Container ------ -------*/
+  position:absolute;
   height: auto;
   width: 20vw;
   opacity: 1; 
+  margin: 1vw;
+
+}
+
+.logIn-images { /* Image */
+  height: auto;
+  width: 20vw;
+  position: auto;
+ } 
+ 
+.logInFire1-images { /* Image */
+  /* position: auto; */
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: auto;
+  width: 20vw;
+}
+
+.logInFire2-images { /* Image */
+  /* position: auto; */
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: auto;
+  width: 20vw;
+}
+
+.logInFire3-images { /* Image */
+  /* position: auto; */
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: auto;
+  width: 20vw;
 }
 
 #LogIn-Button:hover > #logInFire1Image{
@@ -60,41 +112,9 @@
   opacity: 0; 
 }
 
-.logIn-images {
-  height: auto;
-  width: 20vw;
-  position: absolute;
-  /* opacity: 1; 
-  transition: opacity 1s ease-in-out;  */
- } 
- 
-.logInFire1-images {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  height: auto;
-  width: 20vw;
-}
 
-.logInFire2-images {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  height: auto;
-  width: 20vw;
-}
 
-.logInFire3-images {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  height: auto;
-  width: 20vw;
-}
-
+/* Animation */
   @keyframes fadeIn {
   0% {opacity: 0; }
   /* 50% {opacity: 0;} */
