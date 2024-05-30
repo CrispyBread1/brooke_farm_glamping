@@ -2,8 +2,23 @@
   text-align: center;
 }
 
+/* Home button  */
+#Home-Button {
+  position:fixed;
+  height: auto;
+  width: 16vw;
+  opacity: 1;
+}
+
+#home-Image {
+  height: auto;
+  width: 16vw;
+  position: absolute;
+}
+
+/* Log In button  */
 #LogIn-Button {
-  position: relative;
+  position:fixed;
   height: auto;
   width: 20vw;
   opacity: 1; 
