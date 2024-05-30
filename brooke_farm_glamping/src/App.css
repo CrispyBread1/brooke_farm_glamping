@@ -16,6 +16,20 @@
   position: absolute;
 }
 
+/* Book button  */
+#Book-Button {
+  position:fixed;
+  height: auto;
+  width: 16vw;
+  opacity: 1;
+}
+
+#book-Image {
+  height: auto;
+  width: 16vw;
+  position: absolute;
+}
+
 /* Log In button  */
 #LogIn-Button {
   position:fixed;

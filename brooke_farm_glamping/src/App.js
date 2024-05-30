@@ -10,6 +10,7 @@ import logInButtonFire1 from './JPGs/LoginButton/LogInFire1.png'
 import logInButtonFire2 from './JPGs/LoginButton/LogInFire2.png'
 import logInButtonFire3 from './JPGs/LoginButton/LogInFire3.png'
 import homeButton from './JPGs/HomeButton/home.png'
+import bookButton from './JPGs/BookButton/book.png'
 
 
 function App({}) {
@@ -77,7 +78,9 @@ function App({}) {
             <div id="Home-Button"  onClick={changeHomePage} value="Home">
               <img id="home-Image"  src={homeButton} />
             </div>
-            <div id="Book-Button" onClick={changeBookingPage} value="Book">Book</div>
+            <div id="Book-Button" onClick={changeBookingPage} value="Book">
+            <img id="book-Image"  src={bookButton} />
+            </div>
             <div id="LogIn-Button" onClick={changeLogInPage} value="LogIn" >
               <img id="logInFire1Image" className="logInFire1-images" src={logInButtonFire1} />
               <img id="logInFire2Image" className="logInFire2-images" src={logInButtonFire2} />
