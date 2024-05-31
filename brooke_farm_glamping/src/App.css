@@ -5,8 +5,9 @@
 .Header {
   height: 7vw; /* Adjust height as needed */
   width: 100%; /* Ensure it takes full width */
-  /* background-color: #a36b6b;  */
+  /* background-color: #48c152;  */
   position: relative;
+  /* opacity: 0.2; */
 }
 
 .Header::after {
@@ -16,13 +17,15 @@
   left: 50%; /* Start at the center horizontally */
   transform: translateX(-50%); /* Center it by shifting left by half its width */
   width: 100%; /* Adjust width as needed */
-  border-bottom: 1px solid #b5b5b5; /* Add bottom border with desired width and color */
+  border-bottom: 3px solid #b5b5b5; /* Add bottom border with desired width and color */
+  /* border-top: 5px #b5b5b5; */
 }
 
 #header-Image {
   height: 5.5vw;
   width: auto;
-  filter: drop-shadow(0.5px 2px 1px #222);
+  filter: drop-shadow(0.5px 2px 1px #868686);
+  opacity: 1;
 }
 
 
@@ -30,10 +33,10 @@
   position: absolute;
   display: flex;
   justify-content: space-around;
-  /* grid-template-columns: 1fr 1fr; */
+  /* grid-template-columns: 10fr 1fr; */
   align-items: center;
   margin: 0.5vw 0;
-  width: 1vw;
+  width: 2vw;
   right: 23vw;
   top: 2vw;
 }
@@ -61,6 +64,7 @@
 #home-Image { /* Image */
   height: 3.2vw;
   width: auto;
+  filter: drop-shadow(0.5px 2px 1px #868686);
   /* position: absolute; */
   /* margin: 1vw; */
 }
@@ -73,12 +77,14 @@
   height: 3.2vw;
   width: auto;
   opacity: 1;
+  /* right: -10vw; */
 }
 
 #book-Image { /* Image */
   height: 3.2vw;
   width: auto;
-  /* position: relative; */
+  filter: drop-shadow(0.5px 2px 1px #868686);
+  /* position: absolute; */
   /* margin: 1vw; */
 
 }
@@ -88,6 +94,7 @@
 /* Log In button  */
 #LogIn-Button { /* Container ------ -------*/
   position:relative;
+  filter: drop-shadow(0.5px 2px 1px #868686);
   height: 3.2vw;
   width: auto;
   opacity: 1; 
@@ -129,27 +136,27 @@
 }
 
 #LogIn-Button:hover > #logInFire1Image{
-  filter: drop-shadow(0.5px 2px 1px #222);
+  /* filter: drop-shadow(0.5px 2px 1px #222); */
   animation-name: fadeIn ;
-  animation-duration: 1s; 
+  animation-duration: 0.5s; 
   animation-iteration-count:infinite;
   animation-delay: 0s;
   opacity: 0; 
 }
 #LogIn-Button:hover > #logInFire2Image{
-  filter: drop-shadow(0.5px 2px 1px #222);
+  /* filter: drop-shadow(0.5px 2px 1px #222); */
   animation-name: fadeIn ;
-  animation-duration: 1s; 
+  animation-duration: 0.5s; 
   animation-iteration-count: infinite;
-  animation-delay: 0.6s;
+  animation-delay: 0.3s;
   opacity: 0; 
 }
 #LogIn-Button:hover > #logInFire3Image{
-  filter: drop-shadow(0.5px 2px 1px #222);
+  /* filter: drop-shadow(0.5px 2px 1px #222); */
   animation-name: fadeIn ;
-  animation-duration: 1s; 
+  animation-duration: 0.5s; 
   animation-iteration-count: infinite;
-  animation-delay: 1.2s;
+  animation-delay: 0.6s;
   opacity: 0; 
 }
 

@@ -1,15 +1,23 @@
-/* .Background {
+.Background {
     
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: auto;
     z-index: -1; 
+    /* background-color: azure; */
+
 }
 
-#book-Image {
-    width: 90%;
+#background-Image {
+    width: 100%;
     height: auto;
-    opacity: 0.5;
-}  */
+    opacity: 0.8;
+} 
+
+.shadow-overlay {
+    background-color: black;
+    height: 100%;
+    width: 100%;
+}

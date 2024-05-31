@@ -26,9 +26,9 @@ function App({}) {
   let intervalId;
   
 
-  const checkLoggedIn = () => {
-    console.log(user)
-  }
+  // const checkLoggedIn = () => {
+  //   console.log(user)
+  // }
 
   const changeHomePage = () => {
     setHome(true);
@@ -55,7 +55,8 @@ function App({}) {
   const logInAttempt = async (email, password) => {
     try {
           const userCredentials = await logInEmailPassword(email, password)
-          setUser(userCredentials)
+          // setUser()
+          logIn(userCredentials)
       }
       catch(error) {
           return error.code
@@ -67,8 +68,12 @@ function App({}) {
   }
 
   const logUserOut = () => {
-    setUser({})
+    setUser({});
     logOut();
+  }
+
+  constUserIn = (user) => {
+    setUser(user)
   }
 
   return (

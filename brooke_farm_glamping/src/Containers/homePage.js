@@ -12,7 +12,8 @@ const HomePage = ({}) => {
         <div className="Home">
             {/* <p>home page bro</p> */}
             <div className="Background">
-            <img id="book-Image"  src={backGround2}  />
+            <img id="background-Image"  src={backGround2}  />
+            <div className="shadow-overlay"></div>
             </div>
             
     </div>
