@@ -3,13 +3,26 @@
   
 }
 .Header {
-  height: 10vw;
-  width: auto;
+  height: 7vw; /* Adjust height as needed */
+  width: 100%; /* Ensure it takes full width */
+  /* background-color: #a36b6b;  */
+  position: relative;
+}
+
+.Header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; /* Position at the bottom */
+  left: 50%; /* Start at the center horizontally */
+  transform: translateX(-50%); /* Center it by shifting left by half its width */
+  width: 100%; /* Adjust width as needed */
+  border-bottom: 1px solid #b5b5b5; /* Add bottom border with desired width and color */
 }
 
 #header-Image {
   height: 5.5vw;
   width: auto;
+  filter: drop-shadow(0.5px 2px 1px #222);
 }
 
 
@@ -33,7 +46,7 @@
   transform: translateY(-50%);
   width: 1.5px;
   height: 45%; /* Adjust the height as needed */
-  background-color: #ccc; /* Color of the line */
+  background-color: #b5b5b5; /* Color of the line */
 }
 
 
@@ -65,7 +78,7 @@
 #book-Image { /* Image */
   height: 3.2vw;
   width: auto;
-  /* position: absolute; */
+  /* position: relative; */
   /* margin: 1vw; */
 
 }
@@ -116,6 +129,7 @@
 }
 
 #LogIn-Button:hover > #logInFire1Image{
+  filter: drop-shadow(0.5px 2px 1px #222);
   animation-name: fadeIn ;
   animation-duration: 1s; 
   animation-iteration-count:infinite;
@@ -123,6 +137,7 @@
   opacity: 0; 
 }
 #LogIn-Button:hover > #logInFire2Image{
+  filter: drop-shadow(0.5px 2px 1px #222);
   animation-name: fadeIn ;
   animation-duration: 1s; 
   animation-iteration-count: infinite;
@@ -130,6 +145,7 @@
   opacity: 0; 
 }
 #LogIn-Button:hover > #logInFire3Image{
+  filter: drop-shadow(0.5px 2px 1px #222);
   animation-name: fadeIn ;
   animation-duration: 1s; 
   animation-iteration-count: infinite;
