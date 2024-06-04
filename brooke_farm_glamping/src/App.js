@@ -90,15 +90,18 @@ function App({}) {
             <div id="Book-Button" onClick={changeBookingPage} value="Book">
               <img id="book-Image"  src={bookButton} />
             </div>
-            <div id="Profile-Icon">
+            <div id="Profile-Icon-DropDown">
               <img id="profile-icon-image" src={userIcon}/>
+              <div id="dropdown-content">
+                <div id="LogIn-Button"  onClick={changeLogInPage} value="LogIn" >
+                <img id="logInFire1Image" className="logInFire1-images" src={logInButtonFire1} />
+                <img id="logInFire2Image" className="logInFire2-images" src={logInButtonFire2} />
+                <img id="logInFire3Image" className="logInFire3-images" src={logInButtonFire3} />
+                <img className="logIn-images" src={logInImage}/>
             </div>
-            {/* <div id="LogIn-Button"  onClick={changeLogInPage} value="LogIn" >
-              <img id="logInFire1Image" className="logInFire1-images" src={logInButtonFire1} />
-              <img id="logInFire2Image" className="logInFire2-images" src={logInButtonFire2} />
-              <img id="logInFire3Image" className="logInFire3-images" src={logInButtonFire3} />
-              <img className="logIn-images" src={logInImage}/>
-            </div> */}
+              </div>
+            </div>
+            
               
             {/* <div id="LogOut-Button" onClick={logUserOut} value="LogOut">Log out</div> */}
             {/* <div id="is-user-logged-in" onClick={checkLoggedIn} value="is-user-logged-in">Logged in?</div> */}
