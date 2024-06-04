@@ -86,9 +86,21 @@
   filter: drop-shadow(0.5px 2px 1px #868686);
   /* position: absolute; */
   /* margin: 1vw; */
-
 }
 
+/* User icon  */
+#Profile-Icon { /* Container ------ -------*/
+  position:relative;
+  height: 3.2vw;
+  width: auto;
+  opacity: 1;
+}
+
+#profile-icon-image {
+  height: 3.2vw;
+  width: auto;
+  /* filter: drop-shadow(0.5px 2px 1px #868686); */
+}
 
 
 /* Log In button  */

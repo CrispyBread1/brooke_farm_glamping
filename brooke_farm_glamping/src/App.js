@@ -12,6 +12,7 @@ import logInButtonFire2 from './JPGs/LoginButton/LogInFire2.png'
 import logInButtonFire3 from './JPGs/LoginButton/LogInFire3.png'
 import homeButton from './JPGs/HomeButton/home.png'
 import bookButton from './JPGs/BookButton/book.png'
+import userIcon from './JPGs/userbutton/Userbutton.png'
 
 
 function App({}) {
@@ -56,7 +57,7 @@ function App({}) {
     try {
           const userCredentials = await logInEmailPassword(email, password)
           // setUser()
-          logIn(userCredentials)
+          UserIn(userCredentials)
       }
       catch(error) {
           return error.code
@@ -72,7 +73,7 @@ function App({}) {
     logOut();
   }
 
-  constUserIn = (user) => {
+  const UserIn = (user) => {
     setUser(user)
   }
 
@@ -89,12 +90,15 @@ function App({}) {
             <div id="Book-Button" onClick={changeBookingPage} value="Book">
               <img id="book-Image"  src={bookButton} />
             </div>
-            <div id="LogIn-Button"  onClick={changeLogInPage} value="LogIn" >
+            <div id="Profile-Icon">
+              <img id="profile-icon-image" src={userIcon}/>
+            </div>
+            {/* <div id="LogIn-Button"  onClick={changeLogInPage} value="LogIn" >
               <img id="logInFire1Image" className="logInFire1-images" src={logInButtonFire1} />
               <img id="logInFire2Image" className="logInFire2-images" src={logInButtonFire2} />
               <img id="logInFire3Image" className="logInFire3-images" src={logInButtonFire3} />
               <img className="logIn-images" src={logInImage}/>
-            </div>
+            </div> */}
               
             {/* <div id="LogOut-Button" onClick={logUserOut} value="LogOut">Log out</div> */}
             {/* <div id="is-user-logged-in" onClick={checkLoggedIn} value="is-user-logged-in">Logged in?</div> */}
