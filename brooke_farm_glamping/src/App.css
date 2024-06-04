@@ -53,7 +53,7 @@
 }
 
 
-/* Home button  */
+/* Home button  ---------------------------------------------------     ----    */
 #Home-Button { /* Container ------ -------*/
   position:relative;
   height: 3.2vw;
@@ -71,7 +71,7 @@
 
 
 
-/* Book button  */
+/* Book button  ---------------------------------------------------     ----    */
 #Book-Button { /* Container ------ -------*/
   position:relative;
   height: 3.2vw;
@@ -90,7 +90,7 @@
 
 
 
-/* User icon  */
+/* User icon  ---------------------------------------------------     ----    */
 #Profile-Icon-DropDown { /* Container ------ -------*/
   position:relative;
   top: 0.3vw;
@@ -118,7 +118,7 @@
 
 /* Links inside the dropdown */
 #dropdown-content a {
-  color: black;
+  /* color: black; */
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -130,15 +130,31 @@
 /* Show the dropdown menu on hover */
 #Profile-Icon-DropDown:hover #dropdown-content {display: block;}
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
-/* #Profile-Icon-DropDown:hover #profile-icon-image {background-color: #3e8e41;} */
 
 
-/* Log In button  */
+
+/* Account button  ---------------------------------------------------     ----    */
+#account-Button { /* Container ------ -------*/
+  position:relative;
+  filter: drop-shadow(0.5px 2px 1px #868686);
+  height: 2vw;
+  width: auto;
+  opacity: 1; 
+}
+
+#account-image { /* Image */
+  height: 2vw;
+  width: auto;
+  position: absolute; 
+}
+
+
+
+/* Log In button  ---------------------------------------------------     ----    */
 #LogIn-Button { /* Container ------ -------*/
   position:relative;
   filter: drop-shadow(0.5px 2px 1px #868686);
-  height: 3.2vw;
+  height: 2vw;
   width: auto;
   opacity: 1; 
   /* margin: 1vw; */
@@ -146,7 +162,7 @@
 }
 
 .logIn-images { /* Image */
-  height: 3.2vw;
+  height: 2vw;
   width: auto;
   position: absolute;
  } 
@@ -156,7 +172,7 @@
   top: 0;
   left: 0;
   opacity: 0;
-  height: 3.2vw;
+  height: 2vw;
   width: auto;
 }
 
@@ -165,7 +181,7 @@
   top: 0;
   left: 0;
   opacity: 0;
-  height: 3.2vw;
+  height: 2vw;
   width: auto;
 }
 
@@ -174,7 +190,7 @@
   top: 0;
   left: 0;
   opacity: 0;
-  height: 3.2vw;
+  height: 2vw;
   width: auto;
 }
 
@@ -205,7 +221,7 @@
 
 
 
-/* Animation */
+/* Animation  ---------------------------------------------------     ----    */
   @keyframes fadeIn {
   0% {opacity: 0; }
   /* 50% {opacity: 0;} */

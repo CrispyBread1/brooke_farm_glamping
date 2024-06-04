@@ -13,6 +13,7 @@ import logInButtonFire3 from './JPGs/LoginButton/LogInFire3.png'
 import homeButton from './JPGs/HomeButton/home.png'
 import bookButton from './JPGs/BookButton/book.png'
 import userIcon from './JPGs/userbutton/Userbutton.png'
+import accountImage from './JPGs/AccountButton/account.png'
 
 
 function App({}) {
@@ -92,14 +93,19 @@ function App({}) {
             </div>
             <div id="Profile-Icon-DropDown">
               <img id="profile-icon-image" src={userIcon}/>
+
               <div id="dropdown-content">
                 <div id="LogIn-Button"  onClick={changeLogInPage} value="LogIn" >
-                <img id="logInFire1Image" className="logInFire1-images" src={logInButtonFire1} />
-                <img id="logInFire2Image" className="logInFire2-images" src={logInButtonFire2} />
-                <img id="logInFire3Image" className="logInFire3-images" src={logInButtonFire3} />
-                <img className="logIn-images" src={logInImage}/>
-            </div>
+                  <img id="logInFire1Image" className="logInFire1-images" src={logInButtonFire1} />
+                  <img id="logInFire2Image" className="logInFire2-images" src={logInButtonFire2} />
+                  <img id="logInFire3Image" className="logInFire3-images" src={logInButtonFire3} />
+                  <img className="logIn-images" src={logInButton}/>
+                </div>
+                <div id="account-Button">
+                  <img id="account-image" src={accountImage}/>
+                </div>
               </div>
+
             </div>
             
               
