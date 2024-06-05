@@ -1,4 +1,6 @@
 import React from "react";
+import CalendarContainer from './calendarContainer'
+import './bookingPage.css'
 
 const BookingPage = ({newBooking, user}) => {
 
@@ -26,6 +28,10 @@ const BookingPage = ({newBooking, user}) => {
 
         <div id="Add-booking"  onClick={addBooking} value="addBooking">Add Booking</div>
         <div onClick={checkUserGotThrough}>User email: {`${user}`}</div>
+
+        <div id="Calendar-container">
+            <CalendarContainer/>
+        </div>
 
     </div>
  )

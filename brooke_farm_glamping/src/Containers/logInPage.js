@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { AuthErrorCodes, getAuth } from "firebase/auth";
+// import { AuthErrorCodes, getAuth } from "firebase/auth";
 
 const LogInPage = ({logInAttempt, registerNewAccountAttempt}) => {
 
