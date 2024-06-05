@@ -14,6 +14,9 @@ import homeButton from './JPGs/HomeButton/home.png'
 import bookButton from './JPGs/BookButton/book.png'
 import userIcon from './JPGs/userbutton/Userbutton.png'
 import accountImage from './JPGs/AccountButton/account.png'
+import {Link, BrowserRouter} from'react-router-dom'
+import { Paths } from './Scripts/routes';
+
 
 
 function App({}) {
@@ -77,6 +80,7 @@ function App({}) {
   }
 
   return (
+    <BrowserRouter>
     <div className= "Homepage">
       <div className= "Header">
         <img id="header-Image" src={headerImage}></img>
@@ -86,9 +90,11 @@ function App({}) {
             <div id="Home-Button"  onClick={changeHomePage} value="Home">
               <img id="home-Image"  src={homeButton} />
             </div>
+            <Link to="/book">
             <div id="Book-Button" onClick={changeBookingPage} value="Book">
               <img id="book-Image"  src={bookButton} />
             </div>
+            </Link>
             <div id="Profile-Icon-DropDown">
               <img id="profile-icon-image" src={userIcon}/>
 
@@ -112,11 +118,14 @@ function App({}) {
     </div>
 
     <div className="Rendering pages">
-      {home && <HomePage />}
+      {/* {home && <HomePage />}
       {booking && <BookingPage  user={user}/>}
-      {logIn && <LogInPage logInAttempt={logInAttempt} registerNewAccountAttempt={registerNewAccountAttempt}/>}
+      {logIn && <LogInPage logInAttempt={logInAttempt} registerNewAccountAttempt={registerNewAccountAttempt}/>} */}
+      {/* <Paths/> */}
     </div>
     </div>
+
+    </BrowserRouter>
   );
 
 }
