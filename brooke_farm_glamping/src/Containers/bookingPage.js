@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useEffect, useState }  from "react";
 import CalendarContainer from './calendarContainer'
 import './bookingPage.css'
+import { addBooking, editBooking, retreiveBooking, cancelBooking} from '../Scripts/databaseControls.js';
 
-const BookingPage = ({newBooking, user}) => {
+const BookingPage = ({ user}) => {
 
-    // var userAc = ''
+    
 
-    // if (user) {
-    //     userAc = user.user
-    // }
-
-    const addBooking = () => {
-        newBooking()
+    const newBooking = () => {
+        const userId = Math.floor(Math.random() * 100);
+        const guestName = 'dan';
+        const guests = 2;
+        const space = 'tent';
+        const date = new Date()
+        const nights = 1
+        const state = 'Approved'
+        addBooking(userId, guestName, guests, space, date.toString(), nights, state)
     }
 
     const checkUserGotThrough = () => {
@@ -26,7 +30,7 @@ const BookingPage = ({newBooking, user}) => {
     <div>
         <p>Booking page</p>
 
-        <div id="Add-booking"  onClick={addBooking} value="addBooking">Add Booking</div>
+        <div id="Add-booking"  onClick={newBooking} value="addBooking">Add Booking</div>
         <div onClick={checkUserGotThrough}>User email: {`${user}`}</div>
 
         <div id="Calendar-container">

@@ -50,9 +50,7 @@ function App({}) {
     setLogIn(true);
   }
 
-  const newBooking = () => {
-    addBooking('222', 'ashley', '26');
-  }
+  
   
   const logInAttempt = async (email, password) => {
     try {
@@ -115,7 +113,7 @@ function App({}) {
 
     <div className="Rendering pages">
       {home && <HomePage />}
-      {booking && <BookingPage newBooking={newBooking} user={user}/>}
+      {booking && <BookingPage  user={user}/>}
       {logIn && <LogInPage logInAttempt={logInAttempt} registerNewAccountAttempt={registerNewAccountAttempt}/>}
     </div>
     </div>

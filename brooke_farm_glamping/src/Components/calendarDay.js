@@ -1,11 +1,11 @@
 import React from "react";
 
 
-const CalendarDay = ({date, months}) => {
+const CalendarDay = ({day}) => {
     return (
         <>
             <li className="li-entry">
-            {`${date}`} with {`${months}`}s
+            {`${day}`}s
             </li>
       <br />
         </>

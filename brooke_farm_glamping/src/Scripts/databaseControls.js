@@ -12,20 +12,20 @@ const firebaseConfig = {
   };
   
   const app = initializeApp(firebaseConfig);
-  
-  const writeToDB = (userId, userName, userAge) => {
-    
+
+  const addBooking = (userId, userName, guests, space, date, nights, state) => {
     const db = getDatabase();
-    const reference = ref(db, 'users/', userId)
+    const reference = ref(db, 'bookings/' + userId)
   
     set(reference, {
       Name: userName,
-      Age: userAge
-    })
-  }
+      AmountOfguests: guests,
+      Facility: space,
+      Date: date,
+      Nights: nights,
+      state: state
 
-  const addBooking = (tok1, tok2, tok3) => {
-    writeToDB(tok1, tok2, tok3)
+    })
   }
 
   const editBooking = () => {
