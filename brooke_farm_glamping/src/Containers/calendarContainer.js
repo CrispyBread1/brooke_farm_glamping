@@ -1,6 +1,7 @@
 import React, { useEffect, useState }  from "react";
 import CalendarDay from "../Components/calendarDay";
 import { retrieveBooking } from "../Scripts/databaseControls";
+// import Booking from "../Classes/booking";
 
 
 const CalendarContainer = () => {
@@ -23,7 +24,7 @@ const CalendarContainer = () => {
         const month = new Date();
         try {
           const bookings = await retrieveBooking(month.getMonth());
-          console.log(bookings);
+          fillDaysInMonth(bookings);
         } catch (error) {
           console.error('Error fetching bookings:', error);
           // return handleError(error);
@@ -31,10 +32,29 @@ const CalendarContainer = () => {
         }
       };
 
-    const fillDaysInMonth = () => {
-        // const month = date.getMonth();
-        const day = [];
+    const fillDaysInMonth = (bookings) => {
+        const month = new Date().getMonth();
+        console.log(months[month].days)
+        // console.log(bookings[33].)
+        for (var i; i>= months[month].days; i++) {
+            // console.log(month)
+            var bookingsForDay = 0
+            var day = {}
+            day.day = i + 1
+            day.day.bookings = bookingsForDay
+            for (var j; j>= bookings.length(); j++){
 
+                if (bookings[j].date.getDay() == i) {
+                    bookingsForDay ++
+                }
+               
+                
+            }
+            setDaysInMonth([...daysInMonth,  day]);
+            console.log(daysInMonth)
+        }
+        
+        // console.log(daysInMonth)
 
     }
 

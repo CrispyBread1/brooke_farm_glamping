@@ -2,6 +2,7 @@ import React, { useEffect, useState }  from "react";
 import CalendarContainer from './calendarContainer'
 import './bookingPage.css'
 import { addBooking, editBooking, retreiveBooking, cancelBooking} from '../Scripts/databaseControls.js';
+import Booking from "../Classes/booking";
 
 const BookingPage = ({ user}) => {
 
@@ -12,10 +13,14 @@ const BookingPage = ({ user}) => {
         const guestName = 'dan';
         const guests = 2;
         const space = 'tent';
-        const date = new Date()
+        const dateWork = new Date()
+        const date = {day: dateWork.getDay(), month: dateWork.getMonth(), year: dateWork.getYear()}
         const nights = 1
         const state = 'Approved'
-        addBooking(userId, guestName, guests, space, date.toString(), nights, state)
+        const notes = 'notes test'
+        // addBooking(userId, guestName, guests, space, date.toString(), nights, state)
+        const newBooking = new Booking(userId, guestName, guests, space, date, nights, state, notes)
+        addBooking(userId, newBooking)
     }
 
     const checkUserGotThrough = () => {

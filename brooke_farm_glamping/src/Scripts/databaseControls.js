@@ -13,17 +13,12 @@ const firebaseConfig = {
   
   const app = initializeApp(firebaseConfig);
 
-  const addBooking = (userId, userName, guests, space, date, nights, state) => {
+  const addBooking = (userId, booking) => {
     const db = getDatabase();
     const reference = ref(db, 'bookings/' + userId)
   
     set(reference, {
-      Name: userName,
-      AmountOfguests: guests,
-      Facility: space,
-      Date: date,
-      Nights: nights,
-      state: state
+      userId: booking
 
     })
   }
