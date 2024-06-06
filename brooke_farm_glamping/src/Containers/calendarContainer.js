@@ -1,5 +1,6 @@
 import React, { useEffect, useState }  from "react";
 import CalendarDay from "../Components/calendarDay";
+import { retrieveBooking } from "../Scripts/databaseControls";
 
 
 const CalendarContainer = () => {
@@ -12,9 +13,23 @@ const CalendarContainer = () => {
 
 
     useEffect(() => {
-        setDate(new Date())
-        fillDaysInMonth()
+        // setDate(new Date())
+        fetchBookings()
+        // .then((res) => {console.log(res)})
+        // console.log(bookingsInMonth)
       }, []);
+
+      const fetchBookings = async () => {
+        const month = new Date();
+        try {
+          const bookings = await retrieveBooking(month.getMonth());
+          console.log(bookings);
+        } catch (error) {
+          console.error('Error fetching bookings:', error);
+          // return handleError(error);
+          // return error.code;
+        }
+      };
 
     const fillDaysInMonth = () => {
         // const month = date.getMonth();
@@ -46,7 +61,7 @@ const CalendarContainer = () => {
     return (
         <section>
             <h1 onClick={checkDate}>Date</h1>
-            <ul id="calendar-days">{showDaysOfMonth}</ul>
+            <ul id="calendar-days">{bookingsInMonth}</ul>
         </section>
     )
 }

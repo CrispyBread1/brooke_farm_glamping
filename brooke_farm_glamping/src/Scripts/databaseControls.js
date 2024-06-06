@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set, onValue } from "firebase/database";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAms2TxN-V_0N0q56ERISmsZnzv5RTdnmY",
@@ -32,12 +32,27 @@ const firebaseConfig = {
     return
   }
 
-  const retreiveBooking = () => {
-    return
-  }
+
+const retrieveBooking = (month) => {
+  return new Promise((resolve, reject) => {
+    const db = getDatabase();
+    const bookingsRef = ref(db, 'bookings/');
+
+    onValue(bookingsRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        resolve(data);
+      } else {
+        reject(new Error('No data available'));
+      }
+    }, (error) => {
+      reject(error);
+    });
+  });
+};
 
   const cancelBooking = () => {
     return
   }
 
-  export {addBooking, editBooking, retreiveBooking, cancelBooking};
+  export {addBooking, editBooking, retrieveBooking, cancelBooking};
