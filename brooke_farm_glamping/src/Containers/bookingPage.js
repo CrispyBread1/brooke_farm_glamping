@@ -14,7 +14,8 @@ const BookingPage = ({ user}) => {
         const guests = 2;
         const space = 'tent';
         const dateWork = new Date()
-        const date = {day: dateWork.getDay(), month: dateWork.getMonth(), year: dateWork.getYear()}
+        // const date = {day: dateWork.getDay(), month: dateWork.getMonth(), year: dateWork.getYear()}
+        const date = (dateWork.getDay() + ':' + dateWork.getMonth() + ':' + dateWork.getFullYear())
         const nights = 1
         const state = 'Approved'
         const notes = 'notes test'

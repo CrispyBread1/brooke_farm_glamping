@@ -18,7 +18,7 @@ const firebaseConfig = {
     const reference = ref(db, 'bookings/' + userId)
   
     set(reference, {
-      userId: booking
+      information: booking
 
     })
   }
