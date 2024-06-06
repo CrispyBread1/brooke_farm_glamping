@@ -4,19 +4,6 @@ import { useState, useEffect } from "react";
 
 const CalendarDay = ({bookingsAmount, date}) => {
 
-    // const [bookingsAmount, setBookingsAmount] = useState(0)
-
-    useEffect(() => {
-        // amountOfBookings()
-      }, []);
-    
-    const amountOfBookings = () => {
-
-        
-        // setBookingsAmount(number)
-    }
-
-
     return (
         <>
             <li className="li-entry">

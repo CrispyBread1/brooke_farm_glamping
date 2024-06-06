@@ -15,11 +15,9 @@ const CalendarContainer = () => {
 
 
     useEffect(() => {
-        // setDate(new Date())
         fetchBookings()
         fillDaysInMonth()
-        // .then((res) => {console.log(res)})
-        // console.log(bookingsInMonth)
+
       }, []);
 
       const fetchBookings = async () => {
@@ -29,46 +27,33 @@ const CalendarContainer = () => {
           setBookings(bookings);
         } catch (error) {
           console.error('Error fetching bookings:', error);
-          // return handleError(error);
-          // return error.code;
         }
       };
 
     const fillDaysInMonth = () => {
         const month = new Date().getMonth();
         const dateWork = new Date()
-        // console.log(months[month].days)
-        // console.log(bookings[33].)
         var days = []
+
         for (let i = 0; i <= months[month].days; i++) {
             
-            
             var date = ((i + 1) + ':' + (dateWork.getMonth() + 1) + ':' + dateWork.getFullYear())
-            // console.log(date)
             var bookingsForDay = 0
             var day = {}
             day.day = i + 1
             day.bookings = bookingsForDay
             var number = 0;
-            // console.log(date)
+            
             for (var j in bookings){
-            // console.log(j)
-            // console.log(fetchedBookings[j].information.date)
-            // console.log(fetchedBookings[j].information.date)
                 if (bookings[j].information.date === date) {
                     number ++
-                    
                 }  
             }
     
             days.push(<CalendarDay key={i} bookingsAmount={number} date={date} />)
-            // console.log(days)
-            // setDaysInMonth([...daysInMonth,  day]);
             
         }
-        // console.log(days)
-        
-        // console.log(days)
+
         setDaysInMonth(days)
 
     }
@@ -78,19 +63,6 @@ const CalendarContainer = () => {
         console.log(date)
     }
 
-    const showDaysOfMonth = 
-        // return
-            // for (let i = 0; i >= daysInMonth; i++) {
-            //     console.log(i);
-            //     days.push(<CalendarDay date={date} months={months}></CalendarDay>)
-            // }
-        
-            daysInMonth.map((day) => (
-            <CalendarDay day={day}></CalendarDay>
-          ));
-        
-        // return dates;
-    
 
 
     return (
