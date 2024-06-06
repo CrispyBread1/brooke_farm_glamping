@@ -1,21 +1,19 @@
 import React from "react";
+import { useState, useEffect } from "react";
 
 
-const CalendarDay = ({fetchedBookings, date}) => {
+const CalendarDay = ({bookingsAmount, date}) => {
 
-    
+    // const [bookingsAmount, setBookingsAmount] = useState(0)
+
+    useEffect(() => {
+        // amountOfBookings()
+      }, []);
     
     const amountOfBookings = () => {
 
-        var number = 0;
-
-        for (var j in fetchedBookings){
-        // console.log(j)
-            if (fetchedBookings[j].information.date == date) {
-                number ++
-            }  
-        }
-        return number
+        
+        // setBookingsAmount(number)
     }
 
 
@@ -24,7 +22,7 @@ const CalendarDay = ({fetchedBookings, date}) => {
             <li className="li-entry">
                 Date: {`${date}`}  
                 {/* hello */}
-                Bookings: {amountOfBookings}s
+                Bookings: {bookingsAmount}s
             </li>
       <br />
         </>

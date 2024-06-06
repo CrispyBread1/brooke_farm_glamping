@@ -49,9 +49,19 @@ const CalendarContainer = () => {
             var day = {}
             day.day = i + 1
             day.bookings = bookingsForDay
-
+            var number = 0;
+            // console.log(date)
+            for (var j in bookings){
+            // console.log(j)
+            // console.log(fetchedBookings[j].information.date)
+            // console.log(fetchedBookings[j].information.date)
+                if (bookings[j].information.date === date) {
+                    number ++
+                    
+                }  
+            }
     
-            days.push(<CalendarDay key={i} fetchedBookings={bookings} date={date} />)
+            days.push(<CalendarDay key={i} bookingsAmount={number} date={date} />)
             // console.log(days)
             // setDaysInMonth([...daysInMonth,  day]);
             
