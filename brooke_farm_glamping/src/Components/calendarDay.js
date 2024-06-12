@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import './calendarDay.css'
 
 
 const CalendarDay = ({bookingsAmount, date}) => {
@@ -9,9 +10,10 @@ const CalendarDay = ({bookingsAmount, date}) => {
             <li className="li-entry">
                 Date: {`${date}`}  
                 {/* hello */}
+                <br />
                 Bookings: {bookingsAmount}s
             </li>
-      <br />
+      
         </>
     )
 }

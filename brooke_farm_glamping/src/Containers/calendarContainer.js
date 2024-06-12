@@ -16,25 +16,32 @@ const CalendarContainer = () => {
 
     useEffect(() => {
         fetchBookings()
-        fillDaysInMonth()
 
       }, []);
 
-      const fetchBookings = async () => {
+    useEffect(() => {
+        fillDaysInMonth()
+
+    }, [bookings])
+
+
+
+    const fetchBookings = async () => {
         const month = new Date();
         try {
           const bookings = await retrieveBooking(month.getMonth());
           setBookings(bookings);
+          
         } catch (error) {
           console.error('Error fetching bookings:', error);
         }
-      };
+    };
 
     const fillDaysInMonth = () => {
         const month = new Date().getMonth();
         const dateWork = new Date()
         var days = []
-
+        // console.log(bookings)
         for (let i = 0; i <= months[month].days; i++) {
             
             var date = ((i + 1) + ':' + (dateWork.getMonth() + 1) + ':' + dateWork.getFullYear())
@@ -47,6 +54,7 @@ const CalendarContainer = () => {
             for (var j in bookings){
                 if (bookings[j].information.date === date) {
                     number ++
+                    // console.log(bookings)
                 }  
             }
     
@@ -57,6 +65,8 @@ const CalendarContainer = () => {
         setDaysInMonth(days)
 
     }
+
+    
 
     const checkDate = () => {
         const date = new Date()
