@@ -6,30 +6,31 @@ import { retrieveBooking } from "../Scripts/databaseControls";
 
 const CalendarContainer = () => {
 
-    const [date, setDate] = useState('');
+    // const [date, setDate] = useState('');
     const [daysInMonth, setDaysInMonth] = useState([]);
-    const [bookingsInMonth, setBookingsInMonth] = useState('');
+    // const [bookingsInMonth, setBookingsInMonth] = useState('');
     const [bookings, setBookings] = useState('');
+    const [monthNum, setMonthNum] = useState(new Date().getMonth());
 
     const months = [{month:"January", days:31}, {month:"February", days:28}, {month:"March", days:31}, {month:"April", days:30}, {month:"May", days:31}, {month:"June", days:30}, {month:"July", days:31}, {month:"August", days:31}, {month:"September", days:31}, {month:"October", days:31}, {month:"November", days:30}, {month:"December", days:31}]
-
+    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
 
     useEffect(() => {
-        fetchBookings()
-
+        fetchBookings(monthNum)
+        // setMonthNum()
       }, []);
 
     useEffect(() => {
         fillDaysInMonth()
-
+        // console.log(monthNum)
     }, [bookings])
 
 
 
-    const fetchBookings = async () => {
+    const fetchBookings = async (tok1) => {
         const month = new Date();
         try {
-          const bookings = await retrieveBooking(month.getMonth());
+          const bookings = await retrieveBooking(tok1);
           setBookings(bookings);
           
         } catch (error) {
@@ -38,17 +39,19 @@ const CalendarContainer = () => {
     };
 
     const fillDaysInMonth = () => {
-        const month = new Date().getMonth();
+        // const month = new Date().getMonth();
         const dateWork = new Date()
         var days = []
         // console.log(bookings)
-        for (let i = 0; i <= months[month].days; i++) {
+        for (let i = 1; i <= months[monthNum].days; i++) {
             
-            var date = ((i + 1) + ':' + (dateWork.getMonth() + 1) + ':' + dateWork.getFullYear())
-            var bookingsForDay = 0
-            var day = {}
-            day.day = i + 1
-            day.bookings = bookingsForDay
+            var date = ((i) + ':' + (monthNum + 1) + ':' + dateWork.getFullYear())
+            var year = i + 1
+            // var testDate = new Date(year, month, day)
+            // var bookingsForDay = 0
+            // var day = {}
+            // day.day = i + 1
+            // day.bookings = bookingsForDay
             var number = 0;
             
             for (var j in bookings){
@@ -66,7 +69,11 @@ const CalendarContainer = () => {
 
     }
 
-    
+    const nextMonth = () => {
+        setMonthNum(monthNum + 1)
+        fillDaysInMonth()
+        // consol
+    }
 
     const checkDate = () => {
         const date = new Date()
@@ -76,6 +83,9 @@ const CalendarContainer = () => {
 
 
     return (
+        <div>
+            <button onClick={nextMonth}>next month</button>
+        
         <section>
             <h1 onClick={checkDate}>Date</h1>
             <ul id="calendar-days">
@@ -83,6 +93,7 @@ const CalendarContainer = () => {
             </ul>
             
         </section>
+        </div>
     )
 }
 
