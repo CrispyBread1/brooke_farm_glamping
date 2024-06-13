@@ -58,13 +58,10 @@ const CalendarContainer = () => {
             var day = i
             var dateObject = new Date(year, month, day)
             var number = 0;
-
+            // console.log(daysOfWeek[dateObject.getDay()])
             if (daysOfWeek[dateObject.getDay()] !== 'Sunday' && dateObject.getDate() === 1) {
                 days.push(fillInBlankDaysStart(year, month, dateObject))
-            } else if (i  === months[monthNum].days && daysOfWeek[dateObject.getDay()] !== 'Saturday' ) {
-                // days.push(fillInBlankDaysEnd(year, month, dateObject))
-                // console.log('yep')
-            }
+            } 
 
             // console.log(months[monthNum].days)
             // var gridID = (daysOfWeek[dateObject.getDay()] + ((i-1) + setNumber))
@@ -81,6 +78,11 @@ const CalendarContainer = () => {
             }
     
             days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject}/>)
+
+            if (i  === months[monthNum].days && daysOfWeek[dateObject.getDay()] !== 'Saturday' ) {
+                days.push(fillInBlankDaysEnd(year, month, dateObject))
+
+            }
             
         }
 
@@ -89,15 +91,15 @@ const CalendarContainer = () => {
     }
 
     const fillInBlankDaysStart = (year, month, dateObjectStart) => {
-        var blankDays = []
+        let blankDays = []
 
-        var daysFromPrevMonth = (dateObjectStart.getDay())
-        var prevMonth = months[(monthNum - 1)]
-        var blankDates = (prevMonth.days - daysFromPrevMonth) + 1
+        let daysFromPrevMonth = (dateObjectStart.getDay())
+        let prevMonth = months[(monthNum - 1)]
+        let blankDates = (prevMonth.days - daysFromPrevMonth) + 1
 
         for (let i = 1; i <= daysFromPrevMonth; i++) {
 
-            var blankDate = new Date(year, (month-1), blankDates)
+            let blankDate = new Date(year, (month-1), blankDates)
 
             blankDates++
 
@@ -108,17 +110,19 @@ const CalendarContainer = () => {
     }
 
     const fillInBlankDaysEnd = (year, month, dateObjectEnd) => {
-        var blankDays = []
-
-        var daysFromPrevMonth = (dateObjectEnd.getDay())
+        let blankDays = []
+        let daysFromPrevMonth = (dateObjectEnd.getDay())
         // var prevMonth = months[(monthNum + 1)]
         // var blankDates = (prevMonth.days + daysFromPrevMonth) + 1
 
-        for (let i = 1; i <= daysFromPrevMonth; i++) {
+        console.log(7- (daysFromPrevMonth+ 1) )
 
-            var blankDate = new Date(year, (month + 1), daysFromPrevMonth)
+        for (let i = 1; i <= (7 - (daysFromPrevMonth + 1)); i++) {
+
+            let blankDate = new Date(year, (month + 2), daysFromPrevMonth)
             // daysFromPrevMonth++
             // blankDates++
+            // console.log(i)
             // console.log(i)
             blankDays.push(<BlankCalendarDay key={i}  date={blankDate} />)
         }
