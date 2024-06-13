@@ -59,9 +59,9 @@ const CalendarContainer = () => {
             var dateObject = new Date(year, month, day)
             var number = 0;
 
-            if (daysOfWeek[dateObject.getDay()] != 'Sunday' && dateObject.getDate() == 1) {
+            if (daysOfWeek[dateObject.getDay()] !== 'Sunday' && dateObject.getDate() === 1) {
                 days.push(fillInBlankDaysStart(year, month, dateObject))
-            } else if (i  == months[monthNum].days && daysOfWeek[dateObject.getDay()] != 'Saturday' ) {
+            } else if (i  === months[monthNum].days && daysOfWeek[dateObject.getDay()] !== 'Saturday' ) {
                 days.push(fillInBlankDaysEnd(year, month, dateObject))
                 // console.log('yep')
             }
