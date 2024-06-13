@@ -63,13 +63,14 @@ const CalendarContainer = () => {
             if (daysOfWeek[dateObject.getDay()] !== 'Sunday' && dateObject.getDate() === 1) {
                 days.push(fillInBlankDaysStart(year, month, dateObject))
             } 
-            else if (dateObject <= dateWork) {
+            if (i <= dateWork.getDate() && monthNum === dateWork.getMonth()) {
+                // console.log('i am here')
                 days.push(<BlankCalendarDay key={i}  date={dateObject} />)
             }
-
             else if (dateObject >= dateWork) {
                 days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject}/>)
             }
+            
             
             for (var j in bookings){
                 if (bookings[j].information.date === date) {
