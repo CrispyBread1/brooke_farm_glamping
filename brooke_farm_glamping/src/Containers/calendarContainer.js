@@ -46,7 +46,7 @@ const CalendarContainer = () => {
     const fillDaysInMonth = () => {
         // const month = new Date().getMonth();
         const dateWork = new Date()
-        var days = []
+        let days = []
         // console.log(bookings)
         var setNumber = 0;
 
@@ -63,12 +63,6 @@ const CalendarContainer = () => {
                 days.push(fillInBlankDaysStart(year, month, dateObject))
             } 
 
-            // console.log(months[monthNum].days)
-            // var gridID = (daysOfWeek[dateObject.getDay()] + ((i-1) + setNumber))
-            // console.log((gridID + '  num:' + (i + setNumber)))
-            // daysOfWeek[dateObject.getDay()]
-
-            
             
             for (var j in bookings){
                 if (bookings[j].information.date === date) {
@@ -119,7 +113,7 @@ const CalendarContainer = () => {
 
         for (let i = 1; i <= (7 - (daysFromPrevMonth + 1)); i++) {
 
-            let blankDate = new Date(year, (month + 2), daysFromPrevMonth)
+            let blankDate = new Date(year, (month + 1), i)
             // daysFromPrevMonth++
             // blankDates++
             // console.log(i)
@@ -136,6 +130,11 @@ const CalendarContainer = () => {
         // consol
     }
 
+    const previousMonth = () => {
+        setMonthNum(monthNum - 1)
+        fillDaysInMonth()
+    }
+
     const checkDate = () => {
         const date = new Date()
         console.log(date)
@@ -146,6 +145,7 @@ const CalendarContainer = () => {
     return (
         <div>
             <button onClick={nextMonth}>next month</button>
+            <button onClick={previousMonth}>previous month</button>
         
         <section>
             <h1 onClick={checkDate}>Date</h1>
