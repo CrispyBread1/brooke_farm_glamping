@@ -2,6 +2,7 @@ import React, { useEffect, useState }  from "react";
 import CalendarDay from "../Components/calendarDay";
 import { retrieveBooking } from "../Scripts/databaseControls";
 import './calendarContainer.css'
+import BlankCalendarDay from "../Components/blankCalendarDay";
 // import Booking from "../Classes/booking";
 
 
@@ -58,12 +59,15 @@ const CalendarContainer = () => {
             var dateObject = new Date(year, month, day)
             var number = 0;
 
-            if (i == 1) {
-                setNumber = dateObject.getDay()
+            if (daysOfWeek[dateObject.getDay()] != 'Sunday' && dateObject.getDate() == 1) {
+                days.push(fillInBlankDaysStart(year, month, dateObject))
+            } else if (i  == months[monthNum].days && daysOfWeek[dateObject.getDay()] != 'Saturday' ) {
+                days.push(fillInBlankDaysEnd(year, month, dateObject))
+                // console.log('yep')
             }
 
-
-            var gridID = (daysOfWeek[dateObject.getDay()] + ((i-1) + setNumber))
+            // console.log(months[monthNum].days)
+            // var gridID = (daysOfWeek[dateObject.getDay()] + ((i-1) + setNumber))
             // console.log((gridID + '  num:' + (i + setNumber)))
             // daysOfWeek[dateObject.getDay()]
 
@@ -76,12 +80,50 @@ const CalendarContainer = () => {
                 }  
             }
     
-            days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject} gridID={gridID}/>)
+            days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject}/>)
             
         }
 
         setDaysInMonth(days)
 
+    }
+
+    const fillInBlankDaysStart = (year, month, dateObjectStart) => {
+        var blankDays = []
+
+        var daysFromPrevMonth = (dateObjectStart.getDay())
+        var prevMonth = months[(monthNum - 1)]
+        var blankDates = (prevMonth.days - daysFromPrevMonth) + 1
+
+        for (let i = 1; i <= daysFromPrevMonth; i++) {
+
+            var blankDate = new Date(year, (month-1), blankDates)
+
+            blankDates++
+
+            blankDays.push(<BlankCalendarDay key={i}  date={blankDate} />)
+        }
+
+        return blankDays
+    }
+
+    const fillInBlankDaysEnd = (year, month, dateObjectEnd) => {
+        var blankDays = []
+
+        var daysFromPrevMonth = (dateObjectEnd.getDay())
+        var prevMonth = months[(monthNum + 1)]
+        // var blankDates = (prevMonth.days + daysFromPrevMonth) + 1
+
+        for (let i = 0; i <= daysFromPrevMonth; i++) {
+
+            var blankDate = new Date(year, (month + 1), daysFromPrevMonth)
+            daysFromPrevMonth++
+            // blankDates++
+            // console.log(i)
+            blankDays.push(<BlankCalendarDay key={i}  date={blankDate} />)
+        }
+
+        return blankDays
     }
 
     const nextMonth = () => {

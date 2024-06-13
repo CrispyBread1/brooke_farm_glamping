@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import './calendarDay.css'
+import './blankCalendarDay.css'
 import { monitorAuthState } from "../Scripts/authenicationControls";
 
 
-const CalendarDay = ({bookingsAmount, date}) => {
+const BlankCalendarDay = ({ date }) => {
 
     // useEffect(() => {
     //     addCSSRule('#li-entry', ('grid-area:' + gridID));
@@ -23,11 +23,13 @@ const CalendarDay = ({bookingsAmount, date}) => {
 
     return (
         <>
-            <li className="li-entry">
+            <li className="blank-li-entry">
+                BLANK
                 Date: {`${date}`}  
-                {/* hello */}
+                {/* hello
                 <br />
-                Bookings: {bookingsAmount}s
+                Bookings: {bookingsAmount}s */}
+                
             </li>
       
         </>
@@ -35,4 +37,4 @@ const CalendarDay = ({bookingsAmount, date}) => {
 }
 
 
-export default CalendarDay;
+export default BlankCalendarDay;
