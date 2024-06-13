@@ -12,18 +12,21 @@ const CalendarContainer = () => {
     // const [bookingsInMonth, setBookingsInMonth] = useState('');
     const [bookings, setBookings] = useState('');
     const [monthNum, setMonthNum] = useState(new Date().getMonth());
+    const [daysOfWeek, setDaysOfWeek] = useState(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'])
 
     const months = [{month:"January", days:31}, {month:"February", days:28}, {month:"March", days:31}, {month:"April", days:30}, {month:"May", days:31}, {month:"June", days:30}, {month:"July", days:31}, {month:"August", days:31}, {month:"September", days:31}, {month:"October", days:31}, {month:"November", days:30}, {month:"December", days:31}]
-    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+    // const daysOfWeek = 
 
     useEffect(() => {
         fetchBookings(monthNum)
+
         // setMonthNum()
       }, []);
 
     useEffect(() => {
         fillDaysInMonth()
         // console.log(monthNum)
+        
     }, [bookings])
 
 
@@ -44,19 +47,27 @@ const CalendarContainer = () => {
         const dateWork = new Date()
         var days = []
         // console.log(bookings)
+        var setNumber = 0;
+
         for (let i = 1; i <= months[monthNum].days; i++) {
-            
+
             var date = ((i) + ':' + (monthNum + 1) + ':' + dateWork.getFullYear())
             var year = dateWork.getFullYear()
             var month = monthNum
             var day = i
             var dateObject = new Date(year, month, day)
-            console.log(dateObject)
-            // var bookingsForDay = 0
-            // var day = {}
-            // day.day = i + 1
-            // day.bookings = bookingsForDay
             var number = 0;
+
+            if (i == 1) {
+                setNumber = dateObject.getDay()
+            }
+
+
+            var gridID = (daysOfWeek[dateObject.getDay()] + ((i-1) + setNumber))
+            // console.log((gridID + '  num:' + (i + setNumber)))
+            // daysOfWeek[dateObject.getDay()]
+
+            
             
             for (var j in bookings){
                 if (bookings[j].information.date === date) {
@@ -65,7 +76,7 @@ const CalendarContainer = () => {
                 }  
             }
     
-            days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject} />)
+            days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject} gridID={gridID}/>)
             
         }
 

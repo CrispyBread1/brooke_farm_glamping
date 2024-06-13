@@ -1,34 +1,25 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import './calendarDay.css'
+import { monitorAuthState } from "../Scripts/authenicationControls";
 
 
-const CalendarDay = ({bookingsAmount, date}) => {
+const CalendarDay = ({bookingsAmount, date, gridID}) => {
 
-    useEffect(() => {
-        addCSSRule('#li-entry', ('grid-area:' + dayOfMonth()));
-      }, []);
+    // useEffect(() => {
+    //     addCSSRule('#li-entry', ('grid-area:' + gridID));
+        
+    //   }, []);
 
-    const dayOfMonth = () => {
-        var dayOfWeek = date.getDay()
-        // console.log(dayOfWeek)
-    }
 
-    // Function to add a CSS rule to a stylesheet
-    const addCSSRule = (selector, rule) => {
-    // Find the first stylesheet
-    let styleSheet = document.querySelector(".li-entry");
 
-    // Add the CSS rule to the stylesheet
-    if (styleSheet.insertRule) {
-        styleSheet.insertRule(`${selector} { ${rule} }`, styleSheet.cssRules.length);
-    } else if (styleSheet.addRule) {
-        styleSheet.addRule(selector, rule, -1);
-    }
-    }
+    
+    // const addCSSRule = (selector, rule) => { // Function to add a CSS rule to a stylesheet
+    //     let listItem = document.querySelector(".li-entry");
 
-// Add the CSS rule for #item1
+    //     listItem.style.gridArea = rule
 
+    // }
 
     return (
         <>
