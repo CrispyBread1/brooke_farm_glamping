@@ -21,17 +21,16 @@ const CalendarContainer = () => {
     useEffect(() => {
         fetchBookings(monthNum)
 
-        // setMonthNum()
       }, []);
 
-    useEffect(() => {
+    useEffect(() => { // Renders when bookings have come through
         fillDaysInMonth()
-        // console.log(monthNum)
         
     }, [bookings])
 
-    useEffect(() => {
+    useEffect(() => { // Re renders when month is changed for next or previouse
         fillDaysInMonth()
+
     }, [monthNum])
 
 
@@ -47,35 +46,38 @@ const CalendarContainer = () => {
         }
     };
 
+
+
     const fillDaysInMonth = () => {
-        // const month = new Date().getMonth();
         const dateWork = new Date()
         let days = []
-        // console.log(bookings)
-        var setNumber = 0;
 
         for (let i = 1; i <= months[monthNum].days; i++) {
-
             var date = ((i) + ':' + (monthNum + 1) + ':' + dateWork.getFullYear())
             var year = dateWork.getFullYear()
             var month = monthNum
             var day = i
             var dateObject = new Date(year, month, day)
             var number = 0;
-            // console.log(daysOfWeek[dateObject.getDay()])
+
             if (daysOfWeek[dateObject.getDay()] !== 'Sunday' && dateObject.getDate() === 1) {
                 days.push(fillInBlankDaysStart(year, month, dateObject))
             } 
+            else if (dateObject <= dateWork) {
+                days.push(<BlankCalendarDay key={i}  date={dateObject} />)
+            }
 
+            else if (dateObject >= dateWork) {
+                days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject}/>)
+            }
             
             for (var j in bookings){
                 if (bookings[j].information.date === date) {
                     number ++
-                    // console.log(bookings)
                 }  
             }
     
-            days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject}/>)
+           
 
             if (i  === months[monthNum].days && daysOfWeek[dateObject.getDay()] !== 'Saturday' ) {
                 days.push(fillInBlankDaysEnd(year, month, dateObject))
@@ -85,53 +87,39 @@ const CalendarContainer = () => {
         }
 
         setDaysInMonth(days)
-
     }
+
+
 
     const fillInBlankDaysStart = (year, month, dateObjectStart) => {
         let blankDays = []
-
         let daysFromPrevMonth = (dateObjectStart.getDay())
         let prevMonth = months[(monthNum - 1)]
         let blankDates = (prevMonth.days - daysFromPrevMonth) + 1
 
         for (let i = 1; i <= daysFromPrevMonth; i++) {
-
             let blankDate = new Date(year, (month-1), blankDates)
-
             blankDates++
-            // console.log((blankDays))
             blankDays.push(<BlankCalendarDay key={i}  date={blankDate} />)
         }
-
         return blankDays
     }
 
     const fillInBlankDaysEnd = (year, month, dateObjectEnd) => {
         let blankDays = []
         let daysFromPrevMonth = (dateObjectEnd.getDay())
-        // var prevMonth = months[(monthNum + 1)]
-        // var blankDates = (prevMonth.days + daysFromPrevMonth) + 1
-
-        // console.log(7- (daysFromPrevMonth+ 1) )
 
         for (let i = 1; i <= (7 - (daysFromPrevMonth + 1)); i++) {
-
             let blankDate = new Date(year, (month + 1), i)
-            // daysFromPrevMonth++
-            // blankDates++
-            // console.log(i)
-            // console.log(i)
             blankDays.push(<BlankCalendarDay key={i}  date={blankDate} />)
         }
-
         return blankDays
     }
 
+
+
     const nextMonth = () => {
         setMonthNum(monthNum + 1)
-        // fillDaysInMonth()
-        // consol
     }
 
     const previousMonth = () => {
@@ -139,10 +127,6 @@ const CalendarContainer = () => {
             setMonthNum(monthNum - 1)
             return
         }
-        console.log('cant go back to previouse months')
-        console.log(new Date().getMonth() + 'monthnum:' + monthNum)
-        
-        // fillDaysInMonth()
     }
 
     const checkDate = () => {
