@@ -15,7 +15,7 @@ const CalendarContainer = () => {
     const [monthNum, setMonthNum] = useState(new Date().getMonth());
     const [daysOfWeek, setDaysOfWeek] = useState(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'])
 
-    const months = [{month:"January", days:31}, {month:"February", days:28}, {month:"March", days:31}, {month:"April", days:30}, {month:"May", days:31}, {month:"June", days:30}, {month:"July", days:31}, {month:"August", days:31}, {month:"September", days:31}, {month:"October", days:31}, {month:"November", days:30}, {month:"December", days:31}]
+    const months = [{month:"January", days:31}, {month:"February", days:28}, {month:"March", days:31}, {month:"April", days:30}, {month:"May", days:31}, {month:"June", days:30}, {month:"July", days:31}, {month:"August", days:31}, {month:"September", days:30}, {month:"October", days:31}, {month:"November", days:30}, {month:"December", days:31}]
     // const daysOfWeek = 
 
     useEffect(() => {
@@ -29,6 +29,10 @@ const CalendarContainer = () => {
         // console.log(monthNum)
         
     }, [bookings])
+
+    useEffect(() => {
+        fillDaysInMonth()
+    }, [monthNum])
 
 
 
@@ -96,7 +100,7 @@ const CalendarContainer = () => {
             let blankDate = new Date(year, (month-1), blankDates)
 
             blankDates++
-
+            // console.log((blankDays))
             blankDays.push(<BlankCalendarDay key={i}  date={blankDate} />)
         }
 
@@ -109,7 +113,7 @@ const CalendarContainer = () => {
         // var prevMonth = months[(monthNum + 1)]
         // var blankDates = (prevMonth.days + daysFromPrevMonth) + 1
 
-        console.log(7- (daysFromPrevMonth+ 1) )
+        // console.log(7- (daysFromPrevMonth+ 1) )
 
         for (let i = 1; i <= (7 - (daysFromPrevMonth + 1)); i++) {
 
@@ -126,13 +130,19 @@ const CalendarContainer = () => {
 
     const nextMonth = () => {
         setMonthNum(monthNum + 1)
-        fillDaysInMonth()
+        // fillDaysInMonth()
         // consol
     }
 
     const previousMonth = () => {
-        setMonthNum(monthNum - 1)
-        fillDaysInMonth()
+        if ((monthNum - 1) >= new Date().getMonth()) {
+            setMonthNum(monthNum - 1)
+            return
+        }
+        console.log('cant go back to previouse months')
+        console.log(new Date().getMonth() + 'monthnum:' + monthNum)
+        
+        // fillDaysInMonth()
     }
 
     const checkDate = () => {
