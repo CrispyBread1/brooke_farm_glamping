@@ -62,7 +62,7 @@ const CalendarContainer = () => {
             if (daysOfWeek[dateObject.getDay()] !== 'Sunday' && dateObject.getDate() === 1) {
                 days.push(fillInBlankDaysStart(year, month, dateObject))
             } else if (i  === months[monthNum].days && daysOfWeek[dateObject.getDay()] !== 'Saturday' ) {
-                days.push(fillInBlankDaysEnd(year, month, dateObject))
+                // days.push(fillInBlankDaysEnd(year, month, dateObject))
                 // console.log('yep')
             }
 
@@ -111,13 +111,13 @@ const CalendarContainer = () => {
         var blankDays = []
 
         var daysFromPrevMonth = (dateObjectEnd.getDay())
-        var prevMonth = months[(monthNum + 1)]
+        // var prevMonth = months[(monthNum + 1)]
         // var blankDates = (prevMonth.days + daysFromPrevMonth) + 1
 
-        for (let i = 0; i <= daysFromPrevMonth; i++) {
+        for (let i = 1; i <= daysFromPrevMonth; i++) {
 
             var blankDate = new Date(year, (month + 1), daysFromPrevMonth)
-            daysFromPrevMonth++
+            // daysFromPrevMonth++
             // blankDates++
             // console.log(i)
             blankDays.push(<BlankCalendarDay key={i}  date={blankDate} />)
