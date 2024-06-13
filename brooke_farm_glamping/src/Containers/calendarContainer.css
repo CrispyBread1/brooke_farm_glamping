@@ -1,0 +1,15 @@
+
+
+#calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 10vw); /* 7 columns, each 1 fraction of available space */
+    gap: 1vw; /* Optional: space between grid items */
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+    margin: 0; 
+    grid-template-areas: 
+        "mon1 tues1 wed1 thurs1 fri1 sat1 sun1"
+        "mon2 tues2 wed2 thurs2 fri2 sat2 sun2"
+        "mon3 tues3 wed3 thurs3 fri3 sat3 sun3"
+        "mon4 tues4 wed4 thurs4 fri4 sat4 sun4";
+}

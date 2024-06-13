@@ -1,6 +1,7 @@
 import React, { useEffect, useState }  from "react";
 import CalendarDay from "../Components/calendarDay";
 import { retrieveBooking } from "../Scripts/databaseControls";
+import './calendarContainer.css'
 // import Booking from "../Classes/booking";
 
 
@@ -46,8 +47,11 @@ const CalendarContainer = () => {
         for (let i = 1; i <= months[monthNum].days; i++) {
             
             var date = ((i) + ':' + (monthNum + 1) + ':' + dateWork.getFullYear())
-            var year = i + 1
-            // var testDate = new Date(year, month, day)
+            var year = dateWork.getFullYear()
+            var month = monthNum
+            var day = i
+            var dateObject = new Date(year, month, day)
+            console.log(dateObject)
             // var bookingsForDay = 0
             // var day = {}
             // day.day = i + 1
@@ -61,7 +65,7 @@ const CalendarContainer = () => {
                 }  
             }
     
-            days.push(<CalendarDay key={i} bookingsAmount={number} date={date} />)
+            days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject} />)
             
         }
 

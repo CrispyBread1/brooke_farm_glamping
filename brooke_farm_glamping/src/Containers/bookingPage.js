@@ -14,13 +14,14 @@ const BookingPage = ({ user}) => {
         const guests = 2;
         const space = 'tent';
         const dateWork = new Date()
-        console.log((dateWork.getDay() + 1 ))
+        // console.log((dateWork.getDay() + 1 ))
         const date = ((dateWork.getDay() + 1 ) + ':' + (dateWork.getMonth() + 1) + ':' + dateWork.getFullYear())
         const nights = 1
         const state = 'Approved'
         const notes = 'notes test'
         // addBooking(userId, guestName, guests, space, date.toString(), nights, state)
         const newBooking = new Booking(userId, guestName, guests, space, date, nights, state, notes)
+        // console.log(newBooking)
         addBooking(userId, newBooking)
     }
 
