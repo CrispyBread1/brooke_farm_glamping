@@ -64,7 +64,7 @@ const CalendarContainer = () => {
             if (daysOfWeek[dateObject.getDay()] !== 'Sunday' && dateObject.getDate() === 1) {
                 days.push(fillInBlankDaysStart(year, month, dateObject))
             } 
-            if (i <= dateWork.getDate() && monthNum === dateWork.getMonth()) {
+            if (i <= dateWork.getDate() && monthNum === dateWork.getMonth() && yearNum ===dateWork.getFullYear()) {
                 // console.log('i am here')
                 days.push(<BlankCalendarDay key={i}  date={dateObject} />)
             }
