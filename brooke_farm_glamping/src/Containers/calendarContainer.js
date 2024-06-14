@@ -70,12 +70,6 @@ const CalendarContainer = () => {
             else if (dateObject >= dateWork) {
                 days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject}/>)
             }
-            
-            
-            
-    
-           
-
             if (i  === months[monthNum].days && daysOfWeek[dateObject.getDay()] !== 'Saturday' ) {
                 days.push(fillInBlankDaysEnd(year, month, dateObject))
 
@@ -150,9 +144,17 @@ const CalendarContainer = () => {
     }
 
     const previousMonth = () => {
-        if ((monthNum - 1) >= new Date().getMonth()) {
-            setMonthNum(monthNum - 1)
-            return
+        let monthNow = new Date(yearNum, monthNum, 0)
+        let nowDate = new Date()
+
+        if (monthNow >= nowDate) {
+            if((monthNum - 1) < 0) {
+                setMonthNum(11)
+                return
+            } else {
+                setMonthNum(monthNum -1)
+                return
+            }
         }
     }
 
