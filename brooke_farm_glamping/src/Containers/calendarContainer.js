@@ -58,7 +58,7 @@ const CalendarContainer = () => {
             var month = monthNum
             var day = i
             var dateObject = new Date(year, month, day)
-            var number = 0;
+            var number = getBookingForDay(date);
 
             if (daysOfWeek[dateObject.getDay()] !== 'Sunday' && dateObject.getDate() === 1) {
                 days.push(fillInBlankDaysStart(year, month, dateObject))
@@ -72,11 +72,7 @@ const CalendarContainer = () => {
             }
             
             
-            for (var j in bookings){
-                if (bookings[j].information.date === date) {
-                    number ++
-                }  
-            }
+            
     
            
 
@@ -90,7 +86,18 @@ const CalendarContainer = () => {
         setDaysInMonth(days)
     }
 
+    const getBookingForDay = (date) => {
 
+        var int = 0
+
+        for (var j in bookings){
+            if (bookings[j].information.date === date) {
+                int ++
+            }  
+        }
+
+        return int
+    }
 
     const fillInBlankDaysStart = (year, month, dateObjectStart) => {
         let blankDays = []
