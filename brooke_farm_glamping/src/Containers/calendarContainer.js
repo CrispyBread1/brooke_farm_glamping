@@ -65,7 +65,7 @@ const CalendarContainer = () => {
             } 
             if (i <= dateWork.getDate() && monthNum === dateWork.getMonth() && yearNum ===dateWork.getFullYear()) {
                 // console.log('i am here')
-                days.push(<BlankCalendarDay key={i}  date={dateObject} />)
+                days.push(<BlankCalendarDay key={i}  date={dateObject} month={months[monthNum]}/>)
             }
             else if (dateObject >= dateWork) {
                 days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject}/>)
@@ -113,7 +113,7 @@ const CalendarContainer = () => {
         for (let i = 1; i <= daysFromPrevMonth; i++) {
             let blankDate = new Date(year, (month-1), blankDates)
             blankDates++
-            blankDays.push(<BlankCalendarDay key={i}  date={blankDate} />)
+            blankDays.push(<BlankCalendarDay key={i}  date={blankDate} month={prevMonth}/>)
         }
         return blankDays
     }
@@ -124,7 +124,7 @@ const CalendarContainer = () => {
 
         for (let i = 1; i <= (7 - (daysFromPrevMonth + 1)); i++) {
             let blankDate = new Date(year, (month + 1), i)
-            blankDays.push(<BlankCalendarDay key={i}  date={blankDate} />)
+            blankDays.push(<BlankCalendarDay key={i}  date={blankDate} month={months[(monthNum + 1)]}/>)
         }
         return blankDays
     }
@@ -160,11 +160,18 @@ const CalendarContainer = () => {
     return (
         <div>
             <button onClick={nextMonth}>next month</button>
-            <button onClick={previousMonth}>previous month</button>
+            <button onClick={previousMonth}>previous</button>
         
         <section>
-            <h1 onClick={checkDate}>Date</h1>
+            <h1 onClick={checkDate}>Date {months[monthNum].month}</h1>
             <ul id="calendar-days">
+                <li>Sunday</li>
+                <li>Monday</li>
+                <li>Tuesday</li>
+                <li>Wednesday</li>
+                <li>Thursday</li>
+                <li>Friday</li>
+                <li>Saturday</li>
                 {daysInMonth}
             </ul>
             

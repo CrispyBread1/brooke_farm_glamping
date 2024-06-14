@@ -24,7 +24,7 @@ const CalendarDay = ({bookingsAmount, date}) => {
     return (
         <>
             <li className="li-entry">
-                Date: {`${date}`}  
+                Date: {`${date.getDate()}`}  
                 {/* hello */}
                 <br />
                 Bookings: {bookingsAmount}s
