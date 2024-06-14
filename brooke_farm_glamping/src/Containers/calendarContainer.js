@@ -13,6 +13,7 @@ const CalendarContainer = () => {
     // const [bookingsInMonth, setBookingsInMonth] = useState('');
     const [bookings, setBookings] = useState('');
     const [monthNum, setMonthNum] = useState(new Date().getMonth());
+    const [yearNum, setYearNum] = useState(new Date().getFullYear());
     const [daysOfWeek, setDaysOfWeek] = useState(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'])
 
     const months = [{month:"January", days:31}, {month:"February", days:28}, {month:"March", days:31}, {month:"April", days:30}, {month:"May", days:31}, {month:"June", days:30}, {month:"July", days:31}, {month:"August", days:31}, {month:"September", days:30}, {month:"October", days:31}, {month:"November", days:30}, {month:"December", days:31}]
@@ -54,7 +55,7 @@ const CalendarContainer = () => {
 
         for (let i = 1; i <= months[monthNum].days; i++) {
             var date = ((i) + ':' + (monthNum + 1) + ':' + dateWork.getFullYear())
-            var year = dateWork.getFullYear()
+            var year = yearNum
             var month = monthNum
             var day = i
             var dateObject = new Date(year, month, day)
@@ -95,7 +96,12 @@ const CalendarContainer = () => {
     const fillInBlankDaysStart = (year, month, dateObjectStart) => {
         let blankDays = []
         let daysFromPrevMonth = (dateObjectStart.getDay())
-        let prevMonth = months[(monthNum - 1)]
+        let prevMonth = (months[(monthNum - 1)])
+        if (monthNum === 0) {
+            prevMonth = months[monthNum]
+        }
+
+        console.log(months[(monthNum - 1)])
         let blankDates = (prevMonth.days - daysFromPrevMonth) + 1
 
         for (let i = 1; i <= daysFromPrevMonth; i++) {
@@ -120,7 +126,15 @@ const CalendarContainer = () => {
 
 
     const nextMonth = () => {
-        setMonthNum(monthNum + 1)
+        // console.log('Year:' + yearNum + ' Month:' + monthNum)
+        if (monthNum === 11) {
+            setMonthNum(0)
+            setYearNum(yearNum + 1)
+            return
+        } else {
+            setMonthNum(monthNum + 1)
+        }
+        
     }
 
     const previousMonth = () => {
