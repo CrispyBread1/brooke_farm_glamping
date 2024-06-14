@@ -8,16 +8,15 @@ import BlankCalendarDay from "../Components/blankCalendarDay";
 
 const CalendarContainer = () => {
 
-    // const [date, setDate] = useState('');
+
     const [daysInMonth, setDaysInMonth] = useState([]);
-    // const [bookingsInMonth, setBookingsInMonth] = useState('');
     const [bookings, setBookings] = useState('');
     const [monthNum, setMonthNum] = useState(new Date().getMonth());
     const [yearNum, setYearNum] = useState(new Date().getFullYear());
-    const [daysOfWeek, setDaysOfWeek] = useState(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'])
 
-    const months = [{month:"January", days:31}, {month:"February", days:28}, {month:"March", days:31}, {month:"April", days:30}, {month:"May", days:31}, {month:"June", days:30}, {month:"July", days:31}, {month:"August", days:31}, {month:"September", days:30}, {month:"October", days:31}, {month:"November", days:30}, {month:"December", days:31}]
-    // const daysOfWeek = 
+    const [daysOfWeek, setDaysOfWeek] = useState(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'])
+    const [months, setMonths] = useState([{month:"January", days:31}, {month:"February", days:28}, {month:"March", days:31}, {month:"April", days:30}, {month:"May", days:31}, {month:"June", days:30}, {month:"July", days:31}, {month:"August", days:31}, {month:"September", days:30}, {month:"October", days:31}, {month:"November", days:30}, {month:"December", days:31}]);
+  
 
     useEffect(() => {
         fetchBookings(monthNum)
@@ -96,12 +95,12 @@ const CalendarContainer = () => {
     const fillInBlankDaysStart = (year, month, dateObjectStart) => {
         let blankDays = []
         let daysFromPrevMonth = (dateObjectStart.getDay())
+
         let prevMonth = (months[(monthNum - 1)])
         if (monthNum === 0) {
             prevMonth = months[monthNum]
         }
 
-        console.log(months[(monthNum - 1)])
         let blankDates = (prevMonth.days - daysFromPrevMonth) + 1
 
         for (let i = 1; i <= daysFromPrevMonth; i++) {

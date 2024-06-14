@@ -19,6 +19,7 @@ const firebaseConfig = {
   
     set(reference, {
       information: booking
+      // dateOf: date
 
     })
   }

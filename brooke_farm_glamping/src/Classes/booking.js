@@ -1,5 +1,5 @@
 class Booking {
-    constructor (userId, guestName, guests, space, date, nights, state, notes) {
+    constructor (userId, guestName, guests, space, date, nights, state, notes, dateBookingCreated) {
         
         this.userId = userId
         this.guestName = guestName
@@ -9,6 +9,7 @@ class Booking {
         this.nights = nights;
         this.state = state;
         this.notes = notes;
+        this.dateBookingCreated = dateBookingCreated
     }
 }
 
