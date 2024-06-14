@@ -122,9 +122,15 @@ const CalendarContainer = () => {
         let blankDays = []
         let daysFromPrevMonth = (dateObjectEnd.getDay())
 
+        let monthToPass = months[(monthNum + 1)]
+
+        if (!months[(monthNum + 1)]) {
+            monthToPass = months[0]
+        }
+
         for (let i = 1; i <= (7 - (daysFromPrevMonth + 1)); i++) {
             let blankDate = new Date(year, (month + 1), i)
-            blankDays.push(<BlankCalendarDay key={i}  date={blankDate} month={months[(monthNum + 1)]}/>)
+            blankDays.push(<BlankCalendarDay key={i}  date={blankDate} month={monthToPass}/>)
         }
         return blankDays
     }
