@@ -17,6 +17,7 @@ const CalendarContainer = () => {
     const [daysOfWeek, setDaysOfWeek] = useState(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'])
     const [months, setMonths] = useState([{month:"January", days:31}, {month:"February", days:28}, {month:"March", days:31}, {month:"April", days:30}, {month:"May", days:31}, {month:"June", days:30}, {month:"July", days:31}, {month:"August", days:31}, {month:"September", days:30}, {month:"October", days:31}, {month:"November", days:30}, {month:"December", days:31}]);
   
+    const [loadBookingBox, setLoadBookingBox] = useState(false)
 
     useEffect(() => {
         fetchBookings(monthNum)
@@ -33,6 +34,21 @@ const CalendarContainer = () => {
 
     }, [monthNum])
 
+
+    
+
+    const toggleBookingBox = () => {
+        // console.log('test')
+        setLoadBookingBox(true)
+
+        let bookingBox = document.querySelector(".booking-box");
+    //   if(background.className !== "Background"){
+        background.className = "Background"
+        bookingBox.classList.toggle("visible")
+    //   } else {background.classList.toggle("zoomleft")
+        // console.log(background.className)
+    //   }
+    }
 
 
     const fetchBookings = async (tok1) => {
@@ -107,7 +123,7 @@ const CalendarContainer = () => {
         for (let i = 1; i <= daysFromPrevMonth; i++) {
             let blankDate = new Date(year, (month-1), blankDates)
             blankDates++
-            blankDays.push(<BlankCalendarDay key={i}  date={blankDate} month={prevMonth}/>)
+            blankDays.push(<BlankCalendarDay key={i}  date={blankDate} month={prevMonth} />)
         }
         return blankDays
     }
