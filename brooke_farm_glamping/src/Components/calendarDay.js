@@ -6,30 +6,22 @@ import { monitorAuthState } from "../Scripts/authenicationControls";
 
 const CalendarDay = ({bookingsAmount, date}) => {
 
-    // useEffect(() => {
-    //     addCSSRule('#li-entry', ('grid-area:' + gridID));
-        
-    //   }, []);
-
-
-
-    
-    // const addCSSRule = (selector, rule) => { // Function to add a CSS rule to a stylesheet
-    //     let listItem = document.querySelector(".li-entry");
-
-    //     listItem.style.gridArea = rule
-
-    // }
+    const test = () => {
+        console.log('test')
+    }
 
     return (
         <>
-            <li className="li-entry">
+        <button onClick={test}>
+            <li className="li-entry" >
+                
                 Date: {`${date.getDate()}`}  
                 {/* hello */}
                 <br />
                 Bookings: {bookingsAmount}s
+                
             </li>
-      
+        </button>
         </>
     )
 }

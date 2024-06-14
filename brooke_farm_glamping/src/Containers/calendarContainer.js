@@ -158,24 +158,25 @@ const CalendarContainer = () => {
 
 
     return (
-        <div>
-            <button onClick={nextMonth}>next month</button>
-            <button onClick={previousMonth}>previous</button>
-        
-        <section>
+        <div >
+            <button id="nextMonthButton" onClick={nextMonth}>next month</button>
+            <button id="previousMonthButton" onClick={previousMonth}>previous</button>
+        <div id="calendar">
+        <section >
             <h1 onClick={checkDate}>Date {months[monthNum].month}</h1>
             <ul id="calendar-days">
-                <li>Sunday</li>
-                <li>Monday</li>
-                <li>Tuesday</li>
-                <li>Wednesday</li>
-                <li>Thursday</li>
-                <li>Friday</li>
-                <li>Saturday</li>
+                <b><li>Sunday</li></b>
+                <b> <li>Monday</li></b>
+                <b> <li>Tuesday</li></b>
+                <b><li>Wednesday</li></b>
+                <b> <li>Thursday</li></b>
+                <b> <li>Friday</li></b>
+                <b> <li>Saturday</li></b>
                 {daysInMonth}
             </ul>
             
         </section>
+        </div>
         </div>
     )
 }
