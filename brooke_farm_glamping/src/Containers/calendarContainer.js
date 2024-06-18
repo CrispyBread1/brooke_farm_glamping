@@ -43,7 +43,7 @@ const CalendarContainer = () => {
 
         let bookingBox = document.querySelector(".booking-box");
     //   if(background.className !== "Background"){
-        background.className = "Background"
+        // background.className = "Background"
         bookingBox.classList.toggle("visible")
     //   } else {background.classList.toggle("zoomleft")
         // console.log(background.className)
@@ -81,10 +81,10 @@ const CalendarContainer = () => {
             } 
             if (i <= dateWork.getDate() && monthNum === dateWork.getMonth() && yearNum ===dateWork.getFullYear()) {
                 // console.log('i am here')
-                days.push(<BlankCalendarDay key={i}  date={dateObject} month={months[monthNum]}/>)
+                days.push(<BlankCalendarDay key={i}  date={dateObject} month={months[monthNum]} id={i}/>)
             }
             else if (dateObject >= dateWork) {
-                days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject}/>)
+                days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject} id={i}/>)
             }
             if (i  === months[monthNum].days && daysOfWeek[dateObject.getDay()] !== 'Saturday' ) {
                 days.push(fillInBlankDaysEnd(year, month, dateObject))
@@ -123,7 +123,7 @@ const CalendarContainer = () => {
         for (let i = 1; i <= daysFromPrevMonth; i++) {
             let blankDate = new Date(year, (month-1), blankDates)
             blankDates++
-            blankDays.push(<BlankCalendarDay key={i}  date={blankDate} month={prevMonth} />)
+            blankDays.push(<BlankCalendarDay key={i}  date={blankDate} month={prevMonth} id={i}/>)
         }
         return blankDays
     }
@@ -140,7 +140,7 @@ const CalendarContainer = () => {
 
         for (let i = 1; i <= (7 - (daysFromPrevMonth + 1)); i++) {
             let blankDate = new Date(year, (month + 1), i)
-            blankDays.push(<BlankCalendarDay key={i}  date={blankDate} month={monthToPass}/>)
+            blankDays.push(<BlankCalendarDay key={i}  date={blankDate} month={monthToPass} id={i}/>)
         }
         return blankDays
     }

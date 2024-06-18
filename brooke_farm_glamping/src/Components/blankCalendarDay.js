@@ -4,7 +4,7 @@ import './blankCalendarDay.css'
 import { monitorAuthState } from "../Scripts/authenicationControls";
 
 
-const BlankCalendarDay = ({ date, month }) => {
+const BlankCalendarDay = ({ date, month, id }) => {
 
     // useEffect(() => {
     //     addCSSRule('#li-entry', ('grid-area:' + gridID));
