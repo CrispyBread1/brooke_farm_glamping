@@ -15,7 +15,7 @@ const CalendarDay = ({bookingsAmount, date, id}) => {
             text-align: center;
             position: relative;
             width: 5vw;
-            height: ` + id + `vw;
+            height: 5vw;
         `;
         const classNameBox = createClassNameIdBox();
         const stylesBox = `
@@ -23,7 +23,7 @@ const CalendarDay = ({bookingsAmount, date, id}) => {
 
         `;
         addCSSRule(`.${classNameLi}`, stylesLi);
-        addCSSRule(`.${classNameBox}`, stylesBox);
+        // addCSSRule(`.${classNameBox}`, stylesBox);
     }, [id]);
 
     const addCSSRule = (selector, rules) => {
@@ -36,7 +36,7 @@ const CalendarDay = ({bookingsAmount, date, id}) => {
     }
 
     const createClassNameIdBox = () => {
-        return "booking-box" + id
+        return "booking-box-" + id
     }
 
     const createClassNameIdLi = () => {
@@ -62,8 +62,8 @@ const CalendarDay = ({bookingsAmount, date, id}) => {
                 <br />
                 Bookings: {bookingsAmount}s
                 <div className={createClassNameIdBox()}>
-                <BookingBox></BookingBox>
-            </div>
+                    <BookingBox></BookingBox>
+                </div>
             </li>
         </button>
             
