@@ -1,19 +1,11 @@
-.li-entry {
-    /* border: 2px solid #000;  */
+/* .li-entry {
+    position: relative;
     padding: 1vw;
     margin: 1vw 0;
-    border-radius: 5px; /* Optional: for rounded corners
-    /* background-color: #f9f9f9;  */
-    /* width: 8vw; */
-}
-/* 
-.booking-box {
-    margin-top: 10px;
-    display: none;
-}
+    border-radius: 5px; 
 
-.booking-box.visible {
-    display: block;  Show when the 'visible' class is added 
-    margin-top: 10px;
-} 
-*/
+} */
+
+/* .booking-box {
+    
+} */

@@ -9,12 +9,21 @@ import Booking from "../Classes/booking";
 const CalendarDay = ({bookingsAmount, date, id}) => {
 
     useEffect(() => {
-        const className = createClassNameId();
-        const styles = `
+        const classNameLi = createClassNameIdLi();
+        const stylesLi = `
             padding: 20px;
             text-align: center;
+            position: relative;
+            width: 5vw;
+            height: ` + id + `vw;
         `;
-        addCSSRule(`.${className}`, styles);
+        const classNameBox = createClassNameIdBox();
+        const stylesBox = `
+        position: absolute;
+
+        `;
+        addCSSRule(`.${classNameLi}`, stylesLi);
+        addCSSRule(`.${classNameBox}`, stylesBox);
     }, [id]);
 
     const addCSSRule = (selector, rules) => {
@@ -26,9 +35,11 @@ const CalendarDay = ({bookingsAmount, date, id}) => {
         }
     }
 
+    const createClassNameIdBox = () => {
+        return "booking-box" + id
+    }
 
-
-    const createClassNameId = () => {
+    const createClassNameIdLi = () => {
         // console.log('li-entry' + id)
         return "li-entry-" + id
     }
@@ -44,18 +55,18 @@ const CalendarDay = ({bookingsAmount, date, id}) => {
     return (
         <>
         <button onClick={toggleBookingBox}>
-            <li className={createClassNameId()} >
+            <li className={createClassNameIdLi()} >
                 
                 Date: {`${date.getDate()}`}  
                 {/* hello */}
                 <br />
                 Bookings: {bookingsAmount}s
-                
+                <div className={createClassNameIdBox()}>
+                <BookingBox></BookingBox>
+            </div>
             </li>
         </button>
-            {/* <div className="booking-box">
             
-            </div> */}
         </>
     )
 }
