@@ -14,8 +14,8 @@ const CalendarDay = ({bookingsAmount, date, id}) => {
             padding: 20px;
             text-align: center;
             position: relative;
-            width: 5vw;
-            height: 5vw;
+            width: auto;
+            height: auto;
         `;
         const classNameBox = createClassNameIdBox();
         const stylesBox = `
@@ -57,13 +57,13 @@ const CalendarDay = ({bookingsAmount, date, id}) => {
         <button onClick={toggleBookingBox}>
             <li className={createClassNameIdLi()} >
                 
-                Date: {`${date.getDate()}`}  
+                {`${date.getDate()}`}  
                 {/* hello */}
                 <br />
-                Bookings: {bookingsAmount}s
-                <div className={createClassNameIdBox()}>
-                    <BookingBox></BookingBox>
-                </div>
+                {/* Bookings: {bookingsAmount}s */}
+                {/* <div className={createClassNameIdBox()}> */}
+                    {/* <BookingBox></BookingBox> */}
+                {/* </div> */}
             </li>
         </button>
             
