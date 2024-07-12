@@ -6,7 +6,7 @@ import BlankCalendarDay from "../Components/blankCalendarDay";
 // import Booking from "../Classes/booking";
 
 
-const CalendarContainer = () => {
+const CalendarContainer = ({openBookingBox}) => {
 
 
     const [daysInMonth, setDaysInMonth] = useState([]);
@@ -37,18 +37,18 @@ const CalendarContainer = () => {
 
     
 
-    const toggleBookingBox = () => {
+    // const toggleBookingBox = () => {
         // console.log('test')
-        setLoadBookingBox(true)
+        // setLoadBookingBox(true)
 
-        let bookingBox = document.querySelector(".booking-box");
+        // let bookingBox = document.querySelector(".booking-box");
     //   if(background.className !== "Background"){
         // background.className = "Background"
-        bookingBox.classList.toggle("visible")
+        // bookingBox.classList.toggle("visible")
     //   } else {background.classList.toggle("zoomleft")
         // console.log(background.className)
     //   }
-    }
+    // }
 
 
     const fetchBookings = async (tok1) => {
@@ -84,7 +84,7 @@ const CalendarContainer = () => {
                 days.push(<BlankCalendarDay key={i}  date={dateObject} month={months[monthNum]} id={i}/>)
             }
             else if (dateObject >= dateWork) {
-                days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject} id={i}/>)
+                days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject} openBookingBox={openBookingBox} id={i}/>)
             }
             if (i  === months[monthNum].days && daysOfWeek[dateObject.getDay()] !== 'Saturday' ) {
                 days.push(fillInBlankDaysEnd(year, month, dateObject))

@@ -6,7 +6,7 @@ import BookingBox from "./bookingBox";
 import Booking from "../Classes/booking";
 
 
-const CalendarDay = ({bookingsAmount, date, id}) => {
+const CalendarDay = ({bookingsAmount, date, openBookingBox, id}) => {
 
     useEffect(() => {
         const classNameLi = createClassNameIdLi();
@@ -46,6 +46,7 @@ const CalendarDay = ({bookingsAmount, date, id}) => {
 
     const toggleBookingBox = () => {
         console.log(id)
+        openBookingBox()
     }
 
 

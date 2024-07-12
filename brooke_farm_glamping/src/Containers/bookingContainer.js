@@ -1,9 +1,23 @@
 import BookingBox from "../Components/bookingBox";
-import React from "react";
+import React, { useEffect, useState }  from "react";
 import './bookingContainer.css'
 
-const BookingContainer = ({}) => {
 
+const BookingContainer = ({bookingBoxOpen}) => {
+
+    const [openBox, setOpenBox] = useState(bookingBoxOpen);
+
+    useEffect(() => {
+
+        if (openBox) {
+             openBookingBox()
+        }
+
+    }, [openBox]);
+
+    const openBookingBox = () => {
+
+    }
 
     return (
         <div id="booking-box">

@@ -7,7 +7,12 @@ import Booking from "../Classes/booking";
 
 const BookingPage = ({ user}) => {
 
-    
+    const [bookingBoxOpen, setBookingBoxOpen] = useState(false);
+
+    useEffect(() => { // Renders when bookings have come through
+        // fillDaysInMonth()
+        console.log('useeffect')
+    }, [bookingBoxOpen])
 
     const newBooking = () => {
         const userId = Math.floor(Math.random() * 100);
@@ -35,6 +40,14 @@ const BookingPage = ({ user}) => {
         console.log(user)
     }
 
+    const openBookingBox = () => {
+        
+        setBookingBoxOpen(true);
+        console.log(true);
+        // var sidebar = document.getElementById('Booking-container');
+        // sidebar.classList.toggle('show-booking-container');
+    }
+
     // const userEmail = () => {
     //     return <p>{`${user.user.email}`}</p>
     // }
@@ -45,13 +58,18 @@ const BookingPage = ({ user}) => {
 
         <div id="Add-booking"  onClick={newBooking} value="addBooking">Add Booking</div>
         <div onClick={checkUserGotThrough}>User email: {`${user}`}</div>
+
         <div id ="Calendar-booking-container">
         <div id="Calendar-container">
-            <CalendarContainer/>
+            <CalendarContainer openBookingBox={openBookingBox}/>
         </div>
-        <div id="Booking-container">
-            <BookingContainer/>
-        </div>
+
+        {bookingBoxOpen &&  (
+            <div className="Booking-container">
+                <BookingContainer bookingBoxOpen={bookingBoxOpen}/>
+            </div> 
+        )
+        }
         </div>
 
     </div>
