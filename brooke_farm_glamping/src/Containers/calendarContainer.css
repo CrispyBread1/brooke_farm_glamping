@@ -1,12 +1,13 @@
 
 
-#calendar {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-}
+/* #calendar { */
+    /* display: flex; */
+    /* justify-content: center;  */
+/* } */
 
 
 #calendar-days {
+    /* flex:1; */
     display: grid;
     grid-template-columns: repeat(7, 10vw); /* 7 columns, each 1 fraction of available space */
     gap: 1vw; /* Optional: space between grid items */

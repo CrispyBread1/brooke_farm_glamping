@@ -1,0 +1,6 @@
+#booking-box {
+    width: 30%; /* Takes up 30% of the screen width */
+    background-color: #e0e0e0; /* Example background color */
+    padding: 20px; /* Example padding */
+    border-left: 1px solid #ccc; /* Example border */
+}

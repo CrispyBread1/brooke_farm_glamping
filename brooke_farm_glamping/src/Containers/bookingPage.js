@@ -1,5 +1,6 @@
 import React, { useEffect, useState }  from "react";
 import CalendarContainer from './calendarContainer'
+import BookingContainer from "./bookingContainer";
 import './bookingPage.css'
 import { addBooking, editBooking, retreiveBooking, cancelBooking} from '../Scripts/databaseControls.js';
 import Booking from "../Classes/booking";
@@ -44,9 +45,13 @@ const BookingPage = ({ user}) => {
 
         <div id="Add-booking"  onClick={newBooking} value="addBooking">Add Booking</div>
         <div onClick={checkUserGotThrough}>User email: {`${user}`}</div>
-
+        <div id ="Calendar-booking-container">
         <div id="Calendar-container">
             <CalendarContainer/>
+        </div>
+        <div id="Booking-container">
+            <BookingContainer/>
+        </div>
         </div>
 
     </div>
