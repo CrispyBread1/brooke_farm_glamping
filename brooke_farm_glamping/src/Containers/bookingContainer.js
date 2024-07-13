@@ -5,7 +5,7 @@ import './bookingContainer.css'
 
 const BookingContainer = ({bookingBoxOpen}) => {
 
-    const [booking, setBooking] = useState(bookingBoxOpen)
+    const [booking, setBooking] = useState(false)
 
     const [nights, setNights] = useState(1)
     const [accomodation, setAccomodation] = useState([])
@@ -20,10 +20,11 @@ const BookingContainer = ({bookingBoxOpen}) => {
         if (!booking) {
             clearBookingInformation()
         }
-        console.log(booking)
-    }, [])
+        // console.log(booking)
+    }, [booking])
 
     const clearBookingInformation = () => {
+        // console.log('in clearBookingInformation function')
         setNights(1)
         setAccomodation([])
         setPitchesAmount([])
@@ -40,30 +41,71 @@ const BookingContainer = ({bookingBoxOpen}) => {
         return;
     }
 
+    // Functions to control amount of nights users wanting to stay *------------- *-------------
+    const addNight = () => {
+        setNights(nights + 1)
+    }
+    const removeNight = () => {
+        if (nights > 1) {
+            setNights(nights - 1)
+        }
+    }
+
+     // Functions to control amount of  users wanting to stay *------------- *-------------
+     const addGuest = () => {
+        setPeopleAmount(peopleAmount + 1)
+    }
+    const removeGuest = () => {
+        if (peopleAmount > 1) {
+            setPeopleAmount(peopleAmount - 1)
+        }
+    }
+
     const handleNightsChange = (evt) => {
-        setNights(evt.target.value);
+        var value = evt.target.value
+        if (Number.isInteger(value)) {
+            setNights(evt.target.value);
+        } else {
+            console.log(Number.isInteger(value))
+        }
+        
     }
 
     const handleAdultsChange = (evt) => {
         setPeopleAmount(evt.target.value)
     }
 
+
+
+
     return (
         <div id="booking-box">
-            {/* <BookingBox/> */}
+            
             <form onSubmit={handleFormSubmit}>
+
+                {/* Night amount user wants to stay *------------- *------------- */}
+                <button id="add-night" onClick={addNight}>+</button>
                 <input
-                type="number"
+                type="text"
                 placeholder="number"
                 value={nights}
                 onChange={handleNightsChange}
+                readonly
                 />
+                <button id="remove-night" onClick={removeNight}>-</button>
+                <br></br>
+
+                {/* Amount of users that want to stay *------------- *------------- */}
+                <button id="add-guest" onClick={addGuest}>+</button>
                 <input
                 className="adults"
                 type="number"
                 value={peopleAmount}
                 onChange={handleAdultsChange}
+                readonly
                 />
+                <button id="remove-guest" onClick={removeGuest}>-</button>
+
             <button
             id="post-button"
             type="submit"
