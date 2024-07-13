@@ -60,16 +60,16 @@ const BookingPage = ({ user}) => {
         <div onClick={checkUserGotThrough}>User email: {`${user}`}</div>
 
         <div id ="Calendar-booking-container">
-        <div id="Calendar-container">
-            <CalendarContainer openBookingBox={openBookingBox}/>
-        </div>
+            
+            <div id="Calendar-container">
+                <CalendarContainer openBookingBox={openBookingBox}/>
+            </div>
 
-        {bookingBoxOpen &&  (
-            <div className="Booking-container">
+        
+            <div className={`Booking-container ${bookingBoxOpen ? 'show' : ''}`}>
                 <BookingContainer bookingBoxOpen={bookingBoxOpen}/>
             </div> 
-        )
-        }
+        
         </div>
 
     </div>
