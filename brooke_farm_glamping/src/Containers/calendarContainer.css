@@ -7,7 +7,7 @@
 
 
 #calendar-days {
-    /* flex:1; */
+    flex:1;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(7, 10vw); /* 7 columns, each 1 fraction of available space */
@@ -15,6 +15,8 @@
     list-style-type: none; /* Remove default list styling */
     padding: 0; /* Remove default padding */
     margin: 0; 
+    justify-content: center; /* Center horizontally */
+    /* align-items: center; */
 }
 /* 
 #nextMonthButton {

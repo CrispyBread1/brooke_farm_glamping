@@ -9,10 +9,10 @@ const BookingPage = ({ user}) => {
 
     const [bookingBoxOpen, setBookingBoxOpen] = useState(false);
 
-    useEffect(() => { // Renders when bookings have come through
-        // fillDaysInMonth()
-        console.log('useeffect')
-    }, [bookingBoxOpen])
+    // useEffect(() => { // Renders when bookings have come through
+    //     // fillDaysInMonth()
+    //     console.log('useeffect')
+    // }, [bookingBoxOpen])
 
     const newBooking = () => {
         const userId = Math.floor(Math.random() * 100);
@@ -42,10 +42,25 @@ const BookingPage = ({ user}) => {
 
     const openBookingBox = () => {
         
+        // setBookingBoxOpen(true);
         setBookingBoxOpen(true);
-        console.log(true);
+        const sidebar = document.querySelector('.Booking-container');
+        if (bookingBoxOpen) {
+            sidebar.classList.remove('show');
+        } else {
+            sidebar.classList.add('show');
+        }
+        // console.log(true);
         // var sidebar = document.getElementById('Booking-container');
         // sidebar.classList.toggle('show-booking-container');
+    }
+
+    const closeBookingBox = () => {
+        setBookingBoxOpen(false)
+        const sidebar = document.querySelector('.Booking-container');
+        
+        sidebar.classList.remove('show');
+        
     }
 
     // const userEmail = () => {
@@ -59,14 +74,16 @@ const BookingPage = ({ user}) => {
         <div id="Add-booking"  onClick={newBooking} value="addBooking">Add Booking</div>
         <div onClick={checkUserGotThrough}>User email: {`${user}`}</div>
 
+        <button id="hideBookingbox" onClick={closeBookingBox}>Hide booking info</button>
+
         <div id ="Calendar-booking-container">
-            
+
             <div id="Calendar-container">
                 <CalendarContainer openBookingBox={openBookingBox}/>
             </div>
 
         
-            <div className={`Booking-container ${bookingBoxOpen ? 'show' : ''}`}>
+            <div className='Booking-container'>
                 <BookingContainer bookingBoxOpen={bookingBoxOpen}/>
             </div> 
         

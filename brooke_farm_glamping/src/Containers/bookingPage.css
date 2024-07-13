@@ -1,27 +1,35 @@
+
+/* body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+} */
+
 #Calendar-booking-container {
     display: flex;
     width: 100%;
-    height: 100vh;
+    height: 100vh; /* Full height of the viewport */
+    justify-content: center; /* Center horizontally */
+    /* align-items: center; */
+}
+
+#Calendar-container {
+    flex-grow: 1; /* Take up all available space */
+    transition: width 0.3s; /* Smooth transition when resizing */
+    justify-content: center; /* Center horizontally */
+    /* align-items: center; */
 }
 
 .Booking-container {
-    width: 0%;
-    overflow: hidden;
-    display:none;
- } 
+    width: 0; /* Start with width 0 */
+    overflow: hidden; /* Hide content when width is 0 */
+    transition: width 0.3s; /* Smooth transition when resizing */
+}
 
 .Booking-container.show {
-    width: 30%;
+    width: 30%; /* Expand to 30% of the page width */
     overflow: visible;
-    display:block;
-}
-/* 
-.show-booking-container {
-    display: block;
-} */
-
-#Calendar-container {
-    width: 100%;
-    flex-grow: 1; /* Take up all available space */
-    transition: width 0.3s; /* Smooth transition when resizing */
 }
