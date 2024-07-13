@@ -11,7 +11,7 @@
 #Calendar-booking-container {
     display: flex;
     width: 100%;
-    height: 100vh; /* Full height of the viewport */
+    height: 70vh; /* Full height of the viewport */
     justify-content: center; /* Center horizontally */
     /* align-items: center; */
 }
@@ -27,6 +27,8 @@
     width: 0; /* Start with width 0 */
     overflow: hidden; /* Hide content when width is 0 */
     transition: width 0.3s; /* Smooth transition when resizing */
+    background-color: antiquewhite;
+    
 }
 
 .Booking-container.show {

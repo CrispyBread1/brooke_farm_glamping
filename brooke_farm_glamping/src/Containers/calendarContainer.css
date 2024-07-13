@@ -14,7 +14,7 @@
     gap: 1vw; /* Optional: space between grid items */
     list-style-type: none; /* Remove default list styling */
     padding: 0; /* Remove default padding */
-    margin: 0; 
+    margin: 1vw; 
     justify-content: center; /* Center horizontally */
     /* align-items: center; */
 }
