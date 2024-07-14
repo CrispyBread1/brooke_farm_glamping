@@ -61,19 +61,7 @@ const BookingContainer = ({bookingBoxOpen}) => {
         }
     }
 
-    const handleNightsChange = (evt) => {
-        var value = evt.target.value
-        if (Number.isInteger(value)) {
-            setNights(evt.target.value);
-        } else {
-            console.log(Number.isInteger(value))
-        }
-        
-    }
-
-    const handleAdultsChange = (evt) => {
-        setPeopleAmount(evt.target.value)
-    }
+    
 
 
 
@@ -84,27 +72,33 @@ const BookingContainer = ({bookingBoxOpen}) => {
             <form onSubmit={handleFormSubmit}>
 
                 {/* Night amount user wants to stay *------------- *------------- */}
-                <button id="add-night" onClick={addNight}>+</button>
+                <label for="html">Amount of nights staying</label>
+                <br></br>
+                <button id="add-night" onClick={addNight} style={{ width: "2vw", height: "2vw" }}>+</button>
                 <input
+                className="nights"
                 type="text"
                 placeholder="number"
                 value={nights}
-                onChange={handleNightsChange}
                 readonly
+                style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
-                <button id="remove-night" onClick={removeNight}>-</button>
+                <button id="remove-night" onClick={removeNight} style={{ width: "2vw", height: "2vw" }}>-</button>
                 <br></br>
 
                 {/* Amount of users that want to stay *------------- *------------- */}
-                <button id="add-guest" onClick={addGuest}>+</button>
+                <label for="html">Amount of adults staying</label>
+                <br></br>
+                <button id="add-guest" onClick={addGuest} style={{ width: "2vw", height: "2vw" }}>+</button>
                 <input
                 className="adults"
-                type="number"
+                type="text"
+                placeholder="number"
                 value={peopleAmount}
-                onChange={handleAdultsChange}
                 readonly
+                style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
-                <button id="remove-guest" onClick={removeGuest}>-</button>
+                <button id="remove-guest" onClick={removeGuest} style={{ width: "2vw", height: "2vw" }}>-</button>
 
             <button
             id="post-button"
