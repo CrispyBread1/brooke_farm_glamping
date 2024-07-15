@@ -38,13 +38,23 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months}) => {
     }
 
     const getDateandOrdinalNumber = () => {
+        var stayingEndDate = 0
         // console.log(dateObject)
-        if (dateObject) {
+        if (dateObject && nights === 1) {
             return dateObject.getDate() + nthNumber(dateObject.getDate())
-            // console.log('true')
-            return
-            // console.log('true')
-        } else return
+
+        } else if (dateObject && nights > 1) {
+            stayingEndDate = dateObject.getDate() + nights
+            return (
+                dateObject.getDate() + nthNumber(dateObject.getDate()) + 
+                ' - ' + 
+                stayingEndDate + nthNumber(stayingEndDate)
+                )
+        } else return 
+    }
+
+    const getEndDateOfStay = () => {
+        
     }
 
     
