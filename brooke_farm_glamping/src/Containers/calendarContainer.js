@@ -78,7 +78,6 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months}) => {
                 days.push(fillInBlankDaysStart(year, month, dateObject))
             } 
             if (i <= dateWork.getDate() && monthNum === dateWork.getMonth() && yearNum ===dateWork.getFullYear()) {
-                // console.log('i am here')
                 days.push(<BlankCalendarDay key={i}  date={dateObject} month={months[monthNum]} id={i}/>)
             }
             else if (dateObject >= dateWork) {
@@ -146,7 +145,6 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months}) => {
 
 
     const nextMonth = () => {
-        // console.log('Year:' + yearNum + ' Month:' + monthNum)
         if (monthNum === 11) {
             setMonthNum(0)
             setYearNum(yearNum + 1)
@@ -164,6 +162,7 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months}) => {
         if (monthNow >= nowDate) {
             if((monthNum - 1) < 0) {
                 setMonthNum(11)
+                setYearNum(yearNum - 1)
                 return
             } else {
                 setMonthNum(monthNum -1)
