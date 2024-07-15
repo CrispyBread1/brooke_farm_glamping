@@ -6,7 +6,7 @@ import './bookingContainer.css'
 const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months}) => {
 
     const [booking, setBooking] = useState(false)
-    const [dateSelected, setDateSelected] = useState(dateObject)
+    // const [dateSelected, setDateSelected] = useState(dateObject)
 
     const [nights, setNights] = useState(1)
     const [accomodation, setAccomodation] = useState([])
@@ -39,10 +39,12 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months}) => {
 
     const getDateandOrdinalNumber = () => {
         // console.log(dateObject)
-        if (dateSelected) {
+        if (dateObject) {
             return dateObject.getDate() + nthNumber(dateObject.getDate())
             // console.log('true')
-        } else return 'false'
+            return
+            // console.log('true')
+        } else return
     }
 
     
@@ -120,7 +122,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months}) => {
             <form onSubmit={handleFormSubmit}>
 
                 {/* Night amount user wants to stay *------------- *------------- */}
-                <label for="html">Amount of nights staying</label>
+                <label>Amount of nights staying</label>
                 <br></br>
                 <button id="add-night" onClick={addNight} style={{ width: "2vw", height: "2vw" }}>+</button>
                 <input
@@ -135,7 +137,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months}) => {
                 <br></br>
 
                 {/* Amount of users that want to stay *------------- *------------- */}
-                <label for="html">Amount of adults staying</label>
+                <label>Amount of adults staying</label>
                 <br></br>
                 <button id="add-guest" onClick={addGuest} style={{ width: "2vw", height: "2vw" }}>+</button>
                 <input
@@ -150,7 +152,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months}) => {
                 <br></br>
 
                 {/* Amount of users' children that want to stay *------------- *------------- */}
-                <label for="html">Amount of children staying</label>
+                <label>Amount of children staying</label>
                 <br></br>
                 <button id="add-children" onClick={addChildren} style={{ width: "2vw", height: "2vw" }}>+</button>
                 <input
@@ -165,7 +167,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months}) => {
                 <br></br>
 
                 {/* Amount of dogs that want to stay *------------- *------------- */}
-                <label for="html">Amount of dogs staying</label>
+                <label>Amount of dogs staying</label>
                 <br></br>
                 <button id="add-dogs" onClick={addDogs} style={{ width: "2vw", height: "2vw" }}>+</button>
                 <input
