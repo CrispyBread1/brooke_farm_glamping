@@ -101,7 +101,9 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months}) => {
 
     // Functions to control amount of nights users wanting to stay *------------- *-------------
     const addNight = () => {
-        setNights(nights + 1)
+        if (nights < 24) {
+            setNights(nights + 1)
+        }
     }
     const removeNight = () => {
         if (nights > 1) {
