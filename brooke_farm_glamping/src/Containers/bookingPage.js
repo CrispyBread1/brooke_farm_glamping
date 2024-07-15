@@ -5,7 +5,7 @@ import './bookingPage.css'
 import { addBooking, editBooking, retreiveBooking, cancelBooking} from '../Scripts/databaseControls.js';
 import Booking from "../Classes/booking";
 
-const BookingPage = ({ user}) => {
+const BookingPage = ({user}) => {
 
     const [bookingBoxOpen, setBookingBoxOpen] = useState(false);
 

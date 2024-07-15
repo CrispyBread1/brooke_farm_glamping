@@ -13,7 +13,7 @@ const BookingContainer = ({bookingBoxOpen}) => {
     const [date, setDate] = useState('') // Maybe? mihght just pass through from calender container
     const [peopleAmount, setPeopleAmount] = useState(1)
     const [childrenAmount, setChildrenAmount] = useState(0)
-    const [infantsAmount, setInfantsAmount] = useState(0)
+    // const [infantsAmount, setInfantsAmount] = useState(0)
     const [dogAmount, setDogAmount] = useState(0)
 
     useEffect(() => { // Renders when bookings have come through
@@ -32,7 +32,7 @@ const BookingContainer = ({bookingBoxOpen}) => {
         setPeopleAmount(1)
         setChildrenAmount(0)
         setChildrenAmount(0)
-        setInfantsAmount(0)
+        // setInfantsAmount(0)
         setDogAmount(0)
     }
 
@@ -58,6 +58,26 @@ const BookingContainer = ({bookingBoxOpen}) => {
     const removeGuest = () => {
         if (peopleAmount > 1) {
             setPeopleAmount(peopleAmount - 1)
+        }
+    }
+
+     // Functions to control amount of  users' children wanting to stay *------------- *-------------
+     const addChildren = () => {
+        setChildrenAmount(childrenAmount + 1)
+    }
+    const removeChildren = () => {
+        if (childrenAmount > 0) {
+            setChildrenAmount(childrenAmount - 1)
+        }
+    }
+
+     // Functions to control amount of  users' children wanting to stay *------------- *-------------
+     const addDogs = () => {
+        setDogAmount(dogAmount + 1)
+    }
+    const removeDogs = () => {
+        if (dogAmount > 0) {
+            setDogAmount(dogAmount - 1)
         }
     }
 
@@ -99,6 +119,37 @@ const BookingContainer = ({bookingBoxOpen}) => {
                 style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
                 <button id="remove-guest" onClick={removeGuest} style={{ width: "2vw", height: "2vw" }}>-</button>
+                <br></br>
+
+                {/* Amount of users' children that want to stay *------------- *------------- */}
+                <label for="html">Amount of children staying</label>
+                <br></br>
+                <button id="add-children" onClick={addChildren} style={{ width: "2vw", height: "2vw" }}>+</button>
+                <input
+                className="children"
+                type="text"
+                placeholder="number"
+                value={childrenAmount}
+                readonly
+                style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
+                />
+                <button id="remove-children" onClick={removeChildren} style={{ width: "2vw", height: "2vw" }}>-</button>
+                <br></br>
+
+                {/* Amount of dogs that want to stay *------------- *------------- */}
+                <label for="html">Amount of dogs staying</label>
+                <br></br>
+                <button id="add-dogs" onClick={addDogs} style={{ width: "2vw", height: "2vw" }}>+</button>
+                <input
+                className="dogs"
+                type="text"
+                placeholder="number"
+                value={dogAmount}
+                readonly
+                style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
+                />
+                <button id="remove-dogs" onClick={removeDogs} style={{ width: "2vw", height: "2vw" }}>-</button>
+                <br></br>
 
             <button
             id="post-button"
