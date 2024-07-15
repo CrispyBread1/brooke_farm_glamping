@@ -6,6 +6,7 @@ import './bookingContainer.css'
 const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months}) => {
 
     const [booking, setBooking] = useState(false)
+    const [currentMonth, setCurrentMonth] = useState(null)
     // const [dateSelected, setDateSelected] = useState(dateObject)
 
     const [nights, setNights] = useState(1)
@@ -17,12 +18,12 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months}) => {
     // const [infantsAmount, setInfantsAmount] = useState(0)
     const [dogAmount, setDogAmount] = useState(0)
 
-    useEffect(() => { // Renders when bookings have come through
-        if (!booking) {
-            clearBookingInformation()
-        }
-        // console.log(booking)
-    }, [booking])
+    // useEffect(() => { // Renders when bookings have come through
+    //     if (!booking) {
+    //         clearBookingInformation()
+    //     }
+    //     // console.log(booking)
+    // }, [booking])
 
     const clearBookingInformation = () => {
         // console.log('in clearBookingInformation function')
@@ -39,21 +40,45 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months}) => {
 
     const getDateandOrdinalNumber = () => {
         var stayingEndDate = 0
-        // console.log(dateObject)
-        if (dateObject && nights === 1) {
-            return dateObject.getDate() + nthNumber(dateObject.getDate())
 
-        } else if (dateObject && nights > 1) {
+
+        if (dateObject && nights === 1 ) {
+            // setCurrentMonth(months[dateObject.getMonth()])
+            return dateObject.getDate() + nthNumber(dateObject.getDate())
+        } 
+
+        // If over one night but still in the same month as first day        *------------- *-------------
+        else if (dateObject && nights > 1 && months[dateObject.getMonth()].days >= (dateObject.getDate() + nights)) {
             stayingEndDate = dateObject.getDate() + nights
             return (
                 dateObject.getDate() + nthNumber(dateObject.getDate()) + 
                 ' - ' + 
                 stayingEndDate + nthNumber(stayingEndDate)
                 )
-        } else return 
+
+        // If over one night but the amount of nights bleeds over into the next month            *------------- *-------------
+        } else if (dateObject && nights > 1 && months[dateObject.getMonth()].days < (dateObject.getDate() + nights)) {
+            // dateObject.setMonth(dateObject.getMonth() + 1)
+            stayingEndDate = (dateObject.getDate() + nights) - months[dateObject.getMonth()].days
+            // console.log(()
+            // var nextMonthDateObject = new Date(dateObject.getYear(), (dateObject.getMonth() + 1), (nights - (nights - 1)))
+            // var day = stayingEndDate - (nights + 1)
+            // console.log(nextMonthDateObject)
+            // stayingEndDate = 0
+            // stayingEndDate ++
+            return (
+                dateObject.getDate() + nthNumber(dateObject.getDate()) + 
+                ' - ' + 
+                stayingEndDate + nthNumber(stayingEndDate) +
+                months[dateObject.getMonth() + 1].month
+                )
+        }
     }
 
-    const getEndDateOfStay = () => {
+    const getMonth = () => {
+        if (dateObject) {
+            return months[dateObject.getMonth()].month
+        }
         
     }
 
@@ -127,7 +152,8 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months}) => {
     return (
         <div id="booking-box">
 
-            <h1>Date: {getDateandOrdinalNumber()}</h1>
+            <h1>{getDateandOrdinalNumber()}</h1>
+            <h2>{getMonth()}</h2>
             
             <form onSubmit={handleFormSubmit}>
 
