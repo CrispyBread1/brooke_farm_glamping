@@ -6,7 +6,7 @@ import BlankCalendarDay from "../Components/blankCalendarDay";
 // import Booking from "../Classes/booking";
 
 
-const CalendarContainer = ({openBookingBox}) => {
+const CalendarContainer = ({openBookingBox, daysOfWeek, months}) => {
 
 
     const [daysInMonth, setDaysInMonth] = useState([]);
@@ -14,9 +14,7 @@ const CalendarContainer = ({openBookingBox}) => {
     const [monthNum, setMonthNum] = useState(new Date().getMonth());
     const [yearNum, setYearNum] = useState(new Date().getFullYear());
 
-    const [daysOfWeek, setDaysOfWeek] = useState(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'])
-    const [months, setMonths] = useState([{month:"January", days:31}, {month:"February", days:28}, {month:"March", days:31}, {month:"April", days:30}, {month:"May", days:31}, {month:"June", days:30}, {month:"July", days:31}, {month:"August", days:31}, {month:"September", days:30}, {month:"October", days:31}, {month:"November", days:30}, {month:"December", days:31}]);
-  
+    
     const [loadBookingBox, setLoadBookingBox] = useState(false)
 
     useEffect(() => {

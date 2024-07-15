@@ -7,8 +7,18 @@ import Booking from "../Classes/booking";
 
 const BookingPage = ({user}) => {
 
+    useEffect(() => {
+        const fillerDate = new Date()
+        setDateObject(fillerDate)
+        console.log('hello')
+    }, [])
+
     const [bookingBoxOpen, setBookingBoxOpen] = useState(false);
+
     const [dateObject, setDateObject] = useState({})
+    const [daysOfWeek, setDaysOfWeek] = useState(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'])
+    const [months, setMonths] = useState([{month:"January", days:31}, {month:"February", days:28}, {month:"March", days:31}, {month:"April", days:30}, {month:"May", days:31}, {month:"June", days:30}, {month:"July", days:31}, {month:"August", days:31}, {month:"September", days:30}, {month:"October", days:31}, {month:"November", days:30}, {month:"December", days:31}]);
+  
 
     // useEffect(() => { // Renders when bookings have come through
     //     // fillDaysInMonth()
@@ -79,12 +89,12 @@ const BookingPage = ({user}) => {
         <div id ="Calendar-booking-container">
 
             <div id="Calendar-container">
-                <CalendarContainer openBookingBox={openBookingBox}/>
+                <CalendarContainer openBookingBox={openBookingBox} daysOfWeek={daysOfWeek} months={months}/>
             </div>
 
         
             <div className='Booking-container'>
-                <BookingContainer bookingBoxOpen={bookingBoxOpen} dateObject={dateObject}/>
+                <BookingContainer bookingBoxOpen={bookingBoxOpen} dateObject={dateObject} daysOfWeek={daysOfWeek} months={months}/>
             </div> 
         
         </div>

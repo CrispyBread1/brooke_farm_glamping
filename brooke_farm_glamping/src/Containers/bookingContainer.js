@@ -3,9 +3,10 @@ import React, { useEffect, useState }  from "react";
 import './bookingContainer.css'
 
 
-const BookingContainer = ({bookingBoxOpen, dateObject}) => {
+const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months}) => {
 
     const [booking, setBooking] = useState(false)
+    const [dateSelected, setDateSelected] = useState(dateObject)
 
     const [nights, setNights] = useState(1)
     const [accomodation, setAccomodation] = useState([])
@@ -36,10 +37,15 @@ const BookingContainer = ({bookingBoxOpen, dateObject}) => {
         setDogAmount(0)
     }
 
-    const handleFormSubmit = (evt) => {
-        evt.preventDefault();
-        return;
+    const getDateandOrdinalNumber = () => {
+        // console.log(dateObject)
+        if (dateSelected) {
+            return dateObject.getDate() + nthNumber(dateObject.getDate())
+            // console.log('true')
+        } else return 'false'
     }
+
+    
 
     // Handles the ordinal numbers for the date *------------- *-------------
     const nthNumber = (number) => {
@@ -96,6 +102,11 @@ const BookingContainer = ({bookingBoxOpen, dateObject}) => {
         }
     }
 
+    const handleFormSubmit = (evt) => {
+        evt.preventDefault();
+        return;
+    }
+
     
 
 
@@ -104,7 +115,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject}) => {
     return (
         <div id="booking-box">
 
-            <h1>Date: {dateObject.getDate()}{nthNumber(dateObject.getDate())}</h1>
+            <h1>Date: {getDateandOrdinalNumber()}</h1>
             
             <form onSubmit={handleFormSubmit}>
 
