@@ -3,7 +3,7 @@ import React, { useEffect, useState }  from "react";
 import './bookingContainer.css'
 
 
-const BookingContainer = ({bookingBoxOpen}) => {
+const BookingContainer = ({bookingBoxOpen, dateObject}) => {
 
     const [booking, setBooking] = useState(false)
 
@@ -40,6 +40,21 @@ const BookingContainer = ({bookingBoxOpen}) => {
         evt.preventDefault();
         return;
     }
+
+    // Handles the ordinal numbers for the date *------------- *-------------
+    const nthNumber = (number) => {
+        if (number > 3 && number < 21) return "th";
+        switch (number % 10) {
+          case 1:
+            return "st";
+          case 2:
+            return "nd";
+          case 3:
+            return "rd";
+          default:
+            return "th";
+        }
+      };
 
     // Functions to control amount of nights users wanting to stay *------------- *-------------
     const addNight = () => {
@@ -88,6 +103,8 @@ const BookingContainer = ({bookingBoxOpen}) => {
 
     return (
         <div id="booking-box">
+
+            <h1>Date: {dateObject.getDate()}{nthNumber(dateObject.getDate())}</h1>
             
             <form onSubmit={handleFormSubmit}>
 
@@ -100,7 +117,7 @@ const BookingContainer = ({bookingBoxOpen}) => {
                 type="text"
                 placeholder="number"
                 value={nights}
-                readonly
+                readOnly
                 style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
                 <button id="remove-night" onClick={removeNight} style={{ width: "2vw", height: "2vw" }}>-</button>
@@ -115,7 +132,7 @@ const BookingContainer = ({bookingBoxOpen}) => {
                 type="text"
                 placeholder="number"
                 value={peopleAmount}
-                readonly
+                readOnly
                 style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
                 <button id="remove-guest" onClick={removeGuest} style={{ width: "2vw", height: "2vw" }}>-</button>
@@ -130,7 +147,7 @@ const BookingContainer = ({bookingBoxOpen}) => {
                 type="text"
                 placeholder="number"
                 value={childrenAmount}
-                readonly
+                readOnly
                 style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
                 <button id="remove-children" onClick={removeChildren} style={{ width: "2vw", height: "2vw" }}>-</button>
@@ -145,7 +162,7 @@ const BookingContainer = ({bookingBoxOpen}) => {
                 type="text"
                 placeholder="number"
                 value={dogAmount}
-                readonly
+                readOnly
                 style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
                 <button id="remove-dogs" onClick={removeDogs} style={{ width: "2vw", height: "2vw" }}>-</button>

@@ -46,7 +46,7 @@ const CalendarDay = ({bookingsAmount, date, openBookingBox, id}) => {
 
     const toggleBookingBox = () => {
         console.log(id)
-        openBookingBox()
+        openBookingBox(date)
     }
 
 

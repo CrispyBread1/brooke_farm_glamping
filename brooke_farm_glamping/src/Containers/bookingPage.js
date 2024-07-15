@@ -8,6 +8,7 @@ import Booking from "../Classes/booking";
 const BookingPage = ({user}) => {
 
     const [bookingBoxOpen, setBookingBoxOpen] = useState(false);
+    const [dateObject, setDateObject] = useState({})
 
     // useEffect(() => { // Renders when bookings have come through
     //     // fillDaysInMonth()
@@ -40,9 +41,10 @@ const BookingPage = ({user}) => {
         console.log(user)
     }
 
-    const openBookingBox = () => {
+    const openBookingBox = (date) => {
         
-        // setBookingBoxOpen(true);
+        setDateObject(date);
+        // console.log(dateObject)
         setBookingBoxOpen(true);
         const sidebar = document.querySelector('.Booking-container');
         if (bookingBoxOpen) {
@@ -50,15 +52,13 @@ const BookingPage = ({user}) => {
         } else {
             sidebar.classList.add('show');
         }
-        // console.log(true);
-        // var sidebar = document.getElementById('Booking-container');
-        // sidebar.classList.toggle('show-booking-container');
+        
     }
 
     const closeBookingBox = () => {
         setBookingBoxOpen(false)
         const sidebar = document.querySelector('.Booking-container');
-        
+        // console.log(dateObject.getDate())
         sidebar.classList.remove('show');
         
     }
@@ -84,7 +84,7 @@ const BookingPage = ({user}) => {
 
         
             <div className='Booking-container'>
-                <BookingContainer bookingBoxOpen={bookingBoxOpen}/>
+                <BookingContainer bookingBoxOpen={bookingBoxOpen} dateObject={dateObject}/>
             </div> 
         
         </div>
