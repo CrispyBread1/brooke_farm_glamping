@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import {logInEmailPassword, registerNewAccountEmailPassword, monitorAuthState, logOut} from "../Scripts/authenicationControls";
 // import { AuthErrorCodes, getAuth } from "firebase/auth";
 
-const LogInPage = ({logInAttempt, registerNewAccountAttempt}) => {
+const LogInPage = ({}) => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -45,9 +46,11 @@ const LogInPage = ({logInAttempt, registerNewAccountAttempt}) => {
         evt.preventDefault();
         if (registering){
             registerNewAccount();
+        } else {
+            logIn();
         }
         // logIn(logInAttempt(email, password))
-        logIn();
+        
     }
 
     const logIn = () => {
@@ -58,7 +61,7 @@ const LogInPage = ({logInAttempt, registerNewAccountAttempt}) => {
         // if (response) {
         //     console.log("log in page: " + response)
         // }
-        logInAttempt(email, password).then((res) => {
+        logInEmailPassword(email, password).then((res) => {
             if (res) {
             console.log("log in attempt " + res)
             }
@@ -82,8 +85,16 @@ const LogInPage = ({logInAttempt, registerNewAccountAttempt}) => {
         // }
     }
 
-    const registerNewAccount = () => {
-        registerNewAccountAttempt(email, password).then((res) => console.log("register attempt"+ res))
+    const registerNewAccount = async () => {
+        // registerNewAccountEmailPassword(email, password).then((res) => console.log("register attempt "+ res.user))
+        try {
+            const userCredential = await registerNewAccountEmailPassword(email, password);
+            // setBookings(bookings);
+            console.log(userCredential.user)
+            
+          } catch (error) {
+            console.error('Error loggin in user ', error);
+          }
     }
 
 

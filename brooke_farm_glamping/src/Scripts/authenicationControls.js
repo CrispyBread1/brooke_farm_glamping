@@ -21,16 +21,17 @@ const logInEmailPassword = (logInEmail, logInPassword) => {
 }
 
 const registerNewAccountEmailPassword = async (registerEmail, registerPassword) => {
-    try {
-        const userCredentials = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
+    return  createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
+        // const userCredentials = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
         // console.log(userCredentials)
-    }
-    catch(error) {
-        console.log(error)
+        // return userCredentials
+    // }
+    // catch(error) {
+        // console.log(error)
         // return handleError(error)
-        return error.code
+        // return error.code
         
-    }
+    // }
 }
 
 const monitorAuthState = async () => {

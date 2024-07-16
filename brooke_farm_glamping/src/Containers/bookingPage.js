@@ -69,13 +69,16 @@ const BookingPage = ({user}) => {
     const openBookingBox = (date) => {
         
         setDateObject(date);
-        // console.log(dateObject)
+
         setBookingBoxOpen(true);
+
+        if (!bookingBoxOpen) {
         const sidebar = document.querySelector('.Booking-container');
         if (bookingBoxOpen) {
             sidebar.classList.remove('show');
         } else {
             sidebar.classList.add('show');
+        }
         }
         
     }
@@ -110,7 +113,7 @@ const BookingPage = ({user}) => {
     <div>
         <p>Booking page</p>
 
-        <div id="Add-booking"  onClick={newBooking} value="addBooking">Add Booking</div>
+        {/* <div id="Add-booking"  onClick={newBooking} value="addBooking">Add Booking</div> */}
         <div onClick={checkUserGotThrough}>User email: {`${user}`}</div>
 
         <button id="hideBookingbox" onClick={closeBookingBox}>Hide booking info</button>
