@@ -40,7 +40,7 @@ const CalendarDay = ({bookingsAmount, date, openBookingBox, id}) => {
     }
 
     const toggleBookingBox = () => {
-        console.log(id)
+        // console.log(id)
         openBookingBox(date)
     }
 
@@ -51,15 +51,10 @@ const CalendarDay = ({bookingsAmount, date, openBookingBox, id}) => {
     return (
         <>
         
-            <li className={createClassNameIdLi()} >
+            <li className={createClassNameIdLi()}  >
             <button className='li-Button' onClick={toggleBookingBox}>
                 {`${date.getDate()}`}  
-                {/* hello */}
-                <br />
-                {/* Bookings: {bookingsAmount}s */}
-                {/* <div className={createClassNameIdBox()}> */}
-                    {/* <BookingBox></BookingBox> */}
-                {/* </div> */}
+                
                 </button>
             </li>
         

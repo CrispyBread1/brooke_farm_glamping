@@ -1,8 +1,9 @@
 #Calendar-booking-container {
     display: flex;
     width: 100vw; /* Full viewport width */
-    height: 40vw; /* Full viewport height */
-    overflow: hidden; /* Prevent overflow */
+    height: 90vh; /* Full viewport height */
+    /* overflow: hidden;  */
+    /* box-sizing: border-box; */
 }
 
 #Calendar-container {
@@ -15,25 +16,52 @@
     box-sizing: border-box;
 }
 
+
 #calendar-days {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* Use fractions to fill the space */
+    grid-template-columns: repeat(7, 1fr); /* Grid columns for the rest */
     gap: 1vw; /* Space between grid items */
     list-style-type: none; /* Remove default list styling */
-    padding: 0; /* Remove default padding */
+    padding: 1vw; 
     margin: 0;
     height: auto;
 }
 
 #calendar-days li {
-    padding: 1vw; /* Increased padding for larger list items */
-    margin: 0.5vw; /* Margin to create spacing between items */
-    font-size: 1.2vw; /* Increased font size for larger text */
-    border: 1px solid #ccc; /* Optional: Add border for visual separation */
-    border-radius: 5px; /* Optional: Rounded corners */
-    text-align: center; /* Center the text */
-    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    padding: 1vw;
+    font-size: 1.2vw;
+    border-radius: 5px;
+    text-align: center;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    margin: 0.5vw;
+    height: 100%;
+}
+
+
+
+#calendar-days button {
+    position: absolute; /* Position button absolutely inside li */
+    top: 0;
+    left: 0;
+    width: 100%; /* Button width matches parent li */
+    height: inherit; /* Button height matches parent li */
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: inherit;
+    margin: 0;
+    font-size: 1.2vw; /* Adjust font size */
+    color: #333; 
+}
+
+/* Styling for the first 7 li items */
+#calendar-days li:nth-child(-n+7) {
+    font-size: 1.5vw; /* Larger font size */
+    background-color: lightblue; /* Different background color */
+    border-color: blue; /* Different border color */
 }
 
 .Booking-container {
