@@ -1,7 +1,8 @@
 #Calendar-booking-container {
     display: flex;
-    width: 100%;
-    height: 70vh; /* Adjust as needed */
+    width: 100vw; /* Full viewport width */
+    height: 40vw; /* Full viewport height */
+    overflow: hidden; /* Prevent overflow */
 }
 
 #Calendar-container {
@@ -10,18 +11,29 @@
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
     transition: flex-grow 0.3s, width 0.3s; /* Smooth transition when resizing */
-    margin: 10px;
+    padding: 2vw;
+    box-sizing: border-box;
 }
 
 #calendar-days {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* Adjusted to use fractions */
-    gap: 1vw; /* Optional: space between grid items */
+    grid-template-columns: repeat(7, 1fr); /* Use fractions to fill the space */
+    gap: 1vw; /* Space between grid items */
     list-style-type: none; /* Remove default list styling */
     padding: 0; /* Remove default padding */
     margin: 0;
     height: auto;
+}
+
+#calendar-days li {
+    padding: 1vw; /* Increased padding for larger list items */
+    margin: 0.5vw; /* Margin to create spacing between items */
+    font-size: 1.2vw; /* Increased font size for larger text */
+    border: 1px solid #ccc; /* Optional: Add border for visual separation */
+    border-radius: 5px; /* Optional: Rounded corners */
+    text-align: center; /* Center the text */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
 }
 
 .Booking-container {

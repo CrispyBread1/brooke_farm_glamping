@@ -6,7 +6,7 @@ import BlankCalendarDay from "../Components/blankCalendarDay";
 // import Booking from "../Classes/booking";
 
 
-const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings}) => {
+const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNumber}) => {
 
 
     const [daysInMonth, setDaysInMonth] = useState([]);

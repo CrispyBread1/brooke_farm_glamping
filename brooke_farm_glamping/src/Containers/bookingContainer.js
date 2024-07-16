@@ -3,7 +3,7 @@ import React, { useEffect, useState }  from "react";
 import './bookingContainer.css'
 
 
-const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months}) => {
+const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNumber}) => {
 
     const [booking, setBooking] = useState(false)
     const [currentMonth, setCurrentMonth] = useState(null)
@@ -80,19 +80,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months}) => {
     
 
     // Handles the ordinal numbers for the date *------------- *-------------
-    const nthNumber = (number) => {
-        if (number > 3 && number < 21) return "th";
-        switch (number % 10) {
-          case 1:
-            return "st";
-          case 2:
-            return "nd";
-          case 3:
-            return "rd";
-          default:
-            return "th";
-        }
-      };
+    
 
     // Functions to control amount of nights users wanting to stay *------------- *-------------
     const addNight = () => {

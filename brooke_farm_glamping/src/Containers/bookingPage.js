@@ -88,6 +88,20 @@ const BookingPage = ({user}) => {
         
     }
 
+    const nthNumber = (number) => {
+        if (number > 3 && number < 21) return "th";
+        switch (number % 10) {
+          case 1:
+            return "st";
+          case 2:
+            return "nd";
+          case 3:
+            return "rd";
+          default:
+            return "th";
+        }
+      };
+
     // const userEmail = () => {
     //     return <p>{`${user.user.email}`}</p>
     // }
@@ -104,12 +118,12 @@ const BookingPage = ({user}) => {
         <div id ="Calendar-booking-container">
 
             <div id="Calendar-container">
-                <CalendarContainer openBookingBox={openBookingBox} daysOfWeek={daysOfWeek} months={months} bookings={bookings}/>
+                <CalendarContainer openBookingBox={openBookingBox} daysOfWeek={daysOfWeek} months={months} bookings={bookings} nthNumber={nthNumber}/>
             </div>
 
         
             <div className='Booking-container'>
-                <BookingContainer bookingBoxOpen={bookingBoxOpen} dateObject={dateObject} daysOfWeek={daysOfWeek} months={months}/>
+                <BookingContainer bookingBoxOpen={bookingBoxOpen} dateObject={dateObject} daysOfWeek={daysOfWeek} months={months} nthNumber={nthNumber}/>
             </div> 
         
         </div>

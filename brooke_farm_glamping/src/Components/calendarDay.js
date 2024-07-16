@@ -14,8 +14,7 @@ const CalendarDay = ({bookingsAmount, date, openBookingBox, id}) => {
             
             text-align: center;
             position: relative;
-            width: auto;
-            height: auto;
+            
         `;
 
         addCSSRule(`.${classNameLi}`, stylesLi);
