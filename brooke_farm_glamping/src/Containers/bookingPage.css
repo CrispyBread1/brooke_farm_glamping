@@ -1,26 +1,27 @@
-
-/* body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-} */
-
 #Calendar-booking-container {
     display: flex;
     width: 100%;
-    height: 70vh; /* Full height of the viewport */
-    justify-content: center; /* Center horizontally */
-    /* align-items: center; */
+    height: 70vh; /* Adjust as needed */
 }
 
 #Calendar-container {
-    flex-grow: 1; /* Take up all available space */
-    transition: width 0.3s; /* Smooth transition when resizing */
+    flex-grow: 1;
+    display: flex;
     justify-content: center; /* Center horizontally */
-    /* align-items: center; */
+    align-items: center; /* Center vertically */
+    transition: flex-grow 0.3s, width 0.3s; /* Smooth transition when resizing */
+    margin: 10px;
+}
+
+#calendar-days {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Adjusted to use fractions */
+    gap: 1vw; /* Optional: space between grid items */
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+    margin: 0;
+    height: auto;
 }
 
 .Booking-container {
@@ -28,10 +29,12 @@
     overflow: hidden; /* Hide content when width is 0 */
     transition: width 0.3s; /* Smooth transition when resizing */
     background-color: antiquewhite;
-    
 }
 
 .Booking-container.show {
-    width: 30%; /* Expand to 30% of the page width */
-    overflow: visible;
+    width: 40%; /* Expand to 40% of the page width */
+}
+
+.Booking-container.show ~ #Calendar-container {
+    flex-grow: 0.6; /* Adjust flex-grow when the booking container is shown */
 }

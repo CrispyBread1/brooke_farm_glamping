@@ -11,17 +11,13 @@ const CalendarDay = ({bookingsAmount, date, openBookingBox, id}) => {
     useEffect(() => {
         const classNameLi = createClassNameIdLi();
         const stylesLi = `
-            padding: 20px;
+            
             text-align: center;
             position: relative;
             width: auto;
             height: auto;
         `;
-        const classNameBox = createClassNameIdBox();
-        const stylesBox = `
-        position: absolute;
 
-        `;
         addCSSRule(`.${classNameLi}`, stylesLi);
         // addCSSRule(`.${classNameBox}`, stylesBox);
     }, [id]);
@@ -55,9 +51,9 @@ const CalendarDay = ({bookingsAmount, date, openBookingBox, id}) => {
 
     return (
         <>
-        <button onClick={toggleBookingBox}>
+        
             <li className={createClassNameIdLi()} >
-                
+            <button className='li-Button' onClick={toggleBookingBox}>
                 {`${date.getDate()}`}  
                 {/* hello */}
                 <br />
@@ -65,8 +61,9 @@ const CalendarDay = ({bookingsAmount, date, openBookingBox, id}) => {
                 {/* <div className={createClassNameIdBox()}> */}
                     {/* <BookingBox></BookingBox> */}
                 {/* </div> */}
+                </button>
             </li>
-        </button>
+        
             
         </>
     )

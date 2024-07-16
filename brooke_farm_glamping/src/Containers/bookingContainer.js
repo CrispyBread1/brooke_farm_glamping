@@ -58,18 +58,13 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months}) => {
 
         // If over one night but the amount of nights bleeds over into the next month            *------------- *-------------
         } else if (dateObject && nights > 1 && months[dateObject.getMonth()].days < (dateObject.getDate() + nights)) {
-            // dateObject.setMonth(dateObject.getMonth() + 1)
             stayingEndDate = (dateObject.getDate() + nights) - months[dateObject.getMonth()].days
-            // console.log(()
-            // var nextMonthDateObject = new Date(dateObject.getYear(), (dateObject.getMonth() + 1), (nights - (nights - 1)))
-            // var day = stayingEndDate - (nights + 1)
-            // console.log(nextMonthDateObject)
-            // stayingEndDate = 0
-            // stayingEndDate ++
+
             return (
                 dateObject.getDate() + nthNumber(dateObject.getDate()) + 
                 ' - ' + 
                 stayingEndDate + nthNumber(stayingEndDate) +
+                ' of ' +
                 months[dateObject.getMonth() + 1].month
                 )
         }

@@ -2,7 +2,7 @@ import React, { useEffect, useState }  from "react";
 import CalendarContainer from './calendarContainer'
 import BookingContainer from "./bookingContainer";
 import './bookingPage.css'
-import { addBooking, editBooking, retreiveBooking, cancelBooking} from '../Scripts/databaseControls.js';
+import { addBooking, editBooking, retrieveBooking, cancelBooking} from '../Scripts/databaseControls.js';
 import Booking from "../Classes/booking";
 
 const BookingPage = ({user}) => {
@@ -14,16 +14,31 @@ const BookingPage = ({user}) => {
     // }, [])
 
     const [bookingBoxOpen, setBookingBoxOpen] = useState(false);
+    const [bookings, setBookings] = useState('');
 
     const [dateObject, setDateObject] = useState(null)
     const [daysOfWeek, setDaysOfWeek] = useState(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'])
     const [months, setMonths] = useState([{month:"January", days:31}, {month:"February", days:28}, {month:"March", days:31}, {month:"April", days:30}, {month:"May", days:31}, {month:"June", days:30}, {month:"July", days:31}, {month:"August", days:31}, {month:"September", days:30}, {month:"October", days:31}, {month:"November", days:30}, {month:"December", days:31}]);
   
 
+    useEffect(() => {
+        fetchBookings(new Date().getMonth())
+
+      }, []);
     // useEffect(() => { // Renders when bookings have come through
     //     // fillDaysInMonth()
     //     console.log('useeffect')
     // }, [bookingBoxOpen])
+    const fetchBookings = async (tok1) => {
+        const month = new Date();
+        try {
+          const bookings = await retrieveBooking(tok1);
+          setBookings(bookings);
+          
+        } catch (error) {
+          console.error('Error fetching bookings:', error);
+        }
+    };
 
     const newBooking = () => {
         const userId = Math.floor(Math.random() * 100);
@@ -89,7 +104,7 @@ const BookingPage = ({user}) => {
         <div id ="Calendar-booking-container">
 
             <div id="Calendar-container">
-                <CalendarContainer openBookingBox={openBookingBox} daysOfWeek={daysOfWeek} months={months}/>
+                <CalendarContainer openBookingBox={openBookingBox} daysOfWeek={daysOfWeek} months={months} bookings={bookings}/>
             </div>
 
         

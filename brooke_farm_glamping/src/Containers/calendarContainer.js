@@ -1,26 +1,23 @@
 import React, { useEffect, useState }  from "react";
 import CalendarDay from "../Components/calendarDay";
-import { retrieveBooking } from "../Scripts/databaseControls";
+
 import './calendarContainer.css'
 import BlankCalendarDay from "../Components/blankCalendarDay";
 // import Booking from "../Classes/booking";
 
 
-const CalendarContainer = ({openBookingBox, daysOfWeek, months}) => {
+const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings}) => {
 
 
     const [daysInMonth, setDaysInMonth] = useState([]);
-    const [bookings, setBookings] = useState('');
+    
     const [monthNum, setMonthNum] = useState(new Date().getMonth());
     const [yearNum, setYearNum] = useState(new Date().getFullYear());
 
     
     const [loadBookingBox, setLoadBookingBox] = useState(false)
 
-    useEffect(() => {
-        fetchBookings(monthNum)
-
-      }, []);
+    
 
     useEffect(() => { // Renders when bookings have come through
         fillDaysInMonth()
@@ -49,16 +46,7 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months}) => {
     // }
 
 
-    const fetchBookings = async (tok1) => {
-        const month = new Date();
-        try {
-          const bookings = await retrieveBooking(tok1);
-          setBookings(bookings);
-          
-        } catch (error) {
-          console.error('Error fetching bookings:', error);
-        }
-    };
+    
 
 
 
@@ -186,13 +174,13 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months}) => {
         <section >
             <h1 onClick={checkDate}>Date {months[monthNum].month}</h1>
             <ul id="calendar-days">
-                <b><li>Sunday</li></b>
-                <b> <li>Monday</li></b>
-                <b> <li>Tuesday</li></b>
-                <b><li>Wednesday</li></b>
-                <b> <li>Thursday</li></b>
-                <b> <li>Friday</li></b>
-                <b> <li>Saturday</li></b>
+                <b className='column-titles'><li >Sunday</li></b>
+                <b className='column-titles'> <li >Monday</li></b>
+                <b className='column-titles'> <li >Tuesday</li></b>
+                <b className='column-titles'><li >Wednesday</li></b>
+                <b className='column-titles'> <li >Thursday</li></b>
+                <b className='column-titles'> <li>Friday</li></b>
+                <b className='column-titles'> <li>Saturday</li></b>
                 {daysInMonth}
             </ul>
             
