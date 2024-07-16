@@ -1,7 +1,8 @@
 #Calendar-booking-container {
     display: flex;
     width: 100vw; /* Full viewport width */
-    height: 90vh; /* Full viewport height */
+    height: 70vh; /* Full viewport height */
+    
     /* overflow: hidden;  */
     /* box-sizing: border-box; */
 }
@@ -14,6 +15,7 @@
     transition: flex-grow 0.3s, width 0.3s; /* Smooth transition when resizing */
     padding: 2vw;
     box-sizing: border-box;
+    
 }
 
 
@@ -26,6 +28,7 @@
     padding: 1vw; 
     margin: 0;
     height: auto;
+    background-color:rgb(176, 176, 170)
 }
 
 #calendar-days li {
@@ -34,10 +37,9 @@
     border-radius: 5px;
     text-align: center;
     box-sizing: border-box;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
     margin: 0.5vw;
     height: 100%;
+    
 }
 
 
@@ -47,14 +49,18 @@
     top: 0;
     left: 0;
     width: 100%; /* Button width matches parent li */
-    height: inherit; /* Button height matches parent li */
-    border: none;
-    background-color: transparent;
+    height: 100%; /* Button height matches parent li */
+    border: inherit;
+    /* background-color: transparent; */
     cursor: pointer;
     padding: inherit;
     margin: 0;
     font-size: 1.2vw; /* Adjust font size */
     color: #333; 
+    /* background-color: #f0f0f0; */
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+    
 }
 
 /* Styling for the first 7 li items */

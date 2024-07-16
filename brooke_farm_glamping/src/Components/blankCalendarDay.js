@@ -26,7 +26,7 @@ const BlankCalendarDay = ({ date, month, id}) => {
         <>
             <li className="blank-li-entry">
                
-            {`${month.month}`}:{`${date.getDate()}`}{nthNumber(date.getDate())}
+            {`${date.getDate()}`}{nthNumber(date.getDate())}
                 {/* hello
                 <br />
                 Bookings: {bookingsAmount}s */}
