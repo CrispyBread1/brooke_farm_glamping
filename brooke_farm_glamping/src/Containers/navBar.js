@@ -1,8 +1,5 @@
 import './navBar.css';
 import React, { useEffect, useState } from 'react';
-import HomePage from './homePage';
-import BookingPage from './bookingPage';
-import LogInPage from './logInPage';
 import headerImage from '../JPGs/BrookFarmGlampinglogo.png'
 import logInButton from '../JPGs/LoginButton/LogIn.png'
 import logInButtonFire1 from '../JPGs/LoginButton/LogInFire1.png'
@@ -13,7 +10,7 @@ import bookButton from '../JPGs/BookButton/book.png'
 import userIcon from '../JPGs/userbutton/Userbutton.png'
 import accountImage from '../JPGs/AccountButton/account.png'
 import {Link, BrowserRouter} from'react-router-dom'
-import { Paths } from '../Scripts/routes';
+
 
 
 
