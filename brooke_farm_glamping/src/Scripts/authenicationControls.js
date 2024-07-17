@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, AuthErrorCodes, onAuthStateChanged, signOut} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, AuthErrorCodes, onAuthStateChanged, signOut, updateProfile} from "firebase/auth";
 // import {userLogIn} from "../App.js"
 
 // Your web app's Firebase configuration
@@ -20,26 +20,22 @@ const logInEmailPassword = async (logInEmail, logInPassword) => {
     return signInWithEmailAndPassword(auth, logInEmail, logInPassword)
 }
 
-const registerNewAccountEmailPassword = (registerEmail, registerPassword) => {
-    return createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
-        // console.log(userCredentials)
-        // return userCredentials
-    // }
-    // catch(error) {
-        // console.log(error)
-        // return handleError(error)
-        // return error.code
-        
-    
+const registerNewAccountEmailPassword = async (registerEmail, registerPassword) => {
+    return createUserWithEmailAndPassword(auth, registerEmail, registerPassword)        
+}
+
+const addNamePhoneToUser = async (user, fullName, phone) => {
+    return updateProfile(user, {
+        displayName: fullName,
+        phone: phone
+    })
 }
 
 const monitorAuthState = async () => {
     onAuthStateChanged(auth, user => {
         if(user) {
-            // console.log(user)
             var userAccount = user
             return userAccount
-            // userLogIn(user.email)
         }
         else {
             console.log("Logged out bro")
@@ -48,37 +44,10 @@ const monitorAuthState = async () => {
 }
 
 
-// const monitorAuthState = () => {
-//     return new Promise((resolve, reject) => {
-//       const unsubscribe = onAuthStateChanged(auth, user => {
-//         unsubscribe(); // Stop listening after the first state change
-//         if (user) {
-//           resolve(user);
-//         } else {
-//           reject(new Error('No user is signed in'));
-//         }
-//       });
-//     });
-//   };
-
 const logOut = async () => {
     
     await signOut(auth)
 }
 
-// const handleError = (err) => {
-//     // return err.code
-//     if(err.code == AuthErrorCodes.INVALID_EMAIL) {
-//         return "working"
-//     } else return ("not working bud")
 
-//     // {
-//     //     "code": "auth/invalid-email",
-//     //     "customData": {},
-//     //     "name": "FirebaseError"
-//     // }
-    
-    
-// }
-
-export {logInEmailPassword, registerNewAccountEmailPassword, monitorAuthState, logOut};
+export {logInEmailPassword, registerNewAccountEmailPassword, monitorAuthState, logOut, addNamePhoneToUser};

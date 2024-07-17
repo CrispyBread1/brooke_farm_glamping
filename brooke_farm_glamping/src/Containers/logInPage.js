@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import {logInEmailPassword, registerNewAccountEmailPassword, monitorAuthState, logOut} from "../Scripts/authenicationControls";
+import {logInEmailPassword, registerNewAccountEmailPassword, monitorAuthState, logOut, addNamePhoneToUser} from "../Scripts/authenicationControls";
 import LogInForm from "../Components/logInForm";
 import { Navigate, useNavigate } from "react-router-dom";
 // import { AuthErrorCodes, getAuth } from "firebase/auth";
@@ -10,21 +10,52 @@ const LogInPage = ({user, userSignedIn, userSignedOut}) => {
     const navigate = useNavigate()
     
 
-    
+    const returnHome = () => {
+        setTimeout(() => {
+            navigate('/')
+            }, 1000)
+    }    
 
     const logIn = async (email, password) => {
         try {
             // console.log('email: '+ email + ' Password: ' + password)
                await logInEmailPassword(email, password)
-               .then((res) => userSignedIn(res))
-               setTimeout(() => {
-                navigate('/')
-                }, 1000)
+               .then((res) => {
+                    userSignedIn(res)
+                    returnHome()
+                    
+                })
+               
                
             } catch (error) {
                 console.log('error logging in: ', error)
             }
     }
+
+    const registerNewAccount = async (email, password, fullName, phone) => {
+        try {
+            await registerNewAccountEmailPassword(email, password)
+            .then((res) => {
+                userSignedIn(res)
+                addUserDetail(res, fullName, phone)
+                
+            })
+            
+
+            
+          } catch (error) {
+            console.error('Error loggin in user ', error);
+          }
+    }
+
+    const addUserDetail = async (user,  fullName, phone) => {
+        try {
+            await addNamePhoneToUser(user, fullName, phone)
+        } catch (error) {
+            console.error('Error adding name and phone to user ', error);
+          }
+    }
+    
 
     const signOutUser = () => {
         logOut()
@@ -32,7 +63,6 @@ const LogInPage = ({user, userSignedIn, userSignedOut}) => {
     }
     
     const checkUserIn = () => {
-
         if (user) {
             return user.user.email
         }
@@ -56,18 +86,7 @@ const LogInPage = ({user, userSignedIn, userSignedOut}) => {
         // }
     
 
-    const registerNewAccount = async (email, password) => {
-        // registerNewAccountEmailPassword(email, password).then((res) => console.log("register attempt "+ res.user))
-        try {
-            const userCredential = await registerNewAccountEmailPassword(email, password);
-            // setBookings(bookings);
-            console.log(userCredential.user)
-            userSignedIn(userCredential)
-            
-          } catch (error) {
-            console.error('Error loggin in user ', error);
-          }
-    }
+    
 
 
 

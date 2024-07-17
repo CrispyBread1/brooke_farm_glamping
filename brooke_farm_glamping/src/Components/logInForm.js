@@ -7,9 +7,18 @@ import './blankCalendarDay.css'
 const LogInForm = ({registerNewAccount, logIn}) => {
 
     const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
     const [confirmEmail, setConfirmEamil] = useState("")
+
+    const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
+
+    const [fullName, setFullName] = useState("")
+    const [confirmFullName, setConfirmFullName] = useState("")
+
+    const [phoneNumber, setPhoneNumber] = useState("")
+    const [confirmPhoneNumber, setConfirmPhoneNumber] = useState("")
+    
+    
     const [registering, setRegistering] = useState(false)
 
     
@@ -47,7 +56,7 @@ const LogInForm = ({registerNewAccount, logIn}) => {
     const handleFormSubmit = (evt) => {
         evt.preventDefault();
         if (registering){
-            registerNewAccount();
+            registerNewAccount(email, password, fullName, phoneNumber);
         } else {
             // logIn();
             logIn(email, password)
