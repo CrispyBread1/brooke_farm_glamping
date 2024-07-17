@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom"
 import HomePage from '../Containers/homePage';
 import BookingPage from "../Containers/bookingPage";
 import LogInPage from "../Containers/logInPage";
@@ -8,9 +8,12 @@ import { useState } from "react";
 export const Paths = () => {
 
     const [user, setUser] = useState(null)
+    
 
     const userSignedIn = (userObj) => {
         setUser(userObj)
+        
+        
     }
 
     const userSignedOut = () => {

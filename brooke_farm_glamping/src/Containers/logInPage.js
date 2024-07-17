@@ -2,11 +2,12 @@ import React from "react";
 import { useState } from "react";
 import {logInEmailPassword, registerNewAccountEmailPassword, monitorAuthState, logOut} from "../Scripts/authenicationControls";
 import LogInForm from "../Components/logInForm";
+import { Navigate, useNavigate } from "react-router-dom";
 // import { AuthErrorCodes, getAuth } from "firebase/auth";
 
 const LogInPage = ({user, userSignedIn, userSignedOut}) => {
 
-    
+    const navigate = useNavigate()
     
 
     
@@ -16,6 +17,10 @@ const LogInPage = ({user, userSignedIn, userSignedOut}) => {
             // console.log('email: '+ email + ' Password: ' + password)
                await logInEmailPassword(email, password)
                .then((res) => userSignedIn(res))
+               setTimeout(() => {
+                navigate('/')
+                }, 1000)
+               
             } catch (error) {
                 console.log('error logging in: ', error)
             }
