@@ -13,6 +13,10 @@ export const Paths = () => {
         setUser(userObj)
     }
 
+    const userSignedOut = () => {
+        setUser(null)
+    }
+
     return (
         <Router>
 
@@ -28,7 +32,7 @@ export const Paths = () => {
                     {/* <BookingPage/> */}
                 </Route>
 
-                <Route exact path='/logIn' element={<LogInPage user={user} userSignedIn={userSignedIn}/>}>
+                <Route exact path='/logIn' element={<LogInPage user={user} userSignedIn={userSignedIn} userSignedOut={userSignedOut}/>}>
                     {/* <LogInPage/> */}
                 </Route>
 

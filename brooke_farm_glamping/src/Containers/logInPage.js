@@ -4,7 +4,7 @@ import {logInEmailPassword, registerNewAccountEmailPassword, monitorAuthState, l
 import LogInForm from "../Components/logInForm";
 // import { AuthErrorCodes, getAuth } from "firebase/auth";
 
-const LogInPage = ({user, userSignedIn}) => {
+const LogInPage = ({user, userSignedIn, userSignedOut}) => {
 
     
     
@@ -15,10 +15,23 @@ const LogInPage = ({user, userSignedIn}) => {
         try {
             // console.log('email: '+ email + ' Password: ' + password)
                await logInEmailPassword(email, password)
+               .then((res) => userSignedIn(res))
             } catch (error) {
                 console.log('error logging in: ', error)
             }
+    }
+
+    const signOutUser = () => {
+        logOut()
+        userSignedIn()
+    }
+    
+    const checkUserIn = () => {
+
+        if (user) {
+            return user.user.email
         }
+    }
 
         // console.log(response)
         // console.log(message)
@@ -56,7 +69,8 @@ const LogInPage = ({user, userSignedIn}) => {
     return (
         <div>
             <p>Log in page</p>
-            <p>{user}</p>
+            <p>{checkUserIn()}</p>
+            <button onClick={signOutUser}>Log Out</button>
             
             {/* <button className="log-in" display="none" onClick={switchBetweenRegisterLogIn}>Log in</button> */}
             <LogInForm registerNewAccount={registerNewAccount} logIn={logIn}></LogInForm>

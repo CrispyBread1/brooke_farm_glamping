@@ -62,6 +62,7 @@ const monitorAuthState = async () => {
 //   };
 
 const logOut = async () => {
+    
     await signOut(auth)
 }
 
