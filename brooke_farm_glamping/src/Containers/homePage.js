@@ -3,7 +3,7 @@ import './homPage.css'
 import backGround1 from '../JPGs/Background/IMG_2978.JPG'
 import backGround2 from '../JPGs/Background/IMG_3211.JPG'
 
-const HomePage = ({}) => {
+const HomePage = ({user}) => {
     
     
 

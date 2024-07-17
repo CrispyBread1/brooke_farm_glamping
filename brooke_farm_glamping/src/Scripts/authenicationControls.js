@@ -16,13 +16,12 @@ const firebaseConfig = initializeApp({
 // Initialize Firebase
 const auth = getAuth(firebaseConfig);
 
-const logInEmailPassword = (logInEmail, logInPassword) => {
+const logInEmailPassword = async (logInEmail, logInPassword) => {
     return signInWithEmailAndPassword(auth, logInEmail, logInPassword)
 }
 
-const registerNewAccountEmailPassword = async (registerEmail, registerPassword) => {
-    return  createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
-        // const userCredentials = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
+const registerNewAccountEmailPassword = (registerEmail, registerPassword) => {
+    return createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
         // console.log(userCredentials)
         // return userCredentials
     // }
@@ -31,7 +30,7 @@ const registerNewAccountEmailPassword = async (registerEmail, registerPassword) 
         // return handleError(error)
         // return error.code
         
-    // }
+    
 }
 
 const monitorAuthState = async () => {

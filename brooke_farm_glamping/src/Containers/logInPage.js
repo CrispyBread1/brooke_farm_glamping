@@ -4,26 +4,21 @@ import {logInEmailPassword, registerNewAccountEmailPassword, monitorAuthState, l
 import LogInForm from "../Components/logInForm";
 // import { AuthErrorCodes, getAuth } from "firebase/auth";
 
-const LogInPage = ({}) => {
+const LogInPage = ({user, userSignedIn}) => {
 
     
     
 
     
 
-    const logIn = (email, password) => {
-        // console.log(error)
-         
-        // console.log(logInAttempt(email, password))
-        // var response = logInAttempt(email, password)
-        // if (response) {
-        //     console.log("log in page: " + response)
-        // }
-        logInEmailPassword(email, password).then((res) => {
-            if (res) {
-            console.log("log in attempt " + res)
+    const logIn = async (email, password) => {
+        try {
+            // console.log('email: '+ email + ' Password: ' + password)
+               await logInEmailPassword(email, password)
+            } catch (error) {
+                console.log('error logging in: ', error)
             }
-        })
+        }
 
         // console.log(response)
         // console.log(message)
@@ -41,7 +36,7 @@ const LogInPage = ({}) => {
         // if (error == AuthErrorCodes.INVALID_EMAIL) {
         //     console.log("InvalidEmail")
         // }
-    }
+    
 
     const registerNewAccount = async (email, password) => {
         // registerNewAccountEmailPassword(email, password).then((res) => console.log("register attempt "+ res.user))
@@ -49,6 +44,7 @@ const LogInPage = ({}) => {
             const userCredential = await registerNewAccountEmailPassword(email, password);
             // setBookings(bookings);
             console.log(userCredential.user)
+            userSignedIn(userCredential)
             
           } catch (error) {
             console.error('Error loggin in user ', error);
@@ -60,7 +56,7 @@ const LogInPage = ({}) => {
     return (
         <div>
             <p>Log in page</p>
-
+            <p>{user}</p>
             
             {/* <button className="log-in" display="none" onClick={switchBetweenRegisterLogIn}>Log in</button> */}
             <LogInForm registerNewAccount={registerNewAccount} logIn={logIn}></LogInForm>

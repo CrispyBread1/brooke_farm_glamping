@@ -49,9 +49,10 @@ const LogInForm = ({registerNewAccount, logIn}) => {
         if (registering){
             registerNewAccount();
         } else {
-            logIn();
+            // logIn();
+            logIn(email, password)
         }
-        // logIn(logInAttempt(email, password))
+        
         
     }
 
