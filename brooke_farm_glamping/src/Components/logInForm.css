@@ -21,7 +21,7 @@ input::-webkit-inner-spin-button {
     font-size: 18px;
     font-weight: bold;
     color: #fff;
-    background-color: #4CAF50;
+    background-color: rgb(155, 187, 246);
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -29,10 +29,10 @@ input::-webkit-inner-spin-button {
 }
 
 .register:hover {
-    background-color: #45a049;
+    background-color: rgb(141, 168, 219);
 }
 
-form {
+.logIn-Form {
     display: flex;
     flex-direction: column;
 }
@@ -67,12 +67,12 @@ form {
     text-align: right;
 }
 
-#post-button {
+.logIn-Form-Button {
     width: 100%;
     padding: 15px;
     font-size: 18px;
     color: #fff;
-    background-color: #4CAF50;
+    /* background-color:rgb(155, 187, 246);  */
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -80,6 +80,6 @@ form {
     margin-top: 20px;
 }
 
-#post-button:hover {
-    background-color: #45a049;
+.logIn-Form-Button:hover {
+    background-color: rgb(141, 168, 219);
 }

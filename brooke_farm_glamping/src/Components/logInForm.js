@@ -116,53 +116,65 @@ const LogInForm = ({registerNewAccount, logIn}) => {
     return (
         <div class="form-container">
         
-        <form onSubmit={handleFormSubmit}>
+        <form class="logIn-Form" onSubmit={handleFormSubmit}>
+                {/* Email inputs *------------- *------------- *-------------  */}
                 <input
                 type="text"
                 placeholder="Email"
                 value={email}
                 onChange={handleEmailChange}
+                style={{ width: "100%", height: "2vw", textAlign: "center", fontSize: "2vw"  }}
                 />
+                <br></br>
+
                 {registering && <input
                 type="text"
                 placeholder="Confirm email"
                 value={confirmEmail}
                 onChange={handleConfirmEmailChange}
+                style={{ width: "100%", height: "2vw", textAlign: "center", fontSize: "2vw"  }}
                 />}
                 {/* {emailConfirmed &&<p>Matching!</p>} */}
 
-
+                {/* Password inputs *------------- *------------- *-------------  */}
                 <input
                 className="password"
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={handlePasswordChange}
+                style={{ width: "100%", height: "2vw", textAlign: "center", fontSize: "2vw"  }}
                 />
                 {passwordTooShort && registering && <p>Password must be at least 6 characters long</p>}
+
                 {registering && <input
                 type="password"
                 placeholder="Confirm password"
                 value={confirmPassword}
                 onChange={handleConfirmPasswordChange}
+                style={{ width: "100%", height: "2vw", textAlign: "center", fontSize: "2vw"  }}
                 />}
                 <br></br>
                 
-
+                {/* Full name inputs *------------- *------------- *-------------  */}
                 {registering && <input
                 type="text"
                 placeholder="Full Name"
                 value={fullName}
                 onChange={handleFullNameChange}
+                style={{ width: "100%", height: "2vw", textAlign: "center", fontSize: "2vw"  }}
                 />}
+                <br></br>
 
-
+                {/* Phone number inputs *------------- *------------- *-------------  */}
                 {registering && <input
                 type="number"
                 placeholder="Phone Number"
                 value={phoneNumber}
                 onChange={handlePhoneNumberChange}
+                style={{ width: "100%", height: "2vw", textAlign: "center", fontSize: "2vw"  }}
                 />}
+                <br></br>
 
                 <button className="register" id="register" display="block" onClick={switchBetweenRegisterLogIn}>Register new account</button>
                 <div
@@ -172,7 +184,7 @@ const LogInForm = ({registerNewAccount, logIn}) => {
                 >Show Password</div>
                 
             <button
-            id="post-button"
+            class="logIn-Form-Button"
             type="submit"
             style={{ width: "60px", height: "100px" }}
             >Submit
