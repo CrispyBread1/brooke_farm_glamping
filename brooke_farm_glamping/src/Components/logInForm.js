@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import './blankCalendarDay.css'
+import './logInForm.css'
+
 
 
 
@@ -8,9 +9,12 @@ const LogInForm = ({registerNewAccount, logIn}) => {
 
     const [email, setEmail] = useState("")
     const [confirmEmail, setConfirmEamil] = useState("")
+    const [emailConfirmed, setEmailConfirmed] = useState(false)
 
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
+    const [passwordConfirmed, setPasswordConfirmed] = useState(false)
+    const [passwordTooShort, setPasswordTooShort] = useState(true)
 
     const [fullName, setFullName] = useState("")
     const [confirmFullName, setConfirmFullName] = useState("")
@@ -21,8 +25,9 @@ const LogInForm = ({registerNewAccount, logIn}) => {
     
     const [registering, setRegistering] = useState(false)
 
-    
 
+    
+    // Handle the switching of between registering and logging in functionality *------------- *------------- *------------- 
     const switchBetweenRegisterLogIn = () => {
         var x = document.querySelector(".register");
         // var y = document.querySelector(".log-in");
@@ -38,21 +43,9 @@ const LogInForm = ({registerNewAccount, logIn}) => {
         
     }
 
-    const handleEmailChange = (evt) => {
-        setEmail(evt.target.value);
-    }
 
-    const handlePasswordChange = (evt) => {
-        setPassword(evt.target.value);
-    }
 
-    const showPassword = () => {
-        var x = document.querySelector(".password");
-        x.type = "text"
-        setTimeout(function() {x.type = "password"}, 1000); 
-        // console.log(x.type)
-    }
-    
+    // Handle the submitting of the form *------------- *------------- *------------- 
     const handleFormSubmit = (evt) => {
         evt.preventDefault();
         if (registering){
@@ -66,6 +59,60 @@ const LogInForm = ({registerNewAccount, logIn}) => {
     }
 
 
+
+    // Handle all the email functionality *------------- *------------- *------------- 
+    const handleEmailChange = (evt) => {
+        setEmail(evt.target.value);
+    }
+
+    const handleConfirmEmailChange = (evt) => {
+        var typingEmail = evt.target.value
+        if (typingEmail === email) {
+            setEmailConfirmed(true)
+        }
+        setConfirmEamil(typingEmail)
+    }
+
+
+
+    // Handle all the password functionality *------------- *------------- *------------- 
+    const handleConfirmPasswordChange = (evt) => {
+        var typingPassword = evt.target.value
+        if (typingPassword === password) {
+            setPasswordConfirmed(true)
+        }
+        setConfirmPassword(typingPassword)
+    }
+
+    const handlePasswordChange = (evt) => {
+        var typingPassword = evt.target.value
+        if(typingPassword.length >= 6) {
+            setPasswordTooShort(false)
+        }
+        setPassword(typingPassword);
+    }
+
+    const showPassword = () => {
+        var x = document.querySelector(".password");
+        x.type = "text"
+        setTimeout(function() {x.type = "password"}, 1000); 
+        // console.log(x.type)
+    }
+    
+
+    // Handle the full name functionality *------------- *------------- *------------- 
+    const handleFullNameChange = (evt) => {
+        setFullName(evt.target.value)
+    }
+
+
+
+    // Handle the full name functionality *------------- *------------- *------------- 
+    const handlePhoneNumberChange = (evt) => {
+        setPhoneNumber(evt.target.value)
+    }
+    
+
     return (
         <div>
         <button className="register" id="register" display="block" onClick={switchBetweenRegisterLogIn}>Register new account</button>
@@ -76,6 +123,15 @@ const LogInForm = ({registerNewAccount, logIn}) => {
                 value={email}
                 onChange={handleEmailChange}
                 />
+                {registering && <input
+                type="text"
+                placeholder="Confirm email"
+                value={confirmEmail}
+                onChange={handleConfirmEmailChange}
+                />}
+                {/* {emailConfirmed &&<p>Matching!</p>} */}
+
+
                 <input
                 className="password"
                 type="password"
@@ -83,6 +139,32 @@ const LogInForm = ({registerNewAccount, logIn}) => {
                 value={password}
                 onChange={handlePasswordChange}
                 />
+                {passwordTooShort &&<p>Password must be at least 6 characters long</p>}
+                {registering && <input
+                type="password"
+                placeholder="Confirm password"
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+                />}
+                <br></br>
+                
+
+                {registering && <input
+                type="text"
+                placeholder="Full Name"
+                value={fullName}
+                onChange={handleFullNameChange}
+                />}
+
+
+                {registering && <input
+                type="number"
+                placeholder="Phone Number"
+                value={phoneNumber}
+                onChange={handlePhoneNumberChange}
+                />}
+
+
                 <div
                 id="show-password"
                 value="Show password"
