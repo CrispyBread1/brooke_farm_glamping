@@ -114,8 +114,8 @@ const LogInForm = ({registerNewAccount, logIn}) => {
     
 
     return (
-        <div>
-        <button className="register" id="register" display="block" onClick={switchBetweenRegisterLogIn}>Register new account</button>
+        <div class="form-container">
+        
         <form onSubmit={handleFormSubmit}>
                 <input
                 type="text"
@@ -139,7 +139,7 @@ const LogInForm = ({registerNewAccount, logIn}) => {
                 value={password}
                 onChange={handlePasswordChange}
                 />
-                {passwordTooShort &&<p>Password must be at least 6 characters long</p>}
+                {passwordTooShort && registering && <p>Password must be at least 6 characters long</p>}
                 {registering && <input
                 type="password"
                 placeholder="Confirm password"
@@ -164,12 +164,13 @@ const LogInForm = ({registerNewAccount, logIn}) => {
                 onChange={handlePhoneNumberChange}
                 />}
 
-
+                <button className="register" id="register" display="block" onClick={switchBetweenRegisterLogIn}>Register new account</button>
                 <div
                 id="show-password"
                 value="Show password"
                 onClick={showPassword}
                 >Show Password</div>
+                
             <button
             id="post-button"
             type="submit"
