@@ -23,12 +23,14 @@ const BookingPage = ({user}) => {
 
     useEffect(() => {
         fetchBookings(new Date().getMonth())
+        fetchCampingFacilities()
 
       }, []);
     // useEffect(() => { // Renders when bookings have come through
     //     // fillDaysInMonth()
     //     console.log('useeffect')
     // }, [bookingBoxOpen])
+
     const fetchBookings = async (tok1) => {
         const month = new Date();
         try {
@@ -39,6 +41,10 @@ const BookingPage = ({user}) => {
           console.error('Error fetching bookings:', error);
         }
     };
+
+    const fetchCampingFacilities = () => {
+      return
+    }
 
     const newBooking = () => {
         const userId = Math.floor(Math.random() * 100);

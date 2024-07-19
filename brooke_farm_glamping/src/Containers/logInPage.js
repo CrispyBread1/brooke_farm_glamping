@@ -23,6 +23,7 @@ const LogInPage = ({user, userSignedIn, userSignedOut}) => {
                .then((res) => {
                     userSignedIn(res)
                     returnHome()
+                    console.log(res)
                     
                 })
                
@@ -40,8 +41,6 @@ const LogInPage = ({user, userSignedIn, userSignedOut}) => {
                 addUserDetail(res, fullName, phone)
                 
             })
-            
-
             
           } catch (error) {
             console.error('Error loggin in user ', error);
