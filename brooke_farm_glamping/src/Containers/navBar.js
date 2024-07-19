@@ -37,7 +37,7 @@ const NavBar = () => {
               <img id="profile-icon-image" src={userIcon}/>
 
               <div id="dropdown-content">
-              <Link to="/logIn">
+              <Link to="/login">
                 <div id="LogIn-Button"   value="LogIn" >
                   <img id="logInFire1Image" className="logInFire1-images" src={logInButtonFire1} />
                   <img id="logInFire2Image" className="logInFire2-images" src={logInButtonFire2} />

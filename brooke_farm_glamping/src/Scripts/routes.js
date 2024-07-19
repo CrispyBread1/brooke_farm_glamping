@@ -4,6 +4,7 @@ import BookingPage from "../Containers/bookingPage";
 import LogInPage from "../Containers/logInPage";
 import NavBar from "../Containers/navBar";
 import { useState } from "react";
+import ConfirmBookingPage from "../Containers/confirmBookingPage";
 
 export const Paths = () => {
 
@@ -35,8 +36,12 @@ export const Paths = () => {
                     {/* <BookingPage/> */}
                 </Route>
 
-                <Route exact path='/logIn' element={<LogInPage user={user} userSignedIn={userSignedIn} userSignedOut={userSignedOut}/>}>
+                <Route exact path='/login' element={<LogInPage user={user} userSignedIn={userSignedIn} userSignedOut={userSignedOut}/>}>
                     {/* <LogInPage/> */}
+                </Route>
+
+                <Route exact path="/book/confirm-booking" element={ConfirmBookingPage}>
+
                 </Route>
 
             </Routes>
