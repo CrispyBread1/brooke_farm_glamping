@@ -47,8 +47,26 @@ const retrieveBooking = (month) => {
   });
 };
 
+const retrieveCampingFacilities = () => {
+  return new Promise((resolve, reject) => {
+    const db = getDatabase();
+    const campsiteRef = ref(db, 'campingFacilities/');
+
+    onValue(campsiteRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        resolve(data);
+      } else {
+        reject(new Error('No data available'));
+      }
+    }, (error) => {
+      reject(error);
+    });
+  });
+}
+
   const cancelBooking = () => {
     return
   }
 
-  export {addBooking, editBooking, retrieveBooking, cancelBooking};
+  export {addBooking, editBooking, retrieveBooking, cancelBooking, retrieveCampingFacilities};

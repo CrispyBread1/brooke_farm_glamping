@@ -2,7 +2,7 @@ import React, { useEffect, useState }  from "react";
 import CalendarContainer from './calendarContainer'
 import BookingContainer from "./bookingContainer";
 import './bookingPage.css'
-import { addBooking, editBooking, retrieveBooking, cancelBooking} from '../Scripts/databaseControls.js';
+import { addBooking, editBooking, retrieveBooking, cancelBooking, retrieveCampingFacilities} from '../Scripts/databaseControls.js';
 import Booking from "../Classes/booking";
 
 const BookingPage = ({user}) => {
@@ -15,6 +15,8 @@ const BookingPage = ({user}) => {
 
   const [bookingBoxOpen, setBookingBoxOpen] = useState(false);
   const [bookings, setBookings] = useState('');
+
+  const [campingFalilities, setCampingFalilities] = useState(null)
 
   const [dateObject, setDateObject] = useState(null)
   const [daysOfWeek, setDaysOfWeek] = useState(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'])
@@ -41,8 +43,13 @@ const BookingPage = ({user}) => {
       console.error('Error fetching bookings:', error);
     }};
 
-  const fetchCampingFacilities = () => {
-    return
+  const fetchCampingFacilities = async () => {
+    try {
+      const camps = await retrieveCampingFacilities();
+      setCampingFalilities(camps)
+    } catch (error) {
+      console.error('Error fetching campsites:', error);
+    }
   }
 
   const newBooking = () => {
@@ -103,6 +110,9 @@ const BookingPage = ({user}) => {
         return "th";
   }};
 
+  const checkCampsGotRetreived = () => {
+    console.log(campingFalilities)
+  }
 
 
   return (
@@ -111,6 +121,7 @@ const BookingPage = ({user}) => {
 
         {/* <div id="Add-booking"  onClick={newBooking} value="addBooking">Add Booking</div> */}
         <div onClick={checkUserGotThrough}>User email: {`${user}`}</div>
+        <button onClick={checkCampsGotRetreived}>check camps came through</button>
 
         <button id="hideBookingbox" onClick={closeBookingBox}>Hide booking info</button>
 

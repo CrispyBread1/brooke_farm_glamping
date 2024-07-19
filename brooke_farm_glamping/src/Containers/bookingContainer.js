@@ -129,6 +129,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
         }
     }
 
+     // Functions to control submitting the form and booking *------------- *-------------
     const handleFormSubmit = (evt) => {
         evt.preventDefault();
         moveToConfirmBooking();
@@ -183,6 +184,12 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                 <button id="remove-guest" onClick={removeGuest} style={{ width: "2vw", height: "2vw" }}>-</button>
                 <br></br>
 
+                {/* What camping space the user wants *------------- *------------- */}
+
+
+
+
+
                 {/* Amount of users' children that want to stay *------------- *------------- */}
                 <label>Amount of children staying</label>
                 <br></br>
@@ -212,6 +219,12 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                 />
                 <button id="remove-dogs" onClick={removeDogs} style={{ width: "2vw", height: "2vw" }}>-</button>
                 <br></br>
+
+                {/* checkbox to define if a user wants a firepit *------------- *------------- */}
+
+                {/* If user wants to bring their own gazebos, max 2 *------------- *------------- */}
+
+                {/* if the user will have additional cars more than one *------------- *------------- */}
 
             <button
             id="post-button"

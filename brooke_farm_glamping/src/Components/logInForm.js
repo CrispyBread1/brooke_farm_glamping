@@ -114,9 +114,9 @@ const LogInForm = ({registerNewAccount, logIn}) => {
     
 
     return (
-        <div class="form-container">
+        <div className="form-container">
         
-        <form class="logIn-Form" onSubmit={handleFormSubmit}>
+        <form className="logIn-Form" onSubmit={handleFormSubmit}>
                 {/* Email inputs *------------- *------------- *-------------  */}
                 <input
                 type="text"
@@ -184,7 +184,7 @@ const LogInForm = ({registerNewAccount, logIn}) => {
                 >Show Password</div>
                 
             <button
-            class="logIn-Form-Button"
+            className="logIn-Form-Button"
             type="submit"
             style={{ width: "60px", height: "100px" }}
             >Submit
