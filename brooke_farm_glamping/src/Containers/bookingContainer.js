@@ -4,13 +4,14 @@ import './bookingContainer.css'
 import { useNavigate } from "react-router-dom";
 
 
-const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNumber}) => {
+const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNumber, campingFacilities}) => {
 
     const navigate = useNavigate();
 
     const [booking, setBooking] = useState(false)
     const [currentMonth, setCurrentMonth] = useState(null)
     // const [dateSelected, setDateSelected] = useState(dateObject)
+    const [campingChoice, setCampinChoice] = useState(null)
 
     const [nights, setNights] = useState(1)
     const [accomodation, setAccomodation] = useState([])
@@ -18,17 +19,14 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
     const [date, setDate] = useState('') // Maybe? mihght just pass through from calender container
     const [peopleAmount, setPeopleAmount] = useState(1)
     const [childrenAmount, setChildrenAmount] = useState(0)
-    // const [infantsAmount, setInfantsAmount] = useState(0)
     const [dogAmount, setDogAmount] = useState(0)
 
+    useEffect(() => {
+        createCampingOptions()
+        // fetchBookings(new Date().getMonth())
+        // fetchCampingFacilities()
     
-
-    // useEffect(() => { // Renders when bookings have come through
-    //     if (!booking) {
-    //         clearBookingInformation()
-    //     }
-    //     // console.log(booking)
-    // }, [booking])
+      }, []);
 
     const clearBookingInformation = () => {
         // console.log('in clearBookingInformation function')
@@ -82,12 +80,11 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
         
     }
 
-    
 
 
     
 
-    // Functions to control amount of nights users wanting to stay *------------- *-------------
+     // Functions to control amount of nights users wanting to stay *------------- *-------------
     const addNight = () => {
         if (nights < 24) {
             setNights(nights + 1)
@@ -99,8 +96,10 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
         }
     }
 
+
+
      // Functions to control amount of  users wanting to stay *------------- *-------------
-     const addGuest = () => {
+    const addGuest = () => {
         setPeopleAmount(peopleAmount + 1)
     }
     const removeGuest = () => {
@@ -108,6 +107,41 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
             setPeopleAmount(peopleAmount - 1)
         }
     }
+
+
+
+     // Functions to control amount of  users wanting to stay *------------- *-------------
+     const createCampingOptions = () => {
+        const sitesArray = [];
+        for (var j in campingFacilities) {
+            if (campingFacilities[j]) {
+                sitesArray.push(
+                    <label htmlFor={j} 
+                    key={`label-${j}`}></label>,
+
+                    <input
+                        type="radio"
+                        name="tent"
+                        id={j}
+                        value={campingFacilities[j].name}
+                        key={`input-${j}`}
+                    />,
+
+                    <span key={`text-${j}`}> {campingFacilities[j].name} </span>,
+
+                    <br></br>
+                );
+            }
+        }
+        setCampinChoice(sitesArray);
+        // console.log(sitesArray);
+    };
+
+    const checkChoiceOptionsComeTHrouh = () => {
+        console.log(campingChoice)
+    }
+
+
 
      // Functions to control amount of  users' children wanting to stay *------------- *-------------
      const addChildren = () => {
@@ -119,6 +153,8 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
         }
     }
 
+
+
      // Functions to control amount of  users' children wanting to stay *------------- *-------------
      const addDogs = () => {
         setDogAmount(dogAmount + 1)
@@ -128,6 +164,8 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
             setDogAmount(dogAmount - 1)
         }
     }
+
+
 
      // Functions to control submitting the form and booking *------------- *-------------
     const handleFormSubmit = (evt) => {
@@ -151,6 +189,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
             <h1>{getDateandOrdinalNumber()}</h1>
             <h2>{getMonth()}</h2>
+            <button onClick={checkChoiceOptionsComeTHrouh}>check choice options come through</button>
             
             <form onSubmit={handleFormSubmit}>
 
@@ -185,7 +224,13 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                 <br></br>
 
                 {/* What camping space the user wants *------------- *------------- */}
-
+                <fieldset>
+                <legend>Select camping option: </legend>
+                    {campingChoice}
+                </fieldset>
+                    
+                    {/* <option value='campingFalilities' id={1}/> */}
+                
 
 
 

@@ -16,7 +16,7 @@ const BookingPage = ({user}) => {
   const [bookingBoxOpen, setBookingBoxOpen] = useState(false);
   const [bookings, setBookings] = useState('');
 
-  const [campingFalilities, setCampingFalilities] = useState(null)
+  const [campingFacilities, setCampingFacilities] = useState(null)
 
   const [dateObject, setDateObject] = useState(null)
   const [daysOfWeek, setDaysOfWeek] = useState(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'])
@@ -46,7 +46,7 @@ const BookingPage = ({user}) => {
   const fetchCampingFacilities = async () => {
     try {
       const camps = await retrieveCampingFacilities();
-      setCampingFalilities(camps)
+      setCampingFacilities(camps)
     } catch (error) {
       console.error('Error fetching campsites:', error);
     }
@@ -111,7 +111,10 @@ const BookingPage = ({user}) => {
   }};
 
   const checkCampsGotRetreived = () => {
-    console.log(campingFalilities)
+    // for (var j in campingFalilities) {
+    //   console.log(campingFalilities[j].name)
+    // }
+    console.log(campingFacilities)
   }
 
 
@@ -133,7 +136,7 @@ const BookingPage = ({user}) => {
 
         
             <div className='Booking-container'>
-                <BookingContainer bookingBoxOpen={bookingBoxOpen} dateObject={dateObject} daysOfWeek={daysOfWeek} months={months} nthNumber={nthNumber}/>
+                <BookingContainer bookingBoxOpen={bookingBoxOpen} dateObject={dateObject} daysOfWeek={daysOfWeek} months={months} nthNumber={nthNumber} campingFacilities={campingFacilities}/>
             </div> 
         
         </div>
