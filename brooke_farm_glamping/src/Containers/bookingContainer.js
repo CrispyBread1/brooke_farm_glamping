@@ -1,9 +1,12 @@
 import BookingBox from "../Components/bookingBox";
 import React, { useEffect, useState }  from "react";
 import './bookingContainer.css'
+import { useNavigate } from "react-router-dom";
 
 
 const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNumber}) => {
+
+    const navigate = useNavigate();
 
     const [booking, setBooking] = useState(false)
     const [currentMonth, setCurrentMonth] = useState(null)
@@ -17,6 +20,8 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
     const [childrenAmount, setChildrenAmount] = useState(0)
     // const [infantsAmount, setInfantsAmount] = useState(0)
     const [dogAmount, setDogAmount] = useState(0)
+
+    
 
     // useEffect(() => { // Renders when bookings have come through
     //     if (!booking) {
@@ -79,7 +84,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
     
 
-    // Handles the ordinal numbers for the date *------------- *-------------
+
     
 
     // Functions to control amount of nights users wanting to stay *------------- *-------------
@@ -126,11 +131,17 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
     const handleFormSubmit = (evt) => {
         evt.preventDefault();
-        return;
+        moveToConfirmBooking();
+    
     }
 
     
-
+    const moveToConfirmBooking = () => {
+        setTimeout(() => {
+            navigate('/book/confirm-booking')
+            }, 1000)
+    } 
+        
 
 
 
