@@ -121,9 +121,11 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
         var chosenFirstYear = dateObject.getYear()
         
         for (var i = 0; i < nights; i++) {
-            if(months[dateObject.getMonth()].days < (dateObject.getDate() + i)) {
+            if(months[dateObject.getMonth()].days < (dateObject.getDate() + i) && !((chosenFirstMonth + 1) >= 12)) {
                 nightsArray.push(((chosenFirstNight + i) - months[dateObject.getMonth()].days) + ":" + (chosenFirstMonth + 2) + ':' + (chosenFirstYear))
-            } 
+            } else if(months[dateObject.getMonth()].days < (dateObject.getDate() + i) && (chosenFirstMonth + 1) >= 12) {
+                nightsArray.push(((chosenFirstNight + i) - months[dateObject.getMonth()].days) + ":" + ((chosenFirstMonth + 1) - chosenFirstMonth) + ':' + (chosenFirstYear + 1))
+            }
             else (
             nightsArray.push((chosenFirstNight + i) + ":" + (chosenFirstMonth + 1) + ':' + (chosenFirstYear))
             )
