@@ -113,7 +113,6 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
     }
 
     const createDateNightArray = () => {
-        // if (dateObject) {
         var nightsArray = []
         if (dateObject){
         var chosenFirstNight = dateObject.getDate()
@@ -121,11 +120,15 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
         var chosenFirstYear = dateObject.getYear()
         
         for (var i = 0; i < nights; i++) {
+            // If night bleeds over the next month 
             if(months[dateObject.getMonth()].days < (dateObject.getDate() + i) && !((chosenFirstMonth + 1) >= 12)) {
                 nightsArray.push(((chosenFirstNight + i) - months[dateObject.getMonth()].days) + ":" + (chosenFirstMonth + 2) + ':' + (chosenFirstYear))
-            } else if(months[dateObject.getMonth()].days < (dateObject.getDate() + i) && (chosenFirstMonth + 1) >= 12) {
+            } 
+            // If night bleeds over the next month and the next year
+            else if(months[dateObject.getMonth()].days < (dateObject.getDate() + i) && (chosenFirstMonth + 1) >= 12) {
                 nightsArray.push(((chosenFirstNight + i) - months[dateObject.getMonth()].days) + ":" + ((chosenFirstMonth + 1) - chosenFirstMonth) + ':' + (chosenFirstYear + 1))
             }
+            // If nights doesn't bleed over to any month or year
             else (
             nightsArray.push((chosenFirstNight + i) + ":" + (chosenFirstMonth + 1) + ':' + (chosenFirstYear))
             )
