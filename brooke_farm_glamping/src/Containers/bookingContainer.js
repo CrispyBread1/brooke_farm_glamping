@@ -14,9 +14,11 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
     const [campingChoice, setCampinChoice] = useState(null)
 
     const [nights, setNights] = useState(1)
+    const [datesStaying, setDateStaying] = useState([]) // Maybe? mihght just pass through from calender container
+    
     const [accomodation, setAccomodation] = useState([])
     const [pitchesAmount, setPitchesAmount] = useState([])
-    const [date, setDate] = useState('') // Maybe? mihght just pass through from calender container
+    
     const [peopleAmount, setPeopleAmount] = useState(1)
     const [childrenAmount, setChildrenAmount] = useState(0)
     const [dogAmount, setDogAmount] = useState(0)
@@ -26,14 +28,14 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
         // fetchBookings(new Date().getMonth())
         // fetchCampingFacilities()
     
-      }, []);
+      }, [campingFacilities]);
 
     const clearBookingInformation = () => {
         // console.log('in clearBookingInformation function')
         setNights(1)
         setAccomodation([])
         setPitchesAmount([])
-        setDate('')
+        // setDate('')
         setPeopleAmount(1)
         setChildrenAmount(0)
         setChildrenAmount(0)
@@ -86,14 +88,37 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
      // Functions to control amount of nights users wanting to stay *------------- *-------------
     const addNight = () => {
+        // var nightsArray = []
         if (nights < 24) {
             setNights(nights + 1)
+            setDateStaying(createDateNightArray(nights))
         }
     }
+
     const removeNight = () => {
         if (nights > 1) {
             setNights(nights - 1)
         }
+    }
+
+    const createDateNightArray = (nights) => {
+        var nightsArray = []
+        var chosenFirstNight = dateObject.getDate()
+        var chosenFirstMonth = dateObject.getMonth()
+        
+        var chosenFirstYear = dateObject.getYear()
+        for (var i = 0; i <= nights; i++) {
+            if(months[dateObject.getMonth()].days < (dateObject.getDate() + nights)) {
+                chosenFirstMonth ++
+            }
+            // console.log(chosenFirstNight + (i - 1)) + ":" + (chosenFirstMonth  + (i - 1)) + ':' + (chosenFirstYear  + (i - 1));
+            nightsArray.push((chosenFirstNight + (i)) + ":" + (chosenFirstMonth) + ':' + (chosenFirstYear))
+        }
+        return nightsArray
+    }
+
+    const checkDatesArray = () => {
+        console.log(datesStaying)
     }
 
 
@@ -127,19 +152,14 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                         key={`input-${j}`}
                     />,
 
-                    <span key={`text-${j}`}> {campingFacilities[j].name} </span>,
+                    <span key={`text-${j}`} id={j}> {campingFacilities[j].name} </span>,
 
-                    <br></br>
+                    <br key={`break-${j}`}></br>
                 );
             }
         }
         setCampinChoice(sitesArray);
-        // console.log(sitesArray);
     };
-
-    const checkChoiceOptionsComeTHrouh = () => {
-        console.log(campingChoice)
-    }
 
 
 
@@ -171,6 +191,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
     const handleFormSubmit = (evt) => {
         evt.preventDefault();
         moveToConfirmBooking();
+        // console.log('submitted')
     
     }
 
@@ -189,14 +210,14 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
             <h1>{getDateandOrdinalNumber()}</h1>
             <h2>{getMonth()}</h2>
-            <button onClick={checkChoiceOptionsComeTHrouh}>check choice options come through</button>
+            <button onClick={checkDatesArray}>check dates array</button>
             
             <form onSubmit={handleFormSubmit}>
 
                 {/* Night amount user wants to stay *------------- *------------- */}
                 <label>Amount of nights staying</label>
                 <br></br>
-                <button id="add-night" onClick={addNight} style={{ width: "2vw", height: "2vw" }}>+</button>
+                <button id="add-night" onClick={addNight} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
                 <input
                 className="nights"
                 type="text"
@@ -205,13 +226,13 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                 readOnly
                 style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
-                <button id="remove-night" onClick={removeNight} style={{ width: "2vw", height: "2vw" }}>-</button>
+                <button id="remove-night" onClick={removeNight} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
                 <br></br>
 
                 {/* Amount of users that want to stay *------------- *------------- */}
                 <label>Amount of adults staying</label>
                 <br></br>
-                <button id="add-guest" onClick={addGuest} style={{ width: "2vw", height: "2vw" }}>+</button>
+                <button id="add-guest" onClick={addGuest} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
                 <input
                 className="adults"
                 type="text"
@@ -220,7 +241,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                 readOnly
                 style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
-                <button id="remove-guest" onClick={removeGuest} style={{ width: "2vw", height: "2vw" }}>-</button>
+                <button id="remove-guest" onClick={removeGuest} style={{ width: "2vw", height: "2vw" } }type="button">-</button>
                 <br></br>
 
                 {/* What camping space the user wants *------------- *------------- */}
@@ -229,7 +250,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                     {campingChoice}
                 </fieldset>
                     
-                    {/* <option value='campingFalilities' id={1}/> */}
+                    
                 
 
 
@@ -238,7 +259,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                 {/* Amount of users' children that want to stay *------------- *------------- */}
                 <label>Amount of children staying</label>
                 <br></br>
-                <button id="add-children" onClick={addChildren} style={{ width: "2vw", height: "2vw" }}>+</button>
+                <button id="add-children" onClick={addChildren} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
                 <input
                 className="children"
                 type="text"
@@ -247,13 +268,13 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                 readOnly
                 style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
-                <button id="remove-children" onClick={removeChildren} style={{ width: "2vw", height: "2vw" }}>-</button>
+                <button id="remove-children" onClick={removeChildren} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
                 <br></br>
 
                 {/* Amount of dogs that want to stay *------------- *------------- */}
                 <label>Amount of dogs staying</label>
                 <br></br>
-                <button id="add-dogs" onClick={addDogs} style={{ width: "2vw", height: "2vw" }}>+</button>
+                <button id="add-dogs" onClick={addDogs} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
                 <input
                 className="dogs"
                 type="text"
@@ -262,7 +283,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                 readOnly
                 style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
-                <button id="remove-dogs" onClick={removeDogs} style={{ width: "2vw", height: "2vw" }}>-</button>
+                <button id="remove-dogs" onClick={removeDogs} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
                 <br></br>
 
                 {/* checkbox to define if a user wants a firepit *------------- *------------- */}
