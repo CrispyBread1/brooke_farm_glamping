@@ -14,7 +14,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
     const [campingChoice, setCampinChoice] = useState(null)
 
     const [nights, setNights] = useState(1)
-    const [datesStaying, setDateStaying] = useState([]) // Maybe? mihght just pass through from calender container
+    const [datesStaying, setDateStaying] = useState(null) // Maybe? mihght just pass through from calender container
     
     const [accomodation, setAccomodation] = useState([])
     const [pitchesAmount, setPitchesAmount] = useState([])
@@ -29,6 +29,12 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
         // fetchCampingFacilities()
     
       }, [campingFacilities]);
+
+    useEffect(() => {
+        createDateNightArray()
+        // console.log(nights)
+    
+    }, [nights]);
 
     const clearBookingInformation = () => {
         // console.log('in clearBookingInformation function')
@@ -52,7 +58,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
             return dateObject.getDate() + nthNumber(dateObject.getDate())
         } 
 
-        // If over one night but still in the same month as first day        *------------- *-------------
+        // If over one night but still in the same month as first day        *------------- *------------- *-------------
         else if (dateObject && nights > 1 && months[dateObject.getMonth()].days >= (dateObject.getDate() + nights)) {
             stayingEndDate = dateObject.getDate() + nights
             return (
@@ -61,7 +67,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                 stayingEndDate + nthNumber(stayingEndDate)
                 )
 
-        // If over one night but the amount of nights bleeds over into the next month            *------------- *-------------
+        // If over one night but the amount of nights bleeds over into the next month            *------------- *------------- *-------------
         } else if (dateObject && nights > 1 && months[dateObject.getMonth()].days < (dateObject.getDate() + nights)) {
             stayingEndDate = (dateObject.getDate() + nights) - months[dateObject.getMonth()].days
 
@@ -86,35 +92,40 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
     
 
-     // Functions to control amount of nights users wanting to stay *------------- *-------------
+     // Functions to control amount of nights users wanting to stay *------------- *------------- *-------------
     const addNight = () => {
         // var nightsArray = []
         if (nights < 24) {
             setNights(nights + 1)
-            setDateStaying(createDateNightArray(nights))
+            // setDateStaying(createDateNightArray())
         }
     }
 
     const removeNight = () => {
         if (nights > 1) {
             setNights(nights - 1)
+            // setDateStaying(createDateNightArray())
         }
     }
 
-    const createDateNightArray = (nights) => {
+    const createDateNightArray = () => {
+        // if (dateObject) {
         var nightsArray = []
+        if (dateObject){
         var chosenFirstNight = dateObject.getDate()
         var chosenFirstMonth = dateObject.getMonth()
-        
         var chosenFirstYear = dateObject.getYear()
-        for (var i = 0; i <= nights; i++) {
-            if(months[dateObject.getMonth()].days < (dateObject.getDate() + nights)) {
-                chosenFirstMonth ++
-            }
-            // console.log(chosenFirstNight + (i - 1)) + ":" + (chosenFirstMonth  + (i - 1)) + ':' + (chosenFirstYear  + (i - 1));
-            nightsArray.push((chosenFirstNight + (i)) + ":" + (chosenFirstMonth) + ':' + (chosenFirstYear))
+        
+        for (var i = 0; i < nights; i++) {
+            if(months[dateObject.getMonth()].days < (dateObject.getDate() + i)) {
+                nightsArray.push(((chosenFirstNight + i) - months[dateObject.getMonth()].days) + ":" + (chosenFirstMonth + 2) + ':' + (chosenFirstYear))
+            } 
+            else (
+            nightsArray.push((chosenFirstNight + i) + ":" + (chosenFirstMonth + 1) + ':' + (chosenFirstYear))
+            )
         }
-        return nightsArray
+        setDateStaying(nightsArray)
+    }
     }
 
     const checkDatesArray = () => {
@@ -123,7 +134,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
 
 
-     // Functions to control amount of  users wanting to stay *------------- *-------------
+     // Functions to control amount of  users wanting to stay *------------- *------------- *-------------
     const addGuest = () => {
         setPeopleAmount(peopleAmount + 1)
     }
@@ -135,7 +146,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
 
 
-     // Functions to control amount of  users wanting to stay *------------- *-------------
+     // Functions to control amount of  users wanting to stay *------------- *------------- *-------------
      const createCampingOptions = () => {
         const sitesArray = [];
         for (var j in campingFacilities) {
@@ -163,7 +174,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
 
 
-     // Functions to control amount of  users' children wanting to stay *------------- *-------------
+     // Functions to control amount of  users' children wanting to stay *------------- *------------- *-------------
      const addChildren = () => {
         setChildrenAmount(childrenAmount + 1)
     }
@@ -175,7 +186,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
 
 
-     // Functions to control amount of  users' children wanting to stay *------------- *-------------
+     // Functions to control amount of  users' children wanting to stay *------------- *------------- *-------------
      const addDogs = () => {
         setDogAmount(dogAmount + 1)
     }
@@ -187,11 +198,15 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
 
 
-     // Functions to control submitting the form and booking *------------- *-------------
+     // Functions to control submitting the form and booking *------------- *------------- *-------------
     const handleFormSubmit = (evt) => {
         evt.preventDefault();
         moveToConfirmBooking();
         // console.log('submitted')
+        if(!datesStaying) {
+            createDateNightArray()
+            // console.log(datesStaying)
+        }
     
     }
 
@@ -214,7 +229,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
             
             <form onSubmit={handleFormSubmit}>
 
-                {/* Night amount user wants to stay *------------- *------------- */}
+                {/* Night amount user wants to stay *------------- *------------- *------------- */}
                 <label>Amount of nights staying</label>
                 <br></br>
                 <button id="add-night" onClick={addNight} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
@@ -229,7 +244,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                 <button id="remove-night" onClick={removeNight} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
                 <br></br>
 
-                {/* Amount of users that want to stay *------------- *------------- */}
+                {/* Amount of users that want to stay *------------- *------------- *------------- */}
                 <label>Amount of adults staying</label>
                 <br></br>
                 <button id="add-guest" onClick={addGuest} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
@@ -244,7 +259,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                 <button id="remove-guest" onClick={removeGuest} style={{ width: "2vw", height: "2vw" } }type="button">-</button>
                 <br></br>
 
-                {/* What camping space the user wants *------------- *------------- */}
+                {/* What camping space the user wants *------------- *------------- *------------- */}
                 <fieldset>
                 <legend>Select camping option: </legend>
                     {campingChoice}
@@ -256,7 +271,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
 
 
-                {/* Amount of users' children that want to stay *------------- *------------- */}
+                {/* Amount of users' children that want to stay *------------- *------------- *------------- */}
                 <label>Amount of children staying</label>
                 <br></br>
                 <button id="add-children" onClick={addChildren} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
@@ -271,7 +286,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                 <button id="remove-children" onClick={removeChildren} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
                 <br></br>
 
-                {/* Amount of dogs that want to stay *------------- *------------- */}
+                {/* Amount of dogs that want to stay *------------- *------------- *------------- */}
                 <label>Amount of dogs staying</label>
                 <br></br>
                 <button id="add-dogs" onClick={addDogs} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
@@ -286,11 +301,11 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                 <button id="remove-dogs" onClick={removeDogs} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
                 <br></br>
 
-                {/* checkbox to define if a user wants a firepit *------------- *------------- */}
+                {/* checkbox to define if a user wants a firepit *------------- *------------- *-------------*/}
 
-                {/* If user wants to bring their own gazebos, max 2 *------------- *------------- */}
+                {/* If user wants to bring their own gazebos, max 2 *------------- *------------- *-------------*/}
 
-                {/* if the user will have additional cars more than one *------------- *------------- */}
+                {/* if the user will have additional cars more than one *------------- *------------- *-------------*/}
 
             <button
             id="post-button"
