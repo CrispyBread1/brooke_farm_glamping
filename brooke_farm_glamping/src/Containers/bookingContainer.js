@@ -117,21 +117,31 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
         if (dateObject){
         var chosenFirstNight = dateObject.getDate()
         var chosenFirstMonth = dateObject.getMonth()
-        var chosenFirstYear = dateObject.getYear()
-        
+        var chosenFirstYear = dateObject.getFullYear()
+        // console.log(new Date().getFullYear())
         for (var i = 0; i < nights; i++) {
+
             // If night bleeds over the next month 
             if(months[dateObject.getMonth()].days < (dateObject.getDate() + i) && !((chosenFirstMonth + 1) >= 12)) {
-                nightsArray.push(((chosenFirstNight + i) - months[dateObject.getMonth()].days) + ":" + (chosenFirstMonth + 2) + ':' + (chosenFirstYear))
+                // new Date sorted by new Date(Year, Month, Day)
+                var nightStaying = new Date(chosenFirstYear, (chosenFirstMonth + 1), ((chosenFirstNight + i) - months[dateObject.getMonth()].days))
+                nightsArray.push(nightStaying.toISOString())
             } 
+
             // If night bleeds over the next month and the next year
             else if(months[dateObject.getMonth()].days < (dateObject.getDate() + i) && (chosenFirstMonth + 1) >= 12) {
-                nightsArray.push(((chosenFirstNight + i) - months[dateObject.getMonth()].days) + ":" + ((chosenFirstMonth + 1) - chosenFirstMonth) + ':' + (chosenFirstYear + 1))
+                // new Date sorted by new Date(Year, Month, Day)
+                var nightStaying = new Date((chosenFirstYear + 1), ((chosenFirstMonth) - chosenFirstMonth), ((chosenFirstNight + i) - months[dateObject.getMonth()].days))
+                nightsArray.push(nightStaying.toISOString())
             }
+
             // If nights doesn't bleed over to any month or year
-            else (
-            nightsArray.push((chosenFirstNight + i) + ":" + (chosenFirstMonth + 1) + ':' + (chosenFirstYear))
-            )
+            else {
+                // new Date sorted by new Date(Year, Month, Day)
+                var nightStaying = new Date(chosenFirstYear,(chosenFirstMonth), (chosenFirstNight + i));
+                nightsArray.push(nightStaying.toISOString())
+
+            }
         }
         setDateStaying(nightsArray)
     }
@@ -139,6 +149,9 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
     const checkDatesArray = () => {
         console.log(datesStaying)
+        datesStaying.forEach((dateString) => {
+            console.log(new Date(dateString));
+        });
     }
 
 
