@@ -1,10 +1,14 @@
+.Booking-page {
+    width: auto;
+}
+
 #Calendar-booking-container {
     display: flex;
-    width: 100vw; /* Full viewport width */
+    width: 100%; /* Full viewport width */
     height: 70vh; /* Full viewport height */
-    
-    /* overflow: hidden;  */
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    font-family: 'Arial', sans-serif;
 }
 
 #Calendar-container {
@@ -14,73 +18,79 @@
     align-items: center; /* Center vertically */
     transition: flex-grow 0.3s, width 0.3s; /* Smooth transition when resizing */
     padding: 2vw;
-    box-sizing: border-box;
-    
+    width: 100%;
 }
-
 
 #calendar-days {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* Grid columns for the rest */
+    grid-template-columns: repeat(7, 1fr); /* Grid columns to evenly distribute */
     gap: 1vw; /* Space between grid items */
     list-style-type: none; /* Remove default list styling */
-    padding: 1vw; 
+    padding: 0; /* Remove default padding */
     margin: 0;
     height: auto;
-    background-color:rgb(176, 176, 170)
+    background-color: #e9ecef;
 }
 
 #calendar-days li {
-    padding: 1vw;
+    width: 100%; /* Button width matches parent li */
+    height: 100%;
     font-size: 1.2vw;
     border-radius: 5px;
+    
+}
+
+#calendar-days li button {
+    position: absolute; /* Position button absolutely inside li */
+    top: 0;
+    left: 0; 
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2vw; /* Adjust font size */
+    color: #333;
+    box-sizing: border-box;
+    position: relative; /* Needed for absolute positioning of button */
+    padding: 1.5vw; 
+    font-size: 1.2vw;
+    border: 1px solid #ccc; /* Light grey border */
+    
     text-align: center;
     box-sizing: border-box;
     margin: 0.5vw;
-    height: 100%;
-    
+    background-color: #fff; /* White background */
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-
-
-#calendar-days button {
-    position: absolute; /* Position button absolutely inside li */
-    top: 0;
-    left: 0;
-    width: 100%; /* Button width matches parent li */
-    height: 100%; /* Button height matches parent li */
-    border: inherit;
-    /* background-color: transparent; */
-    cursor: pointer;
-    padding: inherit;
-    margin: 0;
-    font-size: 1.2vw; /* Adjust font size */
-    color: #333; 
-    /* background-color: #f0f0f0; */
-    border: 2px solid #ccc;
-    box-sizing: border-box;
-    
+#calendar-days li button:hover {
+    background-color: rgba(0, 123, 255, 0.1); /* Light blue background on hover */
+    color: #007bff; /* Blue text on hover */
 }
 
-/* Styling for the first 7 li items */
 #calendar-days li:nth-child(-n+7) {
     font-size: 1.5vw; /* Larger font size */
-    background-color: lightblue; /* Different background color */
-    border-color: blue; /* Different border color */
+    background-color: #cfe2ff; /* Light blue background for the first 7 items */
+    border-color: #007bff; /* Blue border color */
+    color: #007bff; /* Blue text color */
 }
 
 .Booking-container {
     width: 0; /* Start with width 0 */
     overflow: hidden; /* Hide content when width is 0 */
     transition: width 0.3s; /* Smooth transition when resizing */
-    background-color: antiquewhite;
+    background-color: #fff3cd; /* Soft light yellow */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow for better separation */
 }
 
 .Booking-container.show {
-    width: 40%; /* Expand to 40% of the page width */
+    width: 30%; /* Expand to 30% of the page width */
 }
 
 .Booking-container.show ~ #Calendar-container {
-    flex-grow: 0.6; /* Adjust flex-grow when the booking container is shown */
+    flex-grow: 0.7; /* Adjust flex-grow when the booking container is shown */
 }

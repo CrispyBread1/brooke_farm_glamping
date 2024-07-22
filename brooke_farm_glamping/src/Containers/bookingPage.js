@@ -119,7 +119,7 @@ const BookingPage = ({user}) => {
 
 
   return (
-    <div>
+    <div className="Booking-page">
         <p>Booking page</p>
 
         {/* <div id="Add-booking"  onClick={newBooking} value="addBooking">Add Booking</div> */}

@@ -8,20 +8,23 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
     const navigate = useNavigate();
 
-    const [booking, setBooking] = useState(false)
-    const [currentMonth, setCurrentMonth] = useState(null)
+    // const [booking, setBooking] = useState(false)
+    // const [currentMonth, setCurrentMonth] = useState(null)
     // const [dateSelected, setDateSelected] = useState(dateObject)
     const [campingChoice, setCampinChoice] = useState(null)
 
     const [nights, setNights] = useState(1)
     const [datesStaying, setDateStaying] = useState(null) // Maybe? mihght just pass through from calender container
     
-    const [accomodation, setAccomodation] = useState([])
-    const [pitchesAmount, setPitchesAmount] = useState([])
-    
     const [peopleAmount, setPeopleAmount] = useState(1)
     const [childrenAmount, setChildrenAmount] = useState(0)
     const [dogAmount, setDogAmount] = useState(0)
+
+    const [firePit, setFirePit] = useState(false)
+
+    const [additionalCar, setAdditionalCar] = useState(false)
+
+    const [gazebo, setGazebo] = useState(false)
 
     useEffect(() => {
         createCampingOptions()
@@ -31,16 +34,15 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
       }, [campingFacilities]);
 
     useEffect(() => {
-        createDateNightArray()
-        // console.log(nights)
+        createDateNightISOSStringArray()
     
     }, [nights, dateObject]);
 
     const clearBookingInformation = () => {
         // console.log('in clearBookingInformation function')
         setNights(1)
-        setAccomodation([])
-        setPitchesAmount([])
+        // setAccomodation([])
+        // setPitchesAmount([])
         // setDate('')
         setPeopleAmount(1)
         setChildrenAmount(0)
@@ -112,7 +114,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
         }
     }
 
-    const createDateNightArray = () => {
+    const createDateNightISOSStringArray = () => {
         var nightsArray = []
         if (dateObject){
         var chosenFirstNight = dateObject.getDate()
@@ -220,13 +222,22 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
 
 
+     // Functions to control if user wants a firepit *------------- *------------- *-------------
+    const configureFirePit = () => {
+        if (firePit) {
+            setFirePit(false)
+        } else setFirePit(true)
+    }
+
+
+
      // Functions to control submitting the form and booking *------------- *------------- *-------------
     const handleFormSubmit = (evt) => {
         evt.preventDefault();
         moveToConfirmBooking();
         // console.log('submitted')
         if(!datesStaying) {
-            createDateNightArray()
+            createDateNightISOSStringArray()
             // console.log(datesStaying)
         }
     
@@ -269,6 +280,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
 
                 {/* Amount of users that want to stay *------------- *------------- *------------- */}
+                {/* <div className="adults-config"> */}
                 <label>Amount of adults staying</label>
                 <br></br>
                 <button id="add-guest" onClick={addGuest} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
@@ -281,7 +293,9 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                 style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
                 <button id="remove-guest" onClick={removeGuest} style={{ width: "2vw", height: "2vw" } }type="button">-</button>
+                {/* </div> */}
                 <br></br>
+                
 
 
 
@@ -328,14 +342,40 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
 
                 {/* checkbox to define if a user wants a firepit *------------- *------------- *-------------*/}
-
+                <input 
+                type="checkbox" 
+                className="firepit" 
+                name="firepit" 
+                value="Firepit" 
+                onClick={configureFirePit}
+                style={{ width: "1.5vw", height: "1.5vw", textAlign: "center", fontSize: "2vw"  }}/>
+                <label for="firepit"> I would like a firepit</label>
+                <br></br>
 
 
                 {/* If user wants to bring their own gazebos, max 2 *------------- *------------- *-------------*/}
-
+                <input 
+                type="checkbox" 
+                className="gazebo" 
+                name="gazebo" 
+                value="Gazebo"
+                onClick={configureGazebo} 
+                style={{ width: "1.5vw", height: "1.5vw", textAlign: "center", fontSize: "2vw"  }}/>
+                <label for="gazebo"> I would like to bring my own Gazebo</label>
+                <br></br>
 
 
                 {/* if the user will have additional cars more than one *------------- *------------- *-------------*/}
+                <input 
+                type="checkbox" 
+                className="addition-car" 
+                name="addition-car" 
+                value="Addition-car"
+                onClick={configureAdditionalCar}
+                style={{ width: "1.5vw", height: "1.5vw", textAlign: "center", fontSize: "2vw"  }}/>
+                <label for="addition-car"> Will there be more than one car?</label>
+                <br></br>
+
 
             <button
             id="post-button"

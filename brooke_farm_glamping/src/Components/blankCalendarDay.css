@@ -1,9 +1,11 @@
 .blank-li-entry {
-    border: 2px solid #000; 
-    border-radius: 5px; /* Optional: for rounded corners */
+    /* border: 2px solid #000;  */
+    /* border-radius: 5px; */
     background-color: #797979; 
     /* padding: 20px; */
     text-align: center;
     position: relative;
+    padding: 0.3vw; 
+
     
 }
