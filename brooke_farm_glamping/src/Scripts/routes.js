@@ -9,6 +9,7 @@ import ConfirmBookingPage from "../Containers/confirmBookingPage";
 export const Paths = () => {
 
     const [user, setUser] = useState(null)
+    const [bookingInformation, setBookingInformation] = useState(null)
     
 
     const userSignedIn = (userObj) => {
@@ -19,6 +20,11 @@ export const Paths = () => {
 
     const userSignedOut = () => {
         setUser(null)
+    }
+
+    const fillBookingInformation = (booking) => {
+        console.log(booking)
+        setBookingInformation(booking)
     }
 
     return (
@@ -32,7 +38,7 @@ export const Paths = () => {
                     
                 </Route>
 
-                <Route exact path='/book' element={<BookingPage user={user}/>}>
+                <Route exact path='/book' element={<BookingPage user={user} fillBookingInformation={fillBookingInformation}/>}>
                     {/* <BookingPage/> */}
                 </Route>
 

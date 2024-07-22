@@ -5,13 +5,7 @@ import './bookingPage.css'
 import { addBooking, editBooking, retrieveBooking, cancelBooking, retrieveCampingFacilities} from '../Scripts/databaseControls.js';
 import Booking from "../Classes/booking";
 
-const BookingPage = ({user}) => {
-
-    // useEffect(() => {
-    //     const fillerDate = new Date()
-    //     setDateObject(fillerDate)
-    //     console.log('hello')
-    // }, [])
+const BookingPage = ({user, fillBookingInformation}) => {
 
   const [bookingBoxOpen, setBookingBoxOpen] = useState(false);
   const [bookings, setBookings] = useState('');
@@ -28,10 +22,6 @@ const BookingPage = ({user}) => {
     fetchCampingFacilities()
 
   }, []);
-    // useEffect(() => { // Renders when bookings have come through
-    //     // fillDaysInMonth()
-    //     console.log('useeffect')
-    // }, [bookingBoxOpen])
 
   const fetchBookings = async (tok1) => {
     const month = new Date();
@@ -136,7 +126,7 @@ const BookingPage = ({user}) => {
 
         
             <div className='Booking-container'>
-                <BookingContainer bookingBoxOpen={bookingBoxOpen} dateObject={dateObject} daysOfWeek={daysOfWeek} months={months} nthNumber={nthNumber} campingFacilities={campingFacilities}/>
+                <BookingContainer dateObject={dateObject} months={months} nthNumber={nthNumber} campingFacilities={campingFacilities} fillBookingInformation={fillBookingInformation}/>
             </div> 
         
         </div>

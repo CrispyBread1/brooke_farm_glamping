@@ -4,13 +4,10 @@ import './bookingContainer.css'
 import { useNavigate } from "react-router-dom";
 
 
-const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNumber, campingFacilities}) => {
+const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fillBookingInformation}) => {
 
     const navigate = useNavigate();
 
-    // const [booking, setBooking] = useState(false)
-    // const [currentMonth, setCurrentMonth] = useState(null)
-    // const [dateSelected, setDateSelected] = useState(dateObject)
     const [campingChoice, setCampinChoice] = useState(null)
 
     const [nights, setNights] = useState(1)
@@ -32,8 +29,6 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
     useEffect(() => {
         createCampingOptions()
-        // fetchBookings(new Date().getMonth())
-        // fetchCampingFacilities()
     
       }, [campingFacilities]);
 
@@ -283,11 +278,23 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
     const handleFormSubmit = (evt) => {
         evt.preventDefault();
         moveToConfirmBooking();
-        // console.log('submitted')
         if(!datesStaying) {
             createDateNightISOSStringArray()
-            // console.log(datesStaying)
         }
+
+        var booking = {
+            'datesStaying': datesStaying,
+            'campingSite': 'blahblahablh',
+            'adults': peopleAmount,
+            'children': childrenAmount,
+            'dogs': dogAmount,
+            'firePit': firePit,
+            'gazebo': gazeboAmount,
+            'additionCars': additionalCarAmount
+        }
+
+        fillBookingInformation(booking)
+
     
     }
 
