@@ -22,9 +22,13 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
     const [firePit, setFirePit] = useState(false)
 
-    const [additionalCar, setAdditionalCar] = useState(false)
-
     const [gazebo, setGazebo] = useState(false)
+    const [gazeboAmount, setGazeboAmount] = useState(0)
+
+    const [additionalCar, setAdditionalCar] = useState(false)
+    const [additionalCarAmount, setAdditionalCarAmount] = useState(0)
+
+
 
     useEffect(() => {
         createCampingOptions()
@@ -231,6 +235,50 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
 
 
 
+     // Functions to control if user wants a to bring a gazebo *------------- *------------- *-------------
+    const configureGazebo = () => {
+        if (gazebo) {
+            setGazebo(false)
+            setGazeboAmount(0)
+        } else setGazebo(true)
+    }
+
+    const addGazebo = () => {
+        if (gazeboAmount < 2) {
+            setGazeboAmount(gazeboAmount + 1)
+        }
+    }
+
+    const removeGazebo = () => {
+        if (gazeboAmount > 0) {
+            setGazeboAmount(gazeboAmount - 1)
+        }
+    }
+
+
+   
+     // Functions to control if user wants to have additional cars *------------- *------------- *-------------
+    const configureAdditionalCar = () => {
+        if (additionalCar) {
+            setAdditionalCar(false)
+            setAdditionalCarAmount(0)
+        } else setAdditionalCar(true)
+    }
+
+    const addAdditionalCar = () => {
+        if (additionalCarAmount < 2) {
+            setAdditionalCarAmount(additionalCarAmount + 1)
+        }
+    }
+
+    const removeAdditionalCar = () => {
+        if (additionalCarAmount > 0) {
+            setAdditionalCarAmount(additionalCarAmount - 1)
+        }
+    }
+
+
+
      // Functions to control submitting the form and booking *------------- *------------- *-------------
     const handleFormSubmit = (evt) => {
         evt.preventDefault();
@@ -353,6 +401,7 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                 <br></br>
 
 
+
                 {/* If user wants to bring their own gazebos, max 2 *------------- *------------- *-------------*/}
                 <input 
                 type="checkbox" 
@@ -362,7 +411,23 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                 onClick={configureGazebo} 
                 style={{ width: "1.5vw", height: "1.5vw", textAlign: "center", fontSize: "2vw"  }}/>
                 <label for="gazebo"> I would like to bring my own Gazebo</label>
+
+                {gazebo && <div>
+                <label>Amount of gazebos</label>
                 <br></br>
+                <button id="add-gazebo" onClick={addGazebo} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
+                <input
+                className="nights"
+                type="text"
+                placeholder="number"
+                value={gazeboAmount}
+                readOnly
+                style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
+                />
+                <button id="remove-Gazebo" onClick={removeGazebo} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
+                <br></br> 
+                </div>}
+                
 
 
                 {/* if the user will have additional cars more than one *------------- *------------- *-------------*/}
@@ -374,7 +439,22 @@ const BookingContainer = ({bookingBoxOpen, dateObject, daysOfWeek, months, nthNu
                 onClick={configureAdditionalCar}
                 style={{ width: "1.5vw", height: "1.5vw", textAlign: "center", fontSize: "2vw"  }}/>
                 <label for="addition-car"> Will there be more than one car?</label>
+                
+                {additionalCar && <div>
+                <label>Amount of additonal Cars</label>
                 <br></br>
+                <button id="add-gazebo" onClick={addAdditionalCar} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
+                <input
+                className="nights"
+                type="text"
+                placeholder="number"
+                value={additionalCarAmount}
+                readOnly
+                style={{ width: "2vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
+                />
+                <button id="remove-AdditionalCar" onClick={removeAdditionalCar} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
+                <br></br> 
+                </div>}
 
 
             <button
