@@ -1,12 +1,12 @@
 .Booking-page {
-    width: auto;
+    width: 100%;
     height: auto;
 }
 
 #Calendar-booking-container {
     display: flex;
     width: 100%; /* Full viewport width */
-    height: 70vh; /* Full viewport height */
+    height: 80vh; /* Increased height for better visibility */
     box-sizing: border-box;
     background-color: #f9f9f9;
     font-family: 'Arial', sans-serif;
@@ -15,31 +15,34 @@
 #Calendar-container {
     flex-grow: 1;
     display: flex;
-    justify-content: center; /* Center horizontally */
+    justify-content: center; 
     align-items: center; /* Center vertically */
     transition: flex-grow 0.3s, width 0.3s; /* Smooth transition when resizing */
-    padding: 2vw;
-    width: 100%;
+    width: auto;
 }
 
 #calendar-days {
-    width: 100%;
+    flex-grow: 1;
+    width: 90%; /* Slightly reduced to ensure it fits well in the container */
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* Grid columns to evenly distribute */
-    gap: 1vw; /* Space between grid items */
+    grid-template-columns: repeat(7, 1fr); /* Use 1fr to make all columns equal */
+    gap: 1.5vw; /* Increased gap for better spacing */
     list-style-type: none; /* Remove default list styling */
-    padding: 0; /* Remove default padding */
+    padding: 0; 
     margin: 0;
     height: auto;
     background-color: #e9ecef;
 }
 
 #calendar-days li {
-    width: 100%; /* Button width matches parent li */
-    height: 100%;
-    font-size: 1.2vw;
+    width: 100%; 
+    height: 8vw; /* Adjusted height for smaller size */
+    font-size: 2vw; /* Adjusted font size for smaller size */
     border-radius: 5px;
-    
+    box-sizing: border-box;
+    /* background-color: #fff;  */
+    /* border: 1px solid #ccc;  */
+    position: relative; /* Needed for absolute positioning of button */
 }
 
 #calendar-days li button {
@@ -49,20 +52,13 @@
     width: 100%;
     height: 100%;
     border: none;
+    font-size: 2vw;
     background-color: transparent;
     cursor: pointer;
-    padding: 0;
-    margin: 0;
-    font-size: 1.2vw; /* Adjust font size */
+    padding: 1vw; /* Adjusted padding for smaller size */
     color: #333;
-    /* box-sizing: border-box; */
-    position: relative; /* Needed for absolute positioning of button */
-    padding: 1.5vw; 
-    font-size: 1.2vw;
     border: 1px solid #ccc; /* Light grey border */
-    
     text-align: center;
-    /* box-sizing: border-box; */
     margin: 0.5vw;
     background-color: #fff; /* White background */
     transition: background-color 0.3s, transform 0.3s;
@@ -75,16 +71,16 @@
 
 #calendar-days li:nth-child(-n+7) {
     font-size: 1.5vw; /* Larger font size */
-    background-color: #cfe2ff; /* Light blue background for the first 7 items */
-    border-color: #007bff; /* Blue border color */
-    color: #007bff; /* Blue text color */
+    background-color: lightblue; /* Light blue background for the first 7 items */
+    border-color: blue; /* Blue border color */
+    color: blue; /* Blue text color */
 }
 
 .Booking-container {
     width: 0; /* Start with width 0 */
     overflow: hidden; /* Hide content when width is 0 */
     transition: width 0.3s; /* Smooth transition when resizing */
-    background-color: #fff3cd; /* Soft light yellow */
+    background-color: antiquewhite; /* Soft light yellow */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow for better separation */
     height: auto;
 }
