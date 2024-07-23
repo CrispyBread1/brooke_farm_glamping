@@ -25,6 +25,8 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
     const [additionalCar, setAdditionalCar] = useState(false)
     const [additionalCarAmount, setAdditionalCarAmount] = useState(0)
 
+    const [campingPitchChoice, setCampingPitchChoice] = useState(null)
+
 
 
     useEffect(() => {
@@ -181,6 +183,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                     <input
                         type="radio"
                         name="tent"
+                        onClick={() => handleCampingOption(campingFacilities[j])}
                         id={j}
                         value={campingFacilities[j].name}
                         key={`input-${j}`}
@@ -194,6 +197,11 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
         }
         setCampinChoice(sitesArray);
     };
+
+    const handleCampingOption = (tok1) => {
+        // console.log(tok1.name)
+        setCampingPitchChoice(tok1.name)
+    }
 
 
 
@@ -284,7 +292,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
 
         var booking = {
             'datesStaying': datesStaying,
-            'campingSite': 'blahblahablh',
+            'campingSite': campingPitchChoice,
             'adults': peopleAmount,
             'children': childrenAmount,
             'dogs': dogAmount,
@@ -404,7 +412,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 value="Firepit" 
                 onClick={configureFirePit}
                 style={{ width: "1.5vw", height: "1.5vw", textAlign: "center", fontSize: "2vw"  }}/>
-                <label for="firepit"> I would like a firepit</label>
+                <label htmlFor="firepit"> I would like a firepit</label>
                 <br></br>
 
 
@@ -417,7 +425,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 value="Gazebo"
                 onClick={configureGazebo} 
                 style={{ width: "1.5vw", height: "1.5vw", textAlign: "center", fontSize: "2vw"  }}/>
-                <label for="gazebo"> I would like to bring my own Gazebo</label>
+                <label htmlFor="gazebo"> I would like to bring my own Gazebo</label>
 
                 {gazebo && <div>
                 <label>Amount of gazebos</label>
@@ -445,7 +453,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 value="Addition-car"
                 onClick={configureAdditionalCar}
                 style={{ width: "1.5vw", height: "1.5vw", textAlign: "center", fontSize: "2vw"  }}/>
-                <label for="addition-car"> Will there be more than one car?</label>
+                <label htmlFor="addition-car"> Will there be more than one car?</label>
                 
                 {additionalCar && <div>
                 <label>Amount of additonal Cars</label>
