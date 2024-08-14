@@ -1,0 +1,82 @@
+#booking-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+}
+
+#booking-box form {
+    flex: 1;
+    padding: 20px;
+}
+
+#booking-box h1, #booking-box h2 {
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+#booking-box label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+
+#booking-box input[type="text"], #booking-box input[type="number"] {
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    font-size: 16px;
+    margin: 0 10px;
+    font-family: Arial, sans-serif;
+}
+
+#booking-box button {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+}
+
+#booking-box button#post-button {
+    width: 100px;
+    height: 50px;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+#booking-box fieldset {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+#booking-box legend {
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+
+#booking-box input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+#booking-box div {
+    margin-top: 10px;
+}
+
+#booking-box span {
+    display: block;
+    margin-top: 5px;
+    font-family: Arial, sans-serif;
+}

@@ -319,13 +319,16 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
     return (
         <div id="booking-box">
 
-            <h1>{getDateandOrdinalNumber()}</h1>
-            <h2>{getMonth()}</h2>
-            <button onClick={checkDatesArray}>check dates array</button>
+            <h1 id="get-month">{getMonth()}</h1>
+            {/* <br></br> */}
+            <h2 id="booking-date">{getDateandOrdinalNumber()}</h2>
+           {/* <br></br> */}
+            {/* <button onClick={checkDatesArray}>check dates array</button> */}
             
             <form onSubmit={handleFormSubmit}>
 
                 {/* Night amount user wants to stay *------------- *------------- *------------- */}
+                <div id="nights-staying">
                 <label>Amount of nights staying</label>
                 <br></br>
                 <button id="add-night" onClick={addNight} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
@@ -338,12 +341,14 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
                 <button id="remove-night" onClick={removeNight} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
-                <br></br>
+                </div>
+                {/* <br></br> */}
 
 
 
                 {/* Amount of users that want to stay *------------- *------------- *------------- */}
                 {/* <div className="adults-config"> */}
+                <div id="adults-staying">
                 <label>Amount of adults staying</label>
                 <br></br>
                 <button id="add-guest" onClick={addGuest} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
@@ -356,21 +361,23 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
                 <button id="remove-guest" onClick={removeGuest} style={{ width: "2vw", height: "2vw" } }type="button">-</button>
-                {/* </div> */}
+                </div>
                 <br></br>
                 
 
 
 
                 {/* What camping space the user wants *------------- *------------- *------------- */}
+                <div id="camping-option">
                 <fieldset>
                 <legend>Select camping option: </legend>
                     {campingChoice}
                 </fieldset>
-
+                </div>
 
 
                 {/* Amount of users' children that want to stay *------------- *------------- *------------- */}
+                <div id="children-amount">
                 <label>Amount of children staying</label>
                 <br></br>
                 <button id="add-children" onClick={addChildren} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
@@ -383,11 +390,13 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
                 <button id="remove-children" onClick={removeChildren} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
+                </div>
                 <br></br>
 
 
 
                 {/* Amount of dogs that want to stay *------------- *------------- *------------- */}
+                <div id="dogs">
                 <label>Amount of dogs staying</label>
                 <br></br>
                 <button id="add-dogs" onClick={addDogs} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
@@ -400,11 +409,13 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
                 <button id="remove-dogs" onClick={removeDogs} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
+                </div>
                 <br></br>
 
 
 
                 {/* checkbox to define if a user wants a firepit *------------- *------------- *-------------*/}
+                <div id="checkbox-firepit">
                 <input 
                 type="checkbox" 
                 className="firepit" 
@@ -413,11 +424,13 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 onClick={configureFirePit}
                 style={{ width: "1.5vw", height: "1.5vw", textAlign: "center", fontSize: "2vw"  }}/>
                 <label htmlFor="firepit"> I would like a firepit</label>
+                </div>
                 <br></br>
 
 
 
                 {/* If user wants to bring their own gazebos, max 2 *------------- *------------- *-------------*/}
+                <div id="checkbox-gazebo">
                 <input 
                 type="checkbox" 
                 className="gazebo" 
@@ -442,10 +455,12 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 <button id="remove-Gazebo" onClick={removeGazebo} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
                 <br></br> 
                 </div>}
+                </div>
                 
 
 
                 {/* if the user will have additional cars more than one *------------- *------------- *-------------*/}
+                <div id="checkbox-car">
                 <input 
                 type="checkbox" 
                 className="addition-car" 
@@ -470,6 +485,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 <button id="remove-AdditionalCar" onClick={removeAdditionalCar} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
                 <br></br> 
                 </div>}
+                </div>
 
 
             <button
