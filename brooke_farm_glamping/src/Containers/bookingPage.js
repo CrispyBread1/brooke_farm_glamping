@@ -119,10 +119,13 @@ const BookingPage = ({user, fillBookingInformation}) => {
         <button id="hideBookingbox" onClick={closeBookingBox}>Hide booking info</button>
 
         <div id ="Calendar-booking-container">
+        <div id="controls-and-calendar">
 
             <div id="Calendar-container">
                 <CalendarContainer openBookingBox={openBookingBox} daysOfWeek={daysOfWeek} months={months} bookings={bookings} nthNumber={nthNumber}/>
             </div>
+
+        </div>
 
         
             <div className='Booking-container'>

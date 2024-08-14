@@ -171,7 +171,7 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
             <button id="nextMonthButton" onClick={nextMonth}>next month</button>
             <button id="previousMonthButton" onClick={previousMonth}>previous</button>
         <div id="calendar">
-        <section >
+        <section id="calendarSection" >
             <h1 onClick={checkDate}>Date {months[monthNum].month}</h1>
             <ul id="calendar-days">
                 <b className='column-titles'><li >Sunday</li></b>
