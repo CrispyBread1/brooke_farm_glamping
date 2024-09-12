@@ -331,7 +331,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 <div id="nights-staying">
                 <label>Amount of nights staying</label>
                 <br></br>
-                <button id="add-night" onClick={addNight} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
+                <button id="remove-night" onClick={removeNight} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
                 <input
                 className="nights"
                 type="text"
@@ -340,7 +340,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 readOnly
                 style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
-                <button id="remove-night" onClick={removeNight} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
+                <button id="add-night" onClick={addNight} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
                 </div>
                 {/* <br></br> */}
 
@@ -351,7 +351,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 <div id="adults-staying">
                 <label>Amount of adults staying</label>
                 <br></br>
-                <button id="add-guest" onClick={addGuest} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
+                <button id="remove-guest" onClick={removeGuest} style={{ width: "2vw", height: "2vw" } }type="button">-</button>
                 <input
                 className="adults"
                 type="text"
@@ -360,7 +360,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 readOnly
                 style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
-                <button id="remove-guest" onClick={removeGuest} style={{ width: "2vw", height: "2vw" } }type="button">-</button>
+                <button id="add-guest" onClick={addGuest} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
                 </div>
                 <br></br>
                 
@@ -380,7 +380,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 <div id="children-amount">
                 <label>Amount of children staying</label>
                 <br></br>
-                <button id="add-children" onClick={addChildren} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
+                <button id="remove-children" onClick={removeChildren} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
                 <input
                 className="children"
                 type="text"
@@ -389,7 +389,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 readOnly
                 style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
-                <button id="remove-children" onClick={removeChildren} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
+                <button id="add-children" onClick={addChildren} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
                 </div>
                 <br></br>
 
@@ -399,7 +399,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 <div id="dogs">
                 <label>Amount of dogs staying</label>
                 <br></br>
-                <button id="add-dogs" onClick={addDogs} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
+                <button id="remove-dogs" onClick={removeDogs} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
                 <input
                 className="dogs"
                 type="text"
@@ -408,7 +408,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 readOnly
                 style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
                 />
-                <button id="remove-dogs" onClick={removeDogs} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
+                <button id="add-dogs" onClick={addDogs} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
                 </div>
                 <br></br>
 
