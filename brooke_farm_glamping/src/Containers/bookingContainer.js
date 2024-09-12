@@ -322,11 +322,11 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
             <h1 id="get-month">{getMonth()}</h1>
             {/* <br></br> */}
             <h2 id="booking-date">{getDateandOrdinalNumber()}</h2>
-           {/* <br></br> */}
+            {/* <br></br> */}
             {/* <button onClick={checkDatesArray}>check dates array</button> */}
             
             <form onSubmit={handleFormSubmit}>
-
+                
                 {/* Night amount user wants to stay *------------- *------------- *------------- */}
                 <div id="nights-staying">
                 <label>Amount of nights staying</label>
