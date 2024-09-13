@@ -34,7 +34,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
     useEffect(() => {
         createCampingOptions()
     
-      }, [campingFacilities]);
+      }, [campingFacilities, nights]);
 
     useEffect(() => {
         createDateNightISOSStringArray()
@@ -189,7 +189,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                         value={campingFacilities[j].name}
                         key={`input-${j}`}
                     /> 
-                        {campingFacilities[j].name} 
+                        {campingFacilities[j].name} -   £{configurePriceDependingOnDays(campingFacilities[j].price)}
                     {/* This is where the name of the facisilites will come through for the input label */}
                     </div>
 
@@ -199,8 +199,12 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
         setCampinChoice(sitesArray);
     };
 
+    const configurePriceDependingOnDays = (cost) => {
+        return cost * nights
+    }
+
+     // Functions to control camping options *------------- *------------- *-------------
     const handleCampingOption = (tok1) => {
-        // console.log(tok1.name)
         setCampingPitchChoice(tok1.name)
     }
 
