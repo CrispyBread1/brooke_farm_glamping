@@ -177,9 +177,8 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
         for (var j in campingFacilities) {
             if (campingFacilities[j]) {
                 sitesArray.push(
-                    <label htmlFor={j} 
-                    key={`label-${j}`}></label>,
-
+                    
+                    <div>
                     <input
                         type="radio"
                         name="tent"
@@ -187,11 +186,11 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                         id={j}
                         value={campingFacilities[j].name}
                         key={`input-${j}`}
-                    />,
+                    /> 
+                        {campingFacilities[j].name} 
+                    {/* This is where the name of the facisilites will come through for the input label */}
+                    </div>
 
-                    <span key={`text-${j}`} id={j}> {campingFacilities[j].name} </span>,
-
-                    <br key={`break-${j}`}></br>
                 );
             }
         }
@@ -319,13 +318,15 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
     return (
         <div id="booking-box">
 
-            <h1 id="get-month">{getMonth()}</h1>
+            
             {/* <br></br> */}
-            <h2 id="booking-date">{getDateandOrdinalNumber()}</h2>
+            
             {/* <br></br> */}
             {/* <button onClick={checkDatesArray}>check dates array</button> */}
             
             <form onSubmit={handleFormSubmit}>
+            <h2 id="get-month">{getMonth()}</h2>
+            <h2 id="booking-date">{getDateandOrdinalNumber()}</h2>
                 
                 {/* Night amount user wants to stay *------------- *------------- *------------- */}
                 <div id="nights-staying">
@@ -338,7 +339,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 placeholder="number"
                 value={nights}
                 readOnly
-                style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
+                style={{ width: "3vw", height: "3vw", textAlign: "center", fontSize: "2vw"  }}
                 />
                 <button id="add-night" onClick={addNight} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
                 </div>
@@ -358,7 +359,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 placeholder="number"
                 value={peopleAmount}
                 readOnly
-                style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
+                style={{ width: "3vw", height: "3vw", textAlign: "center", fontSize: "2vw"  }}
                 />
                 <button id="add-guest" onClick={addGuest} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
                 </div>
@@ -387,7 +388,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 placeholder="number"
                 value={childrenAmount}
                 readOnly
-                style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
+                style={{ width: "3vw", height: "3vw", textAlign: "center", fontSize: "2vw"  }}
                 />
                 <button id="add-children" onClick={addChildren} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
                 </div>
@@ -406,7 +407,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 placeholder="number"
                 value={dogAmount}
                 readOnly
-                style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
+                style={{ width: "3vw", height: "3vw", textAlign: "center", fontSize: "2vw"  }}
                 />
                 <button id="add-dogs" onClick={addDogs} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
                 </div>
@@ -450,7 +451,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 placeholder="number"
                 value={gazeboAmount}
                 readOnly
-                style={{ width: "4vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
+                style={{ width: "3vw", height: "3vw", textAlign: "center", fontSize: "2vw"  }}
                 />
                 <button id="remove-Gazebo" onClick={removeGazebo} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
                 <br></br> 

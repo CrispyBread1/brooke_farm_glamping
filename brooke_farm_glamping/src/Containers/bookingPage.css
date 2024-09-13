@@ -90,7 +90,7 @@
 
 .Booking-container {
     width: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
     transition: width 0.3s;
     background-color: antiquewhite;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
