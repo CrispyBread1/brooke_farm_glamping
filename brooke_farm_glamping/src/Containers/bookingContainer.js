@@ -29,7 +29,8 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
     const [additionalCarAmount, setAdditionalCarAmount] = useState(0)
 
     const [campingPitchChoice, setCampingPitchChoice] = useState(null)
-    // const [campingPrice, setCampingPrice] = useState(null)
+    const [multipleCampingSpots, setMultipleCampingSpots] = useState(false)
+    const [campingSpotsNeeded, setCampingSpotsNeeded] = useState(1)
 
     const [costOfStay, setCostOfStay] = useState(0)
 
@@ -38,12 +39,12 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
     useEffect(() => {
         createCampingOptions()
     
-      }, [campingFacilities, nights]);
+      }, [campingFacilities, nights, peopleAmount]);
 
     useEffect(() => {
         handleCostOfStayCalculation()
 
-    }, [nights, campingPitchChoice])  
+    }, [nights, campingPitchChoice, firePit, peopleAmount])  
 
     useEffect(() => {
         createDateNightISOSStringArray()
@@ -173,9 +174,26 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
      // Functions to control amount of  users wanting to stay *------------- *------------- *-------------
     const addGuest = () => {
         setPeopleAmount(peopleAmount + 1)
+        
+        if ( peopleAmount % 6 === 0) {
+            
+            setCampingSpotsNeeded(campingSpotsNeeded + 1)
+            // console.log(campingSpotsNeeded)
+            setMultipleCampingSpots(true)
+        }
     }
     const removeGuest = () => {
         if (peopleAmount > 1) {
+            if ((peopleAmount - 1) % 6 === 0) {
+                
+                setCampingSpotsNeeded(campingSpotsNeeded - 1)
+                
+            }
+            if (campingSpotsNeeded === 1) {
+                // console.log('inside this bit')
+                setMultipleCampingSpots(false)
+                // console.log(multipleCampingSpots)
+            }
             setPeopleAmount(peopleAmount - 1)
         }
     }
@@ -199,7 +217,8 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                         value={campingFacilities[j].name}
                         key={`input-${j}`}
                     /> 
-                        {campingFacilities[j].name} -   £{configurePriceDependingOnDays(campingFacilities[j].price)}
+                        {campingFacilities[j].name} -   
+                        £{configurePriceDependingOnDays(campingFacilities[j].price)}  {multipleCampingSpots && `x ${campingSpotsNeeded} Required`}
                     {/* This is where the name of the facisilites will come through for the input label */}
                     </div>
 
@@ -324,8 +343,8 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
             if (firePit) {
                 priceOfNights += configurePriceDependingOnDays(firePitCost)
             }
-            // console.log(priceOfNights)
-            
+            priceOfNights *= campingSpotsNeeded
+
             setCostOfStay(priceOfNights)
         } 
     }
