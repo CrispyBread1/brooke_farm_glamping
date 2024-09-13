@@ -14,6 +14,7 @@ const CalendarDay = ({bookingsAmount, date, openBookingBox, id}) => {
             
             text-align: center;
             position: relative;
+            background-color: #fff;
             
         `;
 
