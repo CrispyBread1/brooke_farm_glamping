@@ -20,6 +20,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
     const [dogAmount, setDogAmount] = useState(1)
 
     const [firePit, setFirePit] = useState(false)
+    const [firePitCost, setFirePitCost] = useState(10)
 
     const [gazebo, setGazebo] = useState(false)
     const [gazeboAmount, setGazeboAmount] = useState(0)
@@ -320,6 +321,11 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
         if (campingPitchChoice) {
             var priceOfNights = 0
             priceOfNights += configurePriceDependingOnDays(campingPitchChoice.price)
+            if (firePit) {
+                priceOfNights += configurePriceDependingOnDays(firePitCost)
+            }
+            // console.log(priceOfNights)
+            
             setCostOfStay(priceOfNights)
         } 
     }
