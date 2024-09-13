@@ -5,6 +5,10 @@ import Booking from "../Classes/booking";
 
 const CalendarDay = ({ bookingsAmount, date, openBookingBox, id }) => {
 
+    const [selected, setSelected] = useState(false)
+    const [colour, setColour] = useState('#fff')
+    // const [uniqueID, setUniqueID] = useState(null)
+
     useEffect(() => {
         const classNameLi = createClassNameIdLi();
         const classNameButton = createClassNameIdButton();
@@ -35,14 +39,14 @@ const CalendarDay = ({ bookingsAmount, date, openBookingBox, id }) => {
             color: #333;
             border: 1px solid #ccc;
             text-align: center;
-            background-color: #fff;
+            background-color: ${colour};
             transition: background-color 0.3s, transform 0.3s;
         `;
 
         // Add the styles dynamically
         addCSSRule(`.${classNameLi}`, stylesLi);
         addCSSRule(`.${classNameButton}`, stylesButton);
-    }, [id]);
+    }, [id, selected]);
 
     // Helper function to add CSS rule dynamically
     const addCSSRule = (selector, rules) => {
@@ -70,6 +74,7 @@ const CalendarDay = ({ bookingsAmount, date, openBookingBox, id }) => {
 
     // Generate class name for the li element
     const createClassNameIdLi = () => {
+        // if ()
         return `li-entry-${id}`;
     };
 
@@ -78,13 +83,19 @@ const CalendarDay = ({ bookingsAmount, date, openBookingBox, id }) => {
         return `li-button-${id}`;
     };
 
+    const dayIsSelected = () => {
+        toggleBookingBox()
+        setSelected(true)
+        setColour('#006600')
+    }
+
     const toggleBookingBox = () => {
         openBookingBox(date);
     };
 
     return (
         <li className={createClassNameIdLi()}>
-            <button className={createClassNameIdButton()} onClick={toggleBookingBox}>
+            <button className={createClassNameIdButton()} onClick={dayIsSelected}>
                 {`${date.getDate()}`}{nthNumber(date.getDate())}
             </button>
         </li>
