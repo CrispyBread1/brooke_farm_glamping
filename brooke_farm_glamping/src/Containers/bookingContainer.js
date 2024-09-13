@@ -40,7 +40,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
 
     useEffect(() => {
         handleCostOfStayCalculation()
-    }, [nights, campingPitchChoice])  
+    }, [nights])  
 
     useEffect(() => {
         createDateNightISOSStringArray()
@@ -184,13 +184,14 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
         const sitesArray = [];
         for (var j in campingFacilities) {
             if (campingFacilities[j]) {
+                const campingOption = campingFacilities[j];
                 sitesArray.push(
                     
-                    <div key={`div-${j}`}>
+                    <div key={`div-${j}`} >
                     <input
                         type="radio"
                         name="tent"
-                        onClick={() => handleCampingOption(campingFacilities[j].name)}
+                        onClick={() => handleCampingOption(campingOption)}
                         id={j}
                         value={campingFacilities[j].name}
                         key={`input-${j}`}
@@ -212,7 +213,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
      // Functions to control camping options *------------- *------------- *-------------
     const handleCampingOption = (tok1) => {
         setCampingPitchChoice(campingFacilities[tok1])
-        console.log(tok1)
+        // console.log(tok1)
         // handleCostOfStayCalculation(tok1.price)
     }
 
