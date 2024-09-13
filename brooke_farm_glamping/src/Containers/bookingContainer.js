@@ -575,7 +575,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
 
                 {/* Overall Cost of the stay *------------- *------------- *-------------*/}
                 <div id="overall-cost-of-stay">
-                    Price for stay: £{costOfStay} 
+                    <h1>Price for stay: £{costOfStay} </h1>
                 </div>
 
 
