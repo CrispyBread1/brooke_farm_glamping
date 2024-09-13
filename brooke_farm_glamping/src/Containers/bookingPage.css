@@ -47,7 +47,7 @@
     justify-content: center; /* Center grid items horizontally */
     align-items: center; /* Center grid items vertically */
 }
-
+/* 
 #calendar-days li {
     width: 100%;
     height: 4vw;
@@ -55,28 +55,27 @@
     border-radius: 5px;
     box-sizing: border-box;
     position: relative;
-    /* padding: 0; 
-    margin: 0; */
+ 
 }
 
 #calendar-days li button {
-    position: absolute; /* Absolute positioning to cover the li */
+    position: absolute; 
     top: 0;
     left: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
+    width: 100%; 
+    height: 100%; 
     border: none;
-    font-size: 1.5vw; /* Font size */
-    background-color: transparent; /* Transparent background */
+    font-size: 1.5vw;
+    background-color: transparent; 
     cursor: pointer;
     color: #333;
     border: 1px solid #ccc;
     text-align: center;
-    margin: 0; /* Remove any margin to ensure full coverage */
-    border-radius: 5px; /* Match the border radius of the li */
+    margin: 0; 
+    border-radius: 5px; 
     background-color: #fff;
     transition: background-color 0.3s, transform 0.3s;
-}
+} */
 
 #calendar-days li button:hover {
     background-color: rgba(0, 123, 255, 0.1);
