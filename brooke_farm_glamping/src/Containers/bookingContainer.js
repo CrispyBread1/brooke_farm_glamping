@@ -15,7 +15,9 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
     
     const [peopleAmount, setPeopleAmount] = useState(1)
     const [childrenAmount, setChildrenAmount] = useState(0)
-    const [dogAmount, setDogAmount] = useState(0)
+
+    const [dog, setDog] = useState(false)
+    const [dogAmount, setDogAmount] = useState(1)
 
     const [firePit, setFirePit] = useState(false)
 
@@ -217,11 +219,21 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
 
 
      // Functions to control amount of  users' children wanting to stay *------------- *------------- *-------------
+     const configureDogs = () => {
+        if (dog) {
+            setDog(false)
+            setDogAmount(0)
+        } else {
+            setDog(true) 
+            setDogAmount(1)
+        }
+    }
+
      const addDogs = () => {
         setDogAmount(dogAmount + 1)
     }
     const removeDogs = () => {
-        if (dogAmount > 0) {
+        if (dogAmount > 1) {
             setDogAmount(dogAmount - 1)
         }
     }
@@ -242,7 +254,10 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
         if (gazebo) {
             setGazebo(false)
             setGazeboAmount(0)
-        } else setGazebo(true)
+        } else {
+            setGazebo(true)
+            setGazeboAmount(1)
+        }
     }
 
     const addGazebo = () => {
@@ -252,7 +267,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
     }
 
     const removeGazebo = () => {
-        if (gazeboAmount > 0) {
+        if (gazeboAmount > 1) {
             setGazeboAmount(gazeboAmount - 1)
         }
     }
@@ -264,7 +279,10 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
         if (additionalCar) {
             setAdditionalCar(false)
             setAdditionalCarAmount(0)
-        } else setAdditionalCar(true)
+        } else {
+            setAdditionalCar(true)
+            setAdditionalCarAmount(1)
+        }
     }
 
     const addAdditionalCar = () => {
@@ -274,7 +292,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
     }
 
     const removeAdditionalCar = () => {
-        if (additionalCarAmount > 0) {
+        if (additionalCarAmount > 1) {
             setAdditionalCarAmount(additionalCarAmount - 1)
         }
     }
@@ -397,8 +415,18 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
 
 
                 {/* Amount of dogs that want to stay *------------- *------------- *------------- */}
-                <div id="dogs">
-                <label>Amount of dogs staying</label>
+                <div id="checkbox-dogs">
+                <input 
+                type="checkbox" 
+                className="dog" 
+                name="dog" 
+                value="Dog"
+                onClick={configureDogs} 
+                style={{ width: "1.5vw", height: "1.5vw", textAlign: "center", fontSize: "2vw"  }}/>
+                <label htmlFor="dog"> I would like to bring my Dog</label>
+
+                {dog && <div id="dogs">
+                <label>Amount of dogs</label>
                 <br></br>
                 <button id="remove-dogs" onClick={removeDogs} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
                 <input
@@ -410,6 +438,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 style={{ width: "3vw", height: "3vw", textAlign: "center", fontSize: "2vw"  }}
                 />
                 <button id="add-dogs" onClick={addDogs} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
+                </div>}
                 </div>
                 <br></br>
 
@@ -444,7 +473,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 {gazebo && <div>
                 <label>Amount of gazebos</label>
                 <br></br>
-                <button id="add-gazebo" onClick={addGazebo} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
+                <button id="remove-Gazebo" onClick={removeGazebo} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
                 <input
                 className="nights"
                 type="text"
@@ -453,7 +482,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 readOnly
                 style={{ width: "3vw", height: "3vw", textAlign: "center", fontSize: "2vw"  }}
                 />
-                <button id="remove-Gazebo" onClick={removeGazebo} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
+                <button id="add-gazebo" onClick={addGazebo} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
                 <br></br> 
                 </div>}
                 </div>
@@ -474,16 +503,16 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 {additionalCar && <div>
                 <label>Amount of additonal Cars</label>
                 <br></br>
-                <button id="add-gazebo" onClick={addAdditionalCar} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
+                <button id="remove-AdditionalCar" onClick={removeAdditionalCar} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
                 <input
                 className="nights"
                 type="text"
                 placeholder="number"
                 value={additionalCarAmount}
                 readOnly
-                style={{ width: "2vw", height: "4vw", textAlign: "center", fontSize: "2vw"  }}
+                style={{ width: "3vw", height: "3vw", textAlign: "center", fontSize: "2vw"  }}
                 />
-                <button id="remove-AdditionalCar" onClick={removeAdditionalCar} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
+                <button id="add-gazebo" onClick={addAdditionalCar} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
                 <br></br> 
                 </div>}
                 </div>
