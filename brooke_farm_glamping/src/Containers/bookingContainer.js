@@ -28,6 +28,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
     const [additionalCarAmount, setAdditionalCarAmount] = useState(0)
 
     const [campingPitchChoice, setCampingPitchChoice] = useState(null)
+    // const [campingPrice, setCampingPrice] = useState(null)
 
     const [costOfStay, setCostOfStay] = useState(0)
 
@@ -40,7 +41,8 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
 
     useEffect(() => {
         handleCostOfStayCalculation()
-    }, [nights])  
+
+    }, [nights, campingPitchChoice])  
 
     useEffect(() => {
         createDateNightISOSStringArray()
@@ -212,7 +214,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
 
      // Functions to control camping options *------------- *------------- *-------------
     const handleCampingOption = (tok1) => {
-        setCampingPitchChoice(campingFacilities[tok1])
+        setCampingPitchChoice(tok1)
         // console.log(tok1)
         // handleCostOfStayCalculation(tok1.price)
     }
@@ -312,6 +314,18 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
 
 
 
+     // Functions to control cost of the stay *------------- *------------- *-------------
+     const handleCostOfStayCalculation = () => {
+        // var priceOfNights = 0
+        if (campingPitchChoice) {
+            var priceOfNights = 0
+            priceOfNights += configurePriceDependingOnDays(campingPitchChoice.price)
+            setCostOfStay(priceOfNights)
+        } 
+    }
+
+
+
      // Functions to control submitting the form and booking *------------- *------------- *-------------
     const handleFormSubmit = (evt) => {
         evt.preventDefault();
@@ -336,12 +350,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
     
     }
 
-     // Functions to control cost of the stay *------------- *------------- *-------------
-    const handleCostOfStayCalculation = () => {
-        if (campingPitchChoice) {
-        setCostOfStay(costOfStay + (campingPitchChoice.price * nights))
-        }
-    }
+    
 
     
     const moveToConfirmBooking = () => {
