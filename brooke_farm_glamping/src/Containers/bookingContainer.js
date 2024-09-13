@@ -29,12 +29,18 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
 
     const [campingPitchChoice, setCampingPitchChoice] = useState(null)
 
+    const [costOfStay, setCostOfStay] = useState(0)
+
 
 
     useEffect(() => {
         createCampingOptions()
     
       }, [campingFacilities, nights]);
+
+    useEffect(() => {
+        handleCostOfStayCalculation()
+    }, [nights, campingPitchChoice])  
 
     useEffect(() => {
         createDateNightISOSStringArray()
@@ -180,11 +186,11 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
             if (campingFacilities[j]) {
                 sitesArray.push(
                     
-                    <div>
+                    <div key={`div-${j}`}>
                     <input
                         type="radio"
                         name="tent"
-                        onClick={() => handleCampingOption(campingFacilities[j])}
+                        onClick={() => handleCampingOption(campingFacilities[j].name)}
                         id={j}
                         value={campingFacilities[j].name}
                         key={`input-${j}`}
@@ -205,7 +211,9 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
 
      // Functions to control camping options *------------- *------------- *-------------
     const handleCampingOption = (tok1) => {
-        setCampingPitchChoice(tok1.name)
+        setCampingPitchChoice(campingFacilities[tok1])
+        console.log(tok1)
+        // handleCostOfStayCalculation(tok1.price)
     }
 
 
@@ -325,6 +333,13 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
         fillBookingInformation(booking)
 
     
+    }
+
+     // Functions to control cost of the stay *------------- *------------- *-------------
+    const handleCostOfStayCalculation = () => {
+        if (campingPitchChoice) {
+        setCostOfStay(costOfStay + (campingPitchChoice.price * nights))
+        }
     }
 
     
@@ -520,6 +535,14 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 <br></br> 
                 </div>}
                 </div>
+
+
+
+                {/* Overall Cost of the stay *------------- *------------- *-------------*/}
+                <div id="overall-cost-of-stay">
+                    Price for stay: £{costOfStay} 
+                </div>
+
 
 
             <button
