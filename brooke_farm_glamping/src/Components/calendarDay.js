@@ -43,9 +43,15 @@ const CalendarDay = ({ bookingsAmount, date, openBookingBox, id }) => {
             transition: background-color 0.3s, transform 0.3s;
         `;
 
+        const stylesButtonHover = `
+            background-color: rgba(0, 123, 255, 0.1);
+            color: #007bff;
+        `;
+
         // Add the styles dynamically
         addCSSRule(`.${classNameLi}`, stylesLi);
         addCSSRule(`.${classNameButton}`, stylesButton);
+        addCSSRule(`.${classNameButton}:hover`, stylesButtonHover);
     }, [id, selected]);
 
     // Helper function to add CSS rule dynamically
@@ -74,7 +80,9 @@ const CalendarDay = ({ bookingsAmount, date, openBookingBox, id }) => {
 
     // Generate class name for the li element
     const createClassNameIdLi = () => {
-        // if ()
+        if (selected) {
+            return `li-entry-${id + 'g'}`;
+        }
         return `li-entry-${id}`;
     };
 
