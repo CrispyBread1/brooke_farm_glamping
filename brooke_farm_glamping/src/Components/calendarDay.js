@@ -88,6 +88,9 @@ const CalendarDay = ({ bookingsAmount, date, openBookingBox, id }) => {
 
     // Generate class name for the button element
     const createClassNameIdButton = () => {
+        if (selected) {
+            return `li-button-${id + date.getMonth()}`;
+        }
         return `li-button-${id}`;
     };
 
