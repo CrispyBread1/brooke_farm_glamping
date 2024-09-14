@@ -86,7 +86,8 @@ const CalendarDay = ({ bookingsAmount, date, openBookingBox, id, configureDaySel
 
     const dayIsSelected = () => {
         toggleBookingBox()
-        configureDaySelected(id)
+        configureDaySelected(id, date)
+        // console.log(date)
         
     }
 

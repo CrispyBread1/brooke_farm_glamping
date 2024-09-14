@@ -16,6 +16,7 @@ const BookingPage = ({user, fillBookingInformation}) => {
   const [daysOfWeek, setDaysOfWeek] = useState(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'])
   const [months, setMonths] = useState([{month:"January", days:31}, {month:"February", days:28}, {month:"March", days:31}, {month:"April", days:30}, {month:"May", days:31}, {month:"June", days:30}, {month:"July", days:31}, {month:"August", days:31}, {month:"September", days:30}, {month:"October", days:31}, {month:"November", days:30}, {month:"December", days:31}]);
   
+  const [amountOfNightsStaying, setAmountOfNightsStaying] = useState(null)
 
   useEffect(() => {
     fetchBookings(new Date().getMonth())
@@ -107,6 +108,10 @@ const BookingPage = ({user, fillBookingInformation}) => {
     console.log(campingFacilities)
   }
 
+  const relayAmountOfNightsStaying = (tok1) => {
+    setAmountOfNightsStaying(tok1)
+}
+
 
   return (
     <div className="Booking-page">
@@ -122,14 +127,14 @@ const BookingPage = ({user, fillBookingInformation}) => {
         <div id="controls-and-calendar">
 
             <div id="Calendar-container">
-                <CalendarContainer openBookingBox={openBookingBox} daysOfWeek={daysOfWeek} months={months} bookings={bookings} nthNumber={nthNumber}/>
+                <CalendarContainer openBookingBox={openBookingBox} daysOfWeek={daysOfWeek} months={months} bookings={bookings} nthNumber={nthNumber} amountOfNightsStaying={amountOfNightsStaying}/>
             </div>
 
         </div>
 
         
             <div className='Booking-container'>
-                <BookingContainer dateObject={dateObject} months={months} nthNumber={nthNumber} campingFacilities={campingFacilities} fillBookingInformation={fillBookingInformation}/>
+                <BookingContainer dateObject={dateObject} months={months} nthNumber={nthNumber} campingFacilities={campingFacilities} fillBookingInformation={fillBookingInformation} relayAmountOfNightsStaying={relayAmountOfNightsStaying}/>
             </div> 
         
         </div>

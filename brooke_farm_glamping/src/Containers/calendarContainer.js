@@ -6,7 +6,7 @@ import BlankCalendarDay from "../Components/blankCalendarDay";
 // import Booking from "../Classes/booking";
 
 
-const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNumber}) => {
+const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNumber, amountOfNightsStaying}) => {
 
 
     const [daysInMonth, setDaysInMonth] = useState([]);
@@ -15,20 +15,27 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
     const [yearNum, setYearNum] = useState(new Date().getFullYear());
 
     
-    const [daySelectedID, setDaySelectedID] = useState()
+    const [daySelectedID, setDaySelectedID] = useState(null)
+    const [daySelectedDate, setDaySelectedDate] = useState(null)
+    const [extraNights, setExtraNights] = useState(null)
+    
 
     
 
     useEffect(() => { // Renders when bookings have come through
         fillDaysInMonth()
+        setExtraNights(amountOfNightsStaying)
         
-    }, [bookings, monthNum, daySelectedID])
+    }, [bookings, monthNum, daySelectedID, amountOfNightsStaying])
 
 
 
-    const configureDaySelected = (dayID) => {
+    const configureDaySelected = (dayID, datDate) => {
         setDaySelectedID(dayID)
+        setDaySelectedDate(datDate)
     }
+
+    
 
 
     const fillDaysInMonth = () => {
@@ -36,27 +43,62 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
         let days = []
 
         for (let i = 1; i <= months[monthNum].days; i++) {
-            var date = ((i) + ':' + (monthNum + 1) + ':' + dateWork.getFullYear())
+            var date = ((i) + ':' + (monthNum + 1) + ':' + dateWork.getFullYear()) // the date the loop is working on in thius itteration
             var year = yearNum
             var month = monthNum
             var day = i
-            var dateObject = new Date(year, month, day)
+            var dateObject = new Date(year, month, day) // date the loop is looking at in a date object
             var number = getBookingForDay(date);
+            
+            
 
             if (daysOfWeek[dateObject.getDay()] !== 'Sunday' && dateObject.getDate() === 1) {
                 days.push(fillInBlankDaysStart(year, month, dateObject))
             } 
             if (i <= dateWork.getDate() && monthNum === dateWork.getMonth() && yearNum ===dateWork.getFullYear()) {
-                days.push(<BlankCalendarDay key={i}  date={dateObject} month={months[monthNum]} id={i}/>)
+                days.push(<BlankCalendarDay key={i}  
+                    date={dateObject} 
+                    month={months[monthNum]} 
+                    id={i}/>)
             }
             else if (dateObject >= dateWork) {
                 var strictID = (i + months[dateObject.getMonth()].month + dateObject.getFullYear())
+                
+                
                 if (strictID ===daySelectedID) { // If the day is clicked it should change the colour
-                    days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject} openBookingBox={openBookingBox} id={strictID} configureDaySelected={configureDaySelected} 
-                        colour='#006600'/>)
-                } else { // otherwise all the colours stay the same
-                days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject} openBookingBox={openBookingBox} id={strictID} configureDaySelected={configureDaySelected} 
-                    colour='#fff'/>)
+                    // console.log(extraNights > 0)
+                    // console.log(amountOfNightsStaying)
+                    days.push(<CalendarDay key={i} 
+                        bookingsAmount={number} 
+                        date={dateObject} 
+                        openBookingBox={openBookingBox} 
+                        id={strictID} 
+                        configureDaySelected={configureDaySelected} 
+                        colour='#006600'
+                        />)
+
+                } else if (amountOfNightsStaying > 1 && daySelectedDate < dateObject && extraNights > 0) {
+                    console.log(extraNights)
+                    setExtraNights(extraNights - 1)
+                    // console.log(extraNights > 0)
+                    days.push(<CalendarDay key={i} 
+                        bookingsAmount={number} 
+                        date={dateObject} 
+                        openBookingBox={openBookingBox} 
+                        id={strictID} 
+                        configureDaySelected={configureDaySelected} 
+                        colour='#ff00ff'
+                        />)
+                }
+                else { // otherwise all the colours stay the same
+                days.push(<CalendarDay key={i} 
+                    bookingsAmount={number} 
+                    date={dateObject} 
+                    openBookingBox={openBookingBox} 
+                    id={strictID} 
+                    configureDaySelected={configureDaySelected} 
+                    colour='#fff'
+                    />)
             }
                 
             }
@@ -97,7 +139,10 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
         for (let i = 1; i <= daysFromPrevMonth; i++) {
             let blankDate = new Date(year, (month-1), blankDates)
             blankDates++
-            blankDays.push(<BlankCalendarDay key={i}  date={blankDate} month={prevMonth} id={i}/>)
+            blankDays.push(<BlankCalendarDay key={i}  
+                date={blankDate} 
+                month={prevMonth} 
+                id={i}/>)
         }
         return blankDays
     }
@@ -114,7 +159,9 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
 
         for (let i = 1; i <= (7 - (daysFromPrevMonth + 1)); i++) {
             let blankDate = new Date(year, (month + 1), i)
-            blankDays.push(<BlankCalendarDay key={i}  date={blankDate} month={monthToPass} id={i}/>)
+            blankDays.push(<BlankCalendarDay key={i}  
+                date={blankDate} month={monthToPass} 
+                id={i}/>)
         }
         return blankDays
     }
@@ -159,6 +206,7 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
         <div >
             <button id="nextMonthButton" onClick={nextMonth}>next month</button>
             <button id="previousMonthButton" onClick={previousMonth}>previous</button>
+            {/* <h1>{amountOfNightsStaying}</h1> */}
         <div id="calendar">
         <section id="calendarSection" >
             <h1 onClick={checkDate}>Date {months[monthNum].month}</h1>

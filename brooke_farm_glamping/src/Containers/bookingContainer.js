@@ -4,7 +4,7 @@ import './bookingContainer.css'
 import { useNavigate } from "react-router-dom";
 
 
-const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fillBookingInformation}) => {
+const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fillBookingInformation, relayAmountOfNightsStaying}) => {
 
     const navigate = useNavigate();
 
@@ -64,6 +64,8 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
         setDogAmount(0)
     }
 
+    // const relayAmountOfNightsStaying = 
+
     const getDateandOrdinalNumber = () => {
         var stayingEndDate = 0
 
@@ -116,6 +118,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
         // var nightsArray = []
         if (nights < 24) {
             setNights(nights + 1)
+            relayAmountOfNightsStaying(nights + 1)
             // setDateStaying(createDateNightArray())
         }
     }
@@ -123,6 +126,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
     const removeNight = () => {
         if (nights > 1) {
             setNights(nights - 1)
+            relayAmountOfNightsStaying(nights - 1)
             // setDateStaying(createDateNightArray())
         }
     }
