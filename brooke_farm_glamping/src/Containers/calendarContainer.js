@@ -15,7 +15,7 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
     const [yearNum, setYearNum] = useState(new Date().getFullYear());
 
     
-    const [daySelectedID, setDaySelectedID] = useState(null)
+    const [daySelectedID, setDaySelectedID] = useState()
 
     
 
@@ -24,22 +24,10 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
         
     }, [bookings, monthNum, daySelectedID])
 
-    // useEffect(() => { // Re renders when month is changed for next or previouse
-    //     fillDaysInMonth()
-
-    // }, [monthNum])
-
-    // useEffect(() => { // Renders when bookings have come through
-    //     console.log(daySelectedID)
-        
-    // }, [daySelectedID])
-
 
 
     const configureDaySelected = (dayID) => {
         setDaySelectedID(dayID)
-        console.log(dayID)
-        // console.log(daySelectedID)
     }
 
 
@@ -63,7 +51,14 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
             }
             else if (dateObject >= dateWork) {
                 var strictID = (i + months[dateObject.getMonth()].month + dateObject.getFullYear())
-                days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject} openBookingBox={openBookingBox} id={strictID} configureDaySelected={configureDaySelected} daySelectedID={daySelectedID}/>)
+                if (strictID ===daySelectedID) { // If the day is clicked it should change the colour
+                    days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject} openBookingBox={openBookingBox} id={strictID} configureDaySelected={configureDaySelected} 
+                        colour='#006600'/>)
+                } else { // otherwise all the colours stay the same
+                days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject} openBookingBox={openBookingBox} id={strictID} configureDaySelected={configureDaySelected} 
+                    colour='#fff'/>)
+            }
+                
             }
             if (i  === months[monthNum].days && daysOfWeek[dateObject.getDay()] !== 'Saturday' ) {
                 days.push(fillInBlankDaysEnd(year, month, dateObject))

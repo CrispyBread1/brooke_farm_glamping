@@ -3,27 +3,11 @@ import './calendarDay.css';
 import BookingBox from "./bookingBox";
 import Booking from "../Classes/booking";
 
-const CalendarDay = ({ bookingsAmount, date, openBookingBox, id, configureDaySelected, daySelectedID }) => {
-
-    const [selected, setSelected] = useState(false)
-    const [colour, setColour] = useState('#fff')
-    // const [uniqueID, setUniqueID] = useState(null)
+const CalendarDay = ({ bookingsAmount, date, openBookingBox, id, configureDaySelected, colour}) => {
 
     useEffect(() => {
         const classNameLi = createClassNameIdLi();
         const classNameButton = createClassNameIdButton();
-
-        if (id === daySelectedID) {
-            setColour('#006600')
-            console.log('if')
-        } 
-        else {
-            setColour('#fff')
-            setSelected(false)
-            // console.log('else')
-            console.log('id: ' + id + ' daySelectedID: ' + daySelectedID)
-            // console.log(id)
-        }
 
         // Define dynamic styles for the li
         const stylesLi = `
@@ -64,7 +48,7 @@ const CalendarDay = ({ bookingsAmount, date, openBookingBox, id, configureDaySel
         addCSSRule(`.${classNameLi}`, stylesLi);
         addCSSRule(`.${classNameButton}`, stylesButton);
         addCSSRule(`.${classNameButton}:hover`, stylesButtonHover);
-    }, [id, selected]);
+    }, [id, colour]);
 
     // Helper function to add CSS rule dynamically
     const addCSSRule = (selector, rules) => {
@@ -102,8 +86,6 @@ const CalendarDay = ({ bookingsAmount, date, openBookingBox, id, configureDaySel
 
     const dayIsSelected = () => {
         toggleBookingBox()
-        setSelected(true)
-        // setColour('#006600')
         configureDaySelected(id)
         
     }
