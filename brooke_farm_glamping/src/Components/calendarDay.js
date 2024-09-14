@@ -3,7 +3,7 @@ import './calendarDay.css';
 import BookingBox from "./bookingBox";
 import Booking from "../Classes/booking";
 
-const CalendarDay = ({ bookingsAmount, date, openBookingBox, id }) => {
+const CalendarDay = ({ bookingsAmount, date, openBookingBox, id, configureDaySelected, daySelectedID }) => {
 
     const [selected, setSelected] = useState(false)
     const [colour, setColour] = useState('#fff')
@@ -12,6 +12,18 @@ const CalendarDay = ({ bookingsAmount, date, openBookingBox, id }) => {
     useEffect(() => {
         const classNameLi = createClassNameIdLi();
         const classNameButton = createClassNameIdButton();
+
+        if (id === daySelectedID) {
+            setColour('#006600')
+            console.log('if')
+        } 
+        else {
+            setColour('#fff')
+            setSelected(false)
+            // console.log('else')
+            console.log('id: ' + id + ' daySelectedID: ' + daySelectedID)
+            // console.log(id)
+        }
 
         // Define dynamic styles for the li
         const stylesLi = `
@@ -80,24 +92,20 @@ const CalendarDay = ({ bookingsAmount, date, openBookingBox, id }) => {
 
     // Generate class name for the li element
     const createClassNameIdLi = () => {
-        if (selected) {
-            return `li-entry-${id + 'g'}`;
-        }
         return `li-entry-${id}`;
     };
 
     // Generate class name for the button element
     const createClassNameIdButton = () => {
-        if (selected) {
-            return `li-button-${id + date.getMonth()}`;
-        }
         return `li-button-${id}`;
     };
 
     const dayIsSelected = () => {
         toggleBookingBox()
         setSelected(true)
-        setColour('#006600')
+        // setColour('#006600')
+        configureDaySelected(id)
+        
     }
 
     const toggleBookingBox = () => {

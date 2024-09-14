@@ -15,39 +15,32 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
     const [yearNum, setYearNum] = useState(new Date().getFullYear());
 
     
-    const [loadBookingBox, setLoadBookingBox] = useState(false)
+    const [daySelectedID, setDaySelectedID] = useState(null)
 
     
 
     useEffect(() => { // Renders when bookings have come through
         fillDaysInMonth()
         
-    }, [bookings])
+    }, [bookings, monthNum, daySelectedID])
 
-    useEffect(() => { // Re renders when month is changed for next or previouse
-        fillDaysInMonth()
+    // useEffect(() => { // Re renders when month is changed for next or previouse
+    //     fillDaysInMonth()
 
-    }, [monthNum])
+    // }, [monthNum])
 
-
-    
-
-    // const toggleBookingBox = () => {
-        // console.log('test')
-        // setLoadBookingBox(true)
-
-        // let bookingBox = document.querySelector(".booking-box");
-    //   if(background.className !== "Background"){
-        // background.className = "Background"
-        // bookingBox.classList.toggle("visible")
-    //   } else {background.classList.toggle("zoomleft")
-        // console.log(background.className)
-    //   }
-    // }
+    // useEffect(() => { // Renders when bookings have come through
+    //     console.log(daySelectedID)
+        
+    // }, [daySelectedID])
 
 
-    
 
+    const configureDaySelected = (dayID) => {
+        setDaySelectedID(dayID)
+        console.log(dayID)
+        // console.log(daySelectedID)
+    }
 
 
     const fillDaysInMonth = () => {
@@ -69,7 +62,8 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
                 days.push(<BlankCalendarDay key={i}  date={dateObject} month={months[monthNum]} id={i}/>)
             }
             else if (dateObject >= dateWork) {
-                days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject} openBookingBox={openBookingBox} id={i}/>)
+                var strictID = (i + months[dateObject.getMonth()].month + dateObject.getFullYear())
+                days.push(<CalendarDay key={i} bookingsAmount={number} date={dateObject} openBookingBox={openBookingBox} id={strictID} configureDaySelected={configureDaySelected} daySelectedID={daySelectedID}/>)
             }
             if (i  === months[monthNum].days && daysOfWeek[dateObject.getDay()] !== 'Saturday' ) {
                 days.push(fillInBlankDaysEnd(year, month, dateObject))
