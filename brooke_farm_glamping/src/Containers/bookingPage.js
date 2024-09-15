@@ -127,7 +127,7 @@ const BookingPage = ({user, fillBookingInformation}) => {
         <div id="controls-and-calendar">
 
             <div id="Calendar-container">
-                <CalendarContainer openBookingBox={openBookingBox} daysOfWeek={daysOfWeek} months={months} bookings={bookings} nthNumber={nthNumber} amountOfNightsStaying={amountOfNightsStaying}/>
+                <CalendarContainer openBookingBox={openBookingBox} daysOfWeek={daysOfWeek} months={months} bookings={bookings} nthNumber={nthNumber} relayAmountOfNightsStaying={relayAmountOfNightsStaying} amountOfNightsStaying={amountOfNightsStaying}/>
             </div>
 
         </div>

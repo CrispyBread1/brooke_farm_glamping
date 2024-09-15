@@ -6,7 +6,7 @@ import BlankCalendarDay from "../Components/blankCalendarDay";
 // import Booking from "../Classes/booking";
 
 
-const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNumber, amountOfNightsStaying}) => {
+const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNumber,relayAmountOfNightsStaying, amountOfNightsStaying}) => {
 
 
     const [daysInMonth, setDaysInMonth] = useState([]);
@@ -33,6 +33,7 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
     const configureDaySelected = (dayID, datDate) => {
         setDaySelectedID(dayID)
         setDaySelectedDate(datDate)
+        relayAmountOfNightsStaying(1)
     }
 
     
@@ -42,6 +43,7 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
         const dateWork = new Date()
         let days = []
         var nightsChosen = amountOfNightsStaying
+        
         for (let i = 1; i <= months[monthNum].days; i++) {
             var date = ((i) + ':' + (monthNum + 1) + ':' + dateWork.getFullYear()) // the date the loop is working on in thius itteration
             var year = yearNum
