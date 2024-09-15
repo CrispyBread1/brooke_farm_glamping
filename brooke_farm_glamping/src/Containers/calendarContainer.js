@@ -17,14 +17,14 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
     
     const [daySelectedID, setDaySelectedID] = useState(null)
     const [daySelectedDate, setDaySelectedDate] = useState(null)
-    const [extraNights, setExtraNights] = useState(null)
+    // const [extraNights, setExtraNights] = useState(null)
     
 
     
 
     useEffect(() => { // Renders when bookings have come through
         fillDaysInMonth()
-        setExtraNights(amountOfNightsStaying)
+        // setExtraNights(amountOfNightsStaying)
         
     }, [bookings, monthNum, daySelectedID, amountOfNightsStaying])
 
@@ -41,7 +41,7 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
     const fillDaysInMonth = () => {
         const dateWork = new Date()
         let days = []
-
+        var nightsChosen = amountOfNightsStaying
         for (let i = 1; i <= months[monthNum].days; i++) {
             var date = ((i) + ':' + (monthNum + 1) + ':' + dateWork.getFullYear()) // the date the loop is working on in thius itteration
             var year = yearNum
@@ -66,8 +66,6 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
                 
                 
                 if (strictID ===daySelectedID) { // If the day is clicked it should change the colour
-                    // console.log(extraNights > 0)
-                    // console.log(amountOfNightsStaying)
                     days.push(<CalendarDay key={i} 
                         bookingsAmount={number} 
                         date={dateObject} 
@@ -77,10 +75,9 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
                         colour='#006600'
                         />)
 
-                } else if (amountOfNightsStaying > 1 && daySelectedDate < dateObject && extraNights > 0) {
-                    console.log(extraNights)
-                    setExtraNights(extraNights - 1)
-                    // console.log(extraNights > 0)
+                } // this checks that 
+                else if (daySelectedDate <= dateObject && nightsChosen > 0 && daySelectedDate.getMonth() === dateObject.getMonth() && daySelectedDate.getFullYear() === dateObject.getFullYear()) {
+                    nightsChosen -= 1
                     days.push(<CalendarDay key={i} 
                         bookingsAmount={number} 
                         date={dateObject} 
