@@ -17,9 +17,9 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
     
     const [daySelectedID, setDaySelectedID] = useState(null)
     const [daySelectedDate, setDaySelectedDate] = useState(null)
-    // const [extraNights, setExtraNights] = useState(null)
+    const [extraNights, setExtraNights] = useState(null)
     
-
+    // var export
     
 
     useEffect(() => { // Renders when bookings have come through
@@ -33,7 +33,9 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
     const configureDaySelected = (dayID, datDate) => {
         setDaySelectedID(dayID)
         setDaySelectedDate(datDate)
-        relayAmountOfNightsStaying(1)
+        if (!amountOfNightsStaying) {
+            relayAmountOfNightsStaying(1)
+        }  
     }
 
     
@@ -43,7 +45,10 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
         const dateWork = new Date()
         let days = []
         var nightsChosen = amountOfNightsStaying
-        
+
+        // check if the dates selceted go over month
+        // setExtraNights(amountOfNightsStaying)
+
         for (let i = 1; i <= months[monthNum].days; i++) {
             var date = ((i) + ':' + (monthNum + 1) + ':' + dateWork.getFullYear()) // the date the loop is working on in thius itteration
             var year = yearNum
@@ -65,40 +70,43 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
             }
             else if (dateObject >= dateWork) {
                 var strictID = (i + months[dateObject.getMonth()].month + dateObject.getFullYear())
-                
-                
-                if (strictID ===daySelectedID) { // If the day is clicked it should change the colour
-                    days.push(<CalendarDay key={i} 
-                        bookingsAmount={number} 
-                        date={dateObject} 
-                        openBookingBox={openBookingBox} 
-                        id={strictID} 
-                        configureDaySelected={configureDaySelected} 
-                        colour='#006600'
-                        />)
-
-                } // this checks that 
-                else if (daySelectedDate <= dateObject && nightsChosen > 0 && daySelectedDate.getMonth() === dateObject.getMonth() && daySelectedDate.getFullYear() === dateObject.getFullYear()) {
-                    nightsChosen -= 1
-                    days.push(<CalendarDay key={i} 
-                        bookingsAmount={number} 
-                        date={dateObject} 
-                        openBookingBox={openBookingBox} 
-                        id={strictID} 
-                        configureDaySelected={configureDaySelected} 
-                        colour='#ff00ff'
-                        />)
-                }
-                else { // otherwise all the colours stay the same
+                var colourNightsChosen = {configureColourForSelectedDays(dateObject, strictID, nightsChosen)}
+                nightsChosen = colourNightsChosen.nights
+                // if (strictID ===daySelectedID) { // If the day is clicked it should change the colour
                 days.push(<CalendarDay key={i} 
                     bookingsAmount={number} 
                     date={dateObject} 
                     openBookingBox={openBookingBox} 
                     id={strictID} 
                     configureDaySelected={configureDaySelected} 
-                    colour='#fff'
+                    colour={colourNightsChosen.colour}
                     />)
-            }
+
+                
+                // } // this checks that its the same month and year and that the nightsChosen
+                // else if (daySelectedDate <= dateObject && nightsChosen > 0 && equateFalseOrTrueFromDates(daySelectedDate, dateObject)) {
+                //     nightsChosen -= 1
+                //     var daySelectedColour = configureColourForSelectedDays(nightsChosen)
+                    
+                //     days.push(<CalendarDay key={i} 
+                //         bookingsAmount={number} 
+                //         date={dateObject} 
+                //         openBookingBox={openBookingBox} 
+                //         id={strictID} 
+                //         configureDaySelected={configureDaySelected} 
+                //         colour={daySelectedColour}
+                //         />)
+                // }
+                // else { // otherwise all the colours stay the same
+                // days.push(<CalendarDay key={i} 
+                //     bookingsAmount={number} 
+                //     date={dateObject} 
+                //     openBookingBox={openBookingBox} 
+                //     id={strictID} 
+                //     configureDaySelected={configureDaySelected} 
+                //     colour='#fff'
+                //     />)
+                // }
                 
             }
             if (i  === months[monthNum].days && daysOfWeek[dateObject.getDay()] !== 'Saturday' ) {
@@ -111,16 +119,36 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
         setDaysInMonth(days)
     }
 
+    const equateFalseOrTrueFromDates = ( dayForLoopWorking) => {
+        if (daySelectedDate) {
+        return (daySelectedDate.getMonth() === dayForLoopWorking.getMonth() && daySelectedDate.getFullYear() === dayForLoopWorking.getFullYear())
+        }
+    }
+
+    const configureColourForSelectedDays = (dtOb, stID, ngCh) => {
+        // console.log(amountOfNightsStaying)
+        var colourDate = {}
+
+        if (stID === daySelectedID) {
+            return '#006600'
+        }
+        else if (daySelectedDate <= dtOb && ngCh > 0 && equateFalseOrTrueFromDates(dtOb)) {
+            // setExtraNights(extraNights - 1)
+            // ngCh -= 1
+            if (ngCh != 0) {
+                return '#ff00ff'
+            } return '#006600'
+        } else return '#fff'
+        
+    }
+
     const getBookingForDay = (date) => {
-
         var int = 0
-
         for (var j in bookings){
             if (bookings[j].information.date === date) {
                 int ++
             }  
         }
-
         return int
     }
 
