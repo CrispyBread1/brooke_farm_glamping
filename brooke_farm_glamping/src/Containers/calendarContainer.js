@@ -44,10 +44,8 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
     const fillDaysInMonth = () => {
         const dateWork = new Date()
         let days = []
-        var nightsChosen = amountOfNightsStaying
-
-        // check if the dates selceted go over month
-        // setExtraNights(amountOfNightsStaying)
+        // adding one here because asyncrhonouse seems to take one away before colour is chosen
+        var nightsChosen = (amountOfNightsStaying + 1) 
 
         for (let i = 1; i <= months[monthNum].days; i++) {
             var date = ((i) + ':' + (monthNum + 1) + ':' + dateWork.getFullYear()) // the date the loop is working on in thius itteration
@@ -56,8 +54,6 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
             var day = i
             var dateObject = new Date(year, month, day) // date the loop is looking at in a date object
             var number = getBookingForDay(date);
-            
-            
 
             if (daysOfWeek[dateObject.getDay()] !== 'Sunday' && dateObject.getDate() === 1) {
                 days.push(fillInBlankDaysStart(year, month, dateObject))
@@ -70,52 +66,25 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
             }
             else if (dateObject >= dateWork) {
                 var strictID = (i + months[dateObject.getMonth()].month + dateObject.getFullYear())
-                var colourNightsChosen = {configureColourForSelectedDays(dateObject, strictID, nightsChosen)}
-                nightsChosen = colourNightsChosen.nights
-                // if (strictID ===daySelectedID) { // If the day is clicked it should change the colour
+
                 days.push(<CalendarDay key={i} 
                     bookingsAmount={number} 
                     date={dateObject} 
                     openBookingBox={openBookingBox} 
                     id={strictID} 
                     configureDaySelected={configureDaySelected} 
-                    colour={colourNightsChosen.colour}
+                    colour={configureColourForSelectedDays(dateObject, strictID, nightsChosen)}
                     />)
-
-                
-                // } // this checks that its the same month and year and that the nightsChosen
-                // else if (daySelectedDate <= dateObject && nightsChosen > 0 && equateFalseOrTrueFromDates(daySelectedDate, dateObject)) {
-                //     nightsChosen -= 1
-                //     var daySelectedColour = configureColourForSelectedDays(nightsChosen)
                     
-                //     days.push(<CalendarDay key={i} 
-                //         bookingsAmount={number} 
-                //         date={dateObject} 
-                //         openBookingBox={openBookingBox} 
-                //         id={strictID} 
-                //         configureDaySelected={configureDaySelected} 
-                //         colour={daySelectedColour}
-                //         />)
-                // }
-                // else { // otherwise all the colours stay the same
-                // days.push(<CalendarDay key={i} 
-                //     bookingsAmount={number} 
-                //     date={dateObject} 
-                //     openBookingBox={openBookingBox} 
-                //     id={strictID} 
-                //     configureDaySelected={configureDaySelected} 
-                //     colour='#fff'
-                //     />)
-                // }
-                
+                if (daySelectedDate <= dateObject && nightsChosen > 0 && equateFalseOrTrueFromDates(dateObject)) {
+                    nightsChosen -= 1
+                }
             }
             if (i  === months[monthNum].days && daysOfWeek[dateObject.getDay()] !== 'Saturday' ) {
                 days.push(fillInBlankDaysEnd(year, month, dateObject))
 
             }
-            
         }
-
         setDaysInMonth(days)
     }
 
@@ -126,20 +95,15 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
     }
 
     const configureColourForSelectedDays = (dtOb, stID, ngCh) => {
-        // console.log(amountOfNightsStaying)
-        var colourDate = {}
-
         if (stID === daySelectedID) {
             return '#006600'
         }
         else if (daySelectedDate <= dtOb && ngCh > 0 && equateFalseOrTrueFromDates(dtOb)) {
-            // setExtraNights(extraNights - 1)
-            // ngCh -= 1
-            if (ngCh != 0) {
+
+            if (ngCh != 1) {
                 return '#ff00ff'
             } return '#006600'
         } else return '#fff'
-        
     }
 
     const getBookingForDay = (date) => {
