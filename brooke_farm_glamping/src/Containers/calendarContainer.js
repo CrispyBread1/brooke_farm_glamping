@@ -24,6 +24,7 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
 
     useEffect(() => { // Renders when bookings have come through
         fillDaysInMonth()
+        // configureDatesWantingToStay()
         // setExtraNights(amountOfNightsStaying)
         
     }, [bookings, monthNum, daySelectedID, amountOfNightsStaying])
@@ -38,7 +39,18 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
         }  
     }
 
-    
+    const configureDatesWantingToStay = () => {
+        var nightsLookingAtStaying = []
+        if (daySelectedDate) {
+        for (let k = 0; k <= amountOfNightsStaying; k++) {
+            var dayConfiguring = new Date((daySelectedDate.getFullYear()), (daySelectedDate.getMonth()), (daySelectedDate.getDate() + k))
+            nightsLookingAtStaying.push(dayConfiguring.getDate() + months[dayConfiguring.getMonth()].month + dayConfiguring.getFullYear())
+        }
+    }
+        // console.log(nightsLookingAtStaying)
+        return nightsLookingAtStaying
+        // setExtraNights(nightsLookingAtStaying)
+    }
 
 
     const fillDaysInMonth = () => {
@@ -46,7 +58,8 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
         let days = []
         // adding one here because asyncrhonouse seems to take one away before colour is chosen
         var nightsChosen = (amountOfNightsStaying + 1) 
-
+        var nightsChosenID = configureDatesWantingToStay()
+        // console.log(nightsChosenID)
         for (let i = 1; i <= months[monthNum].days; i++) {
             var date = ((i) + ':' + (monthNum + 1) + ':' + dateWork.getFullYear()) // the date the loop is working on in thius itteration
             var year = yearNum
@@ -73,37 +86,51 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
                     openBookingBox={openBookingBox} 
                     id={strictID} 
                     configureDaySelected={configureDaySelected} 
-                    colour={configureColourForSelectedDays(dateObject, strictID, nightsChosen)}
+                    colour={configureColourForSelectedDays(dateObject, strictID, nightsChosen, nightsChosenID)}
                     />)
                     
                 if (daySelectedDate <= dateObject && nightsChosen > 0 && equateFalseOrTrueFromDates(dateObject)) {
+                    // console.log(nightsChosen)
                     nightsChosen -= 1
                 }
             }
             if (i  === months[monthNum].days && daysOfWeek[dateObject.getDay()] !== 'Saturday' ) {
                 days.push(fillInBlankDaysEnd(year, month, dateObject))
-
             }
         }
         setDaysInMonth(days)
     }
 
-    const equateFalseOrTrueFromDates = ( dayForLoopWorking) => {
+    const equateFalseOrTrueFromDates = (dayForLoopWorking) => {
         if (daySelectedDate) {
         return (daySelectedDate.getMonth() === dayForLoopWorking.getMonth() && daySelectedDate.getFullYear() === dayForLoopWorking.getFullYear())
         }
     }
 
-    const configureColourForSelectedDays = (dtOb, stID, ngCh) => {
+    const configureColourForSelectedDays = (dtOb, stID, ngCh, ngChID) => {
+        console.log(ngChID.length)
         if (stID === daySelectedID) {
             return '#006600'
         }
-        else if (daySelectedDate <= dtOb && ngCh > 0 && equateFalseOrTrueFromDates(dtOb)) {
+        for (let h = 0; h <= ngChID.length; h++) {
+            console.log("nightsChosenID:" + ngChID[h] + " strictID:" + stID)
+            if (ngChID[h] === stID) {
+                if (daySelectedDate <= dtOb && ngCh > 0 && equateFalseOrTrueFromDates(dtOb)) {
+                    if (ngCh != 1) {
+                        return '#ff00ff'
+                    } return '#006600'
+                } else return '#fff'
+            }
+        }
 
-            if (ngCh != 1) {
-                return '#ff00ff'
-            } return '#006600'
-        } else return '#fff'
+        
+    }
+
+    const checkMonthIsntSame = (tok1) => {
+        
+        return daySelectedDate.getMonth() > (tok1.getMonth() + amountOfNightsStaying)
+
+        
     }
 
     const getBookingForDay = (date) => {
