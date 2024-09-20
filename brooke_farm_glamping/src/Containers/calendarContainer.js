@@ -19,14 +19,10 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
     const [daySelectedDate, setDaySelectedDate] = useState(null)
     const [extraNights, setExtraNights] = useState(null)
     
-    // var export
     
 
     useEffect(() => { // Renders when bookings have come through
         fillDaysInMonth()
-        // configureDatesWantingToStay()
-        // setExtraNights(amountOfNightsStaying)
-        
     }, [bookings, monthNum, daySelectedID, amountOfNightsStaying])
 
 
@@ -44,22 +40,18 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
         if (daySelectedDate) {
         for (let k = 0; k <= amountOfNightsStaying; k++) {
             var dayConfiguring = new Date((daySelectedDate.getFullYear()), (daySelectedDate.getMonth()), (daySelectedDate.getDate() + k))
+            // This creates and then pushes the daysID to an array
             nightsLookingAtStaying.push(dayConfiguring.getDate() + months[dayConfiguring.getMonth()].month + dayConfiguring.getFullYear())
         }
     }
-        // console.log(nightsLookingAtStaying)
         return nightsLookingAtStaying
-        // setExtraNights(nightsLookingAtStaying)
     }
 
 
     const fillDaysInMonth = () => {
         const dateWork = new Date()
         let days = []
-        // adding one here because asyncrhonouse seems to take one away before colour is chosen
-        var nightsChosen = (amountOfNightsStaying + 1) 
-        // var nightsChosenID = configureDatesWantingToStay()
-        // console.log(nightsChosenID)
+        // adding one here because asyncrhonouse seems to take one away before colour is chosen        
         for (let i = 1; i <= months[monthNum].days; i++) {
             var date = ((i) + ':' + (monthNum + 1) + ':' + dateWork.getFullYear()) // the date the loop is working on in thius itteration
             var year = yearNum
@@ -78,21 +70,17 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
                     id={i}/>)
             }
             else if (dateObject >= dateWork) {
+                // this creates a strict id, might be worth making a seperate fucntion for this but will is fine for now
                 var strictID = (i + months[dateObject.getMonth()].month + dateObject.getFullYear())
-
+                // cleaned this up so that the colour is decided in a sperate function so this is smaller
                 days.push(<CalendarDay key={i} 
                     bookingsAmount={number} 
                     date={dateObject} 
                     openBookingBox={openBookingBox} 
                     id={strictID} 
                     configureDaySelected={configureDaySelected} 
-                    colour={configureColourForSelectedDays(dateObject, strictID, nightsChosen)}
+                    colour={configureColourForSelectedDays(strictID)}
                     />)
-                    
-                // if (daySelectedDate <= dateObject && nightsChosen > 0 && equateFalseOrTrueFromDates(dateObject)) {
-                    // console.log(nightsChosen)
-                    // nightsChosen -= 1
-                // }
             }
             if (i  === months[monthNum].days && daysOfWeek[dateObject.getDay()] !== 'Saturday' ) {
                 days.push(fillInBlankDaysEnd(year, month, dateObject))
@@ -101,40 +89,21 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
         setDaysInMonth(days)
     }
 
-    const equateFalseOrTrueFromDates = (dayForLoopWorking) => {
-        if (daySelectedDate) {
-        return (daySelectedDate.getMonth() === dayForLoopWorking.getMonth() && daySelectedDate.getFullYear() === dayForLoopWorking.getFullYear())
-        }
-    }
-
-    const configureColourForSelectedDays = (dtOb, stID, ngCh) => {
+    const configureColourForSelectedDays = (stID) => {
         
         if (daySelectedID) {
-            // console.log(nightsId.length)
-            var nightsId = configureDatesWantingToStay()
+            var nightsId = configureDatesWantingToStay() // creates an array of the nights wanting to stay id's
             if (stID === daySelectedID) {
                 return '#006600'
-            }
+            } // Loops through and checks as this is more secur don't need the write montha nd year check anymore
             for (let h = 0; h <= nightsId.length; h++) {
-                // console.log("nightsChosenID:" + nightsId[h] + " strictID:" + stID)
-                if (nightsId[h] === stID) {
-                    // if (daySelectedDate <= dtOb && ngCh > 0 && equateFalseOrTrueFromDates(dtOb)) {
+                if (nightsId[h] === stID) { 
                         if ((h + 1) === nightsId.length) {
-                            console.log("h:" + h + " nightsIdlength:" + nightsId.length)
                             return '#006600'
                         } return '#ff00ff'
-                    // }
                 }
             }
-
         } return '#fff'
-    }
-
-    const checkMonthIsntSame = (tok1) => {
-        
-        return daySelectedDate.getMonth() > (tok1.getMonth() + amountOfNightsStaying)
-
-        
     }
 
     const getBookingForDay = (date) => {
