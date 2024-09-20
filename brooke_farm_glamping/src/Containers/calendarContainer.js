@@ -160,7 +160,6 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
 
 
     const nextMonth = () => {
-        console.log(configureDatesWantingToStay())
         if (monthNum === 11) {
             setMonthNum(0)
             setYearNum(yearNum + 1)

@@ -32,6 +32,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
     const [multipleCampingSpots, setMultipleCampingSpots] = useState(false)
     const [campingSpotsNeeded, setCampingSpotsNeeded] = useState(1)
 
+    const [pricesArrayPerNightPerSpot, setPricesArrayPerNightPerSpot] = useState([])
     const [costOfStay, setCostOfStay] = useState(0)
 
 
@@ -43,6 +44,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
 
     useEffect(() => {
         handleCostOfStayCalculation()
+        configureAmountOfCampingPitchesPrice()
 
     }, [nights, campingPitchChoice, firePit, peopleAmount])  
 
@@ -222,7 +224,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                         key={`input-${j}`}
                     /> 
                         {campingFacilities[j].name} -   
-                        £{configurePriceDependingOnDays(campingFacilities[j].price)}  {multipleCampingSpots && `x ${campingSpotsNeeded} Required`}
+                        £{campingFacilities[j].price}  {multipleCampingSpots && `x ${campingSpotsNeeded} Required`} 
                     {/* This is where the name of the facisilites will come through for the input label */}
                     </div>
 
@@ -353,6 +355,16 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
         } 
     }
 
+    const configureAmountOfCampingPitchesPrice = () => {
+        var pricesArray = []
+        if (campingPitchChoice) {
+            for (let i = 0; i < campingSpotsNeeded; i++) {
+                pricesArray.push(<li key={i}> {campingPitchChoice.name} x {nights} Nights = £{configurePriceDependingOnDays(campingPitchChoice.price)} </li>)
+            }
+        setPricesArrayPerNightPerSpot(pricesArray)
+        }
+    }
+
 
 
      // Functions to control submitting the form and booking *------------- *------------- *-------------
@@ -364,12 +376,12 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
         }
 
         var booking = {
-            'datesStaying': datesStaying,
-            'campingSite': campingPitchChoice,
-            'adults': peopleAmount,
+            'datesStaying': datesStaying, //cost
+            'campingSite': campingPitchChoice, 
+            'adults': peopleAmount, // cost
             'children': childrenAmount,
             'dogs': dogAmount,
-            'firePit': firePit,
+            'firePit': firePit, //cost
             'gazebo': gazeboAmount,
             'additionCars': additionalCarAmount
         }
@@ -573,6 +585,27 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 <button id="add-gazebo" onClick={addAdditionalCar} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
                 <br></br> 
                 </div>}
+                </div>
+
+
+
+                {/* Sumarry box of prices *------------- *------------- *-------------*/}
+                <div id="price-guide">
+                    {
+                        campingPitchChoice &&
+                        (<>
+                        <h3>Price guide:</h3>
+                        <ul id="price-guide-list">
+                        {campingSpotsNeeded > 1 && <b><li className="ui-label">{campingSpotsNeeded} Camping spots are needed for your party size</li></b>}  
+                            {pricesArrayPerNightPerSpot}
+                            {/* <li> {campingPitchChoice.name} x {nights} Nights = {configurePriceDependingOnDays(campingPitchChoice.price)} </li>  8 campspot x Nights */}
+                            
+                            {}    {/* Firepits */}
+                        </ul>
+                        
+                        </>
+                        )
+                    }
                 </div>
 
 
