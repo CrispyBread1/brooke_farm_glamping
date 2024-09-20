@@ -35,6 +35,8 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
     const [pricesArrayPerNightPerSpot, setPricesArrayPerNightPerSpot] = useState([])
     const [costOfStay, setCostOfStay] = useState(0)
 
+    const [triedToSubmitWithoutCampsite, setTriedToSubmitWithoutCampsite] = useState(false)
+
 
 
     useEffect(() => {
@@ -241,8 +243,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
      // Functions to control camping options *------------- *------------- *-------------
     const handleCampingOption = (tok1) => {
         setCampingPitchChoice(tok1)
-        // console.log(tok1)
-        // handleCostOfStayCalculation(tok1.price)
+        setTriedToSubmitWithoutCampsite(false)
     }
 
 
@@ -342,7 +343,6 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
 
      // Functions to control cost of the stay *------------- *------------- *-------------
      const handleCostOfStayCalculation = () => {
-        // var priceOfNights = 0
         if (campingPitchChoice) {
             var priceOfNights = 0
             priceOfNights += configurePriceDependingOnDays(campingPitchChoice.price)
@@ -375,24 +375,26 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
      // Functions to control submitting the form and booking *------------- *------------- *-------------
     const handleFormSubmit = (evt) => {
         evt.preventDefault();
-        moveToConfirmBooking();
         if(!datesStaying) {
             createDateNightISOSStringArray()
         }
 
         var booking = {
-            'datesStaying': datesStaying, //cost
-            'campingSite': campingPitchChoice, 
-            'adults': peopleAmount, // cost
+            'datesStaying': datesStaying, //mandatory
+            'campingSite': campingPitchChoice, //mandatory
+            'adults': peopleAmount, //mandatory
             'children': childrenAmount,
             'dogs': dogAmount,
-            'firePit': firePit, //cost
+            'firePit': firePit, 
             'gazebo': gazeboAmount,
             'additionCars': additionalCarAmount
         }
 
         fillBookingInformation(booking)
-
+        if (campingPitchChoice) {
+            moveToConfirmBooking()
+            setTriedToSubmitWithoutCampsite(false)
+        } else setTriedToSubmitWithoutCampsite(true)
     
     }
 
@@ -465,6 +467,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                 <div id="camping-option">
                 <fieldset>
                 <legend>Select camping option: </legend>
+                {triedToSubmitWithoutCampsite && <label className="error-camping-choice"> Please make a camping pitch choice</label>}
                     {campingChoice}
                 </fieldset>
                 </div>
@@ -601,11 +604,8 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
                         (<>
                         <h3>Price guide:</h3>
                         <ul id="price-guide-list">
-                        {campingSpotsNeeded > 1 && <b><li className="ui-label">{campingSpotsNeeded} Camping spots are needed for your party size</li></b>}  
+                            {campingSpotsNeeded > 1 && <b><li className="ui-label">{campingSpotsNeeded} Camping spots are needed for your party size</li></b>}  
                             {pricesArrayPerNightPerSpot}
-                            {/* <li> {campingPitchChoice.name} x {nights} Nights = {configurePriceDependingOnDays(campingPitchChoice.price)} </li>  8 campspot x Nights */}
-                            
-                            {}    {/* Firepits */}
                         </ul>
                         
                         </>

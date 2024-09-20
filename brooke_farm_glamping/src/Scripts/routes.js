@@ -46,7 +46,7 @@ export const Paths = () => {
                     {/* <LogInPage/> */}
                 </Route>
 
-                <Route exact path="/book/confirm-booking" element={<ConfirmBookingPage user={user}/> }>
+                <Route exact path="/book/confirm-booking" element={<ConfirmBookingPage user={user} bookingInformation={bookingInformation}/> }>
 
                 </Route>
 

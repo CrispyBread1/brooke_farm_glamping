@@ -83,4 +83,9 @@
 
 .ui-label {
     list-style-type: none;
-  }
+}
+
+.error-camping-choice {
+    color: red;
+}
+
