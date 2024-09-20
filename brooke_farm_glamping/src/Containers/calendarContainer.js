@@ -58,7 +58,7 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
         let days = []
         // adding one here because asyncrhonouse seems to take one away before colour is chosen
         var nightsChosen = (amountOfNightsStaying + 1) 
-        var nightsChosenID = configureDatesWantingToStay()
+        // var nightsChosenID = configureDatesWantingToStay()
         // console.log(nightsChosenID)
         for (let i = 1; i <= months[monthNum].days; i++) {
             var date = ((i) + ':' + (monthNum + 1) + ':' + dateWork.getFullYear()) // the date the loop is working on in thius itteration
@@ -86,13 +86,13 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
                     openBookingBox={openBookingBox} 
                     id={strictID} 
                     configureDaySelected={configureDaySelected} 
-                    colour={configureColourForSelectedDays(dateObject, strictID, nightsChosen, nightsChosenID)}
+                    colour={configureColourForSelectedDays(dateObject, strictID, nightsChosen)}
                     />)
                     
-                if (daySelectedDate <= dateObject && nightsChosen > 0 && equateFalseOrTrueFromDates(dateObject)) {
+                // if (daySelectedDate <= dateObject && nightsChosen > 0 && equateFalseOrTrueFromDates(dateObject)) {
                     // console.log(nightsChosen)
                     nightsChosen -= 1
-                }
+                // }
             }
             if (i  === months[monthNum].days && daysOfWeek[dateObject.getDay()] !== 'Saturday' ) {
                 days.push(fillInBlankDaysEnd(year, month, dateObject))
@@ -107,23 +107,26 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
         }
     }
 
-    const configureColourForSelectedDays = (dtOb, stID, ngCh, ngChID) => {
-        console.log(ngChID.length)
-        if (stID === daySelectedID) {
-            return '#006600'
-        }
-        for (let h = 0; h <= ngChID.length; h++) {
-            console.log("nightsChosenID:" + ngChID[h] + " strictID:" + stID)
-            if (ngChID[h] === stID) {
-                if (daySelectedDate <= dtOb && ngCh > 0 && equateFalseOrTrueFromDates(dtOb)) {
-                    if (ngCh != 1) {
-                        return '#ff00ff'
-                    } return '#006600'
-                } else return '#fff'
-            }
-        }
-
+    const configureColourForSelectedDays = (dtOb, stID, ngCh) => {
         
+        if (daySelectedID) {
+            // console.log(nightsId.length)
+            var nightsId = configureDatesWantingToStay()
+            if (stID === daySelectedID) {
+                return '#006600'
+            }
+            for (let h = 0; h <= nightsId.length; h++) {
+                // console.log("nightsChosenID:" + nightsId[h] + " strictID:" + stID)
+                if (nightsId[h] === stID) {
+                    // if (daySelectedDate <= dtOb && ngCh > 0 && equateFalseOrTrueFromDates(dtOb)) {
+                        if (ngCh != 1) {
+                            return '#ff00ff'
+                        } return '#006600'
+                    // }
+                }
+            }
+
+        } return '#fff'
     }
 
     const checkMonthIsntSame = (tok1) => {
@@ -187,6 +190,7 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
 
 
     const nextMonth = () => {
+        console.log(configureDatesWantingToStay())
         if (monthNum === 11) {
             setMonthNum(0)
             setYearNum(yearNum + 1)
