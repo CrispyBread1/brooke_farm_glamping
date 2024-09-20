@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useHistory } from 'react';
 import HomePage from './Containers/homePage';
 import BookingPage from './Containers/bookingPage';
 import LogInPage from './Containers/logInPage';
@@ -21,13 +21,16 @@ function App({}) {
   const [logInImage, setLogInImage] = useState(logInButton)
   const [user, setUser] = useState({})
   const [hovering, setHovering] = useState(false)
+  const [bookingInformation, setBookingInformation] = useState(null)
+
+  const history = useHistory();
 
   let intervalId;
   
-
-  // const checkLoggedIn = () => {
-  //   console.log(user)
-  // }
+  useEffect(() => {
+    
+    console.log(bookingInformation)
+  }, [bookingInformation])
 
   const changeHomePage = () => {
     setHome(true);
@@ -73,8 +76,17 @@ function App({}) {
     setUser(user)
   }
 
+  const fillBookingInformation = (booking) => {
+    // console.log(booking)
+    if (!bookingInformation) {
+        setBookingInformation(booking)
+        const serializedObject = encodeURIComponent(JSON.stringify(bookingInformation));
+        history.push(`/details?data=${serializedObject}`);
+    }
+}
+
   return (
-    <Paths/>
+    <Paths fillBookingInformation={fillBookingInformation} bookingInformation={bookingInformation}/>
     
     
   );

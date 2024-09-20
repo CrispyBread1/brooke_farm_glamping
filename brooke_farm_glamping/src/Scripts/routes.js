@@ -3,29 +3,27 @@ import HomePage from '../Containers/homePage';
 import BookingPage from "../Containers/bookingPage";
 import LogInPage from "../Containers/logInPage";
 import NavBar from "../Containers/navBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ConfirmBookingPage from "../Containers/confirmBookingPage";
 
-export const Paths = () => {
+export const Paths = ({fillBookingInformation, bookingInformation}) => {
 
     const [user, setUser] = useState(null)
-    const [bookingInformation, setBookingInformation] = useState(null)
     
+    
+    // useEffect(() => {
+    //     console.log(bookingInformation)
+    // }, [bookingInformation])
 
     const userSignedIn = (userObj) => {
         setUser(userObj)
-        
-        
     }
 
     const userSignedOut = () => {
         setUser(null)
     }
 
-    const fillBookingInformation = (booking) => {
-        console.log(booking)
-        setBookingInformation(booking)
-    }
+    
 
     return (
         <Router>
