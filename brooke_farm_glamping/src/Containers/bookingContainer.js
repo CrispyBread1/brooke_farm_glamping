@@ -359,7 +359,12 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
         var pricesArray = []
         if (campingPitchChoice) {
             for (let i = 0; i < campingSpotsNeeded; i++) {
-                pricesArray.push(<li key={i}> {campingPitchChoice.name} x {nights} Nights = £{configurePriceDependingOnDays(campingPitchChoice.price)} </li>)
+                pricesArray.push(
+                    <div key={i + "camping-choice-div"}>
+                    <li key={i + "camping-choice"}> {campingPitchChoice.name} x {nights} Nights = £{configurePriceDependingOnDays(campingPitchChoice.price)} </li>
+                    {firePit && <li key={i + "firepit"}>£10 per night, per pitch</li>}
+                    </div >
+                )
             }
         setPricesArrayPerNightPerSpot(pricesArray)
         }
