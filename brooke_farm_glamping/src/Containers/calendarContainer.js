@@ -91,7 +91,7 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
                     
                 // if (daySelectedDate <= dateObject && nightsChosen > 0 && equateFalseOrTrueFromDates(dateObject)) {
                     // console.log(nightsChosen)
-                    nightsChosen -= 1
+                    // nightsChosen -= 1
                 // }
             }
             if (i  === months[monthNum].days && daysOfWeek[dateObject.getDay()] !== 'Saturday' ) {
@@ -119,9 +119,10 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
                 // console.log("nightsChosenID:" + nightsId[h] + " strictID:" + stID)
                 if (nightsId[h] === stID) {
                     // if (daySelectedDate <= dtOb && ngCh > 0 && equateFalseOrTrueFromDates(dtOb)) {
-                        if (ngCh != 1) {
-                            return '#ff00ff'
-                        } return '#006600'
+                        if ((h + 1) === nightsId.length) {
+                            console.log("h:" + h + " nightsIdlength:" + nightsId.length)
+                            return '#006600'
+                        } return '#ff00ff'
                     // }
                 }
             }
