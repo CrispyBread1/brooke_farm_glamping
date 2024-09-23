@@ -26,8 +26,9 @@ const ConfirmBookingPage = ({user, months, daysOfWeek, nthNumber}) => {
     
 
     useEffect(() => {
-        
-        manageDates()
+        if (location.state) {
+            manageDates()
+        }
 
     }, [bookingInfo])
 
@@ -59,14 +60,17 @@ const ConfirmBookingPage = ({user, months, daysOfWeek, nthNumber}) => {
 
     return (
         <>
+            {bookingInfo && 
+            <div>
             <h1>{datesStaying}</h1>
-            {bookingInfo && <ul> 
+            <ul> 
                 <li>People staying: {bookingInfo.adults} </li>
                 <li>Camping pitch choice: {bookingInfo.campingSite.name} </li>
                 {bookingInfo && <li>{bookingInfo.adults} </li>}
                 {bookingInfo && <li>{bookingInfo.adults} </li>}
                 
-            </ul>}
+            </ul>
+            </div>}
         </>
     )
 }
