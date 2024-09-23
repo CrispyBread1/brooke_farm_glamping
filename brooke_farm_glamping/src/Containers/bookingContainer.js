@@ -17,7 +17,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, rel
     const [childrenAmount, setChildrenAmount] = useState(0)
 
     const [dog, setDog] = useState(false)
-    const [dogAmount, setDogAmount] = useState(1)
+    const [dogAmount, setDogAmount] = useState(0)
 
     const [firePit, setFirePit] = useState(false)
     const [firePitCost, setFirePitCost] = useState(10)
@@ -136,38 +136,11 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, rel
     }
 
     const createDateNightISOSStringArray = () => {
-        var nightsArray = []
-        if (dateObject){
-        var chosenFirstNight = dateObject.getDate()
-        var chosenFirstMonth = dateObject.getMonth()
-        var chosenFirstYear = dateObject.getFullYear()
-        // console.log(new Date().getFullYear())
-        for (var i = 0; i < nights; i++) {
-
-            // If night bleeds over the next month 
-            if(months[dateObject.getMonth()].days < (dateObject.getDate() + i) && !((chosenFirstMonth + 1) >= 12)) {
-                // new Date sorted by new Date(Year, Month, Day)
-                var nightStaying = new Date(chosenFirstYear, (chosenFirstMonth + 1), ((chosenFirstNight + i) - months[dateObject.getMonth()].days))
-                nightsArray.push(nightStaying.toISOString())
-            } 
-
-            // If night bleeds over the next month and the next year
-            else if(months[dateObject.getMonth()].days < (dateObject.getDate() + i) && (chosenFirstMonth + 1) >= 12) {
-                // new Date sorted by new Date(Year, Month, Day)
-                var nightStaying = new Date((chosenFirstYear + 1), ((chosenFirstMonth) - chosenFirstMonth), ((chosenFirstNight + i) - months[dateObject.getMonth()].days))
-                nightsArray.push(nightStaying.toISOString())
-            }
-
-            // If nights doesn't bleed over to any month or year
-            else {
-                // new Date sorted by new Date(Year, Month, Day)
-                var nightStaying = new Date(chosenFirstYear,(chosenFirstMonth), (chosenFirstNight + i));
-                nightsArray.push(nightStaying.toISOString())
-
-            }
+        var dateArray = []
+        for (let i = 0; i < nights; i++) {
+            dateArray.push(new Date(dateObject.getFullYear(), dateObject.getMonth(), (dateObject.getDate()+ i)))
         }
-        setDateStaying(nightsArray)
-    }
+        setDateStaying(dateArray)
     }
 
     const checkDatesArray = () => {
@@ -382,12 +355,14 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, rel
         var booking = {
             'datesStaying': datesStaying, //mandatory
             'campingSite': campingPitchChoice, //mandatory
+            'campingSiteAmount': multipleCampingSpots, //mandatory
             'adults': peopleAmount, //mandatory
             'children': childrenAmount,
             'dogs': dogAmount,
             'firePit': firePit, 
             'gazebo': gazeboAmount,
-            'additionCars': additionalCarAmount
+            'additionCars': additionalCarAmount,
+            'cost': costOfStay
         }
 
         // fillBookingInformation(booking)
