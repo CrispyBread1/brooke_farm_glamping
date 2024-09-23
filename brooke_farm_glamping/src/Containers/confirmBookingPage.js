@@ -1,27 +1,30 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, redirect, useNavigate } from "react-router-dom";
 
 
 
 
 const ConfirmBookingPage = ({user}) => {
+
     const location = useLocation()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        // console.log(location.state)
+        checkState()
+        // loader()
+    }, [])
+    
+    const checkState = () => {
+        if (!location.state){
+            navigate("/");
+        }
+    }
+
+    
 
     const [bookingInfo, setBookingInfo] = useState(location.state)
-    
-    
-    // var booking = ()
-    // useEffect(() => {
-        
-    //     console.log(booking)
-    //     const queryParams = new URLSearchParams(location.search);
-    //     const data = queryParams.get("data");
-  
-    // // Parse the JSON string back into an object
-    //     setBookingInfo(data ? JSON.parse(decodeURIComponent(data)) : {})
-  
-    // }, [])
 
     
 
