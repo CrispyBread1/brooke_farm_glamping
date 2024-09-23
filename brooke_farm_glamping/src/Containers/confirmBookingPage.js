@@ -5,7 +5,7 @@ import { useLocation, redirect, useNavigate } from "react-router-dom";
 
 
 
-const ConfirmBookingPage = ({}) => {
+const ConfirmBookingPage = ({user, months, daysOfWeek, nthNumber}) => {
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -34,8 +34,9 @@ const ConfirmBookingPage = ({}) => {
     const manageDates = () => {
         // console.log(bookingInfo.datesStaying)
         var arrivalDate = bookingInfo.datesStaying[0]
-        console.log(arrivalDate)
-        // setDatesStaying(arrivalDate.getDate() + bookingInfo.datesStaying[bookingInfo.datesStaying.length].getDate())
+        var leavingDate = bookingInfo.datesStaying[(bookingInfo.datesStaying.length - 1)]
+        // console.log(arrivalDate)
+        setDatesStaying(months[arrivalDate.getMonth()].month + " " + arrivalDate.getDate() + nthNumber(arrivalDate.getDate()) + " - until - " + months[leavingDate.getMonth()].month + " " + leavingDate.getDate() + nthNumber(arrivalDate.getDate()))
     }
 
     // ar booking = {
@@ -58,7 +59,6 @@ const ConfirmBookingPage = ({}) => {
 
     return (
         <>
-            <p>i am going to confirm your booking here slag</p>
             <h1>{datesStaying}</h1>
             {bookingInfo && <ul> 
                 <li>People staying: {bookingInfo.adults} </li>
