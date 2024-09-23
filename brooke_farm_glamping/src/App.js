@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState, useHistory } from 'react';
+import React, { useEffect, useState} from 'react';
 import HomePage from './Containers/homePage';
 import BookingPage from './Containers/bookingPage';
 import LogInPage from './Containers/logInPage';
@@ -7,7 +7,7 @@ import { addBooking, editBooking, retreiveBooking, cancelBooking} from './Script
 import { logInEmailPassword, registerNewAccountEmailPassword, logOut, monitorAuthState } from './Scripts/authenicationControls';
 import headerImage from './JPGs/BrookFarmGlampinglogo.png'
 import logInButton from './JPGs/LoginButton/LogIn.png'
-import {Link, BrowserRouter} from'react-router-dom'
+import {Link, BrowserRouter, useLocation} from'react-router-dom'
 import { Paths } from './Scripts/routes';
 import NavBar from './Containers/navBar'
 
@@ -16,39 +16,18 @@ import NavBar from './Containers/navBar'
 function App({}) {
 
   const [home, setHome] = useState(true)
-  const [booking, setBooking] = useState(false)
+  const [booking, setBooking] = useState(null)
   const [logIn, setLogIn] = useState(false)
   const [logInImage, setLogInImage] = useState(logInButton)
   const [user, setUser] = useState({})
   const [hovering, setHovering] = useState(false)
   const [bookingInformation, setBookingInformation] = useState(null)
 
-  const history = useHistory();
+  // const history = useHistory();
 
-  let intervalId;
   
-  useEffect(() => {
-    
-    console.log(bookingInformation)
-  }, [bookingInformation])
 
-  const changeHomePage = () => {
-    setHome(true);
-    setBooking(false);
-    setLogIn(false);
-  }
-
-  const changeBookingPage = () => {
-    setHome(false);
-    setBooking(true);
-    setLogIn(false);
-  }
-
-  const changeLogInPage = () => {
-    setHome(false);
-    setBooking(false);
-    setLogIn(true);
-  }
+ 
 
   
   
@@ -76,17 +55,17 @@ function App({}) {
     setUser(user)
   }
 
-  const fillBookingInformation = (booking) => {
-    // console.log(booking)
-    if (!bookingInformation) {
-        setBookingInformation(booking)
-        const serializedObject = encodeURIComponent(JSON.stringify(bookingInformation));
-        history.push(`/details?data=${serializedObject}`);
-    }
-}
+  // const fillBookingInformation = (booking) => {
+  //   // console.log(booking)
+  //   if (!bookingInformation) {
+  //       setBookingInformation(booking)
+  //       const serializedObject = encodeURIComponent(JSON.stringify(bookingInformation));
+  //       history.push(`/details?data=${serializedObject}`);
+  //   }
+// }
 
   return (
-    <Paths fillBookingInformation={fillBookingInformation} bookingInformation={bookingInformation}/>
+    <Paths/>
     
     
   );

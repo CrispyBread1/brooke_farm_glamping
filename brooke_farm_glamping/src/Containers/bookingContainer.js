@@ -4,7 +4,7 @@ import './bookingContainer.css'
 import { useNavigate } from "react-router-dom";
 
 
-const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fillBookingInformation, relayAmountOfNightsStaying}) => {
+const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, relayAmountOfNightsStaying}) => {
 
     const navigate = useNavigate();
 
@@ -390,9 +390,9 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
             'additionCars': additionalCarAmount
         }
 
-        fillBookingInformation(booking)
+        // fillBookingInformation(booking)
         if (campingPitchChoice) {
-            moveToConfirmBooking()
+            moveToConfirmBooking(booking)
             setTriedToSubmitWithoutCampsite(false)
         } else setTriedToSubmitWithoutCampsite(true)
     
@@ -401,9 +401,9 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, fil
     
 
     
-    const moveToConfirmBooking = () => {
+    const moveToConfirmBooking = (booking) => {
         setTimeout(() => {
-            navigate('/book/confirm-booking')
+            navigate('/book/confirm-booking', {state: booking})
             }, 1000)
     } 
         
