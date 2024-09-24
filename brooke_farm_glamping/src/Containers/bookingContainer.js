@@ -51,7 +51,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, rel
     }, [nights, campingPitchChoice, firePit, peopleAmount])  
 
     useEffect(() => {
-        createDateNightISOSStringArray()
+        createDateStaying()
     
     }, [nights, dateObject]);
 
@@ -135,12 +135,14 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, rel
         }
     }
 
-    const createDateNightISOSStringArray = () => {
-        var dateArray = []
-        for (let i = 0; i < nights; i++) {
-            dateArray.push(new Date(dateObject.getFullYear(), dateObject.getMonth(), (dateObject.getDate()+ i)))
+    const createDateStaying = () => {
+        if (dateObject) {
+            var dateArray = []
+            for (let i = 0; i <= nights; i++) {
+                dateArray.push(new Date(dateObject.getFullYear(), dateObject.getMonth(), (dateObject.getDate()+ i)))
+            }
+            setDateStaying(dateArray)
         }
-        setDateStaying(dateArray)
     }
 
     const checkDatesArray = () => {
@@ -349,13 +351,13 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, rel
     const handleFormSubmit = (evt) => {
         evt.preventDefault();
         if(!datesStaying) {
-            createDateNightISOSStringArray()
+            createDateStaying()
         }
 
         var booking = {
             'datesStaying': datesStaying, //mandatory
             'campingSite': campingPitchChoice, //mandatory
-            'campingSiteAmount': multipleCampingSpots, //mandatory
+            'campingSiteAmount': campingSpotsNeeded, //mandatory
             'adults': peopleAmount, //mandatory
             'children': childrenAmount,
             'dogs': dogAmount,

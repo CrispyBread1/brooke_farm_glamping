@@ -26,7 +26,7 @@ const ConfirmBookingPage = ({user, months, daysOfWeek, nthNumber}) => {
     
 
     useEffect(() => {
-        if (location.state) {
+        if (bookingInfo) {
             manageDates()
         }
 
@@ -41,11 +41,11 @@ const ConfirmBookingPage = ({user, months, daysOfWeek, nthNumber}) => {
     }
 
     // ar booking = {
-    //     'datesStaying': datesStaying, //mandatory
-    //     'campingSite': campingPitchChoice, //mandatory
-    //     'campingSiteAmount': multipleCampingSpots, //mandatory
-    //     'adults': peopleAmount, //mandatory
-    //     'children': childrenAmount,
+    //     'datesStaying': datesStaying, //mandatory --
+    //     'campingSite': campingPitchChoice, //mandatory --
+    //     'campingSiteAmount': multipleCampingSpots, //mandatory --
+    //     'adults': peopleAmount, //mandatory --
+    //     'children': childrenAmount, -- 
     //     'dogs': dogAmount,
     //     'firePit': firePit, 
     //     'gazebo': gazeboAmount,
@@ -66,11 +66,19 @@ const ConfirmBookingPage = ({user, months, daysOfWeek, nthNumber}) => {
             <ul> 
                 <li>People staying: {bookingInfo.adults} </li>
                 <li>Camping pitch choice: {bookingInfo.campingSite.name} </li>
-                {bookingInfo && <li>{bookingInfo.adults} </li>}
-                {bookingInfo && <li>{bookingInfo.adults} </li>}
+                {bookingInfo.campingSiteAmount > 1 && <li>Camping pitches needed: {bookingInfo.campingSiteAmount} </li>}
+                {bookingInfo.children > 0 && <li>Kids: {bookingInfo.children} </li>}
+                {bookingInfo.dogs > 0 && <li>Dogs: {bookingInfo.dogs} </li>}
+                {bookingInfo.firePit && <li>Firepit: Selected </li>}
+                {bookingInfo.gazebo > 0 && <li>Gazebo(s): {bookingInfo.gazebo} </li>}
+                {bookingInfo.additionCars > 0 && <li>Additional Cars: {bookingInfo.additionCars} </li>}
+                <li>Cost of Stay: £{bookingInfo.cost} </li>
                 
             </ul>
             </div>}
+
+
+            <button>Continue to payment</button>
         </>
     )
 }
