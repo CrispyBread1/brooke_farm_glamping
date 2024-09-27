@@ -342,6 +342,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, rel
                 )
             }
         setPricesArrayPerNightPerSpot(pricesArray)
+        return pricesArray
         }
     }
 
@@ -364,7 +365,9 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, rel
             'firePit': firePit, 
             'gazebo': gazeboAmount,
             'additionCars': additionalCarAmount,
-            'cost': costOfStay
+            'cost': costOfStay,
+            'priceGuide': JSON.stringify(configureAmountOfCampingPitchesPrice()),
+            'nights': nights
         }
 
         // fillBookingInformation(booking)

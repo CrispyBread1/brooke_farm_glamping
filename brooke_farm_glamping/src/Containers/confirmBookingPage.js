@@ -21,22 +21,37 @@ const ConfirmBookingPage = ({user, months, daysOfWeek, nthNumber}) => {
     }
 
     const [bookingInfo, setBookingInfo] = useState(location.state)
+    const [priceGuide, setPriceGuide] = useState([])
+
     const [datesStaying, setDatesStaying] = useState(null)
     
-    
-
     useEffect(() => {
         if (bookingInfo) {
             manageDates()
+            configureAmountOfCampingPitchesPrice()
         }
 
     }, [bookingInfo])
 
+    const configureAmountOfCampingPitchesPrice = () => {
+        var pricesArray = []
+            for (let i = 0; i < bookingInfo.campingSiteAmount; i++) {
+                pricesArray.push(
+                    <div key={i + "camping-choice-div"}>
+                    <li key={i + "camping-choice"}> {bookingInfo.campingSite.name} x {bookingInfo.nights} Nights = £{configurePriceDependingOnDays(bookingInfo.campingSite.price)} </li>
+                    {bookingInfo.firePit && <li key={i + "firepit"}>£10 per night, per pitch</li>}
+                    </div >
+                )
+            }
+        setPriceGuide(pricesArray)
+    }
+    const configurePriceDependingOnDays = (cost) => {
+        return cost * bookingInfo.nights
+    }
+
     const manageDates = () => {
-        // console.log(bookingInfo.datesStaying)
         var arrivalDate = bookingInfo.datesStaying[0]
         var leavingDate = bookingInfo.datesStaying[(bookingInfo.datesStaying.length - 1)]
-        // console.log(arrivalDate)
         setDatesStaying(months[arrivalDate.getMonth()].month + " " + arrivalDate.getDate() + nthNumber(arrivalDate.getDate()) + " - until - " + months[leavingDate.getMonth()].month + " " + leavingDate.getDate() + nthNumber(arrivalDate.getDate()))
     }
 
@@ -72,6 +87,7 @@ const ConfirmBookingPage = ({user, months, daysOfWeek, nthNumber}) => {
                 {bookingInfo.firePit && <li>Firepit: Selected </li>}
                 {bookingInfo.gazebo > 0 && <li>Gazebo(s): {bookingInfo.gazebo} </li>}
                 {bookingInfo.additionCars > 0 && <li>Additional Cars: {bookingInfo.additionCars} </li>}
+                {priceGuide}
                 <li>Cost of Stay: £{bookingInfo.cost} </li>
                 
             </ul>
