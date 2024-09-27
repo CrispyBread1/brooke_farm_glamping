@@ -87,8 +87,19 @@ const ConfirmBookingPage = ({user, months, daysOfWeek, nthNumber}) => {
                 {bookingInfo.firePit && <li>Firepit: Selected </li>}
                 {bookingInfo.gazebo > 0 && <li>Gazebo(s): {bookingInfo.gazebo} </li>}
                 {bookingInfo.additionCars > 0 && <li>Additional Cars: {bookingInfo.additionCars} </li>}
-                {priceGuide}
-                <li>Cost of Stay: £{bookingInfo.cost} </li>
+
+                <div id="price-guide">
+                    <>
+                        <h3>Price guide:</h3>
+                        <ul id="price-guide-list">
+                            {bookingInfo.campingSiteAmount > 1 && <b><li className="ui-label">{bookingInfo.campingSiteAmount} Camping spots are needed for your party size</li></b>}  
+                            {priceGuide}
+                        </ul>
+                    </>
+                </div>
+
+                <br></br>
+                <h1><li>Cost of Stay: £{bookingInfo.cost} </li></h1>
                 
             </ul>
             </div>}
