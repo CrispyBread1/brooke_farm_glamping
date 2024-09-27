@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useLocation, redirect, useNavigate } from "react-router-dom";
+import { addBooking } from "../Scripts/databaseControls";
+import Booking from "../Classes/booking";
 
 
 
@@ -55,19 +57,31 @@ const ConfirmBookingPage = ({user, months, daysOfWeek, nthNumber}) => {
         setDatesStaying(months[arrivalDate.getMonth()].month + " " + arrivalDate.getDate() + nthNumber(arrivalDate.getDate()) + " - until - " + months[leavingDate.getMonth()].month + " " + leavingDate.getDate() + nthNumber(arrivalDate.getDate()))
     }
 
-    // ar booking = {
-    //     'datesStaying': datesStaying, //mandatory --
-    //     'campingSite': campingPitchChoice, //mandatory --
-    //     'campingSiteAmount': multipleCampingSpots, //mandatory --
-    //     'adults': peopleAmount, //mandatory --
-    //     'children': childrenAmount, -- 
-    //     'dogs': dogAmount,
-    //     'firePit': firePit, 
-    //     'gazebo': gazeboAmount,
-    //     'additionCars': additionalCarAmount,
-    //     'cost': costOfStay
-    // }
-
+    const addNewBooking = async () => {
+        var booking =   new Booking(
+                '1',
+                'Dan',
+                bookingInfo.adults,
+                bookingInfo.campingSite,
+                bookingInfo.datesStaying,
+                bookingInfo.nights,
+                bookingInfo.children,
+                bookingInfo.dogs,
+                bookingInfo.firePit,
+                bookingInfo.gazebo,
+                bookingInfo.additionCars,
+                bookingInfo.cost,
+                'No notes',
+                new Date()
+        )
+        try {
+            const bookingID = addBooking(booking)
+            console.log(bookingID)
+        } catch (error) {
+            console.error('Error adding booking:', error);
+          }
+        
+    }
 
     
 
@@ -105,7 +119,7 @@ const ConfirmBookingPage = ({user, months, daysOfWeek, nthNumber}) => {
             </div>}
 
 
-            <button>Continue to payment</button>
+            <button onClick={addNewBooking}>Continue to payment</button>
         </>
     )
 }

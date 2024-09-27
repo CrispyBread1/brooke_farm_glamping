@@ -366,7 +366,6 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, rel
             'gazebo': gazeboAmount,
             'additionCars': additionalCarAmount,
             'cost': costOfStay,
-            'priceGuide': JSON.stringify(configureAmountOfCampingPitchesPrice()),
             'nights': nights
         }
 
