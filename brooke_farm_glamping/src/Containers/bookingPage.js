@@ -36,7 +36,11 @@ const BookingPage = ({user, months, daysOfWeek, nthNumber}) => {
   const fetchCampingFacilities = async () => {
     try {
       const camps = await retrieveCampingFacilities();
-      setCampingFacilities(camps)
+      const arr = []
+      camps.forEach((doc) => {
+        arr.push(doc.data())
+      });
+      setCampingFacilities(arr)
     } catch (error) {
       console.error('Error fetching campsites:', error);
     }

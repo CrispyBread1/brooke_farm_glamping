@@ -55,18 +55,18 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, rel
     
     }, [nights, dateObject]);
 
-    const clearBookingInformation = () => {
-        // console.log('in clearBookingInformation function')
-        setNights(1)
-        // setAccomodation([])
-        // setPitchesAmount([])
-        // setDate('')
-        setPeopleAmount(1)
-        setChildrenAmount(0)
-        setChildrenAmount(0)
-        // setInfantsAmount(0)
-        setDogAmount(0)
-    }
+    // const clearBookingInformation = () => {
+    //     // console.log('in clearBookingInformation function')
+    //     setNights(1)
+    //     // setAccomodation([])
+    //     // setPitchesAmount([])
+    //     // setDate('')
+    //     setPeopleAmount(1)
+    //     setChildrenAmount(0)
+    //     setChildrenAmount(0)
+    //     // setInfantsAmount(0)
+    //     setDogAmount(0)
+    // }
 
     // const relayAmountOfNightsStaying = 
 
