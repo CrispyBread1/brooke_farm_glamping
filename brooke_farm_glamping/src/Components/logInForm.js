@@ -176,7 +176,7 @@ const LogInForm = ({registerNewAccount, logIn}) => {
                 />}
                 <br></br>
 
-                <button className="register" id="register" display="block" onClick={switchBetweenRegisterLogIn}>Register new account</button>
+                <button className="register" id="register" display="block" type="button" onClick={switchBetweenRegisterLogIn}>Register new account</button>
                 <div
                 id="show-password"
                 value="Show password"

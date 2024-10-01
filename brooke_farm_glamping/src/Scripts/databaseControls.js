@@ -27,15 +27,20 @@ const addBooking = (booking) => {
       Promise.reject(error);
   }
 )}
-  //   const db = getFirestore(app);
-  //   const reference = ref(db, 'bookings/' + userId)
-  
-  //   set(reference, {
-  //     information: booking
-  //     // dateOf: date
 
-  //   })
-  // }
+const addUser = (user) => {
+  return new Promise((resolve, reject) => {
+    const db = getFirestore(app);
+    const docRef = addDoc(collection(db, "users"), user)
+    if (docRef) {
+      resolve(docRef.id);
+    } else {
+      Promise.reject(new Error('No data available'));
+    }
+  }, (error) => {
+      Promise.reject(error);
+  }
+)}
 
   const editBooking = () => {
     return
