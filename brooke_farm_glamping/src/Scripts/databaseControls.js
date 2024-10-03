@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 // import { getDatabase, ref, set, onValue, collection, getDocs, getFirestore } from "firebase/database";
-import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc, setDoc, doc } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAms2TxN-V_0N0q56ERISmsZnzv5RTdnmY",
@@ -17,6 +17,7 @@ const firebaseConfig = {
 const addBooking = (booking) => {
   return new Promise((resolve, reject) => {
     const db = getFirestore(app);
+    
     const docRef = addDoc(collection(db, "bookings"), booking.toFirestore())
     if (docRef) {
       resolve(docRef.id);
@@ -28,10 +29,12 @@ const addBooking = (booking) => {
   }
 )}
 
-const addUser = (user) => {
+const addUser = (user, UID) => {
   return new Promise((resolve, reject) => {
     const db = getFirestore(app);
-    const docRef = addDoc(collection(db, "users"), user)
+    // const docRef = addDoc(collection(db, "users", UID, user.email), user)
+    const docRef = setDoc(doc(db, "users", UID), user);
+    // const docRef = setDoc(collection(db, "users", UID), user);
     if (docRef) {
       resolve(docRef.id);
     } else {
@@ -83,4 +86,4 @@ const cancelBooking = () => {
   return
 }
 
-  export {addBooking, editBooking, retrieveBooking, cancelBooking, retrieveCampingFacilities};
+  export {addBooking, addUser, editBooking, retrieveBooking, cancelBooking, retrieveCampingFacilities};

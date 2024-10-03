@@ -50,6 +50,7 @@ const LogInForm = ({registerNewAccount, logIn}) => {
         evt.preventDefault();
         if (registering){
             registerNewAccount(email, password, fullName, phoneNumber);
+            // addToDatabase()
         } else {
             // logIn();
             logIn(email, password)

@@ -3,6 +3,7 @@ import { useState } from "react";
 import {logInEmailPassword, registerNewAccountEmailPassword, monitorAuthState, logOut, addNamePhoneToUser} from "../Scripts/authenicationControls";
 import LogInForm from "../Components/logInForm";
 import { Navigate, useNavigate } from "react-router-dom";
+import { addUser } from "../Scripts/databaseControls";
 // import { AuthErrorCodes, getAuth } from "firebase/auth";
 
 const LogInPage = ({user, userSignedIn, userSignedOut}) => {
@@ -37,9 +38,15 @@ const LogInPage = ({user, userSignedIn, userSignedOut}) => {
         try {
             await registerNewAccountEmailPassword(email, password)
             .then((res) => {
-                userSignedIn(res)
-                addUserDetail(res, fullName, phone)
-                
+                console.log(res)
+                // userSignedIn(res)
+                // addUserDetail(res, fullName, phone)
+                var user = {
+                    'email': email,
+                    'fullname': fullName,
+                    'phone': phone
+                }
+                addUser(user, res.user.uid)
             })
             
           } catch (error) {
