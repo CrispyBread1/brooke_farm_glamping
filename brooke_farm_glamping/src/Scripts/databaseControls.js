@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 // import { getDatabase, ref, set, onValue, collection, getDocs, getFirestore } from "firebase/database";
-import { getFirestore, collection, getDocs, addDoc, setDoc, doc } from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc, setDoc, doc, getDoc, DocumentReference } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAms2TxN-V_0N0q56ERISmsZnzv5RTdnmY",
@@ -66,6 +66,22 @@ const retrieveBooking = (month) => {
 //   });
 };
 
+const retreiveUser = async (userID) => {
+  // return new Promise((resolve, reject) => {
+    const db = getFirestore(app);
+    const docRef = doc(db, "users", userID);
+    const user = await getDoc(docRef);
+    if (user.exists()) {
+      // console.log("Document data:", docSnap);
+      return (user.data());
+    } else {
+      console.log("No such document!");
+    } 
+  // }, (error) => {
+    // Promise.reject(error);
+}
+// )};
+
 const retrieveCampingFacilities = () => {
   return new Promise((resolve, reject) => {
     const db = getFirestore(app);
@@ -84,4 +100,4 @@ const cancelBooking = () => {
   return
 }
 
-  export {addBooking, addUser, editBooking, retrieveBooking, cancelBooking, retrieveCampingFacilities};
+  export {addBooking, addUser, editBooking, retrieveBooking, cancelBooking, retrieveCampingFacilities, retreiveUser};

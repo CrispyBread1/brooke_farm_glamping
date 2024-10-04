@@ -6,12 +6,13 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { addUser } from "../Scripts/databaseControls";
 // import { AuthErrorCodes, getAuth } from "firebase/auth";
 
-const LogInPage = ({}) => {
+const LogInPage = ({userLoggedIn}) => {
 
     const navigate = useNavigate()
     
 
     const returnHome = () => {
+        userLoggedIn()
         setTimeout(() => {
             navigate('/')
             }, 1000)
@@ -39,6 +40,7 @@ const LogInPage = ({}) => {
                     'phone': phone
                 }
                 addUser(user, res.user.uid)
+                // addUserDetail(res, fullName, phone)
                 returnHome()
             })
             
@@ -47,13 +49,13 @@ const LogInPage = ({}) => {
           }
     }
 
-    const addUserDetail = async (user,  fullName, phone) => {
-        try {
-            await addNamePhoneToUser(user, fullName, phone)
-        } catch (error) {
-            console.error('Error adding name and phone to user ', error);
-          }
-    }
+    // const addUserDetail = async (user,  fullName, phone) => {
+    //     try {
+    //         await addNamePhoneToUser(user, fullName, phone)
+    //     } catch (error) {
+    //         console.error('Error adding name and phone to user ', error);
+    //       }
+    // }
     
 
     const signOutUser = () => {

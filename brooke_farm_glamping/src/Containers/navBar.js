@@ -12,9 +12,21 @@ import accountImage from '../JPGs/AccountButton/account.png'
 import {Link, BrowserRouter} from'react-router-dom'
 
 
-
-
 const NavBar = ({}) => {
+
+  
+
+//   const auth = getAuth();
+//   onAuthStateChanged(auth, (user) => {
+//     if (user) {
+//       // console.log(user)
+//       setUser(retreiveUser(user.id))
+//       // setUser(user)
+//       console.log(user)
+//   } else {
+//     console.log("Logged out")
+//   }
+// });
 
     return (
     <div className= "Homepage">
@@ -49,7 +61,7 @@ const NavBar = ({}) => {
                   <img id="account-image" src={accountImage}/>
                 </div>
               </div>
-              {/* <h1>{user.user.name}</h1> */}
+              {/* {userObject && <h1>{userObject.name}</h1>} */}
 
             </div>
             
