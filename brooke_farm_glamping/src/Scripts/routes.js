@@ -9,23 +9,7 @@ import AccountContainer from "../Containers/accountContainer";
 
 export const Paths = ({months, daysOfWeek, nthNumber, user, userLoggedIn, userLoggedOut}) => {
 
-    // const [user, setUser] = useState(null)
     
-    
-    // useEffect(() => {
-    //     console.log(bookingInformation)
-    // }, [bookingInformation])
-
-    // const userSignedIn = (userObj) => {
-    //     setUser(userObj)
-    // }
-
-    // const userSignedOut = () => {
-    //     setUser(null)
-    // }
-
-    
-
     return (
         <Router>
 

@@ -16,10 +16,7 @@ import { useLocation } from 'react-router-dom';
 
 const NavBar = ({user, userLoggedOut}) => {
 
-  // const [userObj, setUserObj] = useState(user) 
-   
-  const [loggedIn, setLoggedIn] = useState(false) 
-  const location = useLocation() 
+  const [userObj, setUserObj] = useState(user) 
 
   const  logOutUser = () => {
     userLoggedOut()
@@ -28,14 +25,7 @@ const NavBar = ({user, userLoggedOut}) => {
   }
 
 
-
-  // useEffect(() => {
-  //   if (userObj) {
-  //     setLoggedIn(true)
-  //   }
-  // }, [userObj])
-
-    return (
+  return (
     <div className= "Homepage">
       <div className= "Header">
         <img id="header-Image" src={headerImage}></img>
@@ -70,7 +60,7 @@ const NavBar = ({user, userLoggedOut}) => {
                   </div>
                 </Link>}
               </div>
-              {user && <h2 onClick={logOutUser}>Log out</h2>}
+              {userObj && <h2 onClick={logOutUser}>Log out</h2>}
 
             </div>
             
