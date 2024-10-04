@@ -12,17 +12,25 @@ const LogInPage = ({userLoggedIn}) => {
     
 
     const returnHome = () => {
-        // userLoggedIn()
+        userLoggedIn()
         setTimeout(() => {
             navigate('/')
             }, 1000)
-    }    
+    }
+    
+    const accountPage = () => {
+        userLoggedIn()
+        setTimeout(() => {
+            navigate('/account-page')
+            }, 1000)
+    }
 
     const logIn = async (email, password) => {
         try {
                await logInEmailPassword(email, password)
                .then((res) => {
-                    returnHome()
+                    // returnHome()
+                    accountPage()
                 })
             } catch (error) {
                 console.log('error logging in: ', error)
@@ -36,12 +44,13 @@ const LogInPage = ({userLoggedIn}) => {
                 // userSignedIn(res)
                 var user = {
                     'email': email,
-                    'fullname': fullName,
+                    'fullName': fullName,
                     'phone': phone
                 }
                 addUser(user, res.user.uid)
                 // addUserDetail(res, fullName, phone)
-                returnHome()
+                // returnHome()
+                accountPage()
             })
             
           } catch (error) {

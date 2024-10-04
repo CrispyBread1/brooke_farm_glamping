@@ -10,15 +10,30 @@ import bookButton from '../JPGs/BookButton/book.png'
 import userIcon from '../JPGs/userbutton/Userbutton.png'
 import accountImage from '../JPGs/AccountButton/account.png'
 import {Link, BrowserRouter} from'react-router-dom'
+import { useLocation } from 'react-router-dom';
 
 
-const NavBar = ({user}) => {
 
-  const [userObj, setUserObj] = useState(user)  
+const NavBar = ({user, userLoggedOut}) => {
 
-  useEffect(() => {
-    console.log(userObj)
-  }, [userObj])
+  // const [userObj, setUserObj] = useState(user) 
+   
+  const [loggedIn, setLoggedIn] = useState(false) 
+  const location = useLocation() 
+
+  const  logOutUser = () => {
+    userLoggedOut()
+    window.location.reload();
+    // setUserObj(false)
+  }
+
+
+
+  // useEffect(() => {
+  //   if (userObj) {
+  //     setLoggedIn(true)
+  //   }
+  // }, [userObj])
 
     return (
     <div className= "Homepage">
@@ -41,7 +56,7 @@ const NavBar = ({user}) => {
               <img id="profile-icon-image" src={userIcon}/>
 
               <div id="dropdown-content">
-              { !userObj && <Link to="/login">
+              { !user && <Link to="/login">
                 <div id="LogIn-Button"   value="LogIn" >
                   <img id="logInFire1Image" className="logInFire1-images" src={logInButtonFire1} />
                   <img id="logInFire2Image" className="logInFire2-images" src={logInButtonFire2} />
@@ -49,11 +64,13 @@ const NavBar = ({user}) => {
                   <img className="logIn-images" src={logInButton}/>
                 </div>
               </Link>}
-                {userObj && <div id="account-Button">
-                  <img id="account-image" src={accountImage}/>
-                </div>}
+                {user && <Link to="/account-page">
+                  <div id="account-Button">
+                    <img id="account-image" src={accountImage}/>
+                  </div>
+                </Link>}
               </div>
-              {userObj && <h1>{userObj.fullname}</h1>}
+              {user && <h2 onClick={logOutUser}>Log out</h2>}
 
             </div>
             

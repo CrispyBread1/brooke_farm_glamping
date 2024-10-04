@@ -43,17 +43,15 @@ function App({}) {
         console.log("Logged out")
       }
     });
+  }, [loggedIn])
 
-    // console.log(userObject)
-  }, [loggedIn])// const registerNewAccountAttempt = (email, password) => {
-  //   return (registerNewAccountEmailPassword(email, password))
-  // }
-
-  // useEffect(()=> {
-  //   console.log("app.js reloaded")
-  // }, [])
     const userLoggedIn = () => {
       setLoggedIn(true)
+    }
+
+    const userLoggedOut = () => {
+      setLoggedIn(false)
+      logOut()
     }
   
 
@@ -72,7 +70,7 @@ function App({}) {
     }};
 
   return (
-    <Paths daysOfWeek={daysOfWeek} months={months} nthNumber={nthNumber} user={user}/>
+    <Paths daysOfWeek={daysOfWeek} months={months} nthNumber={nthNumber} userLoggedIn={userLoggedIn} user={user} userLoggedOut={userLoggedOut}/>
     
     
   );
