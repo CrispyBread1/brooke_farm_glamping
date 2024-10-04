@@ -5,7 +5,7 @@ import './bookingPage.css'
 import { addBooking, editBooking, retrieveBooking, cancelBooking, retrieveCampingFacilities} from '../Scripts/databaseControls.js';
 import Booking from "../Classes/booking";
 
-const BookingPage = ({user, months, daysOfWeek, nthNumber}) => {
+const BookingPage = ({ months, daysOfWeek, nthNumber}) => {
 
   const [bookingBoxOpen, setBookingBoxOpen] = useState(false);
   const [bookings, setBookings] = useState('');
@@ -69,7 +69,7 @@ const BookingPage = ({user, months, daysOfWeek, nthNumber}) => {
   //  }
 
   const checkUserGotThrough = () => {
-    console.log(user)
+    // console.log(user)
   }
 
   const openBookingBox = (date) => {
@@ -109,7 +109,7 @@ const BookingPage = ({user, months, daysOfWeek, nthNumber}) => {
         <p>Booking page</p>
 
         {/* <div id="Add-booking"  onClick={newBooking} value="addBooking">Add Booking</div> */}
-        <div onClick={checkUserGotThrough}>User email: {`${user}`}</div>
+        <div onClick={checkUserGotThrough}>User email: {}</div>
         <button onClick={checkCampsGotRetreived}>check camps came through</button>
 
         <button id="hideBookingbox" onClick={closeBookingBox}>Hide booking info</button>

@@ -14,7 +14,7 @@ import {Link, BrowserRouter} from'react-router-dom'
 
 
 
-const NavBar = () => {
+const NavBar = ({}) => {
 
     return (
     <div className= "Homepage">
@@ -49,6 +49,7 @@ const NavBar = () => {
                   <img id="account-image" src={accountImage}/>
                 </div>
               </div>
+              {/* <h1>{user.user.name}</h1> */}
 
             </div>
             

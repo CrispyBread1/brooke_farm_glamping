@@ -6,7 +6,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { addUser } from "../Scripts/databaseControls";
 // import { AuthErrorCodes, getAuth } from "firebase/auth";
 
-const LogInPage = ({user, userSignedIn, userSignedOut}) => {
+const LogInPage = ({}) => {
 
     const navigate = useNavigate()
     
@@ -19,16 +19,10 @@ const LogInPage = ({user, userSignedIn, userSignedOut}) => {
 
     const logIn = async (email, password) => {
         try {
-            // console.log('email: '+ email + ' Password: ' + password)
                await logInEmailPassword(email, password)
                .then((res) => {
-                    userSignedIn(res)
                     returnHome()
-                    console.log(res)
-                    
                 })
-               
-               
             } catch (error) {
                 console.log('error logging in: ', error)
             }
@@ -38,15 +32,14 @@ const LogInPage = ({user, userSignedIn, userSignedOut}) => {
         try {
             await registerNewAccountEmailPassword(email, password)
             .then((res) => {
-                console.log(res)
                 // userSignedIn(res)
-                // addUserDetail(res, fullName, phone)
                 var user = {
                     'email': email,
                     'fullname': fullName,
                     'phone': phone
                 }
                 addUser(user, res.user.uid)
+                returnHome()
             })
             
           } catch (error) {
@@ -65,41 +58,15 @@ const LogInPage = ({user, userSignedIn, userSignedOut}) => {
 
     const signOutUser = () => {
         logOut()
-        userSignedIn()
+        // userSignedIn()
     }
     
-    const checkUserIn = () => {
-        if (user) {
-            return user.user.email
-        }
-    }
-
-        // console.log(response)
-        // console.log(message)
-        // if (message == AuthErrorCodes.INVALID_EMAIL){
-            // console.log("invalid email")
-        // } else {
-            // console.log("dontlike you")
-            // console.log(message);
-        // }
-        // .then((res) => if(res.code == AuthErrorCodes.INVALID_EMAIL){
-        //     console.log('hello');
-        // })
-        // console.log(message)
-        
-        // if (error == AuthErrorCodes.INVALID_EMAIL) {
-        //     console.log("InvalidEmail")
-        // }
-    
-
-    
-
 
 
     return (
         <div>
             <p>Log in page</p>
-            <p>{checkUserIn()}</p>
+            {/* <p>{checkUserIn()}</p> */}
             <button onClick={signOutUser}>Log Out</button>
             
             {/* <button className="log-in" display="none" onClick={switchBetweenRegisterLogIn}>Log in</button> */}

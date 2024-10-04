@@ -8,43 +8,43 @@ import ConfirmBookingPage from "../Containers/confirmBookingPage";
 
 export const Paths = ({months, daysOfWeek, nthNumber}) => {
 
-    const [user, setUser] = useState(null)
+    // const [user, setUser] = useState(null)
     
     
     // useEffect(() => {
     //     console.log(bookingInformation)
     // }, [bookingInformation])
 
-    const userSignedIn = (userObj) => {
-        setUser(userObj)
-    }
+    // const userSignedIn = (userObj) => {
+    //     setUser(userObj)
+    // }
 
-    const userSignedOut = () => {
-        setUser(null)
-    }
+    // const userSignedOut = () => {
+    //     setUser(null)
+    // }
 
     
 
     return (
         <Router>
 
-        <NavBar></NavBar>
+        <NavBar />
             <Routes>
 
 
-                <Route exact path='/' element={<HomePage user={user}/>}>
+                <Route exact path='/' element={<HomePage />}>
                     
                 </Route>
 
-                <Route exact path='/book' element={<BookingPage user={user} months={months} daysOfWeek={daysOfWeek} nthNumber={nthNumber}/>}>
+                <Route exact path='/book' element={<BookingPage months={months} daysOfWeek={daysOfWeek} nthNumber={nthNumber}/>}>
                     {/* <BookingPage/> */}
                 </Route>
 
-                <Route exact path='/login' element={<LogInPage user={user} userSignedIn={userSignedIn} userSignedOut={userSignedOut}/>}>
+                <Route exact path='/login' element={<LogInPage />}>
                     {/* <LogInPage/> */}
                 </Route>
 
-                <Route exact path="/book/confirm-booking" element={<ConfirmBookingPage user={user} months={months} daysOfWeek={daysOfWeek} nthNumber={nthNumber}/> }>
+                <Route exact path="/book/confirm-booking" element={<ConfirmBookingPage months={months} daysOfWeek={daysOfWeek} nthNumber={nthNumber}/> }>
 
                 </Route>
 

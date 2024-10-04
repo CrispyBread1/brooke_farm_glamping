@@ -32,9 +32,7 @@ const addBooking = (booking) => {
 const addUser = (user, UID) => {
   return new Promise((resolve, reject) => {
     const db = getFirestore(app);
-    // const docRef = addDoc(collection(db, "users", UID, user.email), user)
     const docRef = setDoc(doc(db, "users", UID), user);
-    // const docRef = setDoc(collection(db, "users", UID), user);
     if (docRef) {
       resolve(docRef.id);
     } else {
