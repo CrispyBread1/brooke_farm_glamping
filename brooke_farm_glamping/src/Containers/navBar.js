@@ -12,21 +12,13 @@ import accountImage from '../JPGs/AccountButton/account.png'
 import {Link, BrowserRouter} from'react-router-dom'
 
 
-const NavBar = ({}) => {
+const NavBar = ({user}) => {
 
-  
+  const [userObj, setUserObj] = useState(user)  
 
-//   const auth = getAuth();
-//   onAuthStateChanged(auth, (user) => {
-//     if (user) {
-//       // console.log(user)
-//       setUser(retreiveUser(user.id))
-//       // setUser(user)
-//       console.log(user)
-//   } else {
-//     console.log("Logged out")
-//   }
-// });
+  useEffect(() => {
+    console.log(userObj)
+  }, [userObj])
 
     return (
     <div className= "Homepage">
@@ -49,19 +41,19 @@ const NavBar = ({}) => {
               <img id="profile-icon-image" src={userIcon}/>
 
               <div id="dropdown-content">
-              <Link to="/login">
+              { !userObj && <Link to="/login">
                 <div id="LogIn-Button"   value="LogIn" >
                   <img id="logInFire1Image" className="logInFire1-images" src={logInButtonFire1} />
                   <img id="logInFire2Image" className="logInFire2-images" src={logInButtonFire2} />
                   <img id="logInFire3Image" className="logInFire3-images" src={logInButtonFire3} />
                   <img className="logIn-images" src={logInButton}/>
                 </div>
-              </Link>
-                <div id="account-Button">
+              </Link>}
+                {userObj && <div id="account-Button">
                   <img id="account-image" src={accountImage}/>
-                </div>
+                </div>}
               </div>
-              {/* {userObject && <h1>{userObject.name}</h1>} */}
+              {userObj && <h1>{userObj.fullname}</h1>}
 
             </div>
             

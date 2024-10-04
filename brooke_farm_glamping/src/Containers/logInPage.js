@@ -12,7 +12,7 @@ const LogInPage = ({userLoggedIn}) => {
     
 
     const returnHome = () => {
-        userLoggedIn()
+        // userLoggedIn()
         setTimeout(() => {
             navigate('/')
             }, 1000)

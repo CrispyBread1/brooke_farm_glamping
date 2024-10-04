@@ -72,7 +72,7 @@ function App({}) {
     }};
 
   return (
-    <Paths daysOfWeek={daysOfWeek} months={months} nthNumber={nthNumber} userLoggedIn={userLoggedIn} loggedIn={loggedIn}/>
+    <Paths daysOfWeek={daysOfWeek} months={months} nthNumber={nthNumber} user={user}/>
     
     
   );

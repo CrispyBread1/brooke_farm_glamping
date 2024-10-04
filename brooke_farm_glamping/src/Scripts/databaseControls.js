@@ -67,12 +67,10 @@ const retrieveBooking = (month) => {
 };
 
 const retreiveUser = async (userID) => {
-  // return new Promise((resolve, reject) => {
     const db = getFirestore(app);
     const docRef = doc(db, "users", userID);
     const user = await getDoc(docRef);
     if (user.exists()) {
-      // console.log("Document data:", docSnap);
       return (user.data());
     } else {
       console.log("No such document!");

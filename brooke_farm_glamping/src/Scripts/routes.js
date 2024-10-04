@@ -6,7 +6,7 @@ import NavBar from "../Containers/navBar";
 import { useEffect, useState } from "react";
 import ConfirmBookingPage from "../Containers/confirmBookingPage";
 
-export const Paths = ({months, daysOfWeek, nthNumber, userLoggedIn, loggedIn}) => {
+export const Paths = ({months, daysOfWeek, nthNumber, user}) => {
 
     // const [user, setUser] = useState(null)
     
@@ -28,7 +28,7 @@ export const Paths = ({months, daysOfWeek, nthNumber, userLoggedIn, loggedIn}) =
     return (
         <Router>
 
-        <NavBar loggedIn={loggedIn}/>
+        <NavBar user={user}/>
             <Routes>
 
 
@@ -40,7 +40,7 @@ export const Paths = ({months, daysOfWeek, nthNumber, userLoggedIn, loggedIn}) =
                     {/* <BookingPage/> */}
                 </Route>
 
-                <Route exact path='/login' element={<LogInPage userLoggedIn={userLoggedIn}/>}>
+                <Route exact path='/login' element={<LogInPage />}>
                     {/* <LogInPage/> */}
                 </Route>
 
