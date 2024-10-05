@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 // import { getDatabase, ref, set, onValue, collection, getDocs, getFirestore } from "firebase/database";
-import { getFirestore, collection, getDocs, addDoc, setDoc, doc, getDoc, DocumentReference } from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc, setDoc, doc, getDoc, DocumentReference, updateDoc, arrayUnion } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAms2TxN-V_0N0q56ERISmsZnzv5RTdnmY",
@@ -20,7 +20,8 @@ const addBooking = (booking) => {
     
     const docRef = addDoc(collection(db, "bookings"), booking.toFirestore())
     if (docRef) {
-      resolve(docRef.id);
+      // console.log(docRef)
+      resolve(docRef);
     } else {
       Promise.reject(new Error('No data available'));
     }
@@ -78,7 +79,28 @@ const retreiveUser = async (userID) => {
   // }, (error) => {
     // Promise.reject(error);
 }
-// )};
+
+const addBookingToUser = (bookingID, userID) => {
+  // const db = getFirestore(app);
+  // db.instance.collection('users').doc(userID)
+  //   .update({'bookings': [bookingID]})
+  //   .then((value) => console.log("User Updated"))
+  //   .catchError((error) => console.log("Failed to update user: $error"));
+  return new Promise((resolve, reject) => {
+    const db = getFirestore(app);
+    const userRef = doc(db, "users", userID)
+    const docRef = updateDoc(userRef, {
+      'bookings': arrayUnion(bookingID)});
+    if (docRef) {
+      resolve(docRef.id);
+    } else {
+      Promise.reject(new Error('No data available'));
+    }
+  }, (error) => {
+      Promise.reject(error);
+    }
+  )}
+
 
 const retrieveCampingFacilities = () => {
   return new Promise((resolve, reject) => {
@@ -98,4 +120,4 @@ const cancelBooking = () => {
   return
 }
 
-  export {addBooking, addUser, editBooking, retrieveBooking, cancelBooking, retrieveCampingFacilities, retreiveUser};
+  export {addBooking, addUser, editBooking, retrieveBooking, cancelBooking, retrieveCampingFacilities, retreiveUser, addBookingToUser};

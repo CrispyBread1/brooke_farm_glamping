@@ -4,7 +4,7 @@ import { useLocation, redirect, useNavigate } from "react-router-dom";
 import { addBooking } from "../Scripts/databaseControls";
 import Booking from "../Classes/booking";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { retreiveUser } from "../Scripts/databaseControls";
+import { retreiveUser, addBookingToUser } from "../Scripts/databaseControls";
 
 
 
@@ -16,6 +16,7 @@ const ConfirmBookingPage = ({months, daysOfWeek, nthNumber, userLoggedOut}) => {
     const [bookingInfo, setBookingInfo] = useState(location.state)
     const [priceGuide, setPriceGuide] = useState([])
     const [userObj, setUserObj] = useState({})
+    const [bookingID, setBookingID] = useState(null)
 
     const [datesStaying, setDatesStaying] = useState(null)
 
@@ -83,7 +84,7 @@ const ConfirmBookingPage = ({months, daysOfWeek, nthNumber, userLoggedOut}) => {
     }
 
     const addNewBooking = async () => {
-        console.log(userObj)
+        // console.log(userObj)
         var booking =   new Booking(
                 'draft',
                 userObj.id,
@@ -102,8 +103,13 @@ const ConfirmBookingPage = ({months, daysOfWeek, nthNumber, userLoggedOut}) => {
                 new Date()
         )
         try {
-            const bookingID = addBooking(booking)
-            console.log(bookingID)
+            // var bookingRef = addBooking(booking)
+            addBooking(booking)
+            .then((res) => {
+                setBookingID(res)
+                // var bookingID = {'bookings': [res.id]}
+                addBookingToUser(res.id, userObj.id)
+            })
         } catch (error) {
             console.error('Error adding booking:', error);
           }
