@@ -38,7 +38,7 @@ function App({}) {
           retreiveUser(doc.uid)
           .then((res) => setUser(res))
           // setUser(user)
-          console.log(user)
+          // console.log(user)
       } else {
         console.log("Logged out")
       }

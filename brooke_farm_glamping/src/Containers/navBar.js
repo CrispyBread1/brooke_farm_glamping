@@ -60,7 +60,7 @@ const NavBar = ({user, userLoggedOut}) => {
                   </div>
                 </Link>}
               </div>
-              {userObj && <h2 onClick={logOutUser}>Log out</h2>}
+              {user && <h2 onClick={logOutUser}>Log out</h2>}
 
             </div>
             

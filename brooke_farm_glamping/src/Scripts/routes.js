@@ -29,7 +29,7 @@ export const Paths = ({months, daysOfWeek, nthNumber, user, userLoggedIn, userLo
                     {/* <LogInPage/> */}
                 </Route>
 
-                <Route exact path="/book/confirm-booking" element={<ConfirmBookingPage months={months} daysOfWeek={daysOfWeek} nthNumber={nthNumber}/> }>
+                <Route exact path="/book/confirm-booking" element={<ConfirmBookingPage months={months} daysOfWeek={daysOfWeek} nthNumber={nthNumber} userLoggedOut={userLoggedOut}/> }>
 
                 </Route>
 

@@ -22,14 +22,14 @@ const AccountContainer = ({userLoggedOut}) => {
               console.log(user)
           } else {
             userLoggedOut()
-            returnHome()
+            toLogIn()
           }
         });
     }
 
-    const returnHome = () => {
+    const toLogIn = () => {
         setTimeout(() => {
-            navigate('/')
+            navigate('/login')
             }, 1000)
     }
 

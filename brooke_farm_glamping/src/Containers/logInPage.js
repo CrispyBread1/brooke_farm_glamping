@@ -2,13 +2,14 @@ import React from "react";
 import { useState } from "react";
 import {logInEmailPassword, registerNewAccountEmailPassword, monitorAuthState, logOut, addNamePhoneToUser} from "../Scripts/authenicationControls";
 import LogInForm from "../Components/logInForm";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { addUser } from "../Scripts/databaseControls";
 // import { AuthErrorCodes, getAuth } from "firebase/auth";
 
 const LogInPage = ({userLoggedIn}) => {
 
     const navigate = useNavigate()
+    const location = useLocation()
     
 
     const returnHome = () => {
@@ -25,12 +26,21 @@ const LogInPage = ({userLoggedIn}) => {
             }, 1000)
     }
 
+    const navigateToConfirmBooking = () => {
+        setTimeout(() => {
+            navigate('/book/confirm-booking')
+            }, 1000)
+    }
+
     const logIn = async (email, password) => {
         try {
                await logInEmailPassword(email, password)
                .then((res) => {
                     // returnHome()
-                    accountPage()
+                    if (location.state) {
+                        navigateToConfirmBooking()
+                        
+                    } else (accountPage())
                 })
             } catch (error) {
                 console.log('error logging in: ', error)
@@ -45,12 +55,15 @@ const LogInPage = ({userLoggedIn}) => {
                 var user = {
                     'email': email,
                     'fullName': fullName,
-                    'phone': phone
+                    'phone': phone,
+                    'id': res.user.uid
                 }
                 addUser(user, res.user.uid)
-                // addUserDetail(res, fullName, phone)
-                // returnHome()
-                accountPage()
+                if (location.state) {
+                    navigateToConfirmBooking()
+                    
+                } else (accountPage())
+                
             })
             
           } catch (error) {

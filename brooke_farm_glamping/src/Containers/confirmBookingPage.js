@@ -3,17 +3,25 @@ import { useState, useEffect } from "react";
 import { useLocation, redirect, useNavigate } from "react-router-dom";
 import { addBooking } from "../Scripts/databaseControls";
 import Booking from "../Classes/booking";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { retreiveUser } from "../Scripts/databaseControls";
 
 
 
-
-const ConfirmBookingPage = ({user, months, daysOfWeek, nthNumber}) => {
+const ConfirmBookingPage = ({months, daysOfWeek, nthNumber, userLoggedOut}) => {
 
     const location = useLocation()
     const navigate = useNavigate()
 
+    const [bookingInfo, setBookingInfo] = useState(location.state)
+    const [priceGuide, setPriceGuide] = useState([])
+    const [userObj, setUserObj] = useState({})
+
+    const [datesStaying, setDatesStaying] = useState(null)
+
     useEffect(() => {
         checkState()
+        checkAuth()
     }, [])
 
     const checkState = () => {
@@ -22,10 +30,27 @@ const ConfirmBookingPage = ({user, months, daysOfWeek, nthNumber}) => {
         }
     }
 
-    const [bookingInfo, setBookingInfo] = useState(location.state)
-    const [priceGuide, setPriceGuide] = useState([])
+    const checkAuth = () => {
+        const auth = getAuth();
+          onAuthStateChanged(auth, (doc) => {
+            if (doc) {
+              retreiveUser(doc.uid)
+              .then((res) => setUserObj(res))
+            //   console.log(user)
+          } else {
+            userLoggedOut()
+            toLogIn()
+          }
+        });
+    }
 
-    const [datesStaying, setDatesStaying] = useState(null)
+    
+
+    const toLogIn = () => {
+            navigate('/login')
+    }
+
+    
     
     useEffect(() => {
         if (bookingInfo) {
@@ -58,9 +83,11 @@ const ConfirmBookingPage = ({user, months, daysOfWeek, nthNumber}) => {
     }
 
     const addNewBooking = async () => {
+        console.log(userObj)
         var booking =   new Booking(
-                '1',
-                'Dan',
+                'draft',
+                userObj.id,
+                userObj.fullName,
                 bookingInfo.adults,
                 bookingInfo.campingSite,
                 bookingInfo.datesStaying,
