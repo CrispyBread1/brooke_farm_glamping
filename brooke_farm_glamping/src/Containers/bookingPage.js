@@ -2,7 +2,7 @@ import React, { useEffect, useState }  from "react";
 import CalendarContainer from './calendarContainer'
 import BookingContainer from "./bookingContainer";
 import './bookingPage.css'
-import { addBooking, editBooking, retrieveBooking, cancelBooking, retrieveCampingFacilities} from '../Scripts/databaseControls.js';
+import { addBooking, editBooking, cancelBooking, retrieveCampingFacilities} from '../Scripts/databaseControls.js';
 import Booking from "../Classes/booking";
 
 const BookingPage = ({ months, daysOfWeek, nthNumber}) => {
@@ -18,7 +18,7 @@ const BookingPage = ({ months, daysOfWeek, nthNumber}) => {
   const [amountOfNightsStaying, setAmountOfNightsStaying] = useState(null)
 
   useEffect(() => {
-    fetchBookings(new Date().getMonth())
+    // fetchBookings(new Date().getMonth())
     fetchCampingFacilities()
 
   }, []);
@@ -26,7 +26,7 @@ const BookingPage = ({ months, daysOfWeek, nthNumber}) => {
   const fetchBookings = async (tok1) => {
     const month = new Date();
     try {
-      const bookings = await retrieveBooking(tok1);
+      // const bookings = await retrieveBooking(tok1);
       setBookings(bookings);
           
     } catch (error) {

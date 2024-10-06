@@ -103,11 +103,9 @@ const ConfirmBookingPage = ({months, daysOfWeek, nthNumber, userLoggedOut}) => {
                 new Date()
         )
         try {
-            // var bookingRef = addBooking(booking)
             addBooking(booking)
             .then((res) => {
                 setBookingID(res)
-                // var bookingID = {'bookings': [res.id]}
                 addBookingToUser(res.id, userObj.id)
             })
         } catch (error) {

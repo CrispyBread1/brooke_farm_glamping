@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 // import { getDatabase, ref, set, onValue, collection, getDocs, getFirestore } from "firebase/database";
-import { getFirestore, collection, getDocs, addDoc, setDoc, doc, getDoc, DocumentReference, updateDoc, arrayUnion } from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc, setDoc, doc, getDoc, query, where, updateDoc, arrayUnion, firestore } from "firebase/firestore";
+// import {fireBas}
 
 const firebaseConfig = {
     apiKey: "AIzaSyAms2TxN-V_0N0q56ERISmsZnzv5RTdnmY",
@@ -14,10 +15,10 @@ const firebaseConfig = {
   
   const app = initializeApp(firebaseConfig);
 
+
 const addBooking = (booking) => {
   return new Promise((resolve, reject) => {
     const db = getFirestore(app);
-    
     const docRef = addDoc(collection(db, "bookings"), booking.toFirestore())
     if (docRef) {
       // console.log(docRef)
@@ -44,28 +45,30 @@ const addUser = (user, UID) => {
   }
 )}
 
-  const editBooking = () => {
-    return
-  }
+const editBooking = () => {
+  return
+}
 
-
-const retrieveBooking = (month) => {
-//   return new Promise((resolve, reject) => {
-//     const db = getDatabase();
-//     const bookingsRef = ref(db, 'bookings/');
-
-//     onValue(bookingsRef, (snapshot) => {
-//       const data = snapshot.val();
-//       if (data) {
-//         resolve(data);
-//       } else {
-//         reject(new Error('No data available'));
-//       }
-//     }, (error) => {
-//       reject(error);
-//     });
-//   });
-};
+  
+const retrieveUserBooking = async (bookingIDs) => {
+  try {
+    // console.log(bookingIDs)
+    const db = getFirestore(app);
+    var bookings = []
+    for (var i = 0; i < bookingIDs.length; i ++) {
+      const docRef = doc(db, "bookings", bookingIDs[i]);
+      const docSnap = await getDoc(docRef);
+      if(docSnap.exists()) {
+        // console.log(docSnap.data())
+        bookings.push(docSnap.data())
+      } else {
+        console.log("Document" + bookingIDs[i] + "does not exist")
+    }
+    }
+    return bookings
+  } catch(error) {
+    console.log(error)
+  }}
 
 const retreiveUser = async (userID) => {
     const db = getFirestore(app);
@@ -76,16 +79,9 @@ const retreiveUser = async (userID) => {
     } else {
       console.log("No such document!");
     } 
-  // }, (error) => {
-    // Promise.reject(error);
 }
 
 const addBookingToUser = (bookingID, userID) => {
-  // const db = getFirestore(app);
-  // db.instance.collection('users').doc(userID)
-  //   .update({'bookings': [bookingID]})
-  //   .then((value) => console.log("User Updated"))
-  //   .catchError((error) => console.log("Failed to update user: $error"));
   return new Promise((resolve, reject) => {
     const db = getFirestore(app);
     const userRef = doc(db, "users", userID)
@@ -120,4 +116,4 @@ const cancelBooking = () => {
   return
 }
 
-  export {addBooking, addUser, editBooking, retrieveBooking, cancelBooking, retrieveCampingFacilities, retreiveUser, addBookingToUser};
+  export {addBooking, addUser, editBooking, cancelBooking, retrieveCampingFacilities, retreiveUser, addBookingToUser, retrieveUserBooking};
