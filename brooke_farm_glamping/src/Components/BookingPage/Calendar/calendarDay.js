@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './calendarDay.css';
-import BookingBox from "./bookingBox";
-import Booking from "../Classes/booking";
+import BookingBox from "../bookingBox";
+import Booking from "../../../Classes/booking";
 
 const CalendarDay = ({ bookingsAmount, date, openBookingBox, id, configureDaySelected, colour}) => {
 

@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom"
-import HomePage from '../Containers/homePage';
-import BookingPage from "../Containers/bookingPage";
-import LogInPage from "../Containers/logInPage";
-import NavBar from "../Containers/navBar";
+import HomePage from '../Containers/HopePage/homePage';
+import BookingPage from "../Containers/BookingPage/bookingPage";
+import LogInPage from "../Containers/LoginPage/logInPage";
+import NavBar from "../Containers/NavBar/navBar";
 import { useEffect, useState } from "react";
-import ConfirmBookingPage from "../Containers/confirmBookingPage";
-import AccountContainer from "../Containers/accountContainer";
+import ConfirmBookingPage from "../Containers/ConfirmBookingPage/confirmBookingPage";
+import AccountContainer from "../Containers/AccountPage/accountContainer";
 
 export const Paths = ({months, daysOfWeek, nthNumber, user, userLoggedIn, userLoggedOut}) => {
 

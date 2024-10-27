@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { retreiveUser, retrieveUserBooking } from "../Scripts/databaseControls";
+import { retreiveUser, retrieveUserBooking } from "../../Scripts/databaseControls";
 import { useNavigate } from "react-router-dom";
 
 const AccountContainer = ({userLoggedOut}) => {

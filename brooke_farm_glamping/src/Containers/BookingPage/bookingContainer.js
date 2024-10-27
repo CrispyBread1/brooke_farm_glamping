@@ -1,4 +1,4 @@
-import BookingBox from "../Components/bookingBox";
+import BookingBox from "../../Components/BookingPage/bookingBox";
 import React, { useEffect, useState }  from "react";
 import './bookingContainer.css'
 import { useNavigate } from "react-router-dom";
