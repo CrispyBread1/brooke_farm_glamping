@@ -33,7 +33,7 @@ export const Paths = ({months, daysOfWeek, nthNumber, user, userLoggedIn, userLo
 
                 </Route>
 
-                <Route exact path="/account-page" element={<AccountContainer userLoggedOut={userLoggedOut}/> }>
+                <Route exact path="/account-page" element={<AccountContainer userLoggedOut={userLoggedOut} daysOfWeek={daysOfWeek} months={months}/> }>
 
                 </Route>
 

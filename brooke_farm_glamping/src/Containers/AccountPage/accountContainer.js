@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { retreiveUser, retrieveUserBooking } from "../../Scripts/databaseControls";
 import { useNavigate } from "react-router-dom";
+import UserBookingsContainer from "./userBookingsContainor";
 
-const AccountContainer = ({userLoggedOut}) => {
+const AccountContainer = ({userLoggedOut, daysOfWeek, months}) => {
 
     const navigate = useNavigate()
 
@@ -17,7 +18,7 @@ const AccountContainer = ({userLoggedOut}) => {
 
     useEffect(() => {
         // configurePreviouseBookings()
-        console.log(bookings)
+        // console.log(bookings)
     }, [bookings])
 
     const checkAuth = () => {
@@ -69,15 +70,9 @@ const AccountContainer = ({userLoggedOut}) => {
 
     return (
         <div>
-        <h2>{user.fullName}'s' Account page</h2>
+            <h2>{user.fullName}'s' Account page</h2>
         <div>
-            <>
-                <h3>Bookings:</h3>
-                <ul id="bookings">
-                    {/* {bookingInfo.campingSiteAmount > 1 && <b><li className="ui-label">{bookingInfo.campingSiteAmount} Camping spots are needed for your party size</li></b>}  
-                    {priceGuide} */}
-                </ul>
-            </>
+            <UserBookingsContainer daysOfWeek={daysOfWeek} months={months} bookings={bookings}/>
         </div>
         </div>
     )
