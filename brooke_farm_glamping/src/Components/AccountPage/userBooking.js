@@ -11,7 +11,11 @@ const UserBooking = ({daysOfWeek, months, booking}) => {
     }, [])
 
     const configureTitle = () => {
-        setDateStaying(months[(booking.date[0].toDate()).getMonth()].month + ' - ' + months[(booking.date[(booking.date.length - 1)].toDate()).getMonth()].month)
+        let firstNight = (booking.date[0].toDate())
+        let lastNight = (booking.date[(booking.date.length - 1)].toDate())
+
+        setDateStaying(months[firstNight.getMonth()].month + ': ' + firstNight.getDate() + ' - ' + months[lastNight.getMonth()].month + ': ' +  lastNight.getDate())
+           
        
     }
 

@@ -13,17 +13,14 @@ const UserBookingsContainer = ({daysOfWeek, months, bookings}) => {
     }, [bookings])
 
     const fillBookings = () => {
-        // console.log(bookings)
         var arrayOfBookings = []
         if (bookings) {
             for (var i = 0; i < bookings.length; i++) {
-                console.log(bookings[i])
                 arrayOfBookings.push(<UserBooking key={i} id={i} daysOfWeek={daysOfWeek} months={months} booking={bookings[i]}/>)
             }  
         }
         setBookingsArray(arrayOfBookings)
     }
-    // days.push(<BlankCalendarDay key={i}  date={dateObject} month={months[monthNum]} id={i}/>)
 
     return (
         <>
