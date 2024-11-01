@@ -3,7 +3,7 @@ import React, { useEffect, useState} from 'react';
 import HomePage from './Containers/HopePage/homePage.js';
 import BookingPage from './Containers/BookingPage/bookingPage.js';
 import LogInPage from './Containers/LoginPage/logInPage.js';
-import { addBooking, editBooking, retreiveBooking, cancelBooking} from './Scripts/databaseControls.js';
+import { addBooking, editBooking, retreiveBooking, cancelBooking} from './Scripts/databaseControls/userControls.js';
 import { logInEmailPassword, registerNewAccountEmailPassword, logOut, monitorAuthState } from './Scripts/authenicationControls';
 import headerImage from './JPGs/BrookFarmGlampinglogo.png'
 import logInButton from './JPGs/LoginButton/LogIn.png'
@@ -11,7 +11,7 @@ import {Link, BrowserRouter, useLocation} from'react-router-dom'
 import { Paths } from './Scripts/routes';
 import NavBar from './Containers/NavBar/navBar.js'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { retreiveUser } from './Scripts/databaseControls.js';
+import { retreiveUser } from './Scripts/databaseControls/userControls.js';
 
 
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState }  from "react";
 import CalendarContainer from "./calendarContainer.js"
 import BookingContainer from "./bookingContainer.js"
 import './bookingPage.css'
-import { addBooking, editBooking, cancelBooking, retrieveCampingFacilities} from '../../Scripts/databaseControls.js';
+import { addBooking, editBooking, cancelBooking, retrieveCampingFacilities} from '../../Scripts/databaseControls/userControls.js';
 import Booking from "../../Classes/booking.js";
 
 const BookingPage = ({ months, daysOfWeek, nthNumber}) => {

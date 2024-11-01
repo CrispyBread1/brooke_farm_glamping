@@ -1,7 +1,5 @@
 import { initializeApp } from "firebase/app";
-// import { getDatabase, ref, set, onValue, collection, getDocs, getFirestore } from "firebase/database";
 import { getFirestore, collection, getDocs, addDoc, setDoc, doc, getDoc, query, where, updateDoc, arrayUnion, firestore } from "firebase/firestore";
-// import {fireBas}
 
 const firebaseConfig = {
     apiKey: "AIzaSyAms2TxN-V_0N0q56ERISmsZnzv5RTdnmY",
@@ -21,7 +19,6 @@ const addBooking = (booking) => {
     const db = getFirestore(app);
     const docRef = addDoc(collection(db, "bookings"), booking.toFirestore())
     if (docRef) {
-      // console.log(docRef)
       resolve(docRef);
     } else {
       Promise.reject(new Error('No data available'));
@@ -52,14 +49,12 @@ const editBooking = () => {
   
 const retrieveUserBooking = async (bookingIDs) => {
   try {
-    // console.log(bookingIDs)
     const db = getFirestore(app);
     var bookings = []
     for (var i = 0; i < bookingIDs.length; i ++) {
       const docRef = doc(db, "bookings", bookingIDs[i]);
       const docSnap = await getDoc(docRef);
       if(docSnap.exists()) {
-        // console.log(docSnap.data())
         bookings.push(docSnap.data())
       } else {
         console.log("Document" + bookingIDs[i] + "does not exist")

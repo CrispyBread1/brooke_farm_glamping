@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useLocation, redirect, useNavigate } from "react-router-dom";
-import { addBooking } from "../../Scripts/databaseControls";
 import Booking from "../../Classes/booking";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { retreiveUser, addBookingToUser } from "../../Scripts/databaseControls";
+import { retreiveUser, addBookingToUser } from "../../Scripts/databaseControls/userControls";
+import { addBooking, editBooking, cancelBooking, retrieveUserBooking } from "../../Scripts/databaseControls/bookingControls";
 
 
 

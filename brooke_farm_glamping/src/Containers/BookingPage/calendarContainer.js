@@ -1,9 +1,8 @@
 import React, { useEffect, useState }  from "react";
 import CalendarDay from "../../Components/BookingPage/Calendar/calendarDay.js";
-
 import './calendarContainer.css'
 import BlankCalendarDay from "../../Components/BookingPage/Calendar/blankCalendarDay.js"
-// import Booking from "../Classes/booking";
+
 
 
 const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNumber, relayAmountOfNightsStaying, amountOfNightsStaying}) => {

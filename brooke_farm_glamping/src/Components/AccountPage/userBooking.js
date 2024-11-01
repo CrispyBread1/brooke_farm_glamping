@@ -20,9 +20,11 @@ const UserBooking = ({daysOfWeek, months, booking}) => {
     }
 
     return (
-        <li>
-            {dateStaying}
-        </li>
+        <div className="user--Booking">
+            <li>
+                {dateStaying}
+            </li>
+        </div>
     )
 }
 

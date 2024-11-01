@@ -3,8 +3,7 @@ import { useState } from "react";
 import {logInEmailPassword, registerNewAccountEmailPassword, monitorAuthState, logOut, addNamePhoneToUser} from "../../Scripts/authenicationControls";
 import LogInForm from "../../Components/LogInPage/logInForm";
 import { useNavigate, useLocation } from "react-router-dom";
-import { addUser } from "../../Scripts/databaseControls";
-// import { AuthErrorCodes, getAuth } from "firebase/auth";
+import { addUser } from "../../Scripts/databaseControls/userControls";
 
 const LogInPage = ({userLoggedIn}) => {
 
