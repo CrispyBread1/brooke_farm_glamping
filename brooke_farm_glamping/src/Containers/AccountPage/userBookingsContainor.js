@@ -1,6 +1,7 @@
 import React from "react";
 import UserBooking from "../../Components/AccountPage/userBooking";
 import { useEffect, useState } from "react";
+import './userBookingContainor.css'
 
 
 
@@ -27,7 +28,7 @@ const UserBookingsContainer = ({daysOfWeek, months, bookings}) => {
             <h3>Bookings:</h3>
 
             {bookings && 
-                <ul id="bookings">
+                <ul className="user--bookings">
                     {bookingsArray}
                 </ul>}
 

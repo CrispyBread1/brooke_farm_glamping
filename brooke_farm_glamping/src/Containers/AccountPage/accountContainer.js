@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { retreiveUser, retrieveUserBooking } from "../../Scripts/databaseControls/userControls";
+import { retreiveUser } from "../../Scripts/databaseControls/userControls";
+import { addBooking, editBooking, cancelBooking, retrieveUserBooking } from "../../Scripts/databaseControls/bookingControls";
 import { useNavigate } from "react-router-dom";
 import UserBookingsContainer from "./userBookingsContainor";
 

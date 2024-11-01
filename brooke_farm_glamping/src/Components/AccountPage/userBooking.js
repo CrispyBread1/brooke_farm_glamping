@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import './userBooking.css'
 
 
 
@@ -20,11 +21,19 @@ const UserBooking = ({daysOfWeek, months, booking}) => {
     }
 
     return (
-        <div className="user--Booking">
-            <li>
+       
+        <li className="user--bookings--li">
+            <div className="user--bookings--li--dateStaying">
                 {dateStaying}
-            </li>
-        </div>
+            </div>
+            <div className="user--bookings--li--campingFacility">
+                {booking.space.name}
+            </div>
+            <div className="user--bookings--li--state">
+                {booking.state}
+            </div>
+        </li>
+        
     )
 }
 
