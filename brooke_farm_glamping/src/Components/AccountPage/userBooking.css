@@ -3,4 +3,34 @@
     border-style: solid;
     padding: 0.6rem;
     margin-bottom: 0.75rem;
+    width: 50rem;
+    display: grid;
 }
+
+.user--bookings--li--dateStaying {
+    justify-self: center;
+    font-size: x-large;
+    font-weight: 600;
+    padding: 0.4rem;
+}
+
+.user--bookings--li--campingFacility {
+
+}
+
+.user--bookings--li--state {
+
+}
+
+.user--bookings--li--details {
+    justify-self: center;
+    text-decoration: underline;
+    color: blue;
+    font-size: large;
+}
+
+.user--bookings--li--details:hover {
+    color: rgb(128, 0, 148);
+    cursor: pointer;
+    
+  }

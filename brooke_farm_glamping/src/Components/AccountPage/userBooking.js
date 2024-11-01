@@ -32,6 +32,9 @@ const UserBooking = ({daysOfWeek, months, booking}) => {
             <div className="user--bookings--li--state">
                 {booking.state}
             </div>
+            <div className="user--bookings--li--details">
+                Details
+            </div>
         </li>
         
     )
