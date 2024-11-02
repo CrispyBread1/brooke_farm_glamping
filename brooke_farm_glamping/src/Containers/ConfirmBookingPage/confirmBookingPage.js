@@ -13,13 +13,6 @@ const ConfirmBookingPage = ({months, daysOfWeek, nthNumber, userLoggedOut}) => {
     const location = useLocation()
     const navigate = useNavigate()
 
-    const [bookingInfo, setBookingInfo] = useState(location.state)
-    const [priceGuide, setPriceGuide] = useState([])
-    const [userObj, setUserObj] = useState({})
-    const [bookingID, setBookingID] = useState(null)
-
-    const [datesStaying, setDatesStaying] = useState(null)
-
     useEffect(() => {
         checkState()
         checkAuth()
@@ -45,13 +38,18 @@ const ConfirmBookingPage = ({months, daysOfWeek, nthNumber, userLoggedOut}) => {
         });
     }
 
-    
-
     const toLogIn = () => {
             navigate('/login')
     }
 
+    const [bookingInfo, setBookingInfo] = useState(location.state)
+    const [priceGuide, setPriceGuide] = useState([])
+    const [userObj, setUserObj] = useState({})
+    const [bookingID, setBookingID] = useState(null)
+
+    const [datesStaying, setDatesStaying] = useState(null)
     
+
     
     useEffect(() => {
         if (bookingInfo) {
@@ -60,6 +58,8 @@ const ConfirmBookingPage = ({months, daysOfWeek, nthNumber, userLoggedOut}) => {
         }
 
     }, [bookingInfo])
+
+
 
     const configureAmountOfCampingPitchesPrice = () => {
         var pricesArray = []
@@ -73,9 +73,14 @@ const ConfirmBookingPage = ({months, daysOfWeek, nthNumber, userLoggedOut}) => {
             }
         setPriceGuide(pricesArray)
     }
+
+
+
     const configurePriceDependingOnDays = (cost) => {
         return cost * bookingInfo.nights
     }
+
+
 
     const manageDates = () => {
         var arrivalDate = bookingInfo.datesStaying[0]
@@ -83,12 +88,27 @@ const ConfirmBookingPage = ({months, daysOfWeek, nthNumber, userLoggedOut}) => {
         setDatesStaying(months[arrivalDate.getMonth()].month + " " + arrivalDate.getDate() + nthNumber(arrivalDate.getDate()) + " - until - " + months[leavingDate.getMonth()].month + " " + leavingDate.getDate() + nthNumber(arrivalDate.getDate()))
     }
 
+
+
+    const configureBookingReference = () => {
+        return ('RF' + 
+            bookingInfo.campingSite.name[0] + 
+            bookingInfo.campingSite.name[(bookingInfo.campingSite.name.length - 1)] + 
+            new Date().getDay() + 
+            userObj.fullName[0] + 
+            userObj.fullName[(userObj.fullName.length - 1)] +
+            new Date().getDate()
+        ).toUpperCase()
+    }
+
+
+
     const addNewBooking = async () => {
-        // console.log(userObj)
         var booking =   new Booking(
                 'draft',
                 userObj.id,
                 userObj.fullName,
+                configureBookingReference(),
                 bookingInfo.adults,
                 bookingInfo.campingSite,
                 bookingInfo.datesStaying,
@@ -113,8 +133,6 @@ const ConfirmBookingPage = ({months, daysOfWeek, nthNumber, userLoggedOut}) => {
           }
         
     }
-
-    
 
     
 

@@ -42,7 +42,7 @@ const retrieveUserBooking = async (bookingIDs) => {
       if(docSnap.exists()) {
         bookings.push(docSnap.data())
       } else {
-        console.log("Document" + bookingIDs[i] + "does not exist")
+        // console.log("Document" + bookingIDs[i] + "does not exist")
     }
     }
     return bookings
