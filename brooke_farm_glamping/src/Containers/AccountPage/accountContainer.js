@@ -4,23 +4,15 @@ import { retreiveUser } from "../../Scripts/databaseControls/userControls";
 import { addBooking, editBooking, cancelBooking, retrieveUserBooking } from "../../Scripts/databaseControls/bookingControls";
 import { useNavigate } from "react-router-dom";
 import UserBookingsContainer from "./userBookingsContainor";
+import BookingDetails from "../../Components/AccountPage/bookingDetails";
 
 const AccountContainer = ({userLoggedOut, daysOfWeek, months}) => {
 
     const navigate = useNavigate()
 
-    const [user, setUser] = useState({})
-    const [bookings, setBookings] = useState(null)
-    const [bookingsHTMLArray, setBookingsHTMLArray] = useState(null)
-
     useEffect(() => {
         checkAuth()
     }, [])
-
-    useEffect(() => {
-        // configurePreviouseBookings()
-        // console.log(bookings)
-    }, [bookings])
 
     const checkAuth = () => {
         const auth = getAuth();
@@ -46,6 +38,15 @@ const AccountContainer = ({userLoggedOut, daysOfWeek, months}) => {
             }, 1000)
     }
 
+    const [user, setUser] = useState({})
+    const [bookings, setBookings] = useState(null)
+    const [bookingsHTMLArray, setBookingsHTMLArray] = useState(null)
+
+    const [bookingDetailsOpen, setBookingDetailsOpen] = useState(false)
+    const [bookingForDetails, setBookingForDetails] = useState(null)
+
+    
+
     const fetchUserBookings = (bookingIDs) => {
         retrieveUserBooking(bookingIDs)
         .then((res) => {
@@ -54,27 +55,31 @@ const AccountContainer = ({userLoggedOut, daysOfWeek, months}) => {
         })
     }
 
-    // const configurePreviouseBookings = () => {
-    //     var bookingsArray = []
 
-    //         for (let i = 0; i < bookings.length; i++) {
-    //             pricesArray.push(
-    //                 <div key={i + "booking"}>
-    //                 <li key={i + "camping-choice"}> {bookingInfo.campingSite.name} x {bookingInfo.nights} Nights = £{configurePriceDependingOnDays(bookingInfo.campingSite.price)} </li>
-    //                 {bookingInfo.firePit && <li key={i + "firepit"}>£10 per night, per pitch</li>}
-    //                 </div >
-    //             )
-    //         }
-    //     setPriceGuide(pricesArray)
-    // }
+
+    const showDetails = (booking) => {
+        setBookingForDetails(booking)
+        setBookingDetailsOpen(true);
+        if (!bookingDetailsOpen) {
+            const sidebar = document.querySelector('.details-container');
+        if (bookingDetailsOpen) {
+            sidebar.classList.remove('show');
+        } else {
+            sidebar.classList.add('show');
+        }}
+    }
 
 
     return (
         <div>
             <h2>{user.fullName}'s' Account page</h2>
-        <div>
-            <UserBookingsContainer daysOfWeek={daysOfWeek} months={months} bookings={bookings}/>
-        </div>
+            <div>
+                <UserBookingsContainer daysOfWeek={daysOfWeek} months={months} bookings={bookings} showDetails={showDetails}/>
+            </div>
+
+            <div className='details-container'>
+                <BookingDetails months={months} booking={bookingForDetails}/>
+            </div> 
         </div>
     )
 }

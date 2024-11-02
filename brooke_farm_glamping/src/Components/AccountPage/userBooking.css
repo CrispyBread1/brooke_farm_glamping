@@ -5,24 +5,37 @@
     margin-bottom: 0.75rem;
     width: 50rem;
     display: grid;
+    grid-template-areas: 
+    "header header"
+    "main main "
 }
 
 .user--bookings--li--dateStaying {
-    justify-self: center;
+    grid-area: header;
+    justify-self: right;
     font-size: x-large;
     font-weight: 600;
     padding: 0.4rem;
 }
 
 .user--bookings--li--campingFacility {
-
+    grid-area: main;
 }
 
 .user--bookings--li--state {
+    grid-area: main;
+}
 
+.user--bookings--li--ref {
+    grid-area: header;
+    justify-self: left;
+    font-size: x-large;
+    font-weight: 600;
+    padding: 0.4rem;
 }
 
 .user--bookings--li--details {
+    grid-area: main;
     justify-self: center;
     text-decoration: underline;
     color: blue;

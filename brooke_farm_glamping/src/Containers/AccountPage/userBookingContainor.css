@@ -5,6 +5,6 @@
     width: 60rem;
     display: grid;
     justify-content: center;
-    justify-self: center;
+    justify-self: left;
 }
 

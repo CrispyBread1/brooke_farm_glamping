@@ -56,7 +56,7 @@ const BookingPage = ({ months, daysOfWeek, nthNumber}) => {
       sidebar.classList.remove('show');
     } else {
       sidebar.classList.add('show');
-    }}}
+  }}}
 
   const closeBookingBox = () => {
     setBookingBoxOpen(false)
