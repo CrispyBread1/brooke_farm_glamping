@@ -24,11 +24,20 @@ const AdminFacilityComponent = ({facility}) => {
         if (edit) {
             setEdit(false)
             setEditString('Edit')
+            clearState()
         } else {
             setEdit(true)
             setEditString('X')
         }
     }  
+
+    const clearState = () => {
+        setFName(facility.name)
+        setFAmount(facility.amount)
+        setFImageURL(facility.name)
+        setFMaxPeople(facility.maxPeople)
+        setFPrice('£' + facility.price)
+    }
 
     const handleFNameChange = (evt) => {
         setFName(evt.target.value);
