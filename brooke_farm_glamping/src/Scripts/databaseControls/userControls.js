@@ -28,14 +28,14 @@ const addUser = (user, UID) => {
 )}
 
 const retreiveUser = async (userID) => {
-    const db = getFirestore(app);
-    const docRef = doc(db, "users", userID);
-    const user = await getDoc(docRef);
-    if (user.exists()) {
-      return (user.data());
-    } else {
-      console.log("No such document!");
-    } 
+  const db = getFirestore(app);
+  const docRef = doc(db, "users", userID);
+  const user = await getDoc(docRef);
+  if (user.exists()) {
+    return (user.data());
+  } else {
+    console.log("No such document!");
+  } 
 }
 
 const addBookingToUser = (bookingID, userID) => {
@@ -54,5 +54,20 @@ const addBookingToUser = (bookingID, userID) => {
     }
 )}
 
+const authenticateAdmin = async (userId) => {
+  return new Promise((resolve, reject) => {
+    const db = getFirestore(app);
+    const adminRef = getDocs(collection(db, 'admin'))
+      if (adminRef) {
+        // adminRef.forEach((element) => {if (element.data().userID === userId) resolve(true)})
+        resolve(adminRef)
+      } else {
+        Promise.reject(new Error('User is not in Admin table'));
+      }
+    }, (error) => {
+      Promise.reject(error);
+    })
+}
 
-  export {addUser, retreiveUser, addBookingToUser};
+
+  export {addUser, retreiveUser, addBookingToUser, authenticateAdmin};

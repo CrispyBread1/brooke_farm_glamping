@@ -50,12 +50,12 @@ const LogInPage = ({userLoggedIn}) => {
         try {
             await registerNewAccountEmailPassword(email, password)
             .then((res) => {
-                // userSignedIn(res)
                 var user = {
                     'email': email,
                     'fullName': fullName,
                     'phone': phone,
-                    'id': res.user.uid
+                    'id': res.user.uid,
+                    'admin': false
                 }
                 addUser(user, res.user.uid)
                 if (location.state) {
