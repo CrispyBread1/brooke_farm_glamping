@@ -1,0 +1,5 @@
+.admin-facilities {
+    display: flex;
+    /* align-content: flex-start */
+    gap: 1rem
+}

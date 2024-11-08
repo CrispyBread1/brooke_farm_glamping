@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { retrieveCampingFacilities } from "../../../Scripts/databaseControls/campingFacilitiesControls";
 import AdminFacilityComponent from "../../../Components/Admin/Facilities/facility";
+import './facilitiesContainer.css'
 
 
 
@@ -52,11 +53,13 @@ const AdminFacilities = ({}) => {
         <>
             <h3>Facilities:</h3>
 
-            <form onSubmit={handleFormSubmit}>
-
-                {facilitiesForms}
-
+            
+            <form onSubmit={handleFormSubmit} >
+                <div className="admin-facilities">
+                    {facilitiesForms}
+                </div>
             </form>
+            
 
         </>
     )

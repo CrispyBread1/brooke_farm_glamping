@@ -15,7 +15,7 @@ const AdminFacilityComponent = ({facility}) => {
 
     useEffect(() => {
     
-      }, []);
+    }, []);
 
     const handleFNameChange = (evt) => {
         setFName(evt.target.value);
@@ -34,16 +34,16 @@ const AdminFacilityComponent = ({facility}) => {
         <div className="admin-facilities-edit">
             <h3>{facility.name}</h3><br></br>
                 
-            <label for="fname">Name:</label><br></br>
+            <label htmlFor="fname">Name:</label><br></br>
             <input type="text" id="fname" name="fname" value={fName} onChange={handleFNameChange}/><br></br>
             
-            <label for="fAmount">Max facilities available per day:</label><br></br>
+            <label htmlFor="fAmount">Max facilities available per day:</label><br></br>
             <input type="text" id="fAmount" name="fAmount" value={fAmount} onChange={handleFAmountChange}/><br></br>
 
-            <label for="fMaxPeople">Max people to stay in the facility:</label><br></br>
+            <label htmlFor="fMaxPeople">Max people to stay in the facility:</label><br></br>
             <input type="text" id="fMaxPeople" name="fMaxPeople" value={fMaxPeople} onChange={handleFMaxPeopleChange}/><br></br>
 
-            <label for="fPrice">Price per night:</label><br></br>
+            <label htmlFor="fPrice">Price per night:</label><br></br>
             <input type="text" id="fPrice" name="fPrice" value={fPrice} onChange={handleFPriceChange}/><br></br>
 
             {/* Need to work out how to change images */}
