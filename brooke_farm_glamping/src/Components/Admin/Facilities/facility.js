@@ -83,7 +83,7 @@ const AdminFacilityComponent = ({facility}) => {
             <br></br>
             
             <label htmlFor="fAmount">Max facilities available per day:</label><br></br>
-            {edit && <input type="text" id="fAmount" name="fAmount" value={'£' + fAmount} onChange={handleFAmountChange}/>} 
+            {edit && <input type="text" id="fAmount" name="fAmount" value={fAmount} onChange={handleFAmountChange}/>} 
             {!edit && <label className="admin-facilities-fLabel">{facility.amount}</label>} 
             <br></br>
 
@@ -93,7 +93,7 @@ const AdminFacilityComponent = ({facility}) => {
             <br></br>
 
             <label htmlFor="fPrice">Price per night:</label><br></br>
-            {edit && <input type="text" id="fPrice" name="fPrice" value={fPrice} onChange={handleFPriceChange}/>}
+            {edit && <input type="text" id="fPrice" name="fPrice" value={'£' + fPrice} onChange={handleFPriceChange}/>}
             {!edit && <label className="admin-facilities-fLabel">£{facility.price}</label>}
             <br></br>
 
