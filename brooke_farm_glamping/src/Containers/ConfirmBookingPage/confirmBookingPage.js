@@ -101,7 +101,7 @@ const ConfirmBookingPage = ({months, daysOfWeek, nthNumber, userLoggedOut}) => {
         ).toUpperCase()
     }
 
-
+// campingSite, children, dogs, firePit, gazebo, additionalCars, dateCreated, cost, email
 
     const addNewBooking = async () => {
         var booking =   new Booking(

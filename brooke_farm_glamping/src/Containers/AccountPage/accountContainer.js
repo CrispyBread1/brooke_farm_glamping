@@ -3,10 +3,10 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { retreiveUser } from "../../Scripts/databaseControls/userControls";
 import { addBooking, editBooking, cancelBooking, retrieveUserBooking } from "../../Scripts/databaseControls/bookingControls";
 import { useNavigate } from "react-router-dom";
-import UserBookingsContainer from "./userBookingsContainor";
+import UserBookingsContainer from "./emptyContainor";
 import BookingDetails from "../../Components/AccountPage/bookingDetails";
 
-const AccountContainer = ({userLoggedOut, daysOfWeek, months}) => {
+const AccountContainer = ({userLoggedOut, daysOfWeek, months, nthNumber}) => {
 
     const navigate = useNavigate()
 
@@ -58,15 +58,15 @@ const AccountContainer = ({userLoggedOut, daysOfWeek, months}) => {
 
 
     const showDetails = (booking) => {
-        setBookingForDetails(booking)
-        setBookingDetailsOpen(true);
-        if (!bookingDetailsOpen) {
-            const sidebar = document.querySelector('.details-container');
-        if (bookingDetailsOpen) {
-            sidebar.classList.remove('show');
-        } else {
-            sidebar.classList.add('show');
-        }}
+        // setBookingForDetails(booking)
+        // setBookingDetailsOpen(true);
+        // if (!bookingDetailsOpen) {
+        //     const sidebar = document.querySelector('.details-container');
+        // if (bookingDetailsOpen) {
+        //     sidebar.classList.remove('show');
+        // } else {
+        //     sidebar.classList.add('show');
+        // }}
     }
 
 
@@ -74,12 +74,8 @@ const AccountContainer = ({userLoggedOut, daysOfWeek, months}) => {
         <div>
             <h2>{user.fullName}'s' Account page</h2>
             <div>
-                <UserBookingsContainer daysOfWeek={daysOfWeek} months={months} bookings={bookings} showDetails={showDetails}/>
+                <UserBookingsContainer daysOfWeek={daysOfWeek} months={months} bookings={bookings} nthNumber={nthNumber}/>
             </div>
-
-            <div className='details-container'>
-                <BookingDetails months={months} booking={bookingForDetails}/>
-            </div> 
         </div>
     )
 }

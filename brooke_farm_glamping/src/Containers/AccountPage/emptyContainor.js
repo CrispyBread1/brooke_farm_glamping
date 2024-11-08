@@ -5,7 +5,7 @@ import './userBookingContainor.css'
 
 
 
-const UserBookingsContainer = ({daysOfWeek, months, bookings, showDetails}) => {
+const UserBookingsContainer = ({daysOfWeek, months, bookings, showDetails, nthNumber}) => {
 
     const [bookingsArray, setBookingsArray] = useState([])
     const [bookingDetailsOpen, setBookingDetailsOpen] = useState(false)
@@ -19,7 +19,7 @@ const UserBookingsContainer = ({daysOfWeek, months, bookings, showDetails}) => {
         var arrayOfBookings = []
         if (bookings) {
             for (var i = 0; i < bookings.length; i++) {
-                arrayOfBookings.push(<UserBooking key={i} id={i} daysOfWeek={daysOfWeek} months={months} booking={bookings[i]} showDetails={showDetails}/>)
+                arrayOfBookings.push(<UserBooking key={i} id={i} daysOfWeek={daysOfWeek} months={months} booking={bookings[i]} showDetails={showDetails} nthNumber={nthNumber}/>)
             }  
         }
         setBookingsArray(arrayOfBookings)
