@@ -17,7 +17,6 @@ const BookingPage = ({ months, daysOfWeek, nthNumber}) => {
   const [amountOfNightsStaying, setAmountOfNightsStaying] = useState(null)
 
   useEffect(() => {
-    // fetchBookings(new Date().getMonth())
     fetchCampingFacilities()
 
   }, []);
