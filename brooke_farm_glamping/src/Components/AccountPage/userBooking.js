@@ -26,6 +26,12 @@ const UserBooking = ({daysOfWeek, months, booking, nthNumber}) => {
         )
     }
 
+    const configureCars = () => {
+        return (
+            booking.additionCars + 1
+        )
+    }
+
     const generateDetails = () => {
         if (showBooking) {
             setShowBooking(false)
@@ -36,7 +42,7 @@ const UserBooking = ({daysOfWeek, months, booking, nthNumber}) => {
         }
     }    
 
-    // campingSite, children, dogs, firePit, gazebo, additionalCars, dateCreated, cost, email, state
+
 
     return (
        
@@ -57,23 +63,23 @@ const UserBooking = ({daysOfWeek, months, booking, nthNumber}) => {
             {showBooking && <div className="user--bookings--li--campingSite">
                 Camping Site: {booking.space.name}
             </div>}
-            {showBooking && <div className="user--bookings--li--children">
+            {showBooking && booking.children > 0 && <div className="user--bookings--li--children">
                 Children: {booking.children}
             </div>}
-            {showBooking && <div className="user--bookings--li--dogs">
+            {showBooking && booking.dogs > 0 && <div className="user--bookings--li--dogs">
                 Dogs: {booking.dogs}
             </div>}
-            {showBooking && <div className="user--bookings--li--firePit">
+            {showBooking && booking.firePit && <div className="user--bookings--li--firePit">
                 Firepit: {booking.firePit}
             </div>}
-            {showBooking && <div className="user--bookings--li--gazebo">
+            {showBooking && booking.gazebo > 0 && <div className="user--bookings--li--gazebo">
                 Gazebos: {booking.gazebo}
             </div>}
             {showBooking && <div className="user--bookings--li--additionalCars">
-                Car allowance: {booking.additionalCars}
+                Car allowance: {configureCars()}
             </div>}
             {showBooking && <div className="user--bookings--li--dateCreated">
-                Date booking was created: {configureDateBookingCreated()}
+                Booking created: {configureDateBookingCreated()}
             </div>}
             {showBooking && <div className="user--bookings--li--cost">
                 Cost: {booking.cost}
