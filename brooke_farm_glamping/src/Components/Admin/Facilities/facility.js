@@ -14,29 +14,44 @@ const AdminFacilityComponent = ({facility}) => {
     const [fAmount, setFAmount] = useState(facility.amount)
     const [fImageURL, setFImageURL] = useState(facility.name)
     const [fMaxPeople, setFMaxPeople] = useState(facility.maxPeople)
-    const [fPrice, setFPrice] = useState('£' + facility.price)
+    const [fPrice, setFPrice] = useState(facility.price)
 
     useEffect(() => {
     
     }, []);
 
     const generateEdit = () => {
-        if (edit) {
+        if (edit && checkNoEditsMade()) {
             setEdit(false)
             setEditString('Edit')
             clearState()
+            
         } else {
             setEdit(true)
             setEditString('X')
         }
-    }  
+    }
+
+    const checkNoEditsMade = () => {
+        var editMade = true //this has to be true and edited is false - just so the window.confirm works
+        if (facility.name !== fName) {return confirmCloseEdit()}
+        if (facility.amount !== fAmount) {return confirmCloseEdit()}
+        if (facility.maxPeople !== fMaxPeople) {return confirmCloseEdit()}
+        if (facility.price !== fPrice) {return confirmCloseEdit()}
+        console.log(editMade)
+        return editMade
+    }
+
+    const confirmCloseEdit = () => {
+        return window.confirm("Are you sure you want to exit edit? There are unsaved changes")
+    }
 
     const clearState = () => {
         setFName(facility.name)
         setFAmount(facility.amount)
         setFImageURL(facility.name)
         setFMaxPeople(facility.maxPeople)
-        setFPrice('£' + facility.price)
+        setFPrice(facility.price)
     }
 
     const handleFNameChange = (evt) => {
@@ -68,7 +83,7 @@ const AdminFacilityComponent = ({facility}) => {
             <br></br>
             
             <label htmlFor="fAmount">Max facilities available per day:</label><br></br>
-            {edit && <input type="text" id="fAmount" name="fAmount" value={fAmount} onChange={handleFAmountChange}/>} 
+            {edit && <input type="text" id="fAmount" name="fAmount" value={'£' + fAmount} onChange={handleFAmountChange}/>} 
             {!edit && <label className="admin-facilities-fLabel">{facility.amount}</label>} 
             <br></br>
 
