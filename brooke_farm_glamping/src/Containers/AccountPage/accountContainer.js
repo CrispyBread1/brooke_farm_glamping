@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { retreiveUser } from "../../Scripts/databaseControls/userControls";
+import { retrieveUser } from "../../Scripts/databaseControls/userControls";
 import { addBooking, editBooking, cancelBooking, retrieveUserBooking } from "../../Scripts/databaseControls/bookingControls";
 import { useNavigate } from "react-router-dom";
 import UserBookingsContainer from "./emptyContainor";
@@ -18,7 +18,7 @@ const AccountContainer = ({userLoggedOut, daysOfWeek, months, nthNumber}) => {
         const auth = getAuth();
           onAuthStateChanged(auth, (doc) => {
             if (doc) {
-              retreiveUser(doc.uid)
+                retrieveUser(doc.uid)
               .then((res) => {
                 setUser(res)
                 // console.log(res.bookings)

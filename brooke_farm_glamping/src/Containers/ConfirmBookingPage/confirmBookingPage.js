@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useLocation, redirect, useNavigate } from "react-router-dom";
 import Booking from "../../Classes/booking";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { retreiveUser, addBookingToUser } from "../../Scripts/databaseControls/userControls";
+import { retrieveUser, addBookingToUser } from "../../Scripts/databaseControls/userControls";
 import { addBooking, editBooking, cancelBooking, retrieveUserBooking } from "../../Scripts/databaseControls/bookingControls";
 
 
@@ -28,7 +28,7 @@ const ConfirmBookingPage = ({months, daysOfWeek, nthNumber, userLoggedOut}) => {
         const auth = getAuth();
           onAuthStateChanged(auth, (doc) => {
             if (doc) {
-              retreiveUser(doc.uid)
+            retrieveUser(doc.uid)
               .then((res) => setUserObj(res))
             //   console.log(user)
           } else {

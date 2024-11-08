@@ -11,7 +11,7 @@ import {Link, BrowserRouter, useLocation} from'react-router-dom'
 import { Paths } from './Scripts/routes';
 import NavBar from './Containers/NavBar/navBar.js'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { retreiveUser } from './Scripts/databaseControls/userControls.js';
+import { retrieveUser } from './Scripts/databaseControls/userControls.js';
 
 
 
@@ -45,7 +45,7 @@ function App({}) {
     const auth = getAuth();
     onAuthStateChanged(auth, (doc) => {
       if (doc) {
-        retreiveUser(doc.uid)
+        retrieveUser(doc.uid)
         .then((res) => (setUser(res)))
       } else {
         console.log("Logged out")

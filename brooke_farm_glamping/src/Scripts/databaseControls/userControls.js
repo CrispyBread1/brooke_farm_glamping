@@ -27,7 +27,7 @@ const addUser = (user, UID) => {
   }
 )}
 
-const retreiveUser = async (userID) => {
+const retrieveUser = async (userID) => {
   const db = getFirestore(app);
   const docRef = doc(db, "users", userID);
   const user = await getDoc(docRef);
@@ -59,7 +59,6 @@ const authenticateAdmin = async (userId) => {
     const db = getFirestore(app);
     const adminRef = getDocs(collection(db, 'admin'))
       if (adminRef) {
-        // adminRef.forEach((element) => {if (element.data().userID === userId) resolve(true)})
         resolve(adminRef)
       } else {
         Promise.reject(new Error('User is not in Admin table'));
@@ -70,4 +69,4 @@ const authenticateAdmin = async (userId) => {
 }
 
 
-  export {addUser, retreiveUser, addBookingToUser, authenticateAdmin};
+  export {addUser, retrieveUser, addBookingToUser, authenticateAdmin};
