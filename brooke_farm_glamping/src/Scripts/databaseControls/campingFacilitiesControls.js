@@ -27,4 +27,20 @@ const retrieveCampingFacilities = () => {
     }
 )}
 
-  export {retrieveCampingFacilities};
+const updateFacilities = (facility, facilityID) => {
+  return new Promise((resolve, reject) => {
+    const db = getFirestore(app);
+    const facilityRef = doc(db, "pitches", facilityID)
+    const docRef = setDoc(facilityRef, {facility});
+    if (docRef) {
+      resolve(docRef.id);
+    } else {
+      Promise.reject(new Error('No data available'));
+    }
+  }, (error) => {
+      Promise.reject(error);
+    }
+)
+}
+
+  export {retrieveCampingFacilities, updateFacilities};

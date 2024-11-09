@@ -5,7 +5,7 @@ import './facility.css'
 
 
 
-const AdminFacilityComponent = ({facility}) => {
+const AdminFacilityComponent = ({facility, facilityID, updateCampingFacility}) => {
 
     const [edit, setEdit] = useState(false)
     const [editString, setEditString] = useState('Edit')
@@ -17,7 +17,6 @@ const AdminFacilityComponent = ({facility}) => {
     const [fPrice, setFPrice] = useState(facility.price)
 
     useEffect(() => {
-    
     }, []);
 
     const generateEdit = () => {
@@ -38,7 +37,6 @@ const AdminFacilityComponent = ({facility}) => {
         if (facility.amount !== fAmount) {return confirmCloseEdit()}
         if (facility.maxPeople !== fMaxPeople) {return confirmCloseEdit()}
         if (facility.price !== fPrice) {return confirmCloseEdit()}
-        console.log(editMade)
         return editMade
     }
 
@@ -65,7 +63,12 @@ const AdminFacilityComponent = ({facility}) => {
     }
     const handleFPriceChange = (evt) => {
         setFPrice(evt.target.value);
-    }   
+    }
+    
+    const handleFormSubmit = (evt) => {
+        evt.preventDefault()
+        updateCampingFacility(facility, facilityID)
+    }
 
     return (
         <div className="admin-facilities-edit">
@@ -74,31 +77,36 @@ const AdminFacilityComponent = ({facility}) => {
             <div className="admin-facilities-edit-button" onClick={generateEdit}>
                 {editString}
             </div>
-            
             <br></br>
+
+            <form onSubmit={handleFormSubmit} >
+                <label htmlFor="fname">Name:</label><br></br>
+                {edit && <input type="text" id="fname" name="fname" value={fName} onChange={handleFNameChange}/>}
+                {!edit && <label className="admin-facilities-fLabel">{facility.name}</label>}
+                <br></br>
                 
-            <label htmlFor="fname">Name:</label><br></br>
-            {edit && <input type="text" id="fname" name="fname" value={fName} onChange={handleFNameChange}/>}
-            {!edit && <label className="admin-facilities-fLabel">{facility.name}</label>}
-            <br></br>
-            
-            <label htmlFor="fAmount">Max facilities available per day:</label><br></br>
-            {edit && <input type="text" id="fAmount" name="fAmount" value={fAmount} onChange={handleFAmountChange}/>} 
-            {!edit && <label className="admin-facilities-fLabel">{facility.amount}</label>} 
-            <br></br>
+                <label htmlFor="fAmount">Max facilities available per day:</label><br></br>
+                {edit && <input type="text" id="fAmount" name="fAmount" value={fAmount} onChange={handleFAmountChange}/>} 
+                {!edit && <label className="admin-facilities-fLabel">{facility.amount}</label>} 
+                <br></br>
 
-            <label htmlFor="fMaxPeople">Max people to stay in the facility:</label><br></br>
-            {edit && <input type="text" id="fMaxPeople" name="fMaxPeople" value={fMaxPeople} onChange={handleFMaxPeopleChange}/>}
-            {!edit && <label className="admin-facilities-fLabel">{facility.maxPeople}</label>}
-            <br></br>
+                <label htmlFor="fMaxPeople">Max people to stay in the facility:</label><br></br>
+                {edit && <input type="text" id="fMaxPeople" name="fMaxPeople" value={fMaxPeople} onChange={handleFMaxPeopleChange}/>}
+                {!edit && <label className="admin-facilities-fLabel">{facility.maxPeople}</label>}
+                <br></br>
 
-            <label htmlFor="fPrice">Price per night:</label><br></br>
-            {edit && <input type="text" id="fPrice" name="fPrice" value={'£' + fPrice} onChange={handleFPriceChange}/>}
-            {!edit && <label className="admin-facilities-fLabel">£{facility.price}</label>}
-            <br></br>
+                <label htmlFor="fPrice">Price per night:</label><br></br>
+                {edit && <input type="text" id="fPrice" name="fPrice" value={'£' + fPrice} onChange={handleFPriceChange}/>}
+                {!edit && <label className="admin-facilities-fLabel">£{facility.price}</label>}
+                <br></br>
 
-            {/* Need to work out how to change images */}
+                {/* Need to work out how to change images */}
 
+                {edit && <button id="post-button-admin" type="submit" className="admin-facilities-save-button" style={{ width: "", height: "" }}>
+                    Save
+                </button>}
+
+            </form>
         </div>
     )
 }

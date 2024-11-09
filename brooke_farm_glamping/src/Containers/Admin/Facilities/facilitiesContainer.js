@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { retrieveCampingFacilities } from "../../../Scripts/databaseControls/campingFacilitiesControls";
+import { retrieveCampingFacilities, updateFacilities } from "../../../Scripts/databaseControls/campingFacilitiesControls";
 import AdminFacilityComponent from "../../../Components/Admin/Facilities/facility";
 import './facilitiesContainer.css'
 
@@ -26,7 +26,7 @@ const AdminFacilities = ({}) => {
           const camps = await retrieveCampingFacilities();
           const arr = []
           camps.forEach((doc) => {
-            arr.push(doc.data())
+            arr.push({id: doc.id, data: doc.data()})
           });
           setCampingFacilities(arr)
         } catch (error) {
@@ -34,33 +34,39 @@ const AdminFacilities = ({}) => {
         }
     }
 
+    const updateCampingFacility = async (facility, facilityID) => {
+        try {
+            updateFacilities(facility, facilityID)
+            .then((res) => {
+                fetchCampingFacilities()
+                console.log('Successfully updated facility')
+            })
+        } catch (error) {
+            console.error('Error updating facility:', error);
+        }
+    }  
+
     const configureForm = () => {
         var arr = []
         if (campingFacilities) {
             campingFacilities.forEach((facility) => {
-                arr.push(<AdminFacilityComponent key={facility.name} id={facility.name} facility={facility}/>)
+                arr.push(<AdminFacilityComponent key={facility.data.name} id={facility.data.name} facility={facility.data} facilityID={facility.id} updateCampingFacility={updateCampingFacility}/>)
             })
             setFacilitiesForms(arr)
         }
     }
 
-    const handleFormSubmit = () => {
-
-    }
+    
    
 
     return (
         <>
             <h3>Facilities:</h3>
 
+            <div className="admin-facilities">
+                {facilitiesForms}
+            </div>
             
-            <form onSubmit={handleFormSubmit} >
-                <div className="admin-facilities">
-                    {facilitiesForms}
-                </div>
-            </form>
-            
-
         </>
     )
 }
