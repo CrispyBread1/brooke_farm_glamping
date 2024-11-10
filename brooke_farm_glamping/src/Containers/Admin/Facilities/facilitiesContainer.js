@@ -67,7 +67,6 @@ const AdminFacilities = ({}) => {
             addNewFacility(facility)
             .then((res) => {
                 setAddingNewFacility(false)
-                // setNewFacility(res)
             })
         } catch (error) {
             console.error('Error adding booking:', error);
@@ -78,7 +77,7 @@ const AdminFacilities = ({}) => {
         var arr = []
         if (campingFacilities) {
             campingFacilities.forEach((facility) => {
-                arr.push(<AdminFacilityComponent key={facility.data.name} id={facility.data.name} facility={facility.data} facilityID={facility.id} updateCampingFacility={updateCampingFacility}/>)
+                if (facility.data.state) arr.push(<AdminFacilityComponent key={facility.data.name} id={facility.data.name} facility={facility.data} facilityID={facility.id} updateCampingFacility={updateCampingFacility}/>)
             })
             if (addingNewFacility) {
                 arr.push(<AdminEmptyFacilityComponent key="empty-component" id="empty-component" addFacility={addFacility}/>)

@@ -32,7 +32,7 @@ const AdminFacilityComponent = ({facility, facilityID, updateCampingFacility}) =
             setEditString('X')
         }
     }
-
+    
     const checkNoEditsMade = () => {
         var editMade = true //this has to be true and edited is false - just so the window.confirm works
         if (facility.name !== fName) {return confirmCloseEdit()}
@@ -66,6 +66,17 @@ const AdminFacilityComponent = ({facility, facilityID, updateCampingFacility}) =
     const handleFPriceChange = (evt) => {
         setFPrice(evt.target.value);
     }
+
+    const deleteFacility = () => {
+        var facilityRemove = {
+            state: false,
+        }
+        if (confirmDelete()) updateCampingFacility(facilityRemove, facilityID)
+    }
+
+    const confirmDelete = () => {
+        return window.confirm("Are you sure you want to delete this facility?")
+    }
     
     const handleFormSubmit = (evt) => {
         evt.preventDefault()
@@ -75,7 +86,6 @@ const AdminFacilityComponent = ({facility, facilityID, updateCampingFacility}) =
             maxPeople: evt.target.fMaxPeople.value,
             price: evt.target.fPrice.value,
             imageURL: '',
-            state: true
         }
         updateCampingFacility(facilityEdit, facilityID)
     }
@@ -84,8 +94,12 @@ const AdminFacilityComponent = ({facility, facilityID, updateCampingFacility}) =
         <div className="admin-facilities">
             <h3>{facility.name}</h3>
 
-            <div className="admin-facilities-edit-button" onClick={generateEdit}>
+            <div className="admin-facilities-button" onClick={generateEdit}>
                 {editString}
+            </div>
+
+            <div className="admin-facilities-button" onClick={deleteFacility}>
+                Delete
             </div>
             <br></br>
 

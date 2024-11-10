@@ -1,18 +1,17 @@
 
-.admin-facilities-edit-button {
+.admin-facilities-button {
     justify-self: right;
     text-decoration: underline;
     color: blue;
     font-size: large;
 }
 
-.admin-facilities-edit-button:hover {
+.admin-facilities-button:hover {
     color: rgb(128, 0, 148);
     cursor: pointer;
 }
 
 .admin-facilities-fLabel {
-    /* border-style: solid; */
     display: inline-block;
     font-weight: bold;
 }
