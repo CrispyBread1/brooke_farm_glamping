@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
-const AdminEmptyFacilityComponent = ({}) => {
+const AdminEmptyFacilityComponent = ({addFacility}) => {
 
     const [edit, setEdit] = useState(false)
     const [editString, setEditString] = useState('Edit')
@@ -38,8 +38,16 @@ const AdminEmptyFacilityComponent = ({}) => {
         setFPrice(evt.target.value);
     }
 
-    const handleFormSubmit = () => {
-
+    const handleFormSubmit = (evt) => {
+        evt.preventDefault()
+        var newFacility = {
+            name: evt.target.fname.value,
+            amount: evt.target.fAmount.value,
+            maxPeople: evt.target.fMaxPeople.value,
+            price: evt.target.fPrice.value,
+            imageURL: ""
+        }
+        addFacility(newFacility)
     }
 
     
@@ -57,15 +65,15 @@ const AdminEmptyFacilityComponent = ({}) => {
                 <br></br>
                 
                 <label htmlFor="fAmount">Max facilities available per day:</label><br></br>
-                <input type="text" id="fAmount" name="fAmount" value={fAmount} onChange={handleFAmountChange}/> 
+                <input type="number" id="fAmount" name="fAmount" value={fAmount} onChange={handleFAmountChange}/> 
                 <br></br>
 
                 <label htmlFor="fMaxPeople">Max people to stay in the facility:</label><br></br>
-                <input type="text" id="fMaxPeople" name="fMaxPeople" value={fMaxPeople} onChange={handleFMaxPeopleChange}/>
+                <input type="number" id="fMaxPeople" name="fMaxPeople" value={fMaxPeople} onChange={handleFMaxPeopleChange}/>
                 <br></br>
 
                 <label htmlFor="fPrice">Price per night:</label><br></br>
-                <input type="text" id="fPrice" name="fPrice" value={fPrice} onChange={handleFPriceChange}/>
+                <input type="number" id="fPrice" name="fPrice" value={fPrice} onChange={handleFPriceChange}/>
                 <br></br>
 
                 {/* Need to work out how to change images */}

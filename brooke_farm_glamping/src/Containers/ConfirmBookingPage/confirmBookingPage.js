@@ -130,7 +130,6 @@ const ConfirmBookingPage = ({months, daysOfWeek, nthNumber, userLoggedOut}) => {
         } catch (error) {
             console.error('Error adding booking:', error);
           }
-        
     }
 
     

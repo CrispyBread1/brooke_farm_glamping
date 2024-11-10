@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { retrieveCampingFacilities, updateFacilities } from "../../../Scripts/databaseControls/campingFacilitiesControls";
+import { retrieveCampingFacilities, updateFacilities, addNewFacility } from "../../../Scripts/databaseControls/campingFacilitiesControls";
 import AdminFacilityComponent from "../../../Components/Admin/Facilities/facility";
 import './facilitiesContainer.css'
 import AdminNewFacilityComponent from "../../../Components/Admin/Facilities/newFacility";
@@ -21,8 +21,17 @@ const AdminFacilities = ({}) => {
 
     useEffect(() => {
         configureForm()
+        
     
-    }, [campingFacilities, addingNewFacility]);
+    }, [campingFacilities]);
+
+    useEffect(() => {
+        if (addingNewFacility) {
+            configureForm()
+        } else fetchCampingFacilities()
+    
+    }, [addingNewFacility]);
+
 
     const fetchCampingFacilities = async () => {
         try {
@@ -49,8 +58,20 @@ const AdminFacilities = ({}) => {
         }
     }  
 
-    const addFacility = () => {
+    const addEmptyFacility = () => {
         setAddingNewFacility(true)
+    }
+
+    const addFacility = async (facility) => {
+        try {
+            addNewFacility(facility)
+            .then((res) => {
+                setAddingNewFacility(false)
+                // setNewFacility(res)
+            })
+        } catch (error) {
+            console.error('Error adding booking:', error);
+          }
     }
 
     const configureForm = () => {
@@ -60,10 +81,10 @@ const AdminFacilities = ({}) => {
                 arr.push(<AdminFacilityComponent key={facility.data.name} id={facility.data.name} facility={facility.data} facilityID={facility.id} updateCampingFacility={updateCampingFacility}/>)
             })
             if (addingNewFacility) {
-                arr.push(<AdminEmptyFacilityComponent key="empty-component" id="empty-component" />)
+                arr.push(<AdminEmptyFacilityComponent key="empty-component" id="empty-component" addFacility={addFacility}/>)
             }
 
-            arr.push(<AdminNewFacilityComponent key="new-component" id="new-component" addFacility={addFacility}/>)
+            arr.push(<AdminNewFacilityComponent key="new-component" id="new-component" addEmptyFacility={addEmptyFacility}/>)
             setFacilitiesForms(arr)
         }
     }

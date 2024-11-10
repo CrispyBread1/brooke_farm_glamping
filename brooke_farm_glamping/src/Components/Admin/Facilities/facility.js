@@ -94,17 +94,17 @@ const AdminFacilityComponent = ({facility, facilityID, updateCampingFacility}) =
                 <br></br>
                 
                 <label htmlFor="fAmount">Max facilities available per day:</label><br></br>
-                {edit && <input type="text" id="fAmount" name="fAmount" value={fAmount} onChange={handleFAmountChange}/>} 
+                {edit && <input type="number" id="fAmount" name="fAmount" value={fAmount} onChange={handleFAmountChange}/>} 
                 {!edit && <label className="admin-facilities-fLabel">{facility.amount}</label>} 
                 <br></br>
 
                 <label htmlFor="fMaxPeople">Max people to stay in the facility:</label><br></br>
-                {edit && <input type="text" id="fMaxPeople" name="fMaxPeople" value={fMaxPeople} onChange={handleFMaxPeopleChange}/>}
+                {edit && <input type="number" id="fMaxPeople" name="fMaxPeople" value={fMaxPeople} onChange={handleFMaxPeopleChange}/>}
                 {!edit && <label className="admin-facilities-fLabel">{facility.maxPeople}</label>}
                 <br></br>
 
                 <label htmlFor="fPrice">Price per night:</label><br></br>
-                {edit && <input type="text" id="fPrice" name="fPrice" value={fPrice} onChange={handleFPriceChange}/>}
+                {edit && <input type="number" id="fPrice" name="fPrice" value={fPrice} onChange={handleFPriceChange}/>}
                 {!edit && <label className="admin-facilities-fLabel">£{facility.price}</label>}
                 <br></br>
 
