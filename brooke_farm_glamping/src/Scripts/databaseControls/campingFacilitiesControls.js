@@ -31,7 +31,7 @@ const updateFacilities = (facility, facilityID) => {
   return new Promise((resolve, reject) => {
     const db = getFirestore(app);
     const facilityRef = doc(db, "pitches", facilityID)
-    const docRef = setDoc(facilityRef, {facility});
+    const docRef = updateDoc(facilityRef, facility);
     if (docRef) {
       resolve(docRef.id);
     } else {
@@ -39,7 +39,7 @@ const updateFacilities = (facility, facilityID) => {
     }
   }, (error) => {
       Promise.reject(error);
-    }
+  }
 )
 }
 

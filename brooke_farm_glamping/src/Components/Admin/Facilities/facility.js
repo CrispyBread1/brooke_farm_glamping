@@ -67,7 +67,14 @@ const AdminFacilityComponent = ({facility, facilityID, updateCampingFacility}) =
     
     const handleFormSubmit = (evt) => {
         evt.preventDefault()
-        updateCampingFacility(facility, facilityID)
+        var facilityEdit = {
+            name: evt.target.fname.value,
+            amount: evt.target.fAmount.value,
+            maxPeople: evt.target.fMaxPeople.value,
+            price: evt.target.fPrice.value
+        }
+        console.log(evt.target.fname.value)
+        updateCampingFacility(facilityEdit, facilityID)
     }
 
     return (

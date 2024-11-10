@@ -29,6 +29,7 @@ const AdminFacilities = ({}) => {
             arr.push({id: doc.id, data: doc.data()})
           });
           setCampingFacilities(arr)
+        //   console.log(arr)
         } catch (error) {
           console.error('Error fetching campsites:', error);
         }
@@ -39,6 +40,7 @@ const AdminFacilities = ({}) => {
             updateFacilities(facility, facilityID)
             .then((res) => {
                 fetchCampingFacilities()
+                // console.log(res)
                 console.log('Successfully updated facility')
             })
         } catch (error) {
