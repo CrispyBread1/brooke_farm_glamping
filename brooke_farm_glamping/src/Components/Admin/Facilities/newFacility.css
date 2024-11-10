@@ -1,32 +1,6 @@
-.admin-facilities-new {
-    padding: 1rem;
-    border-style: solid;
-    max-width: 16rem;
-    margin-left: 1rem;
-    min-width: 16rem;
-    min-height: 18rem;
-    max-height: 18rem;
-    display: grid;
-    place-items: center;    
-}
-
-.admin-facilities-edit-button {
-    justify-self: right;
-    text-decoration: underline;
-    color: blue;
-    font-size: large;
-}
-
-.admin-facilities-edit-button:hover {
-    color: rgb(128, 0, 148);
-    cursor: pointer;
-}
-
-.admin-facilities-fLabel {
-    display: inline-block;
-    font-weight: bold;
-}
 
 .add-facility{
     font-size: 8rem;
+    /* place-self: center; */
+    
 }

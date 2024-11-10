@@ -5,7 +5,7 @@ import './newFacility.css'
 
 
 
-const AdminNewFacilityComponent = ({}) => {
+const AdminNewFacilityComponent = ({addFacility}) => {
 
     const [edit, setEdit] = useState(false)
     const [editString, setEditString] = useState('Edit')
@@ -15,14 +15,12 @@ const AdminNewFacilityComponent = ({}) => {
         
     }, []);
 
-    const addFacility = () => {
-
-    }
+    
 
     
 
     return (
-        <div className="admin-facilities-new">
+        <div className="admin-facilities">
 
             <button className="add-facility" onClick={addFacility} style={{ width: "9rem", height: "9rem" }} type="button">+</button>
 

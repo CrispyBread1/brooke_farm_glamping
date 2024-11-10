@@ -17,7 +17,8 @@ const AdminFacilityComponent = ({facility, facilityID, updateCampingFacility}) =
     const [fPrice, setFPrice] = useState(facility.price)
 
     useEffect(() => {
-        generateEdit()
+        if (edit) {generateEdit()}
+
     }, [facility]);
 
     const generateEdit = () => {
@@ -78,7 +79,7 @@ const AdminFacilityComponent = ({facility, facilityID, updateCampingFacility}) =
     }
 
     return (
-        <div className="admin-facilities-edit">
+        <div className="admin-facilities">
             <h3>{facility.name}</h3>
 
             <div className="admin-facilities-edit-button" onClick={generateEdit}>
