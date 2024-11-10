@@ -73,7 +73,9 @@ const AdminFacilityComponent = ({facility, facilityID, updateCampingFacility}) =
             name: evt.target.fname.value,
             amount: evt.target.fAmount.value,
             maxPeople: evt.target.fMaxPeople.value,
-            price: evt.target.fPrice.value
+            price: evt.target.fPrice.value,
+            imageURL: '',
+            state: true
         }
         updateCampingFacility(facilityEdit, facilityID)
     }

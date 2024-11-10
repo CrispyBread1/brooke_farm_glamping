@@ -45,6 +45,7 @@ const AdminEmptyFacilityComponent = ({addFacility}) => {
             amount: evt.target.fAmount.value,
             maxPeople: evt.target.fMaxPeople.value,
             price: evt.target.fPrice.value,
+            state: true,
             imageURL: ""
         }
         addFacility(newFacility)
