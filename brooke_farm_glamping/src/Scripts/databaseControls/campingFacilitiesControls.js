@@ -33,7 +33,7 @@ const updateFacilities = (facility, facilityID) => {
     const facilityRef = doc(db, "pitches", facilityID)
     const docRef = updateDoc(facilityRef, facility);
     if (docRef) {
-      resolve(docRef.id);
+      resolve(docRef);
     } else {
       Promise.reject(new Error('No data available'));
     }

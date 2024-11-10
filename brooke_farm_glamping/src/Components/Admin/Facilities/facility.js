@@ -17,7 +17,8 @@ const AdminFacilityComponent = ({facility, facilityID, updateCampingFacility}) =
     const [fPrice, setFPrice] = useState(facility.price)
 
     useEffect(() => {
-    }, []);
+        generateEdit()
+    }, [facility]);
 
     const generateEdit = () => {
         if (edit && checkNoEditsMade()) {
@@ -73,7 +74,6 @@ const AdminFacilityComponent = ({facility, facilityID, updateCampingFacility}) =
             maxPeople: evt.target.fMaxPeople.value,
             price: evt.target.fPrice.value
         }
-        console.log(evt.target.fname.value)
         updateCampingFacility(facilityEdit, facilityID)
     }
 
@@ -103,7 +103,7 @@ const AdminFacilityComponent = ({facility, facilityID, updateCampingFacility}) =
                 <br></br>
 
                 <label htmlFor="fPrice">Price per night:</label><br></br>
-                {edit && <input type="text" id="fPrice" name="fPrice" value={'£' + fPrice} onChange={handleFPriceChange}/>}
+                {edit && <input type="text" id="fPrice" name="fPrice" value={fPrice} onChange={handleFPriceChange}/>}
                 {!edit && <label className="admin-facilities-fLabel">£{facility.price}</label>}
                 <br></br>
 
