@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { retrieveCampingFacilities, updateFacilities } from "../../../Scripts/databaseControls/campingFacilitiesControls";
 import AdminFacilityComponent from "../../../Components/Admin/Facilities/facility";
 import './facilitiesContainer.css'
+import AdminNewFacilityComponent from "../../../Components/Admin/Facilities/newFacility";
 
 
 
@@ -52,6 +53,7 @@ const AdminFacilities = ({}) => {
             campingFacilities.forEach((facility) => {
                 arr.push(<AdminFacilityComponent key={facility.data.name} id={facility.data.name} facility={facility.data} facilityID={facility.id} updateCampingFacility={updateCampingFacility}/>)
             })
+            arr.push(<AdminNewFacilityComponent key="new-component" id="new-component"/>)
             setFacilitiesForms(arr)
         }
     }

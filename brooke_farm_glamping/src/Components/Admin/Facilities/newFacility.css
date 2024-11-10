@@ -1,13 +1,13 @@
-.admin-facilities-edit {
+.admin-facilities-new {
     padding: 1rem;
-    /* border: 1rem; */
     border-style: solid;
     max-width: 16rem;
-    /* display:flex; */
     margin-left: 1rem;
     min-width: 16rem;
     min-height: 18rem;
     max-height: 18rem;
+    display: grid;
+    place-items: center;    
 }
 
 .admin-facilities-edit-button {
@@ -23,7 +23,10 @@
 }
 
 .admin-facilities-fLabel {
-    /* border-style: solid; */
     display: inline-block;
     font-weight: bold;
+}
+
+.add-facility{
+    font-size: 8rem;
 }
