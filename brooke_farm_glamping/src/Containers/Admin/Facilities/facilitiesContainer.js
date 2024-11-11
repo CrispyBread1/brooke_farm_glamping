@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { retrieveCampingFacilities, updateFacilities, addNewFacility } from "../../../Scripts/databaseControls/campingFacilitiesControls";
+import { retrieveCampingFacilities, updateFacilities, addNewFacility, addFacilitiesBlockedDay } from "../../../Scripts/databaseControls/campingFacilitiesControls";
 import AdminFacilityComponent from "../../../Components/Admin/Facilities/facility";
 import './facilitiesContainer.css'
 import AdminNewFacilityComponent from "../../../Components/Admin/Facilities/newFacility";
@@ -77,7 +77,7 @@ const AdminFacilities = ({}) => {
         var arr = []
         if (campingFacilities) {
             campingFacilities.forEach((facility) => {
-                if (facility.data.state) arr.push(<AdminFacilityComponent key={facility.data.name} id={facility.data.name} facility={facility.data} facilityID={facility.id} updateCampingFacility={updateCampingFacility}/>)
+                if (facility.data.state) arr.push(<AdminFacilityComponent key={facility.data.name} id={facility.data.name} facility={facility.data} facilityID={facility.id} updateCampingFacility={updateCampingFacility} addBlockedDays={addBlockedDays}/>)
             })
             if (addingNewFacility) {
                 arr.push(<AdminEmptyFacilityComponent key="empty-component" id="empty-component" addFacility={addFacility}/>)
@@ -85,6 +85,18 @@ const AdminFacilities = ({}) => {
 
             arr.push(<AdminNewFacilityComponent key="new-component" id="new-component" addEmptyFacility={addEmptyFacility}/>)
             setFacilitiesForms(arr)
+        }
+    }
+
+    const addBlockedDays = async (blockDay, facilityID) => {
+        try {
+            addFacilitiesBlockedDay(blockDay, facilityID)
+            .then((res) => {
+                fetchCampingFacilities()
+                console.log('Successfully blocked day')
+            })
+        } catch (error) {
+            console.error('Error updating facility:', error);
         }
     }
 

@@ -56,4 +56,22 @@ const addNewFacility = (facility) => {
   }
 )}
 
-  export {retrieveCampingFacilities, updateFacilities, addNewFacility};
+const addFacilitiesBlockedDay = (blockedDay, facilityID) => {
+  return new Promise((resolve, reject) => {
+    const db = getFirestore(app);
+    const facilityRef = doc(db, "pitches", facilityID)
+    const docRef = updateDoc(facilityRef, {
+      'blockedDays': arrayUnion(blockedDay)});
+    if (docRef) {
+      resolve(docRef.id);
+    } else {
+      Promise.reject(new Error('No data available'));
+    }
+  }, (error) => {
+      Promise.reject(error);
+    }
+)}
+
+
+
+export {retrieveCampingFacilities, updateFacilities, addNewFacility, addFacilitiesBlockedDay};
