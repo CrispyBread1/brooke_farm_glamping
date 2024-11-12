@@ -8,7 +8,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, rel
 
     const navigate = useNavigate();
 
-    const [campingChoice, setCampinChoice] = useState(null)
+    const [campingChoice, setCampingChoice] = useState(null)
 
     const [nights, setNights] = useState(1)
     const [datesStaying, setDateStaying] = useState(null) // Maybe? mihght just pass through from calender container
@@ -42,7 +42,7 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, rel
     useEffect(() => {
         createCampingOptions()
     
-      }, [campingFacilities, nights, peopleAmount]);
+      }, [campingFacilities, nights, peopleAmount, dateObject]);
 
     useEffect(() => {
         handleCostOfStayCalculation()
@@ -72,7 +72,6 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, rel
 
     const getDateandOrdinalNumber = () => {
         var stayingEndDate = 0
-
 
         if (dateObject && nights === 1 ) {
             // setCurrentMonth(months[dateObject.getMonth()])
@@ -187,7 +186,8 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, rel
      const createCampingOptions = () => {
         const sitesArray = [];
         for (var j in campingFacilities) {
-            if (campingFacilities[j]) {
+            // console.log(checkBlockedDays(campingFacilities[j]))
+            if (campingFacilities[j].state && checkBlockedDays(campingFacilities[j])) {
                 const campingOption = campingFacilities[j];
                 sitesArray.push(
                     
@@ -208,8 +208,24 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, rel
                 );
             }
         }
-        setCampinChoice(sitesArray);
+        setCampingChoice(sitesArray);
     };
+
+    const checkBlockedDays = (facility) => { // if theres blocked days loop through them, and with each one loop through the dates chosen
+        if (facility && dateObject) {
+            if (facility.blockedDays.length > 0) {
+                for (var n = 0; n < facility.blockedDays.length; n++ ){
+                    for (var i = 0; i < nights; i ++) {
+                        if (facility.blockedDays[n].toDate().toString() === (new Date (dateObject.getFullYear(), dateObject.getMonth(), (dateObject.getDate() + (i)))).toString() ) {
+                            console.log('same date yo')
+                            return false
+                        }
+                    }
+                }
+            }
+        } return true
+    }        
+    
 
     const configurePriceDependingOnDays = (cost) => {
         return cost * nights
