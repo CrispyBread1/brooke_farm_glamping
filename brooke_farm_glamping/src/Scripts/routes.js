@@ -37,7 +37,7 @@ export const Paths = ({months, daysOfWeek, nthNumber, user, userLoggedIn, userLo
                 <Route exact path="/admin-facilities" element={<AdminFacilities /> }>
                 </Route>
 
-                <Route exact path="/admin-bookings" element={<AdminBookings /> }>
+                <Route exact path="/admin-bookings" element={<AdminBookings daysOfWeek={daysOfWeek} months={months} nthNumber={nthNumber}/> }>
                 </Route>
 
             </Routes>

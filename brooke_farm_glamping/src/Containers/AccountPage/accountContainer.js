@@ -3,7 +3,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { retrieveUser } from "../../Scripts/databaseControls/userControls";
 import { addBooking, editBooking, cancelBooking, retrieveUserBooking } from "../../Scripts/databaseControls/bookingControls";
 import { useNavigate } from "react-router-dom";
-import UserBookingsContainer from "./emptyContainor";
+import UserBookingsContainer from "./userBookingsContainer";
 import BookingDetails from "../../Components/AccountPage/bookingDetails";
 
 const AccountContainer = ({userLoggedOut, daysOfWeek, months, nthNumber}) => {

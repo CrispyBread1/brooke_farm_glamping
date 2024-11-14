@@ -1,14 +1,15 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { retrieveActiveBookings } from "../../../Scripts/databaseControls/bookingControls";
+import UserBookingsContainer from "../../../Containers/AccountPage/userBookingsContainer";
 
 
 
-const AdminBookings = ({}) => {
+const AdminBookings = ({daysOfWeek, months, nthNumber}) => {
 
     const [activeBookings, setActiveBookings] = useState(null)
-    // const [facilitiesForms, setFacilitiesForms] = useState(null)
-    // const [addingNewFacility, setAddingNewFacility] = useState(false)
+    const [bookingsList, setBookingsList] = useState(null)
+    const [search, setSearch] = useState(false)
 
     useEffect(() => {
         fetchActiveBookings()
@@ -18,23 +19,25 @@ const AdminBookings = ({}) => {
     const fetchActiveBookings = () => {
         retrieveActiveBookings()
         .then((res) => {
-            // setActiveBookings(res.sort((a, b) => b.dateBookingCreated - a.dateBookingCreated))
             setActiveBookings(res)
         })
     }
 
-    const showBooking = () => {
-        console.log(activeBookings)
+    const renderBookings = () => {
+        if (search) {
+            //Do something
+        } else {
+            // fillBookings()
+        }
     }
+
    
 
     return (
         <>
             <h3>Bookings:</h3>
             
-            <button id="showBookings" className="showbookings" style={{ width: "", height: "" }} onClick={showBooking}>
-                    show bbokings
-                </button>
+            <UserBookingsContainer daysOfWeek={daysOfWeek} months={months} bookings={activeBookings} nthNumber={nthNumber}/>
         </>
     )
 }
