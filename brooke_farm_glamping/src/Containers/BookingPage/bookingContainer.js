@@ -217,7 +217,6 @@ const BookingContainer = ({dateObject, months, nthNumber, campingFacilities, rel
                 for (var n = 0; n < facility.blockedDays.length; n++ ){
                     for (var i = 0; i < nights; i ++) {
                         if (facility.blockedDays[n].toDate().toString() === (new Date (dateObject.getFullYear(), dateObject.getMonth(), (dateObject.getDate() + (i)))).toString() ) {
-                            console.log('same date yo')
                             return false
                         }
                     }

@@ -53,4 +53,23 @@ const cancelBooking = () => {
   return
 }
 
-  export {addBooking, editBooking, cancelBooking, retrieveUserBooking};
+const retrieveActiveBookings = async () => {
+  try {
+    var bookings = []
+    const db = getFirestore(app);
+    const docRef = collection(db, "bookings");
+    const queryRef = query(docRef, where("state", "==", "active"));
+    const querySnapshot = await getDocs(queryRef)
+    if(querySnapshot) {
+      querySnapshot.forEach((doc) => {
+        bookings.push(doc.data())
+      })
+      return bookings
+    } else {
+    
+    }
+  } catch(error) {
+    console.log(error)
+}}
+
+  export {addBooking, editBooking, cancelBooking, retrieveUserBooking, retrieveActiveBookings};

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import ConfirmBookingPage from "../Containers/ConfirmBookingPage/confirmBookingPage";
 import AccountContainer from "../Containers/AccountPage/accountContainer";
 import AdminFacilities from "../Containers/Admin/Facilities/facilitiesContainer";
+import AdminBookings from "../Containers/Admin/Bookings/bookingsContainer.js";
 
 export const Paths = ({months, daysOfWeek, nthNumber, user, userLoggedIn, userLoggedOut}) => {
 
@@ -34,6 +35,9 @@ export const Paths = ({months, daysOfWeek, nthNumber, user, userLoggedIn, userLo
                 </Route>
 
                 <Route exact path="/admin-facilities" element={<AdminFacilities /> }>
+                </Route>
+
+                <Route exact path="/admin-bookings" element={<AdminBookings /> }>
                 </Route>
 
             </Routes>
