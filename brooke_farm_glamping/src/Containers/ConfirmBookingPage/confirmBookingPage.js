@@ -97,7 +97,7 @@ const ConfirmBookingPage = ({months, daysOfWeek, nthNumber, userLoggedOut}) => {
             new Date().getDay() + 
             userObj.fullName[0] + 
             userObj.fullName[(userObj.fullName.length - 1)] +
-            new Date().getDate()
+            (new Date().getDate() * Math.random(1 , 9))
         ).toUpperCase()
     }
 

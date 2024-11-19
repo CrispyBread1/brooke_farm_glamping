@@ -39,7 +39,7 @@ const AdminBookingsContainer = ({daysOfWeek, months, nthNumber}) => {
     const [user, setUser] = useState({})
     const [activeBookings, setActiveBookings] = useState(null)
     // const [bookingsList, setBookingsList] = useState(null)
-    const [search, setSearch] = useState(false)
+    
 
     useEffect(() => {
         fetchActiveBookings()
@@ -54,19 +54,17 @@ const AdminBookingsContainer = ({daysOfWeek, months, nthNumber}) => {
         })
     }
 
-    const renderBookings = () => {
-        if (search) {
-            //Do something
-        } else {
-            // fillBookings()
-        }
-    }
+    
+
+    
 
    
 
     return (
         <>
             <h3>Bookings:</h3>
+
+            
             
             {<AdminDisplayBookingsContainer daysOfWeek={daysOfWeek} months={months} bookings={activeBookings} nthNumber={nthNumber}/>}
         </>
