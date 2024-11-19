@@ -4,7 +4,7 @@ import { retrieveUser } from "../../Scripts/databaseControls/userControls";
 import { addBooking, editBooking, cancelBooking, retrieveUserBooking } from "../../Scripts/databaseControls/bookingControls";
 import { useNavigate } from "react-router-dom";
 import UserBookingsContainer from "./userBookingsContainer";
-import BookingDetails from "../../Components/AccountPage/bookingDetails";
+
 
 const AccountContainer = ({userLoggedOut, daysOfWeek, months, nthNumber}) => {
 
@@ -24,7 +24,6 @@ const AccountContainer = ({userLoggedOut, daysOfWeek, months, nthNumber}) => {
                 // console.log(res.bookings)
                 fetchUserBookings(res.bookings)
             })
-              
           } else {
             userLoggedOut()
             toLogIn()

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Navigate, } from "react-router-dom"
 import HomePage from '../Containers/HopePage/homePage';
 import BookingPage from "../Containers/BookingPage/bookingPage";
 import LogInPage from "../Containers/LoginPage/logInPage";
@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import ConfirmBookingPage from "../Containers/ConfirmBookingPage/confirmBookingPage";
 import AccountContainer from "../Containers/AccountPage/accountContainer";
 import AdminFacilities from "../Containers/Admin/Facilities/facilitiesContainer";
-import AdminBookings from "../Containers/Admin/Bookings/bookingsContainer.js";
+import AdminBookingsContainer from "../Containers/Admin/Bookings/bookingsContainer";
 
 export const Paths = ({months, daysOfWeek, nthNumber, user, userLoggedIn, userLoggedOut}) => {
 
@@ -37,7 +37,7 @@ export const Paths = ({months, daysOfWeek, nthNumber, user, userLoggedIn, userLo
                 <Route exact path="/admin-facilities" element={<AdminFacilities /> }>
                 </Route>
 
-                <Route exact path="/admin-bookings" element={<AdminBookings daysOfWeek={daysOfWeek} months={months} nthNumber={nthNumber}/> }>
+                <Route exact path="/admin-bookings" element={<AdminBookingsContainer daysOfWeek={daysOfWeek} months={months} nthNumber={nthNumber}/> }>
                 </Route>
 
             </Routes>

@@ -1,11 +1,12 @@
 import React from "react";
-import UserBooking from "../../Components/AccountPage/userBooking";
+import UserBooking from "../../../Components/AccountPage/userBooking";
 import { useEffect, useState } from "react";
-import './userBookingContainer.css'
+import '../../AccountPage/userBookingContainer.css'
 
 
 
-const UserBookingsContainer = ({daysOfWeek, months, bookings, showDetails, nthNumber}) => {
+
+const AdminDisplayBookingsContainer = ({daysOfWeek, months, bookings, showDetails, nthNumber}) => {
 
     const [bookingsArray, setBookingsArray] = useState([])
     const [bookingDetailsOpen, setBookingDetailsOpen] = useState(false)
@@ -14,6 +15,12 @@ const UserBookingsContainer = ({daysOfWeek, months, bookings, showDetails, nthNu
     useEffect(() => {
         fillBookings()
     }, [bookings])
+
+    
+
+    useEffect(() => {
+        // console.log(bookings)
+    }, [])
 
     const fillBookings = () => {
         var arrayOfBookings = []
@@ -29,18 +36,18 @@ const UserBookingsContainer = ({daysOfWeek, months, bookings, showDetails, nthNu
 
     return (
         <>
-            <h3>Bookings:</h3>
+            <h3>Admin Bookings:</h3>
 
             {bookings && 
                 <ul className="user--bookings">
                     {bookingsArray}
                 </ul>}
 
-            {!bookings && <h2>There are currently no bookings</h2>}
+            {!bookings && <h2>There are currently no admin bookings</h2>}
             
         </>
     )
 }
 
 
-export default UserBookingsContainer;
+export default AdminDisplayBookingsContainer;

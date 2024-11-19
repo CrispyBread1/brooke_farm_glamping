@@ -4,7 +4,7 @@ import HomePage from './Containers/HopePage/homePage.js';
 import BookingPage from './Containers/BookingPage/bookingPage.js';
 import LogInPage from './Containers/LoginPage/logInPage.js';
 import { addBooking, editBooking, retreiveBooking, cancelBooking, authenticateAdmin} from './Scripts/databaseControls/userControls.js';
-import { logInEmailPassword, registerNewAccountEmailPassword, logOut, monitorAuthState } from './Scripts/authenicationControls';
+import { logInEmailPassword, registerNewAccountEmailPassword, logOut, monitorAuthState } from './Scripts/authenticationControls.js';
 import headerImage from './JPGs/BrookFarmGlampinglogo.png'
 import logInButton from './JPGs/LoginButton/LogIn.png'
 import {Link, BrowserRouter, useLocation} from'react-router-dom'

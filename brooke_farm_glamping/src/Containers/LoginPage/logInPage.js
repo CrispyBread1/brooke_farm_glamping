@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import {logInEmailPassword, registerNewAccountEmailPassword, monitorAuthState, logOut, addNamePhoneToUser} from "../../Scripts/authenicationControls";
+import {logInEmailPassword, registerNewAccountEmailPassword, monitorAuthState, logOut, addNamePhoneToUser} from "../../Scripts/authenticationControls";
 import LogInForm from "../../Components/LogInPage/logInForm";
 import { useNavigate, useLocation } from "react-router-dom";
 import { addUser } from "../../Scripts/databaseControls/userControls";
