@@ -1,5 +1,5 @@
 class Booking {
-    constructor ( state, userID, guestName, reference, guests, space, date, nights, children, dogs, firepit, gazebo, additionCars, cost, notes, dateOfBooking) {
+    constructor ( state, userID, guestName, reference, guests, space, date, nights, children, dogs, firepit, gazebo, additionCars, cost, active, notes, dateOfBooking) {
         
         this.state = state
         this.userId = userID
@@ -18,6 +18,7 @@ class Booking {
         this.additionCars = additionCars
 
         this.cost = cost
+        this.active = active
 
         this.notes = notes;
         this.dateBookingCreated = dateOfBooking
@@ -38,6 +39,7 @@ class Booking {
           gazebo: this.gazebo,
           additionCars: this.additionCars,
           cost: this.cost,
+          active: this.active,
           notes: this.notes,
           dateBookingCreated: this.dateBookingCreated 
         };

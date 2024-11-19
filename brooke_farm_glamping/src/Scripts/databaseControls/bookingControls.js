@@ -58,7 +58,7 @@ const retrieveActiveBookings = async () => {
     var bookings = []
     const db = getFirestore(app);
     const docRef = collection(db, "bookings");
-    const queryRef = query(docRef, where("state", "==", "active"));
+    const queryRef = query(docRef, where("active", "==", true));
     const querySnapshot = await getDocs(queryRef)
     if(querySnapshot) {
       querySnapshot.forEach((doc) => {
