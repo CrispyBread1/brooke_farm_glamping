@@ -3,7 +3,7 @@ import './userBooking.css'
 
 
 
-const UserBooking = ({daysOfWeek, months, booking, nthNumber}) => {
+const UserBooking = ({daysOfWeek, months, booking, nthNumber, user}) => {
 
     const [dateStaying, setDateStaying] = useState(null)
     const [showBooking, setShowBooking] = useState(false)
@@ -40,7 +40,11 @@ const UserBooking = ({daysOfWeek, months, booking, nthNumber}) => {
             setShowBooking(true)
             setDetailsState('X')
         }
-    }    
+    }
+    
+    const checkInUser = () => {
+
+    }
 
 
 
@@ -90,6 +94,13 @@ const UserBooking = ({daysOfWeek, months, booking, nthNumber}) => {
             <div className="user--bookings--li--details" onClick={generateDetails}>
                 {detailsState}
             </div>
+
+            {!booking.checkedIn && <div className="user--bookings--li--admin--check-in">
+                <button className="admin-check-in" onClick={checkInUser} style={{ width: "9rem", height: "1.5rem" }} type="button">Check In</button>
+            </div>}
+            {booking.checkedIn && <div className="user--bookings--li--admin--check-in--true">
+                Checked In
+            </div>}
         </li>
         
     )

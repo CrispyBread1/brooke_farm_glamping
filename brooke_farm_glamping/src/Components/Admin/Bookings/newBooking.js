@@ -404,7 +404,7 @@ const NewBooking = ({months, nthNumber, user}) => {
             new Date().getDay() + 
             user.fullName[0] + 
             user.fullName[(user.fullName.length - 1)] +
-            (new Date().getDate() * Math.random(1 , 9))
+            (new Date().getDate())
         ).toUpperCase()
     }
 

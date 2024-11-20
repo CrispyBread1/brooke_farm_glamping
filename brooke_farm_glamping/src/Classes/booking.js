@@ -22,6 +22,9 @@ class Booking {
 
         this.notes = notes;
         this.dateBookingCreated = dateOfBooking
+
+        this.checkedIn = false
+        this.checkedInTime = ""
     }
     toFirestore() {
         return {
@@ -41,7 +44,9 @@ class Booking {
           cost: this.cost,
           active: this.active,
           notes: this.notes,
-          dateBookingCreated: this.dateBookingCreated 
+          dateBookingCreated: this.dateBookingCreated,
+          checkedIn: this.checkedIn,
+          checkedInTime: this.checkedInTime
         };
       }
 }

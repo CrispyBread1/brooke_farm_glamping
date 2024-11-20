@@ -71,7 +71,7 @@ const AdminBookingsContainer = ({daysOfWeek, months, nthNumber}) => {
             {!addNewBooking && <button className="add-New-Booking" onClick={setNewBooking} style={{ width: "9rem", height: "1.5rem" }} type="button">Add new Booking</button>}            
             {addNewBooking && <button className="cancel-New-Booking" onClick={setNewBooking} style={{ width: "9rem", height: "1.5rem" }} type="button">Cancel</button>}
             
-            {!addNewBooking && <AdminDisplayBookingsContainer daysOfWeek={daysOfWeek} months={months} bookings={activeBookings} nthNumber={nthNumber}/>}
+            {!addNewBooking && <AdminDisplayBookingsContainer daysOfWeek={daysOfWeek} months={months} bookings={activeBookings} nthNumber={nthNumber} user={user}/>}
 
             {addNewBooking && <NewBooking months={months} nthNumber={nthNumber} user={user} /> }
 

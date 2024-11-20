@@ -48,4 +48,16 @@
     color: rgb(128, 0, 148);
     cursor: pointer;
     
-  }
+}
+
+.user--bookings--li--admin--check-in {
+    grid-area: main;
+    justify-self: right;
+}
+
+.user--bookings--li--admin--check-in--true {
+    grid-area: main;
+    justify-self: right;
+    color: green;
+    font-size: large;
+}

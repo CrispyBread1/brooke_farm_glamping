@@ -7,7 +7,7 @@ import SearchBar from "../../../Components/SearchBar/searchBar";
 
 
 
-const AdminDisplayBookingsContainer = ({daysOfWeek, months, bookings, showDetails, nthNumber}) => {
+const AdminDisplayBookingsContainer = ({daysOfWeek, months, bookings, showDetails, nthNumber, user}) => {
 
     const [bookingsArray, setBookingsArray] = useState([])
     const [bookingDetailsOpen, setBookingDetailsOpen] = useState(false)
@@ -76,7 +76,7 @@ const AdminDisplayBookingsContainer = ({daysOfWeek, months, bookings, showDetail
             {bookings && 
                 <ul className="user--bookings">
 
-                    {searchBookings(bookings, search).map(r => (<UserBooking key={r.reference} id={r.reference} daysOfWeek={daysOfWeek} months={months} booking={r} showDetails={showDetails} nthNumber={nthNumber} />))}
+                    {searchBookings(bookings, search).map(r => (<UserBooking key={r.reference} id={r.reference} daysOfWeek={daysOfWeek} months={months} booking={r} showDetails={showDetails} nthNumber={nthNumber} user={user}/>))}
                    
                 </ul>}
 
