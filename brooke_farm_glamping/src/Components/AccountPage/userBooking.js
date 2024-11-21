@@ -13,7 +13,6 @@ const UserBooking = ({daysOfWeek, months, bookingID, booking, nthNumber, user}) 
 
     useEffect(() => {
         configureTitle()
-        // console.log(booking.id)
     }, [])
 
     const configureTitle = () => {
@@ -56,11 +55,6 @@ const UserBooking = ({daysOfWeek, months, bookingID, booking, nthNumber, user}) 
             })
         }
     }
-
-    const refreshBooking = () => {
-        
-    }
-
 
 
     return (
