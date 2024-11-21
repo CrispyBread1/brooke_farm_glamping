@@ -32,6 +32,20 @@ const editBooking = () => {
   return
 }
 
+const retrieveBooking  = async (bookingID) => {
+  try {
+    const db = getFirestore(app);
+    const docRef = doc(db, "bookings", bookingID);
+    const docSnap = await getDoc(docRef);
+    if(docSnap.exists()) {
+      return docSnap.data()
+    } else {
+    }
+  } catch(error) {
+  console.log(error)
+  }
+}
+
 const retrieveUserBooking = async (bookingIDs) => {
   try {
     const db = getFirestore(app);
@@ -62,7 +76,7 @@ const retrieveActiveBookings = async () => {
     const querySnapshot = await getDocs(queryRef)
     if(querySnapshot) {
       querySnapshot.forEach((doc) => {
-        bookings.push(doc.data())
+        bookings.push({id: doc.id, data: doc.data()})
       })
       return bookings
     } else {
@@ -72,4 +86,23 @@ const retrieveActiveBookings = async () => {
     console.log(error)
 }}
 
-  export {addBooking, editBooking, cancelBooking, retrieveUserBooking, retrieveActiveBookings};
+const checkInBooking = (bookingReference) => {
+  return new Promise((resolve, reject) => {
+    const db = getFirestore(app);
+    const bookingRef = doc(db, "bookings", bookingReference)
+    const docRef = updateDoc(bookingRef, {
+      checkedIn: true,
+      checkedInTime: new Date()
+    });
+    if (docRef) {
+      // console.log(docRef)
+      resolve(docRef);
+    } else {
+      Promise.reject(new Error('No data available'));
+    }
+  }, (error) => {
+      Promise.reject(error);
+  }
+)}
+
+export {addBooking, editBooking, cancelBooking, retrieveUserBooking, retrieveActiveBookings, checkInBooking, retrieveBooking};

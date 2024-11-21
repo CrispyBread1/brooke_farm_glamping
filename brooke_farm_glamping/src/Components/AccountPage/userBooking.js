@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from "react";
 import './userBooking.css'
+import { checkInBooking, retrieveBooking } from "../../Scripts/databaseControls/bookingControls";
 
 
 
-const UserBooking = ({daysOfWeek, months, booking, nthNumber, user}) => {
+const UserBooking = ({daysOfWeek, months, bookingID, booking, nthNumber, user}) => {
 
+    const [userBooking, setUserBooking] = useState(booking)
     const [dateStaying, setDateStaying] = useState(null)
     const [showBooking, setShowBooking] = useState(false)
     const [detailsState, setDetailsState] = useState('Details')
 
     useEffect(() => {
         configureTitle()
+        // console.log(booking.id)
     }, [])
 
     const configureTitle = () => {
-        let firstNight = (booking.date[0].toDate())
-        let lastNight = (booking.date[(booking.date.length - 1)].toDate())
+        let firstNight = (userBooking.date[0].toDate())
+        let lastNight = (userBooking.date[(userBooking.date.length - 1)].toDate())
         setDateStaying(months[firstNight.getMonth()].month + ': ' + firstNight.getDate() + nthNumber(firstNight.getDate()) + ' - ' + months[lastNight.getMonth()].month + ': ' +  lastNight.getDate() + nthNumber(lastNight.getDate()) + ' / ' + firstNight.getFullYear()) 
     }
 
     const configureDateBookingCreated = () => {
-        var bookingCreated = booking.dateBookingCreated.toDate()
+        var bookingCreated = userBooking.dateBookingCreated.toDate()
         return (
             bookingCreated.getDate() + '/' + bookingCreated.getMonth() + '/' + bookingCreated.getFullYear()
         )
@@ -28,7 +31,7 @@ const UserBooking = ({daysOfWeek, months, booking, nthNumber, user}) => {
 
     const configureCars = () => {
         return (
-            booking.additionCars + 1
+            userBooking.additionCars + 1
         )
     }
 
@@ -43,7 +46,19 @@ const UserBooking = ({daysOfWeek, months, booking, nthNumber, user}) => {
     }
     
     const checkInUser = () => {
+        if (user.admin) {
+            checkInBooking(bookingID)
+            .then((res) => {
+                retrieveBooking(bookingID)
+                .then((res) => {
+                    setUserBooking(res)
+                })
+            })
+        }
+    }
 
+    const refreshBooking = () => {
+        
     }
 
 
@@ -52,41 +67,41 @@ const UserBooking = ({daysOfWeek, months, booking, nthNumber, user}) => {
        
         <li className="user--bookings--li">
             <div className="user--bookings--li--ref">
-                Ref: {booking.reference}
+                Ref: {userBooking.reference}
             </div>
             <div className="user--bookings--li--dateStaying">
                 {dateStaying}
             </div>
             {!showBooking && <div className="user--bookings--li--campingFacility">
-                {booking.space.name}
+                {userBooking.space.name}
             </div>}
 
             {showBooking && <div className="user--bookings--li--state">
-                Booking state: {booking.state}
+                userBooking state: {userBooking.state}
             </div>}
             {showBooking && <div className="user--bookings--li--campingSite">
-                Camping Site: {booking.space.name}
+                Camping Site: {userBooking.space.name}
             </div>}
-            {showBooking && booking.children > 0 && <div className="user--bookings--li--children">
-                Children: {booking.children}
+            {showBooking && userBooking.children > 0 && <div className="user--bookings--li--children">
+                Children: {userBooking.children}
             </div>}
-            {showBooking && booking.dogs > 0 && <div className="user--bookings--li--dogs">
-                Dogs: {booking.dogs}
+            {showBooking && userBooking.dogs > 0 && <div className="user--bookings--li--dogs">
+                Dogs: {userBooking.dogs}
             </div>}
-            {showBooking && booking.firePit && <div className="user--bookings--li--firePit">
-                Firepit: {booking.firePit}
+            {showBooking && userBooking.firePit && <div className="user--bookings--li--firePit">
+                Firepit: {userBooking.firePit}
             </div>}
-            {showBooking && booking.gazebo > 0 && <div className="user--bookings--li--gazebo">
-                Gazebos: {booking.gazebo}
+            {showBooking && userBooking.gazebo > 0 && <div className="user--bookings--li--gazebo">
+                Gazebos: {userBooking.gazebo}
             </div>}
             {showBooking && <div className="user--bookings--li--additionalCars">
                 Car allowance: {configureCars()}
             </div>}
             {showBooking && <div className="user--bookings--li--dateCreated">
-                Booking created: {configureDateBookingCreated()}
+                userBooking created: {configureDateBookingCreated()}
             </div>}
             {showBooking && <div className="user--bookings--li--cost">
-                Cost: {booking.cost}
+                Cost: {userBooking.cost}
             </div>}
 
 
@@ -95,10 +110,10 @@ const UserBooking = ({daysOfWeek, months, booking, nthNumber, user}) => {
                 {detailsState}
             </div>
 
-            {!booking.checkedIn && <div className="user--bookings--li--admin--check-in">
+            {!userBooking.checkedIn && user.admin && <div className="user--bookings--li--admin--check-in">
                 <button className="admin-check-in" onClick={checkInUser} style={{ width: "9rem", height: "1.5rem" }} type="button">Check In</button>
             </div>}
-            {booking.checkedIn && <div className="user--bookings--li--admin--check-in--true">
+            {userBooking.checkedIn && user.admin && <div className="user--bookings--li--admin--check-in--true">
                 Checked In
             </div>}
         </li>

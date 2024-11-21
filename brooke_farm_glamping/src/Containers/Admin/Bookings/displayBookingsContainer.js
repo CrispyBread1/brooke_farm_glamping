@@ -14,22 +14,23 @@ const AdminDisplayBookingsContainer = ({daysOfWeek, months, bookings, showDetail
     const [bookingForDetails, setBookingForDetails] = useState(null)
     const [search, setSearch] = useState(false)
 
-    useEffect(() => {
-        fillBookings()
-    }, [bookings])
+    // useEffect(() => {
+    //     fillBookings()
+    // }, [bookings])
 
     useEffect(() => {
     }, [])
 
-    const fillBookings = () => {
-        var arrayOfBookings = []
-        if (bookings) {
-            for (var i = 0; i < bookings.length; i++) {
-                arrayOfBookings.push(<UserBooking key={i} id={i} daysOfWeek={daysOfWeek} months={months} booking={bookings[i]} showDetails={showDetails} nthNumber={nthNumber}/>)
-            }  
-        }
-        setBookingsArray(arrayOfBookings)
-    }
+    // const fillBookings = () => {
+    //     var arrayOfBookings = []
+    //     if (bookings) {
+    //         for (var ref in bookings) {
+    //             console.log(ref.data)
+    //             // arrayOfBookings.push(<UserBooking key={ref.id} id={ref.id} daysOfWeek={daysOfWeek} months={months} booking={ref.data} showDetails={showDetails} nthNumber={nthNumber}/>)
+    //         }  
+    //     }
+    //     setBookingsArray(arrayOfBookings)
+    // }
 
     const updateSearchValue = (search) => {
         setSearch(search)
@@ -76,7 +77,7 @@ const AdminDisplayBookingsContainer = ({daysOfWeek, months, bookings, showDetail
             {bookings && 
                 <ul className="user--bookings">
 
-                    {searchBookings(bookings, search).map(r => (<UserBooking key={r.reference} id={r.reference} daysOfWeek={daysOfWeek} months={months} booking={r} showDetails={showDetails} nthNumber={nthNumber} user={user}/>))}
+                    {searchBookings(bookings, search).map(r => (<UserBooking key={r.id} id={r.id} daysOfWeek={daysOfWeek} months={months} bookingID={r.id} booking={r.data} showDetails={showDetails} nthNumber={nthNumber} user={user}/>))}
                    
                 </ul>}
 
