@@ -34,10 +34,10 @@ export const Paths = ({months, daysOfWeek, nthNumber, user, userLoggedIn, userLo
                 <Route exact path="/account-page" element={<AccountContainer userLoggedOut={userLoggedOut} daysOfWeek={daysOfWeek} months={months} nthNumber={nthNumber}/> }>
                 </Route>
 
-                <Route exact path="/admin-facilities" element={<AdminFacilities /> }>
-                </Route>
-
-                <Route exact path="/admin-bookings" element={<AdminBookingsContainer daysOfWeek={daysOfWeek} months={months} nthNumber={nthNumber}/> }>
+                <Route exact path="/admin" >
+                    <Route path="bookings" element={<AdminBookingsContainer daysOfWeek={daysOfWeek} months={months} nthNumber={nthNumber}/> }></Route>
+                    
+                    <Route exact path="facilities" element={<AdminFacilities /> }></Route>
                 </Route>
 
             </Routes>
