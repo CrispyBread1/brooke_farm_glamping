@@ -87,6 +87,7 @@ const NightsStaying = ({dateChosen, months, nthNumber, nights, setNights}) => {
             <button id="remove-night" onClick={removeNight} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
             <input
             className="nights"
+            name="nights"
             type="text"
             placeholder="number"
             value={nights}
@@ -94,6 +95,13 @@ const NightsStaying = ({dateChosen, months, nthNumber, nights, setNights}) => {
             style={{ width: "3vw", height: "3vw", textAlign: "center", fontSize: "2vw"  }}
             />
             <button id="add-night" onClick={addNight} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
+            
+            <input 
+            type="hidden"
+            name="datesStaying"
+            value={datesStaying}
+            />
+            
         </div>
                 
         

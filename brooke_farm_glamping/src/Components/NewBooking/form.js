@@ -28,54 +28,74 @@ const BookingForm = ({months, nthNumber, user}) => {
 
     const [firePit, setFirePit] = useState(false)
     const [pricesArrayPerNightPerSpot, setPricesArrayPerNightPerSpot] = useState([])
+
+    const [submittedWithoutCampsite, setSubmittedWithoutCampsite] = useState(false)
+    const [submittedWithoutReason, setSubmittedWithoutReason] = useState(false)
+    const [submittedWithoutDates, setSubmittedWithoutDates] = useState(false)
     
 
-    // const configureBookingReference = () => {
-    //     return ('RF' + 
-    //         campingPitchChoice.name[0] + 
-    //         campingPitchChoice.name[(campingPitchChoice.name.length - 1)] + 
-    //         new Date().getDay() + 
-    //         user.fullName[0] + 
-    //         user.fullName[(user.fullName.length - 1)] +
-    //         (new Date().getDate())
-    //     ).toUpperCase()
-    // }
+    const configureBookingReference = () => {
+        return ('RF' + 
+            campingPitchChoice.name[0] + 
+            campingPitchChoice.name[(campingPitchChoice.name.length - 1)] + 
+            new Date().getDay() + 
+            user.fullName[0] + 
+            user.fullName[(user.fullName.length - 1)] +
+            (new Date().getDate())
+        ).toUpperCase()
+    }
 
 
 
      // Functions to control submitting the form and booking *------------- *------------- *-------------
     const handleFormSubmit = (evt) => {
         evt.preventDefault();
+        
+        if (!evt.target.campingPitchChoice) {
+            setSubmittedWithoutCampsite(true)
+        }
+        if (!evt.target.reasonForBooking) {
+            setSubmittedWithoutReason(true)
+        }
+        if (!evt.target.datesStaying.value) {
+            setSubmittedWithoutDates(true)
+            // console.log("nothere")
+        }
+        
+        // console.log(evt.target.datesStaying.value.split(','))
+
         // if(!datesStaying) {
         //     createDateStaying()
         // }
 
 
         // fillBookingInformation(booking)
-        // if (campingPitchChoice) {
-        //     setTriedToSubmitWithoutCampsite(false)
 
         //     if (reasonForBooking) {
-        //         setTriedToSubmitWithoutReason(false)
+        //         setSubmittedWithoutReason(false)
         //         addNewBooking()
-        //     } else setTriedToSubmitWithoutReason(true)
+        //     } else setSubmittedWithoutReason(true)
               
-        // } else  setTriedToSubmitWithoutCampsite(true)
+        // } else  setSubmittedWithoutCampsite(true)
     }  
+
+    const checkCampsite = (data) => {
+
+    }
     
     const addNewBooking = async () => {
         var booking =   new Booking(
                 'draft',
                 user.id,
                 user.fullName,
-                // configureBookingReference(),
-                // peopleAmount,
-                // campingPitchChoice,
+                configureBookingReference(),
+                peopleAmount,
+                campingPitchChoice,
                 // datesStaying,
                 nights,
                 // childrenAmount,
                 // dogAmount,
-                // firePit,
+                firePit,
                 // gazeboAmount,
                 // additionalCarAmount,
                 // costOfStay,
@@ -101,13 +121,13 @@ const BookingForm = ({months, nthNumber, user}) => {
             <form onSubmit={handleFormSubmit}>
             <h2 id="get-month"></h2>
             
-                <DateChosen setDateChosen={setDateChosen} dateChosen={dateChosen}/>
+                <DateChosen setDateChosen={setDateChosen} dateChosen={dateChosen} submittedWithoutDates={submittedWithoutDates} setSubmittedWithoutDates={setSubmittedWithoutDates}/>
 
                 <NightsStaying dateChosen={dateChosen} months={months} nthNumber={nthNumber} setNights={setNights} nights={nights}/>
 
                 <Adults peopleAmount={peopleAmount} setPeopleAmount={setPeopleAmount} campingSpotsNeeded={campingSpotsNeeded} setCampingSpotsNeeded={setCampingSpotsNeeded}/>
                 
-                <CampingOptions dateChosen={dateChosen} nights={nights} campingSpotsNeeded={campingSpotsNeeded} setCampingPitchChoice={setCampingPitchChoice}/>
+                <CampingOptions dateChosen={dateChosen} nights={nights} campingSpotsNeeded={campingSpotsNeeded} setCampingPitchChoice={setCampingPitchChoice} submittedWithoutCampsite={submittedWithoutCampsite} setSubmittedWithoutCampsite={setSubmittedWithoutCampsite}/>
 
                 <Children/>
 
@@ -119,7 +139,7 @@ const BookingForm = ({months, nthNumber, user}) => {
                 
                 <AdditionalCars/>
 
-                <ReasonForBooking/>
+                <ReasonForBooking submittedWithoutReason={submittedWithoutReason} setSubmittedWithoutReason={setSubmittedWithoutReason}/>
 
                 <PriceGuide campingPitchChoice={campingPitchChoice} campingSpotsNeeded={campingSpotsNeeded} pricesArrayPerNightPerSpot={pricesArrayPerNightPerSpot}/>
 

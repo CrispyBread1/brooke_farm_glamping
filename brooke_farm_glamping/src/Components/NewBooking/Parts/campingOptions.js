@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { retrieveCampingFacilities } from "../../../Scripts/databaseControls/campingFacilitiesControls";
 
-const CampingOptions = ({dateChosen, nights, campingSpotsNeeded, setCampingPitchChoice}) => {
+const CampingOptions = ({dateChosen, nights, campingSpotsNeeded, setCampingPitchChoice, submittedWithoutCampsite, setSubmittedWithoutCampsite}) => {
     
     const [campingFacilities, setCampingFacilities] = useState(null)
     const [multipleCampingSpots, setMultipleCampingSpots] = useState(false)
-    const [triedToSubmitWithoutCampsite, setTriedToSubmitWithoutCampsite] = useState(false)
     const [campingChoice, setCampingChoice] = useState(null)
 
     useEffect(() => {
@@ -60,7 +59,7 @@ const CampingOptions = ({dateChosen, nights, campingSpotsNeeded, setCampingPitch
 
     const handleCampingOption = (tok1) => {
         setCampingPitchChoice(tok1)
-        setTriedToSubmitWithoutCampsite(false)
+        setSubmittedWithoutCampsite(false)
     }
 
     const checkBlockedDays = (facility) => { // if theres blocked days loop through them, and with each one loop through the dates chosen
@@ -82,7 +81,7 @@ const CampingOptions = ({dateChosen, nights, campingSpotsNeeded, setCampingPitch
         <div id="camping-option">
             <fieldset>
             <legend>Select camping option: </legend>
-            {triedToSubmitWithoutCampsite && <label className="error-camping-choice"> Please make a camping pitch choice</label>}
+            {submittedWithoutCampsite && <label className="error-camping-choice"> Please make a camping pitch choice</label>}
                 {campingChoice}
             </fieldset>
         </div> 

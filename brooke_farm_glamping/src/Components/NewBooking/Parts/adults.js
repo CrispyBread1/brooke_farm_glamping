@@ -39,6 +39,7 @@ const Adults = ({peopleAmount, setPeopleAmount,campingSpotsNeeded, setCampingSpo
             
             <input
             className="adults"
+            name="adults"
             type="text"
             placeholder="number"
             value={peopleAmount}
