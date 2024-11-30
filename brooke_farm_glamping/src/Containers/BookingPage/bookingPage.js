@@ -1,10 +1,42 @@
 import React, { useEffect, useState }  from "react";
 import CalendarContainer from "./calendarContainer.js"
-import BookingContainer from "./bookingContainer.js"
+
 import './bookingPage.css'
 import { retrieveCampingFacilities } from "../../Scripts/databaseControls/campingFacilitiesControls";
+import BookingForm from "../../Components/NewBooking/form.js";
+import { useNavigate } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { retrieveUser } from "../../Scripts/databaseControls/userControls.js";
 
-const BookingPage = ({ months, daysOfWeek, nthNumber}) => {
+const BookingPage = ({months, daysOfWeek, nthNumber}) => {
+
+  const navigate = useNavigate()
+
+    useEffect(() => {
+        checkAuth()
+    }, [])
+
+    const checkAuth = () => {
+        const auth = getAuth()
+          onAuthStateChanged(auth, (doc) => {
+            if (doc) {
+                retrieveUser(doc.uid)
+                .then((res) => {
+                setUser(res)
+            })
+          } else {
+            toLogIn()
+          }
+        });
+    }
+
+    const toLogIn = () => {
+        setTimeout(() => {
+            navigate('/login')
+            }, 1000)
+    }
+    
+    const [user, setUser] = useState({})
 
   const [bookingBoxOpen, setBookingBoxOpen] = useState(false);
   const [bookings, setBookings] = useState('');
@@ -95,7 +127,7 @@ const BookingPage = ({ months, daysOfWeek, nthNumber}) => {
 
         
             <div className='Booking-container'>
-                <BookingContainer dateObject={dateObject} months={months} nthNumber={nthNumber} campingFacilities={campingFacilities} relayAmountOfNightsStaying={relayAmountOfNightsStaying}/>
+                <BookingForm dateObject={dateObject} months={months} nthNumber={nthNumber} user={user} />
             </div> 
         
         </div>

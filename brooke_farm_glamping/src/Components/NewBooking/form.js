@@ -16,9 +16,11 @@ import ReasonForBooking from "./Parts/reasonForBooking";
 import OverallCost from "./Parts/overallCost";
 import { useLocation } from 'react-router-dom';
 
-const BookingForm = ({selectedDate, months, nthNumber, user}) => {
 
-    const [dateChosen, setDateChosen] = useState(selectedDate)
+
+const BookingForm = ({dateObject, months, nthNumber, user}) => {
+
+    const [dateChosen, setDateChosen] = useState(dateObject)
 
     const [adminPage, setAdminPage] = useState(null)
     const [bookingPage, setBookingPage] = useState(null)
@@ -41,9 +43,12 @@ const BookingForm = ({selectedDate, months, nthNumber, user}) => {
     const location = useLocation()
 
     useEffect(() => {
-        console.log(location)
         findPath()
     }, [])
+
+    useEffect(() => {
+        setDateChosen(dateObject)
+    }, [dateObject])
 
     const findPath = () => {
         if (location.pathname === "/admin/bookings") {setAdminPage(true)}
@@ -89,7 +94,7 @@ const BookingForm = ({selectedDate, months, nthNumber, user}) => {
         if (!data.target.reason.value) {
             setSubmittedWithoutReason(true)
         }
-        if (!data.target.datesStaying.value) {
+        if (!data.target.datesStaying.value && adminPage) {
             setSubmittedWithoutDates(true)
         }
         if (campingPitchChoice && data.target.reason.value && data.target.datesStaying.value) {
@@ -153,7 +158,7 @@ const BookingForm = ({selectedDate, months, nthNumber, user}) => {
                 
                 <AdditionalCars/>
 
-                <ReasonForBooking submittedWithoutReason={submittedWithoutReason} setSubmittedWithoutReason={setSubmittedWithoutReason}/>
+                {user.admin && adminPage && <ReasonForBooking submittedWithoutReason={submittedWithoutReason} setSubmittedWithoutReason={setSubmittedWithoutReason}/>}
 
                 <PriceGuide campingPitchChoice={campingPitchChoice} campingSpotsNeeded={campingSpotsNeeded} pricesArrayPerNightPerSpot={pricesArrayPerNightPerSpot}/>
 

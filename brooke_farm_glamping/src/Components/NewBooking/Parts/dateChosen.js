@@ -28,8 +28,6 @@ const DateChosen = ({dateChosen, setDateChosen, submittedWithoutDates, setSubmit
 
     const configureChosenDate = () => {
         setDateChosen(new Date(bYear, bMonth, bDay))
-        console.log(bYear + ":"+ bMonth +":"+ bDay)
-        console.log()
         setSubmittedWithoutDates(false)
     }
     

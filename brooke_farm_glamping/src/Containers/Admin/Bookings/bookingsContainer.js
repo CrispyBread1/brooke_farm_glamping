@@ -5,8 +5,8 @@ import AdminDisplayBookingsContainer from "./displayBookingsContainer";
 import { useNavigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { retrieveUser } from "../../../Scripts/databaseControls/userControls";
-import NewBooking from "../../../Components/Admin/Bookings/newBooking";
 import BookingForm from "../../../Components/NewBooking/form";
+import '../../../Components/NewBooking/bookingContainer.css'
 
 
 
@@ -74,7 +74,9 @@ const AdminBookingsContainer = ({daysOfWeek, months, nthNumber}) => {
             
             {!addNewBooking && <AdminDisplayBookingsContainer daysOfWeek={daysOfWeek} months={months} bookings={activeBookings} nthNumber={nthNumber} user={user}/>}
 
-            {addNewBooking && <BookingForm months={months} nthNumber={nthNumber} user={user} /> }
+            {addNewBooking && <div className='Booking-container'>
+                <BookingForm months={months} nthNumber={nthNumber} user={user} />
+            </div> }
 
         </>
     )
