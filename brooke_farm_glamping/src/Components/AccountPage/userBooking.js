@@ -22,17 +22,16 @@ const UserBooking = ({daysOfWeek, months, bookingID, booking, nthNumber, user}) 
             setFirstNight(userBooking.date[0].toDate())
             setLastNight(userBooking.date[(userBooking.date.length - 1)].toDate())
         } else {
-            const date = userBooking.date
-            setFirstNight(userBooking.date)
-            console.log(date)
-            // setLastNight(new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1)))
+            const dateObj = new Date(userBooking.date)
+            setFirstNight(dateObj)
+            setLastNight(new Date(dateObj.getFullYear(), dateObj.getMonth(), (dateObj.getDate() + 1)))
         }
         // console.log(userBooking.date.length)
         // let firstNight = (userBooking.date[0].toDate())
         // let lastNight = (userBooking.date[(userBooking.date.length - 1)].toDate())
-        console.log("firstNight: " + firstNight)
-        console.log("lastNight: " + lastNight)
-        // setDateStaying(months[firstNight.getMonth()].month + ': ' + firstNight.getDate() + nthNumber(firstNight.getDate()) + ' - ' + months[lastNight.getMonth()].month + ': ' +  lastNight.getDate() + nthNumber(lastNight.getDate()) + ' / ' + firstNight.getFullYear()) 
+        // console.log("firstNight: " + firstNight)
+        // console.log("lastNight: " + lastNight)
+        setDateStaying(months[firstNight.getMonth()].month + ': ' + firstNight.getDate() + nthNumber(firstNight.getDate()) + ' - ' + months[lastNight.getMonth()].month + ': ' +  lastNight.getDate() + nthNumber(lastNight.getDate()) + ' / ' + firstNight.getFullYear()) 
         
     }
 

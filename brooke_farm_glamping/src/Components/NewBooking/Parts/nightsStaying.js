@@ -35,7 +35,8 @@ const NightsStaying = ({dateChosen, months, nthNumber, nights, setNights}) => {
                 dateArray.push(new Date(dateChosen.getFullYear(), dateChosen.getMonth(), (dateChosen.getDate()+ i)))
             }
             setDateStaying(dateArray)
-        } console.log(datesStaying)
+        } 
+        // console.log(datesStaying)
     }
 
     const getDateandOrdinalNumber = () => {

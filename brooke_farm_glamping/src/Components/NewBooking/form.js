@@ -15,9 +15,9 @@ import PriceGuide from "./Parts/priceGuide";
 import ReasonForBooking from "./Parts/reasonForBooking";
 import OverallCost from "./Parts/overallCost";
 
-const BookingForm = ({months, nthNumber, user}) => {
+const BookingForm = ({selectedDate, months, nthNumber, user}) => {
 
-    const [dateChosen, setDateChosen] = useState(null)
+    const [dateChosen, setDateChosen] = useState(selectedDate)
 
     const [nights, setNights] = useState(1)
 
@@ -118,7 +118,7 @@ const BookingForm = ({months, nthNumber, user}) => {
             <form onSubmit={handleFormSubmit}>
             <h2 id="get-month"></h2>
             
-                <DateChosen setDateChosen={setDateChosen} dateChosen={dateChosen} submittedWithoutDates={submittedWithoutDates} setSubmittedWithoutDates={setSubmittedWithoutDates}/>
+                {user.admin && <DateChosen setDateChosen={setDateChosen} dateChosen={dateChosen} submittedWithoutDates={submittedWithoutDates} setSubmittedWithoutDates={setSubmittedWithoutDates}/>}
 
                 <NightsStaying dateChosen={dateChosen} months={months} nthNumber={nthNumber} setNights={setNights} nights={nights}/>
 
