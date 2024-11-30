@@ -62,7 +62,7 @@ const AdminDisplayBookingsContainer = ({daysOfWeek, months, bookings, showDetail
                 updatedResults = results;
         }
         return updatedResults;
-       };
+       }
 
    
 
