@@ -41,7 +41,8 @@ const Dogs = ({}) => {
                 <br></br>
                 <button id="remove-dogs" onClick={removeDogs} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
                 <input
-                className="dogs"
+                className="dogAmount"
+                id="dogAmount"
                 type="text"
                 placeholder="number"
                 value={dogAmount}
@@ -50,6 +51,12 @@ const Dogs = ({}) => {
                 />
                 <button id="add-dogs" onClick={addDogs} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
                 </div>}
+
+                {!dog && <input 
+                    type="hidden"
+                    name="dogAmount"
+                    value={dogAmount}
+                />}
                 
                 <br></br>
         </div>   

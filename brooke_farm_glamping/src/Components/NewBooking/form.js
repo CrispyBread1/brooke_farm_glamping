@@ -50,40 +50,37 @@ const BookingForm = ({months, nthNumber, user}) => {
      // Functions to control submitting the form and booking *------------- *------------- *-------------
     const handleFormSubmit = (evt) => {
         evt.preventDefault();
-        
-        if (!evt.target.campingPitchChoice) {
+        const value = evt.target
+        if (checkFilled(evt)) {
+            addNewBooking(
+                value.datesStaying.value, 
+                value.children.value, 
+                value.dogAmount.value, 
+                value.gazeboAmount.value, 
+                value.additionalCarAmount.value, 
+                value.costOfStay.value, 
+                value.reason.value
+            )
+        }
+    }
+
+    const checkFilled = (data) => {
+
+        if (!campingPitchChoice) {
             setSubmittedWithoutCampsite(true)
         }
-        if (!evt.target.reasonForBooking) {
+        if (!data.target.reason.value) {
             setSubmittedWithoutReason(true)
         }
-        if (!evt.target.datesStaying.value) {
+        if (!data.target.datesStaying.value) {
             setSubmittedWithoutDates(true)
-            // console.log("nothere")
         }
-        
-        // console.log(evt.target.datesStaying.value.split(','))
-
-        // if(!datesStaying) {
-        //     createDateStaying()
-        // }
-
-
-        // fillBookingInformation(booking)
-
-        //     if (reasonForBooking) {
-        //         setSubmittedWithoutReason(false)
-        //         addNewBooking()
-        //     } else setSubmittedWithoutReason(true)
-              
-        // } else  setSubmittedWithoutCampsite(true)
-    }  
-
-    const checkCampsite = (data) => {
-
+        if (campingPitchChoice && data.target.reason.value && data.target.datesStaying.value) {
+            return true
+        } return false
     }
     
-    const addNewBooking = async () => {
+    const addNewBooking = async (datesStaying, childrenAmount, dogAmount, gazeboAmount, additionalCarAmount, costOfStay, reasonForBooking) => {
         var booking =   new Booking(
                 'draft',
                 user.id,
@@ -91,16 +88,16 @@ const BookingForm = ({months, nthNumber, user}) => {
                 configureBookingReference(),
                 peopleAmount,
                 campingPitchChoice,
-                // datesStaying,
+                datesStaying,
                 nights,
-                // childrenAmount,
-                // dogAmount,
+                childrenAmount,
+                dogAmount,
                 firePit,
-                // gazeboAmount,
-                // additionalCarAmount,
-                // costOfStay,
+                gazeboAmount,
+                additionalCarAmount,
+                costOfStay,
                 true,
-                // reasonForBooking,
+                reasonForBooking,
                 new Date()
         )
         try {

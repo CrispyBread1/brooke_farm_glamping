@@ -15,7 +15,7 @@ const ReasonForBooking = ({submittedWithoutReason, setSubmittedWithoutReason}) =
       
         <div>
             <label htmlFor="reason-for-booking"> What is the reason for creating this booking?</label>
-            <input type="text" id="bDay" name="bDay" value={reasonForBooking} onChange={handleReasonForBookingChange} />
+            <input type="text" id="reason-for-booking" name="reason" value={reasonForBooking} onChange={handleReasonForBookingChange} />
             {submittedWithoutReason && <label className="error-camping-choice"> Please make submit a reason</label>}
 
         </div>

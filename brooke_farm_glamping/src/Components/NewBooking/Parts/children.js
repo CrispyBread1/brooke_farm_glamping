@@ -23,6 +23,7 @@ const Children = ({}) => {
 
             <input
             className="children"
+            id="children"
             type="text"
             placeholder="number"
             value={childrenAmount}

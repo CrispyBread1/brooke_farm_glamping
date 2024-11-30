@@ -40,11 +40,12 @@ const AdditionalCars = ({}) => {
             <label htmlFor="addition-car"> Will there be more than one car?</label>
             
             {additionalCar && <div>
-            <label>Amount of additonal Cars</label>
+            <label>Amount of additional Cars</label>
             <br></br>
             <button id="remove-AdditionalCar" onClick={removeAdditionalCar} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
             <input
-            className="nights"
+            className="additionalCarAmount"
+            id="additionalCarAmount"
             type="text"
             placeholder="number"
             value={additionalCarAmount}
@@ -52,8 +53,16 @@ const AdditionalCars = ({}) => {
             style={{ width: "3vw", height: "3vw", textAlign: "center", fontSize: "2vw"  }}
             />
             <button id="add-gazebo" onClick={addAdditionalCar} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
+            
             <br></br> 
             </div>}
+
+            {!additionalCar && <input 
+                type="hidden"
+                name="additionalCarAmount"
+                id="additionalCarAmount"
+                value={additionalCarAmount}
+            />}
         </div>
                 
         

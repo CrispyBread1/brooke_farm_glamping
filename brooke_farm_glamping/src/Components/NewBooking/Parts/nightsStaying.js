@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 
 const NightsStaying = ({dateChosen, months, nthNumber, nights, setNights}) => {
     
-    const [datesStaying, setDateStaying] = useState(null) // Maybe? might just pass through from calender container
+    const [datesStaying, setDateStaying] = useState("") // Maybe? might just pass through from calender container
 
     useEffect(() => {
         createDateStaying()
 
-    }, [nights])
+    }, [nights, dateChosen])
 
     const getMonth = () => {
         if (dateChosen) {
@@ -31,11 +31,11 @@ const NightsStaying = ({dateChosen, months, nthNumber, nights, setNights}) => {
     const createDateStaying = () => {
         if (dateChosen) {
             var dateArray = []
-            for (let i = 0; i <= nights; i++) {
+            for (let i = 0; i < nights; i++) {
                 dateArray.push(new Date(dateChosen.getFullYear(), dateChosen.getMonth(), (dateChosen.getDate()+ i)))
             }
             setDateStaying(dateArray)
-        }
+        } console.log(datesStaying)
     }
 
     const getDateandOrdinalNumber = () => {

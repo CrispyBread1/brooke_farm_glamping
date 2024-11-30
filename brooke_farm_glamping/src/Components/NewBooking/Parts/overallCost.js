@@ -46,8 +46,15 @@ const OverallCost = ({nights, campingPitchChoice, peopleAmount, firePit, camping
 
     return (
       
-        <div id="overall-cost-of-stay">
+        <div id="costOfStay">
             <h1>Price for stay: £{costOfStay} </h1>
+            <input 
+            type="hidden"
+            name="costOfStay"
+            id="costOfStay"
+            value={costOfStay}
+            />
+            
         </div>           
         
     )

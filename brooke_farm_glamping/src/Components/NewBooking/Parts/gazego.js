@@ -44,7 +44,8 @@ const Gazebo = ({}) => {
                 <br></br>
                 <button id="remove-Gazebo" onClick={removeGazebo} style={{ width: "2vw", height: "2vw" }} type="button">-</button>
                 <input
-                className="nights"
+                className="gazeboAmount"
+                id="gazeboAmount"
                 type="text"
                 placeholder="number"
                 value={gazeboAmount}
@@ -54,6 +55,12 @@ const Gazebo = ({}) => {
                 <button id="add-gazebo" onClick={addGazebo} style={{ width: "2vw", height: "2vw" }} type="button">+</button>
                 <br></br> 
                 </div>}
+
+                {!gazebo && <input 
+                    type="hidden"
+                    name="gazeboAmount"
+                    value={gazeboAmount}
+                />}
         </div>       
         
     )
