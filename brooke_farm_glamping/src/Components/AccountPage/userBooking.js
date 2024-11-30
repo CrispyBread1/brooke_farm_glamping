@@ -14,10 +14,14 @@ const UserBooking = ({daysOfWeek, months, bookingID, booking, nthNumber, user}) 
     const [lastNight, setLastNight] = useState(null)
 
     useEffect(() => {
-        configureTitle()
+        configureNights()
     }, [])
 
-    const configureTitle = () => {
+    useEffect(() => {
+        configureTitle()
+    }, [firstNight, lastNight])
+
+    const configureNights = () => {
         if (Array.isArray(userBooking.date)) {
             setFirstNight(userBooking.date[0].toDate())
             setLastNight(userBooking.date[(userBooking.date.length - 1)].toDate())
@@ -31,8 +35,12 @@ const UserBooking = ({daysOfWeek, months, bookingID, booking, nthNumber, user}) 
         // let lastNight = (userBooking.date[(userBooking.date.length - 1)].toDate())
         // console.log("firstNight: " + firstNight)
         // console.log("lastNight: " + lastNight)
-        setDateStaying(months[firstNight.getMonth()].month + ': ' + firstNight.getDate() + nthNumber(firstNight.getDate()) + ' - ' + months[lastNight.getMonth()].month + ': ' +  lastNight.getDate() + nthNumber(lastNight.getDate()) + ' / ' + firstNight.getFullYear()) 
-        
+    }
+
+    const configureTitle = () => {
+        if (firstNight && lastNight) {
+            setDateStaying(months[firstNight.getMonth()].month + ': ' + firstNight.getDate() + nthNumber(firstNight.getDate()) + ' - ' + months[lastNight.getMonth()].month + ': ' +  lastNight.getDate() + nthNumber(lastNight.getDate()) + ' / ' + firstNight.getFullYear()) 
+        }
     }
 
     const configureDateBookingCreated = () => {

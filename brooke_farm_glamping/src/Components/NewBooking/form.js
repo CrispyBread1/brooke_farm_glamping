@@ -14,10 +14,14 @@ import DateChosen from "./Parts/dateChosen";
 import PriceGuide from "./Parts/priceGuide";
 import ReasonForBooking from "./Parts/reasonForBooking";
 import OverallCost from "./Parts/overallCost";
+import { useLocation } from 'react-router-dom';
 
 const BookingForm = ({selectedDate, months, nthNumber, user}) => {
 
     const [dateChosen, setDateChosen] = useState(selectedDate)
+
+    const [adminPage, setAdminPage] = useState(null)
+    const [bookingPage, setBookingPage] = useState(null)
 
     const [nights, setNights] = useState(1)
 
@@ -33,6 +37,19 @@ const BookingForm = ({selectedDate, months, nthNumber, user}) => {
     const [submittedWithoutReason, setSubmittedWithoutReason] = useState(false)
     const [submittedWithoutDates, setSubmittedWithoutDates] = useState(false)
     
+
+    const location = useLocation()
+
+    useEffect(() => {
+        console.log(location)
+        findPath()
+    }, [])
+
+    const findPath = () => {
+        if (location.pathname === "/admin/bookings") {setAdminPage(true)}
+        if (location.pathname === "/book") {setBookingPage(true)}
+
+    }
 
     const configureBookingReference = () => {
         return ('RF' + 
@@ -118,7 +135,7 @@ const BookingForm = ({selectedDate, months, nthNumber, user}) => {
             <form onSubmit={handleFormSubmit}>
             <h2 id="get-month"></h2>
             
-                {user.admin && <DateChosen setDateChosen={setDateChosen} dateChosen={dateChosen} submittedWithoutDates={submittedWithoutDates} setSubmittedWithoutDates={setSubmittedWithoutDates}/>}
+                {user.admin && adminPage && <DateChosen setDateChosen={setDateChosen} dateChosen={dateChosen} submittedWithoutDates={submittedWithoutDates} setSubmittedWithoutDates={setSubmittedWithoutDates}/>}
 
                 <NightsStaying dateChosen={dateChosen} months={months} nthNumber={nthNumber} setNights={setNights} nights={nights}/>
 
