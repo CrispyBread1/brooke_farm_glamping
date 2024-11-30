@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AdditionalCars = ({}) => {
+const AdditionalCars = () => {
     
     const [additionalCar, setAdditionalCar] = useState(false)
     const [additionalCarAmount, setAdditionalCarAmount] = useState(0)

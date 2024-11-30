@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, AuthErrorCodes, onAuthStateChanged, signOut, updateProfile} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 // import {userLogIn} from "../App.js"
 
 // Your web app's Firebase configuration

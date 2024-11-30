@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import './facility.css'
 
 
-
-
 const AdminFacilityComponent = ({facility, facilityID, updateCampingFacility, addBlockedDays}) => {
 
     const [edit, setEdit] = useState(false)
@@ -17,16 +15,20 @@ const AdminFacilityComponent = ({facility, facilityID, updateCampingFacility, ad
 
     const [fName, setFName] = useState(facility.name)
     const [fAmount, setFAmount] = useState(facility.amount)
-    const [fImageURL, setFImageURL] = useState(facility.name)
+    // const [fImageURL, setFImageURL] = useState(facility.name)
     const [fMaxPeople, setFMaxPeople] = useState(facility.maxPeople)
     const [fPrice, setFPrice] = useState(facility.price)
 
-    const [date, setDate] = useState(new Date())
+    const [date, setDate] = useState(null)
 
     const [fDay, setFDay] = useState(date.getDate())
     const [fMonth, setFMonth] = useState(date.getMonth())
     const [fYear, setFYear] = useState(date.getFullYear())
 
+    useEffect(() => {
+        setDate(new Date())
+
+    }, []);
     useEffect(() => {
         if (edit) {generateEdit()}
 
@@ -62,7 +64,7 @@ const AdminFacilityComponent = ({facility, facilityID, updateCampingFacility, ad
     const clearState = () => {
         setFName(facility.name)
         setFAmount(facility.amount)
-        setFImageURL(facility.name)
+        // setFImageURL(facility.name)
         setFMaxPeople(facility.maxPeople)
         setFPrice(facility.price)
     }

@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 
 const AdminEmptyFacilityComponent = ({addFacility}) => {
 
-    const [edit, setEdit] = useState(false)
-    const [editString, setEditString] = useState('Edit')
+    // const [edit, setEdit] = useState(false)
+    // const [editString, setEditString] = useState('Edit')
 
     const [fName, setFName] = useState('')
     const [fAmount, setFAmount] = useState('')
-    const [fImageURL, setFImageURL] = useState('')
+    // const [fImageURL, setFImageURL] = useState('')
     const [fMaxPeople, setFMaxPeople] = useState('')
     const [fPrice, setFPrice] = useState('')
 
@@ -17,13 +17,13 @@ const AdminEmptyFacilityComponent = ({addFacility}) => {
         
     }, []);
 
-    const clearState = () => {
-        setFName('')
-        setFAmount('')
-        setFImageURL('')
-        setFMaxPeople('')
-        setFPrice('')
-    }
+    // const clearState = () => {
+    //     setFName('')
+    //     setFAmount('')
+        // setFImageURL('')
+    //     setFMaxPeople('')
+    //     setFPrice('')
+    // }
 
     const handleFNameChange = (evt) => {
         setFName(evt.target.value);

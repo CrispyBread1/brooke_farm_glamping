@@ -4,7 +4,7 @@ import { checkInBooking, retrieveBooking } from "../../Scripts/databaseControls/
 
 
 
-const UserBooking = ({daysOfWeek, months, bookingID, booking, nthNumber, user}) => {
+const UserBooking = ({months, bookingID, booking, nthNumber, user}) => {
 
     const [userBooking, setUserBooking] = useState(booking)
     const [dateStaying, setDateStaying] = useState(null)
@@ -69,7 +69,7 @@ const UserBooking = ({daysOfWeek, months, bookingID, booking, nthNumber, user}) 
     const checkInUser = () => {
         if (user.admin) {
             checkInBooking(bookingID)
-            .then((res) => {
+            .then(() => {
                 retrieveBooking(bookingID)
                 .then((res) => {
                     setUserBooking(res)

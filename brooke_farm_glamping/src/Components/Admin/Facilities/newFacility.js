@@ -1,19 +1,15 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import './newFacility.css'
-
-
-
 
 const AdminNewFacilityComponent = ({addEmptyFacility}) => {
 
-    const [edit, setEdit] = useState(false)
-    const [editString, setEditString] = useState('Edit')
+    // const [edit, setEdit] = useState(false)
+    // const [editString, setEditString] = useState('Edit')
 
 
-    useEffect(() => {
+    // useEffect(() => {
         
-    }, []);
+    // }, []);
 
     
 

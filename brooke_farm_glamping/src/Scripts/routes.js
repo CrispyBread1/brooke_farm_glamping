@@ -1,9 +1,8 @@
-import { BrowserRouter as Router, Routes, Route, Navigate, } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import HomePage from '../Containers/HopePage/homePage';
 import BookingPage from "../Containers/BookingPage/bookingPage";
 import LogInPage from "../Containers/LoginPage/logInPage";
 import NavBar from "../Containers/NavBar/navBar";
-import { useEffect, useState } from "react";
 import ConfirmBookingPage from "../Containers/ConfirmBookingPage/confirmBookingPage";
 import AccountContainer from "../Containers/AccountPage/accountContainer";
 import AdminFacilities from "../Containers/Admin/Facilities/facilitiesContainer";

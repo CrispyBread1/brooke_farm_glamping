@@ -1,6 +1,5 @@
 import React, { useEffect, useState }  from "react";
 import CalendarContainer from "./calendarContainer.js"
-
 import './bookingPage.css'
 import { retrieveCampingFacilities } from "../../Scripts/databaseControls/campingFacilitiesControls";
 import BookingForm from "../../Components/NewBooking/form.js";
@@ -36,7 +35,7 @@ const BookingPage = ({months, daysOfWeek, nthNumber}) => {
             }, 1000)
     }
     
-    const [user, setUser] = useState({})
+  const [user, setUser] = useState({})
 
   const [bookingBoxOpen, setBookingBoxOpen] = useState(false);
   const [bookings, setBookings] = useState('');
@@ -50,17 +49,18 @@ const BookingPage = ({months, daysOfWeek, nthNumber}) => {
 
   useEffect(() => {
     fetchCampingFacilities()
+    fetchBookings()
 
   }, []);
 
-  const fetchBookings = async (tok1) => {
-    const month = new Date();
+  const fetchBookings = async () => {
+    // const month = new Date();
     try {
       setBookings(bookings);
           
     } catch (error) {
       console.error('Error fetching bookings:', error);
-    }};
+  }};
 
   const fetchCampingFacilities = async () => {
     try {

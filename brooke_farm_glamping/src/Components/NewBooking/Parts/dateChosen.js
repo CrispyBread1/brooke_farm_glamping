@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const DateChosen = ({dateChosen, setDateChosen, submittedWithoutDates, setSubmittedWithoutDates}) => {
 
-    const [date, setDate] = useState(new Date())
+    const [date, setDate] = useState(null)
     const [bDay, setBDay] = useState(date.getDate())
     const [bMonth, setBMonth] = useState(date.getMonth())
     const [bYear, setBYear] = useState(date.getFullYear())
+
+    useEffect(() => {
+        setDate(new Date())
+    }, [])
 
     const handleFDayChange = (evt) => {
         var value = evt.target.value

@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 
 
-const BookingDetails = ({booking}) => {
+const BookingDetails = () => {
 
-    const [dateStaying, setDateStaying] = useState(null)  
+    // const [dateStaying, setDateStaying] = useState(null)  
 
     return (
        
         <div>
-            Booking details containor
+            Booking details container
         </div>
         
     )

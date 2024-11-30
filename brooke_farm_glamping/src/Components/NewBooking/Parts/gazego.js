@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Gazebo = ({}) => {
+const Gazebo = () => {
 
     const [gazebo, setGazebo] = useState(false)
     const [gazeboAmount, setGazeboAmount] = useState(0)

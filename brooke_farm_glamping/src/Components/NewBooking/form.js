@@ -23,7 +23,7 @@ const BookingForm = ({dateObject, months, nthNumber, user}) => {
     const [dateChosen, setDateChosen] = useState(dateObject)
 
     const [adminPage, setAdminPage] = useState(null)
-    const [bookingPage, setBookingPage] = useState(null)
+    // const [bookingPage, setBookingPage] = useState(null)
 
     const [nights, setNights] = useState(1)
 
@@ -52,7 +52,7 @@ const BookingForm = ({dateObject, months, nthNumber, user}) => {
 
     const findPath = () => {
         if (location.pathname === "/admin/bookings") {setAdminPage(true)}
-        if (location.pathname === "/book") {setBookingPage(true)}
+        // if (location.pathname === "/book") {setBookingPage(true)}
 
     }
 
@@ -124,7 +124,7 @@ const BookingForm = ({dateObject, months, nthNumber, user}) => {
         )
         try {
             addBooking(booking)
-            .then((res) => {
+            .then(() => {
                 // setBookingID(res)
                 // addBookingToUser(res.id, userObj.id)
             })

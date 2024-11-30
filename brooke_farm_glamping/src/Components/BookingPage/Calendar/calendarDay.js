@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import './calendarDay.css';
-import BookingBox from "../bookingBox";
-import Booking from "../../../Classes/booking";
 
-const CalendarDay = ({ bookingsAmount, date, openBookingBox, id, configureDaySelected, colour}) => {
+
+const CalendarDay = ({ date, openBookingBox, id, configureDaySelected, colour}) => {
 
     useEffect(() => {
         const classNameLi = createClassNameIdLi();

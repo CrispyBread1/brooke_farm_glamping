@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const FirePits = ({firePit, setFirePit}) => {
     
     const configureFirePit = () => {

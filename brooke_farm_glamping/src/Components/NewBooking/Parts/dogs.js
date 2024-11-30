@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Dogs = ({}) => {
+const Dogs = () => {
     
     const [dog, setDog] = useState(false)
     const [dogAmount, setDogAmount] = useState(0)

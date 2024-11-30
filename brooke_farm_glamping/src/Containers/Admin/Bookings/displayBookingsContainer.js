@@ -9,9 +9,9 @@ import SearchBar from "../../../Components/SearchBar/searchBar";
 
 const AdminDisplayBookingsContainer = ({daysOfWeek, months, bookings, showDetails, nthNumber, user}) => {
 
-    const [bookingsArray, setBookingsArray] = useState([])
-    const [bookingDetailsOpen, setBookingDetailsOpen] = useState(false)
-    const [bookingForDetails, setBookingForDetails] = useState(null)
+    // const [bookingsArray, setBookingsArray] = useState([])
+    // const [bookingDetailsOpen, setBookingDetailsOpen] = useState(false)
+    // const [bookingForDetails, setBookingForDetails] = useState(null)
     const [search, setSearch] = useState(false)
 
     // useEffect(() => {

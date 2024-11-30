@@ -1,6 +1,5 @@
 import React from "react";
-import { useState } from "react";
-import {logInEmailPassword, registerNewAccountEmailPassword, monitorAuthState, logOut, addNamePhoneToUser} from "../../Scripts/authenticationControls";
+import {logInEmailPassword, registerNewAccountEmailPassword, logOut } from "../../Scripts/authenticationControls";
 import LogInForm from "../../Components/LogInPage/logInForm";
 import { useNavigate, useLocation } from "react-router-dom";
 import { addUser } from "../../Scripts/databaseControls/userControls";
@@ -11,12 +10,12 @@ const LogInPage = ({userLoggedIn}) => {
     const location = useLocation()
     
 
-    const returnHome = () => {
-        userLoggedIn()
-        setTimeout(() => {
-            navigate('/')
-            }, 1000)
-    }
+    // const returnHome = () => {
+    //     userLoggedIn()
+    //     setTimeout(() => {
+    //         navigate('/')
+    //         }, 1000)
+    // }
     
     const accountPage = () => {
         userLoggedIn()
@@ -34,7 +33,7 @@ const LogInPage = ({userLoggedIn}) => {
     const logIn = async (email, password) => {
         try {
                await logInEmailPassword(email, password)
-               .then((res) => {
+               .then(() => {
                     // returnHome()
                     if (location.state) {
                         navigateToConfirmBooking()

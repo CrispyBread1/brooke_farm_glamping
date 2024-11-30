@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { retrieveUser } from "../../Scripts/databaseControls/userControls";
-import { addBooking, editBooking, cancelBooking, retrieveUserBooking } from "../../Scripts/databaseControls/bookingControls";
+import { retrieveUserBooking } from "../../Scripts/databaseControls/bookingControls";
 import { useNavigate } from "react-router-dom";
 import UserBookingsContainer from "./userBookingsContainer";
 
@@ -39,10 +39,10 @@ const AccountContainer = ({userLoggedOut, daysOfWeek, months, nthNumber}) => {
 
     const [user, setUser] = useState({})
     const [bookings, setBookings] = useState(null)
-    const [bookingsHTMLArray, setBookingsHTMLArray] = useState(null)
+    // const [bookingsHTMLArray, setBookingsHTMLArray] = useState(null)
 
-    const [bookingDetailsOpen, setBookingDetailsOpen] = useState(false)
-    const [bookingForDetails, setBookingForDetails] = useState(null)
+    // const [bookingDetailsOpen, setBookingDetailsOpen] = useState(false)
+    // const [bookingForDetails, setBookingForDetails] = useState(null)
 
     
 
@@ -56,7 +56,7 @@ const AccountContainer = ({userLoggedOut, daysOfWeek, months, nthNumber}) => {
 
 
 
-    const showDetails = (booking) => {
+    // const showDetails = (booking) => {
         // setBookingForDetails(booking)
         // setBookingDetailsOpen(true);
         // if (!bookingDetailsOpen) {
@@ -66,12 +66,12 @@ const AccountContainer = ({userLoggedOut, daysOfWeek, months, nthNumber}) => {
         // } else {
         //     sidebar.classList.add('show');
         // }}
-    }
+    // }
 
 
     return (
         <div>
-            <h2>{user.fullName}'s' Account page</h2>
+            <h2>{user.fullName}&apos;s&apos; Account page</h2>
             <div>
                 <UserBookingsContainer daysOfWeek={daysOfWeek} months={months} bookings={bookings} nthNumber={nthNumber}/>
             </div>

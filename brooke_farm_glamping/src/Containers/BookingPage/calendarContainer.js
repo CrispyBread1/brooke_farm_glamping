@@ -5,7 +5,7 @@ import BlankCalendarDay from "../../Components/BookingPage/Calendar/blankCalenda
 
 
 
-const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNumber, relayAmountOfNightsStaying, amountOfNightsStaying}) => {
+const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, relayAmountOfNightsStaying, amountOfNightsStaying}) => {
 
 
     const [daysInMonth, setDaysInMonth] = useState([]);
@@ -16,7 +16,7 @@ const CalendarContainer = ({openBookingBox, daysOfWeek, months, bookings, nthNum
     
     const [daySelectedID, setDaySelectedID] = useState(null)
     const [daySelectedDate, setDaySelectedDate] = useState(null)
-    const [extraNights, setExtraNights] = useState(null)
+    // const [extraNights, setExtraNights] = useState(null)
     
     
 

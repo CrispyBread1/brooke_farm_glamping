@@ -1,28 +1,21 @@
-import { useState } from "react";
-
 const Adults = ({peopleAmount, setPeopleAmount,campingSpotsNeeded, setCampingSpotsNeeded}) => {
     
-    const [multipleCampingSpots, setMultipleCampingSpots] = useState(false)
 
     const addGuest = () => {
         setPeopleAmount(peopleAmount + 1)
         
         if ( peopleAmount % 6 === 0) {
-            
             setCampingSpotsNeeded(campingSpotsNeeded + 1)
-            setMultipleCampingSpots(true)
         }
     }
     const removeGuest = () => {
         if (peopleAmount > 1) {
             if ((peopleAmount - 1) % 6 === 0) {
-                
                 setCampingSpotsNeeded(campingSpotsNeeded - 1)
                 
             }
-            if (campingSpotsNeeded === 1) {
-                setMultipleCampingSpots(false)
-            }
+            // if (campingSpotsNeeded === 1) {
+            // }
             setPeopleAmount(peopleAmount - 1)
         }
     }

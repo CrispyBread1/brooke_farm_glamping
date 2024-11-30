@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import './logInForm.css'
 
 
@@ -17,10 +17,10 @@ const LogInForm = ({registerNewAccount, logIn}) => {
     const [passwordTooShort, setPasswordTooShort] = useState(true)
 
     const [fullName, setFullName] = useState("")
-    const [confirmFullName, setConfirmFullName] = useState("")
+    // const [confirmFullName, setConfirmFullName] = useState("")
 
     const [phoneNumber, setPhoneNumber] = useState("")
-    const [confirmPhoneNumber, setConfirmPhoneNumber] = useState("")
+    // const [confirmPhoneNumber, setConfirmPhoneNumber] = useState("")
     
     
     const [registering, setRegistering] = useState(false)
@@ -49,7 +49,9 @@ const LogInForm = ({registerNewAccount, logIn}) => {
     const handleFormSubmit = (evt) => {
         evt.preventDefault();
         if (registering){
-            registerNewAccount(email, password, fullName, phoneNumber);
+            if (fullName && passwordConfirmed && emailConfirmed) {
+                registerNewAccount(email, password, fullName, phoneNumber);
+            }
             // addToDatabase()
         } else {
             // logIn();

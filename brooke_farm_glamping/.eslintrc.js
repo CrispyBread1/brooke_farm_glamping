@@ -2,10 +2,12 @@ module.exports = {
     env: {
       browser: true,
       es2021: true,
+      jest: true,
     },
     extends: [
       "eslint:recommended",
-      "plugin:react/recommended"
+      "plugin:react/recommended",
+      "plugin:jest/recommended",
        // Optional, if using Airbnb rules
     ],
     parserOptions: {
@@ -15,7 +17,7 @@ module.exports = {
       ecmaVersion: 12,
       sourceType: "module",
     },
-    plugins: ["react", "react-hooks"],
+    plugins: ["react", "react-hooks", "jest"],
     settings: {
         react: {
           version: "detect", // Automatically detect the React version

@@ -8,8 +8,8 @@ import './userBookingContainer.css'
 const UserBookingsContainer = ({daysOfWeek, months, bookings, showDetails, nthNumber}) => {
 
     const [bookingsArray, setBookingsArray] = useState([])
-    const [bookingDetailsOpen, setBookingDetailsOpen] = useState(false)
-    const [bookingForDetails, setBookingForDetails] = useState(null)
+    // const [bookingDetailsOpen, setBookingDetailsOpen] = useState(false)
+    // const [bookingForDetails, setBookingForDetails] = useState(null)
 
     useEffect(() => {
         fillBookings()

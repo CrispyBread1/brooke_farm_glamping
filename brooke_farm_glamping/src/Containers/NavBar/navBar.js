@@ -1,5 +1,5 @@
 import './navBar.css';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import headerImage from '../../JPGs/BrookFarmGlampinglogo.png'
 import logInButton from '../../JPGs/LoginButton/LogIn.png'
 import logInButtonFire1 from '../../JPGs/LoginButton/LogInFire1.png'
@@ -9,14 +9,11 @@ import homeButton from '../../JPGs/HomeButton/home.png'
 import bookButton from '../../JPGs/BookButton/book.png'
 import userIcon from '../../JPGs/userbutton/Userbutton.png'
 import accountImage from '../../JPGs/AccountButton/account.png'
-import {Link, BrowserRouter} from'react-router-dom'
-import { useLocation } from 'react-router-dom';
+import {Link} from'react-router-dom'
 
 
 
 const NavBar = ({user, userLoggedOut}) => {
-
-  const [userObj, setUserObj] = useState(user) 
 
   const  logOutUser = () => {
     userLoggedOut()

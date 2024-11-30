@@ -1,10 +1,9 @@
 import React from "react";
 import './bookingBox.css'
-import { useState } from "react";
 
 
 
-const BookingBox = ({}) => {
+const BookingBox = () => {
 
     
 

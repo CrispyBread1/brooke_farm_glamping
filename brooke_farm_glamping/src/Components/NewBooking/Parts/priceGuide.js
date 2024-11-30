@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const PriceGuide = ({campingPitchChoice, campingSpotsNeeded, pricesArrayPerNightPerSpot}) => {
     
     

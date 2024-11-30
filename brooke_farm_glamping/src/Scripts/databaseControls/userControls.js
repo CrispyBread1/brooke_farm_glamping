@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, addDoc, setDoc, doc, getDoc, query, where, updateDoc, arrayUnion, firestore } from "firebase/firestore";
+import { getFirestore, collection, getDocs, setDoc, doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAms2TxN-V_0N0q56ERISmsZnzv5RTdnmY",
@@ -14,7 +14,7 @@ const firebaseConfig = {
   const app = initializeApp(firebaseConfig);
 
 const addUser = (user, UID) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const db = getFirestore(app);
     const docRef = setDoc(doc(db, "users", UID), user);
     if (docRef) {
@@ -39,7 +39,7 @@ const retrieveUser = async (userID) => {
 }
 
 const addBookingToUser = (bookingID, userID) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const db = getFirestore(app);
     const userRef = doc(db, "users", userID)
     const docRef = updateDoc(userRef, {
@@ -54,8 +54,8 @@ const addBookingToUser = (bookingID, userID) => {
     }
 )}
 
-const authenticateAdmin = async (userId) => {
-  return new Promise((resolve, reject) => {
+const authenticateAdmin = async () => {
+  return new Promise((resolve) => {
     const db = getFirestore(app);
     const adminRef = getDocs(collection(db, 'admin'))
       if (adminRef) {

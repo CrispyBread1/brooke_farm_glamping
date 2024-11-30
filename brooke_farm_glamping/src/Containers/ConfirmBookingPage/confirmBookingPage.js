@@ -1,14 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useLocation, redirect, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Booking from "../../Classes/booking";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { retrieveUser, addBookingToUser } from "../../Scripts/databaseControls/userControls";
-import { addBooking, editBooking, cancelBooking, retrieveUserBooking } from "../../Scripts/databaseControls/bookingControls";
+import { addBooking} from "../../Scripts/databaseControls/bookingControls";
 
 
 
-const ConfirmBookingPage = ({months, daysOfWeek, nthNumber, userLoggedOut}) => {
+const ConfirmBookingPage = ({months, nthNumber, userLoggedOut}) => {
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -42,15 +42,21 @@ const ConfirmBookingPage = ({months, daysOfWeek, nthNumber, userLoggedOut}) => {
             navigate('/login')
     }
 
-    const [bookingInfo, setBookingInfo] = useState(location.state)
+    const [bookingInfo, setBookingInfo] = useState(null)
     const [priceGuide, setPriceGuide] = useState([])
     const [userObj, setUserObj] = useState({})
-    const [bookingID, setBookingID] = useState(null)
+    // const [bookingID, setBookingID] = useState(null)
 
     const [datesStaying, setDatesStaying] = useState(null)
     
 
     
+    useEffect(() => {
+        setBookingInfo(location.state)
+
+    }, [])
+
+
     useEffect(() => {
         if (bookingInfo) {
             manageDates()
@@ -124,7 +130,7 @@ const ConfirmBookingPage = ({months, daysOfWeek, nthNumber, userLoggedOut}) => {
         try {
             addBooking(booking)
             .then((res) => {
-                setBookingID(res)
+                // setBookingID(res)
                 addBookingToUser(res.id, userObj.id)
             })
         } catch (error) {

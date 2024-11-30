@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, addDoc, setDoc, doc, getDoc, query, where, updateDoc, arrayUnion, firestore } from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc, doc, updateDoc, arrayUnion } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAms2TxN-V_0N0q56ERISmsZnzv5RTdnmY",
@@ -14,7 +14,7 @@ const firebaseConfig = {
   const app = initializeApp(firebaseConfig);
 
 const retrieveCampingFacilities = () => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const db = getFirestore(app);
     const campsiteRef = getDocs(collection(db, 'pitches'))
       if (campsiteRef) {
@@ -28,7 +28,7 @@ const retrieveCampingFacilities = () => {
 )}
 
 const updateFacilities = (facility, facilityID) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const db = getFirestore(app);
     const facilityRef = doc(db, "pitches", facilityID)
     const docRef = updateDoc(facilityRef, facility);
@@ -43,7 +43,7 @@ const updateFacilities = (facility, facilityID) => {
 )}
 
 const addNewFacility = (facility) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const db = getFirestore(app);
     const docRef = addDoc(collection(db, "pitches"), facility)
     if (docRef) {
@@ -57,7 +57,7 @@ const addNewFacility = (facility) => {
 )}
 
 const addFacilitiesBlockedDay = (blockedDay, facilityID) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const db = getFirestore(app);
     const facilityRef = doc(db, "pitches", facilityID)
     const docRef = updateDoc(facilityRef, {

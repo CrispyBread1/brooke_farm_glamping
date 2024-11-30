@@ -9,8 +9,16 @@ const CampingOptions = ({dateChosen, nights, campingSpotsNeeded, setCampingPitch
 
     useEffect(() => {
         fetchCampingFacilities()
-    
+        // console.log(campingSpotsNeeded)
     }, []);
+
+    useEffect(() => {
+        if (campingSpotsNeeded > 1) {
+            setMultipleCampingSpots(true)
+        }
+    }, []);
+
+
 
     useEffect(() => {
         createCampingOptions()

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const OverallCost = ({nights, campingPitchChoice, peopleAmount, firePit, campingSpotsNeeded, setPricesArrayPerNightPerSpot}) => {
     
     const [costOfStay, setCostOfStay] = useState(0)
-    const [firePitCost, setFirePitCost] = useState(10)
+    const firePitCost = 10
 
     useEffect(() => {
         handleCostOfStayCalculation()

@@ -8,7 +8,7 @@ import AdminEmptyFacilityComponent from "../../../Components/Admin/Facilities/em
 
 
 
-const AdminFacilities = ({}) => {
+const AdminFacilities = () => {
 
     const [campingFacilities, setCampingFacilities] = useState(null)
     const [facilitiesForms, setFacilitiesForms] = useState(null)
@@ -21,7 +21,6 @@ const AdminFacilities = ({}) => {
 
     useEffect(() => {
         configureForm()
-        
     
     }, [campingFacilities]);
 
@@ -49,7 +48,7 @@ const AdminFacilities = ({}) => {
     const updateCampingFacility = async (facility, facilityID) => {
         try {
             updateFacilities(facility, facilityID)
-            .then((res) => {
+            .then(() => {
                 fetchCampingFacilities()
                 console.log('Successfully updated facility')
             })
@@ -65,7 +64,7 @@ const AdminFacilities = ({}) => {
     const addFacility = async (facility) => {
         try {
             addNewFacility(facility)
-            .then((res) => {
+            .then(() => {
                 setAddingNewFacility(false)
             })
         } catch (error) {
@@ -91,7 +90,7 @@ const AdminFacilities = ({}) => {
     const addBlockedDays = async (blockDay, facilityID) => {
         try {
             addFacilitiesBlockedDay(blockDay, facilityID)
-            .then((res) => {
+            .then(() => {
                 fetchCampingFacilities()
                 console.log('Successfully blocked day')
             })

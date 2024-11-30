@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, addDoc, setDoc, doc, getDoc, query, where, updateDoc, arrayUnion, firestore } from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc, doc, getDoc, query, where, updateDoc } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAms2TxN-V_0N0q56ERISmsZnzv5RTdnmY",
@@ -15,7 +15,7 @@ const app = initializeApp(firebaseConfig);
 
 
 const addBooking = (booking) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const db = getFirestore(app);
     const docRef = addDoc(collection(db, "bookings"), booking.toFirestore())
     if (docRef) {
@@ -39,7 +39,6 @@ const retrieveBooking  = async (bookingID) => {
     const docSnap = await getDoc(docRef);
     if(docSnap.exists()) {
       return docSnap.data()
-    } else {
     }
   } catch(error) {
   console.log(error)
@@ -55,8 +54,7 @@ const retrieveUserBooking = async (bookingIDs) => {
       const docSnap = await getDoc(docRef);
       if(docSnap.exists()) {
         bookings.push(docSnap.data())
-      } else {
-    }
+      }
     }
     return bookings
   } catch(error) {
@@ -79,15 +77,13 @@ const retrieveActiveBookings = async () => {
         bookings.push({id: doc.id, data: doc.data()})
       })
       return bookings
-    } else {
-    
     }
   } catch(error) {
     console.log(error)
 }}
 
 const checkInBooking = (bookingReference) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const db = getFirestore(app);
     const bookingRef = doc(db, "bookings", bookingReference)
     const docRef = updateDoc(bookingRef, {
@@ -95,7 +91,6 @@ const checkInBooking = (bookingReference) => {
       checkedInTime: new Date()
     });
     if (docRef) {
-      // console.log(docRef)
       resolve(docRef);
     } else {
       Promise.reject(new Error('No data available'));

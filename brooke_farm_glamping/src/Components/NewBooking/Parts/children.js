@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Children = ({}) => {
+const Children = () => {
     
     const [childrenAmount, setChildrenAmount] = useState(0)
 
