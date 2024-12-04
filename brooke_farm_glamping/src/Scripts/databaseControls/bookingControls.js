@@ -15,18 +15,20 @@ const app = initializeApp(firebaseConfig);
 
 
 const addBooking = (booking) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const db = getFirestore(app);
-      const docRef = await addDoc(collection(db, "bookings"), booking.toFirestore());
-      if (docRef) {
-        resolve(docRef);
-      } else {
-        reject(new Error("No data available"));
+  return new Promise((resolve, reject) => {
+    (async () => {
+      try {
+        const db = getFirestore(app);
+        const docRef = await addDoc(collection(db, "bookings"), booking.toFirestore());
+        if (docRef) {
+          resolve(docRef);
+        } else {
+          reject(new Error("No data available"));
+        }
+      } catch (error) {
+        reject(error);
       }
-    } catch (error) {
-      reject(error);
-    }
+    })(); 
   });
 };
 
@@ -77,24 +79,28 @@ const retrieveActiveBookings = async () => {
 }}
 
 const checkInBooking = (bookingReference) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const db = getFirestore(app);
-      const bookingRef = doc(db, "bookings", bookingReference);
-      const docRef = await updateDoc(bookingRef, {
-        checkedIn: true,
-        checkedInTime: new Date(),
-      });
-      if (docRef) {
-        resolve(docRef);
-      } else {
-        reject(new Error("Failed to update booking"));
+  return new Promise((resolve, reject) => {
+    (async () => {
+      try {
+        const db = getFirestore(app);
+        const bookingRef = doc(db, "bookings", bookingReference);
+        const docRef = await updateDoc(bookingRef, {
+          checkedIn: true,
+          checkedInTime: new Date(),
+        });
+
+        if (docRef) {
+          resolve(docRef);
+        } else {
+          reject(new Error("Failed to update booking"));
+        }
+      } catch (error) {
+        reject(error);
       }
-    } catch (error) {
-      reject(error);
-    }
+    })(); 
   });
 };
+
 
 
 export {addBooking, retrieveUserBooking, retrieveActiveBookings, checkInBooking, retrieveBooking};

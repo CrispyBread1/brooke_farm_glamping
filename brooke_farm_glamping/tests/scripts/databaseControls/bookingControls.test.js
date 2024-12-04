@@ -7,7 +7,6 @@ import {
 } from "../../../src/Scripts/databaseControls/bookingControls.js";
 
 import {
-  initializeApp,
   getFirestore,
   collection,
   addDoc,
