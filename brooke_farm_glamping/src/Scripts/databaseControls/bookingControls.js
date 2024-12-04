@@ -28,10 +28,6 @@ const addBooking = (booking) => {
   }
 )}
 
-const editBooking = () => {
-  return
-}
-
 const retrieveBooking  = async (bookingID) => {
   try {
     const db = getFirestore(app);
@@ -61,9 +57,9 @@ const retrieveUserBooking = async (bookingIDs) => {
     console.log(error)
 }}
 
-const cancelBooking = () => {
-  return
-}
+// const cancelBooking = () => {
+//   return
+// }
 
 const retrieveActiveBookings = async () => {
   try {
@@ -79,7 +75,7 @@ const retrieveActiveBookings = async () => {
       return bookings
     }
   } catch(error) {
-    console.log(error)
+    return error
 }}
 
 const checkInBooking = (bookingReference) => {
@@ -100,4 +96,4 @@ const checkInBooking = (bookingReference) => {
   }
 )}
 
-export {addBooking, editBooking, cancelBooking, retrieveUserBooking, retrieveActiveBookings, checkInBooking, retrieveBooking};
+export {addBooking, retrieveUserBooking, retrieveActiveBookings, checkInBooking, retrieveBooking};
