@@ -15,18 +15,20 @@ const app = initializeApp(firebaseConfig);
 
 
 const addBooking = (booking) => {
-  return new Promise((resolve) => {
-    const db = getFirestore(app);
-    const docRef = addDoc(collection(db, "bookings"), booking.toFirestore())
-    if (docRef) {
-      resolve(docRef);
-    } else {
-      Promise.reject(new Error('No data available'));
+  return new Promise(async (resolve, reject) => {
+    try {
+      const db = getFirestore(app);
+      const docRef = await addDoc(collection(db, "bookings"), booking.toFirestore());
+      if (docRef) {
+        resolve(docRef);
+      } else {
+        reject(new Error("No data available"));
+      }
+    } catch (error) {
+      reject(error);
     }
-  }, (error) => {
-      Promise.reject(error);
-  }
-)}
+  });
+};
 
 const retrieveBooking  = async (bookingID) => {
   try {
@@ -57,10 +59,6 @@ const retrieveUserBooking = async (bookingIDs) => {
     console.log(error)
 }}
 
-// const cancelBooking = () => {
-//   return
-// }
-
 const retrieveActiveBookings = async () => {
   try {
     var bookings = []
@@ -79,21 +77,24 @@ const retrieveActiveBookings = async () => {
 }}
 
 const checkInBooking = (bookingReference) => {
-  return new Promise((resolve) => {
-    const db = getFirestore(app);
-    const bookingRef = doc(db, "bookings", bookingReference)
-    const docRef = updateDoc(bookingRef, {
-      checkedIn: true,
-      checkedInTime: new Date()
-    });
-    if (docRef) {
-      resolve(docRef);
-    } else {
-      Promise.reject(new Error('No data available'));
+  return new Promise(async (resolve, reject) => {
+    try {
+      const db = getFirestore(app);
+      const bookingRef = doc(db, "bookings", bookingReference);
+      const docRef = await updateDoc(bookingRef, {
+        checkedIn: true,
+        checkedInTime: new Date(),
+      });
+      if (docRef) {
+        resolve(docRef);
+      } else {
+        reject(new Error("Failed to update booking"));
+      }
+    } catch (error) {
+      reject(error);
     }
-  }, (error) => {
-      Promise.reject(error);
-  }
-)}
+  });
+};
+
 
 export {addBooking, retrieveUserBooking, retrieveActiveBookings, checkInBooking, retrieveBooking};
