@@ -13,54 +13,18 @@ const firebaseConfig = initializeApp({
   appId: "1:900497975699:web:bb6906451214461bdc2066"
 });
 
-// Initialize Firebase
-const auth = getAuth(firebaseConfig);
-
 const logInEmailPassword = async (logInEmail, logInPassword) => {
+    const auth = getAuth(firebaseConfig);
     return signInWithEmailAndPassword(auth, logInEmail, logInPassword)
 }
 
 const registerNewAccountEmailPassword = async (registerEmail, registerPassword) => {
+    const auth = getAuth(firebaseConfig);
     return createUserWithEmailAndPassword(auth, registerEmail, registerPassword)        
 }
 
-// const addNamePhoneToUser = async (user, fullName, phone) => {
-//     return updateProfile(user, {
-//         displayName: fullName,
-//         phone: phone
-//     })
-// }
-
-// const monitorAuthState = async () => {
-//     onAuthStateChanged(auth, user => {
-//         if(user) {
-//             var userAccount = user
-//             return userAccount
-//         }
-//         else {
-//             console.log("Logged out bro")
-//         }
-//     })
-// }
-
-// const monitorAuthState = () => {
-//     return new Promise((resolve, reject) => {
-//         onAuthStateChanged(auth, user => {
-//             if(user) {
-//                 resolve(user)
-//             }
-//             else {
-//                 Promise.reject(error);
-//             }
-//         })
-//       }, (error) => {
-//         Promise.reject(error);
-//     }
-//   )}
-
-
 const logOut = async () => {
-    
+    const auth = getAuth(firebaseConfig);
     await signOut(auth)
 }
 
