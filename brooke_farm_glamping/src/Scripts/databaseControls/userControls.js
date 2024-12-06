@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, setDoc, doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
+import { getFirestore, setDoc, doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAms2TxN-V_0N0q56ERISmsZnzv5RTdnmY",
@@ -13,19 +13,18 @@ const firebaseConfig = {
   
   const app = initializeApp(firebaseConfig);
 
-const addUser = (user, UID) => {
-  return new Promise((resolve) => {
+  const addUser = async (user, UID) => {
     const db = getFirestore(app);
-    const docRef = setDoc(doc(db, "users", UID), user);
-    if (docRef) {
-      resolve(docRef.id);
-    } else {
-      Promise.reject(new Error('No data available'));
+    const docRef = doc(db, "users", UID);
+  
+    try {
+      await setDoc(docRef, user);
+      return UID;
+    } catch (error) {
+      throw new Error(`Failed to add user: ${error.message}`);
     }
-  }, (error) => {
-      Promise.reject(error);
-  }
-)}
+  };
+  
 
 const retrieveUser = async (userID) => {
   const db = getFirestore(app);
@@ -38,35 +37,16 @@ const retrieveUser = async (userID) => {
   } 
 }
 
-const addBookingToUser = (bookingID, userID) => {
-  return new Promise((resolve) => {
-    const db = getFirestore(app);
-    const userRef = doc(db, "users", userID)
-    const docRef = updateDoc(userRef, {
-      'bookings': arrayUnion(bookingID)});
-    if (docRef) {
-      resolve(docRef.id);
-    } else {
-      Promise.reject(new Error('No data available'));
-    }
-  }, (error) => {
-      Promise.reject(error);
-    }
-)}
+const addBookingToUser = async (bookingID, userID) => {
+  const db = getFirestore(app);
+  const userRef = doc(db, "users", userID);
 
-const authenticateAdmin = async () => {
-  return new Promise((resolve) => {
-    const db = getFirestore(app);
-    const adminRef = getDocs(collection(db, 'admin'))
-      if (adminRef) {
-        resolve(adminRef)
-      } else {
-        Promise.reject(new Error('User is not in Admin table'));
-      }
-    }, (error) => {
-      Promise.reject(error);
-    })
-}
+  try {
+    await updateDoc(userRef, { bookings: arrayUnion(bookingID) });
+    return userID;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
 
-
-  export {addUser, retrieveUser, addBookingToUser, authenticateAdmin};
+  export {addUser, retrieveUser, addBookingToUser};

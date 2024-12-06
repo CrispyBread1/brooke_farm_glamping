@@ -35,11 +35,11 @@ const AdminFacilities = () => {
     const fetchCampingFacilities = async () => {
         try {
           const camps = await retrieveCampingFacilities();
-          const arr = []
-          camps.forEach((doc) => {
-            arr.push({id: doc.id, data: doc.data()})
-          });
-          setCampingFacilities(arr)
+        //   const arr = []
+        //   camps.forEach((doc) => {
+        //     arr.push({id: doc.id, data: doc.data()})
+        //   });
+          setCampingFacilities(camps)
         } catch (error) {
           console.error('Error fetching campsites:', error);
         }
