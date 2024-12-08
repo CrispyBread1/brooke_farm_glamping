@@ -1,3 +1,4 @@
+import React from 'react';
 const Adults = ({peopleAmount, setPeopleAmount,campingSpotsNeeded, setCampingSpotsNeeded}) => {
     
 

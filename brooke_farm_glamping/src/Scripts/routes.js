@@ -7,6 +7,7 @@ import ConfirmBookingPage from "../Containers/ConfirmBookingPage/confirmBookingP
 import AccountContainer from "../Containers/AccountPage/accountContainer";
 import AdminFacilities from "../Containers/Admin/Facilities/facilitiesContainer";
 import AdminBookingsContainer from "../Containers/Admin/Bookings/bookingsContainer";
+import React from 'react';
 
 export const Paths = ({months, daysOfWeek, nthNumber, user, userLoggedIn, userLoggedOut}) => {
 
