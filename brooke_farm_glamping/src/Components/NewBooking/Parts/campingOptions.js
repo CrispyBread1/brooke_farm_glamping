@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { retrieveCampingFacilities } from "../../../Scripts/databaseControls/campingFacilitiesControls";
+import React from 'react';
 
 const CampingOptions = ({dateChosen, nights, campingSpotsNeeded, setCampingPitchChoice, submittedWithoutCampsite, setSubmittedWithoutCampsite}) => {
     
@@ -34,7 +35,7 @@ const CampingOptions = ({dateChosen, nights, campingSpotsNeeded, setCampingPitch
           });
           setCampingFacilities(arr)
         } catch (error) {
-          console.error('Error fetching campsites:', error);
+          return error
         }
     }
     
@@ -52,6 +53,7 @@ const CampingOptions = ({dateChosen, nights, campingSpotsNeeded, setCampingPitch
                         onClick={() => handleCampingOption(campingOption)}
                         id={j}
                         value={campingFacilities[j].name}
+                        aria-label={campingFacilities[j].name}
                         key={`input-${j}`}
                     /> 
                         {campingFacilities[j].name} -   
