@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
+import React from 'react';
 
 const DateChosen = ({dateChosen, setDateChosen, submittedWithoutDates, setSubmittedWithoutDates}) => {
 
     const [date, setDate] = useState(null)
-    const [bDay, setBDay] = useState(date.getDate())
-    const [bMonth, setBMonth] = useState(date.getMonth())
-    const [bYear, setBYear] = useState(date.getFullYear())
+    const [bDay, setBDay] = useState(0)
+    const [bMonth, setBMonth] = useState(0)
+    const [bYear, setBYear] = useState(0)
 
     useEffect(() => {
-        setDate(new Date())
+        const now = new Date();
+        setDate(now);
+        setBDay(now.getDate());
+        setBMonth(now.getMonth());
+        setBYear(now.getFullYear());
     }, [])
 
     const handleFDayChange = (evt) => {
