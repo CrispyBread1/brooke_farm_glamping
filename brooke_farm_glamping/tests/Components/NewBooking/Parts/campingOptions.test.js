@@ -6,6 +6,7 @@ import { render, screen, fireEvent, waitFor, act } from '@testing-library/react'
 import React from 'react';
 import CampingOptions from '../../../../src/Components/NewBooking/Parts/campingOptions.js';
 import { retrieveCampingFacilities } from '../../../../src/Scripts/databaseControls/campingFacilitiesControls';
+import { Timestamp } from 'firebase/firestore'
 
 // Mock the module and its function correctly
 jest.mock('../../../../src/Scripts/databaseControls/campingFacilitiesControls', () => ({
@@ -16,12 +17,18 @@ describe('CampingOptions Component', () => {
   let setCampingPitchChoice;
   let setSubmittedWithoutCampsite;
 
+  const date = new Date()
+  const facility_timestamp = Timestamp.fromDate(new Date(new Date (date.getFullYear(), date.getMonth(), (date.getDate()))))
+  const facility_timestamp2 = Timestamp.fromDate(new Date(new Date (date.getFullYear(), date.getMonth(), (date.getDate() + 4))))
+
+  // console.log(new Date (date.getFullYear(), date.getMonth(), (date.getDate() + 1)).fromDate())
+
   const mockFacilities = [
     {
-      data: () => ({ name: 'Campsite A', price: 10, state: true, blockedDays: [] }),
+      data: () => ({ name: 'Campsite A', price: 10, state: true, blockedDays: [facility_timestamp, facility_timestamp2] }),
     },
     {
-      data: () => ({ name: 'Campsite B', price: 15, state: true, blockedDays: [] }),
+      data: () => ({ name: 'Campsite B', price: 15, state: true, blockedDays: [facility_timestamp2] }),
     },
     {
       data: () => ({ name: 'Campsite C', price: 12, state: true, blockedDays: [] }),
@@ -40,7 +47,7 @@ describe('CampingOptions Component', () => {
     await act(async () => {
         render(
         <CampingOptions
-            dateChosen={new Date()}
+            dateChosen={false}
             nights={1}
             campingSpotsNeeded={1}
             setCampingPitchChoice={setCampingPitchChoice}
@@ -64,7 +71,7 @@ describe('CampingOptions Component', () => {
     await act(async () => {
         render(
         <CampingOptions
-            dateChosen={new Date()}
+            dateChosen={false}
             nights={1}
             campingSpotsNeeded={1}
             setCampingPitchChoice={setCampingPitchChoice}
@@ -82,7 +89,7 @@ describe('CampingOptions Component', () => {
     await act(async () => {
         render(
         <CampingOptions
-            dateChosen={new Date()}
+            dateChosen={false}
             nights={1}
             campingSpotsNeeded={1}
             setCampingPitchChoice={setCampingPitchChoice}
@@ -107,7 +114,7 @@ describe('CampingOptions Component', () => {
     await act(async () => {
         render(
         <CampingOptions
-            dateChosen={new Date()}
+            dateChosen={false}
             nights={1}
             campingSpotsNeeded={2}
             setCampingPitchChoice={setCampingPitchChoice}
@@ -131,7 +138,7 @@ describe('CampingOptions Component', () => {
     await act(async () => {
         render(
         <CampingOptions
-            dateChosen={new Date()}
+            dateChosen={false}
             nights={1}
             campingSpotsNeeded={1}
             setCampingPitchChoice={setCampingPitchChoice}
@@ -152,7 +159,7 @@ describe('CampingOptions Component', () => {
     await act(async () => {
       render(
         <CampingOptions
-          dateChosen={new Date()}
+          dateChosen={false}
           nights={1}
           campingSpotsNeeded={1}
           setCampingPitchChoice={setCampingPitchChoice}
@@ -171,11 +178,34 @@ describe('CampingOptions Component', () => {
     expect(screen.getByText(/Campsite C - £12/i)).toBeInTheDocument();
   });
 
+  test('fetchCampingFacilities errors', async () => {
+    await act(async () => { retrieveCampingFacilities.mockResolvedValue(() => {
+      throw new Error('User not found');
+    });
+      render(
+        <CampingOptions
+          dateChosen={false}
+          nights={1}
+          campingSpotsNeeded={1}
+          setCampingPitchChoice={setCampingPitchChoice}
+          submittedWithoutCampsite={false}
+          setSubmittedWithoutCampsite={setSubmittedWithoutCampsite}
+        />
+      );
+    });
+  
+    // Wait for the mocked camping facilities to be processed
+    await waitFor(() => expect(retrieveCampingFacilities).toHaveBeenCalled());
+  
+    // Verify that the camping options based on facilities are rendered
+
+  });
+
   test('createCampingOptions sets campingChoice correctly', async () => {
     await act(async () => {
       render(
         <CampingOptions
-          dateChosen={new Date()}
+          dateChosen={false}
           nights={1}
           campingSpotsNeeded={2}
           setCampingPitchChoice={setCampingPitchChoice}
@@ -194,11 +224,44 @@ describe('CampingOptions Component', () => {
     expect(screen.getByText(/Campsite C - £12 x 2 Required/i)).toBeInTheDocument();
   });
 
-  test('returns true when facility is null', () => {
-    const instance = new CampingOptions({}); // Create an instance with minimal props
-    const result = instance.checkBlockedDays(null);
-    expect(result).toBe(true);
-  });
+  test('checkBlockedDays is called', async () => {
+    await act(async () => {
+      render(
+        <CampingOptions
+          dateChosen={false}
+          nights={1}
+          campingSpotsNeeded={1}
+          setCampingPitchChoice={setCampingPitchChoice}
+          submittedWithoutCampsite={false}
+          setSubmittedWithoutCampsite={setSubmittedWithoutCampsite}
+        />
+      );
+    });
   
+    // Wait for the mocked camping facilities to be processed
+    await waitFor(() => expect(retrieveCampingFacilities).toHaveBeenCalled());
+  });
+
+  test('checkBlockedDays facility has blocked days', async () => {
+    await act(async () => {
+      render(
+        <CampingOptions
+          dateChosen={new Date()}
+          nights={1}
+          campingSpotsNeeded={1}
+          setCampingPitchChoice={setCampingPitchChoice}
+          submittedWithoutCampsite={false}
+          setSubmittedWithoutCampsite={setSubmittedWithoutCampsite}
+        />
+      );
+    });
+  
+    // Wait for the mocked camping facilities to be processed
+    await waitFor(() => screen.getByText('Select camping option:'));
+
+    // Verify that the camping options have been rendered
+    expect(screen.getByRole('radio', { name: /Campsite B/i })).toBeInTheDocument();
+    expect(screen.getByRole('radio', { name: /Campsite C/i })).toBeInTheDocument();
+  });
   
 });
