@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import React from 'react';
 
 const NightsStaying = ({dateChosen, months, nthNumber, nights, setNights}) => {
     
