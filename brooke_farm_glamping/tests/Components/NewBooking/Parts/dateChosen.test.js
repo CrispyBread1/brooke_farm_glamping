@@ -8,6 +8,7 @@ import DateChosen from '../../../../src/Components/NewBooking/Parts/dateChosen.j
 import { expect, jest, test } from '@jest/globals';
 
 describe('DateChosen Component', () => {
+  const mockDate = new Date();
   let setDateChosen;
   let setSubmittedWithoutDates;
 
@@ -108,7 +109,7 @@ describe('DateChosen Component', () => {
     const dayInput = screen.getByPlaceholderText('Day');
     fireEvent.change(dayInput, { target: { value: '32' } });
 
-    expect(dayInput.value).toBe('3'); // Invalid input should not be set
+    expect(dayInput.value).toBe(String(mockDate.getDate())); // Invalid input should not be set
   });
 
   test('does not allow day input value to be above 2 characters', () => {
@@ -124,7 +125,7 @@ describe('DateChosen Component', () => {
     const dayInput = screen.getByPlaceholderText('Day');
     fireEvent.change(dayInput, { target: { value: '100' } });
 
-    expect(dayInput.value).toBe('3'); // Invalid input should not be set
+    expect(dayInput.value).toBe(String(mockDate.getDate())); // Invalid input should not be set
   });
 
   test('does not allow month input to be above 12', () => {
@@ -160,7 +161,6 @@ describe('DateChosen Component', () => {
   });
 
   test('does not allow year input to be below current year', () => {
-    const mockDate = new Date();
     render(
       <DateChosen
         dateChosen={null}
@@ -177,7 +177,6 @@ describe('DateChosen Component', () => {
   });
 
   test('does not allow year input value to be below 4 characters', () => {
-    const mockDate = new Date();
     render(
       <DateChosen
         dateChosen={null}
@@ -194,7 +193,6 @@ describe('DateChosen Component', () => {
   });
 
   test('sets date and clears error when Set Date button is clicked', () => {
-    const mockDate = new Date();
     render(
       <DateChosen
         dateChosen={null}

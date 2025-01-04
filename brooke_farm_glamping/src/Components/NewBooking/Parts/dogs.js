@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React from 'react';
 
 const Dogs = () => {
     
@@ -30,6 +31,7 @@ const Dogs = () => {
                 <input 
                 type="checkbox" 
                 className="dog" 
+                id="dog"
                 name="dog" 
                 value="Dog"
                 onClick={configureDogs} 
