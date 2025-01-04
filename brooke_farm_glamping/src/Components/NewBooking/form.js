@@ -6,7 +6,7 @@ import Adults from "./Parts/adults";
 import Children from "./Parts/children";
 import Dogs from "./Parts/dogs";
 import FirePits from "./Parts/firePits";
-import Gazebo from "./Parts/gazego";
+import Gazebo from "./Parts/gazebo";
 import AdditionalCars from "./Parts/additionalCars";
 import NightsStaying from "./Parts/nightsStaying";
 import CampingOptions from "./Parts/campingOptions";

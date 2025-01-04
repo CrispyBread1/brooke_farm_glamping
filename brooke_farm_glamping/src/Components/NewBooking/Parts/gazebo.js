@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React from 'react';
 
 const Gazebo = () => {
 
@@ -34,6 +35,7 @@ const Gazebo = () => {
                 type="checkbox" 
                 className="gazebo" 
                 name="gazebo" 
+                id="gazebo" 
                 value="Gazebo"
                 onClick={configureGazebo} 
                 style={{ width: "1.5vw", height: "1.5vw", textAlign: "center", fontSize: "2vw"  }}/>
