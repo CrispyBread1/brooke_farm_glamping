@@ -4,7 +4,7 @@
 
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import OverallCost from '../../../../src/Components/NewBooking/Parts/OverallCost.js';
+import OverallCost from '../../../../src/Components/NewBooking/Parts/overallCost.js';
 import { expect, jest, test, describe } from '@jest/globals';
 
 describe('OverallCost Component', () => {

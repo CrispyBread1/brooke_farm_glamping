@@ -11,7 +11,7 @@ import AdditionalCars from "./Parts/additionalCars";
 import NightsStaying from "./Parts/nightsStaying";
 import CampingOptions from "./Parts/campingOptions";
 import DateChosen from "./Parts/dateChosen";
-import PriceGuide from "./Parts/priceGuide";
+import PriceGuide from "./Parts/priceGuide.js";
 import ReasonForBooking from "./Parts/reasonForBooking";
 import OverallCost from "./Parts/overallCost";
 import { useLocation } from 'react-router-dom';
