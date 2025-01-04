@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import React from 'react';
 
 const OverallCost = ({nights, campingPitchChoice, peopleAmount, firePit, campingSpotsNeeded, setPricesArrayPerNightPerSpot}) => {
     
