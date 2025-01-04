@@ -1,3 +1,5 @@
+import React from 'react';
+
 const FirePits = ({firePit, setFirePit}) => {
     
     const configureFirePit = () => {
@@ -12,6 +14,7 @@ const FirePits = ({firePit, setFirePit}) => {
             <input 
             type="checkbox" 
             className="firepit" 
+            id="firepit"
             name="firepit" 
             value="Firepit" 
             onClick={configureFirePit}
