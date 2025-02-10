@@ -5,7 +5,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import Children from '../../../../src/Components/NewBooking/Parts/children.js';
-import { expect, jest, test } from '@jest/globals';
+import { expect, test } from '@jest/globals';
 
 describe('Children Component', () => {
   test('renders with initial values', () => {

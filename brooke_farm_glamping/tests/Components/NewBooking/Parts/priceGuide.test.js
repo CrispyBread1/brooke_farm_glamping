@@ -5,7 +5,7 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import PriceGuide from '../../../../src/Components/NewBooking/Parts/priceGuide.js';
-import { expect, jest, test, describe } from '@jest/globals';
+import { expect, test, describe } from '@jest/globals';
 
 describe('PriceGuide Component', () => {
   const campingPitchChoice = {

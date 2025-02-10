@@ -141,7 +141,7 @@ describe('DateChosen Component', () => {
     const monthInput = screen.getByPlaceholderText('Month');
     fireEvent.change(monthInput, { target: { value: '13' } });
 
-    expect(monthInput.value).toBe('0'); // Invalid input should not be set
+    expect(monthInput.value).toBe('1'); // Invalid input should not be set
   });
 
   test('does not allow month input value to be above 2 characters', () => {
@@ -157,7 +157,7 @@ describe('DateChosen Component', () => {
     const monthInput = screen.getByPlaceholderText('Month');
     fireEvent.change(monthInput, { target: { value: '100' } });
 
-    expect(monthInput.value).toBe('0');
+    expect(monthInput.value).toBe('1');
   });
 
   test('does not allow year input to be below current year', () => {

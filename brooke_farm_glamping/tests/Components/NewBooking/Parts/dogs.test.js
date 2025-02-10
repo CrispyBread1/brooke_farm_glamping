@@ -5,7 +5,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import React from "react";
 import Dogs from "../../../../src/Components/NewBooking/Parts/dogs";
-import { expect, jest, test } from "@jest/globals";
+import { expect, test } from "@jest/globals";
 
 describe("Dogs Component", () => {
   test("renders checkbox for bringing a dog", () => {

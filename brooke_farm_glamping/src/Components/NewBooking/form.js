@@ -69,7 +69,7 @@ const BookingForm = ({dateObject, months, nthNumber, user}) => {
 
 
 
-     // Functions to control submitting the form and booking *------------- *------------- *-------------
+    // Functions to control submitting the form and booking *------------- *------------- *-------------
     const handleFormSubmit = (evt) => {
         evt.preventDefault();
         const value = evt.target
@@ -87,20 +87,27 @@ const BookingForm = ({dateObject, months, nthNumber, user}) => {
     }
 
     const checkFilled = (data) => {
-
         if (!campingPitchChoice) {
-            setSubmittedWithoutCampsite(true)
+            setSubmittedWithoutCampsite(true);
         }
-        if (!data.target.reason.value) {
-            setSubmittedWithoutReason(true)
+        if (!data.target.reason || !data.target.reason.value) {
+            setSubmittedWithoutReason(true);
         }
-        if (!data.target.datesStaying.value && adminPage) {
-            setSubmittedWithoutDates(true)
+        if (adminPage && (!data.target.datesStaying || !data.target.datesStaying.value)) {
+            setSubmittedWithoutDates(true);
         }
-        if (campingPitchChoice && data.target.reason.value && data.target.datesStaying.value) {
-            return true
-        } return false
-    }
+        if (
+            campingPitchChoice &&
+            data.target.reason &&
+            data.target.reason.value &&
+            data.target.datesStaying &&
+            data.target.datesStaying.value
+        ) {
+            return true;
+        }
+        return false;
+    };
+    
     
     const addNewBooking = async (datesStaying, childrenAmount, dogAmount, gazeboAmount, additionalCarAmount, costOfStay, reasonForBooking) => {
         var booking =   new Booking(
@@ -137,7 +144,7 @@ const BookingForm = ({dateObject, months, nthNumber, user}) => {
     return (
         <div id="booking-box">
             
-            <form onSubmit={handleFormSubmit}>
+            <form role="form" onSubmit={handleFormSubmit}>
             <h2 id="get-month"></h2>
             
                 {user.admin && adminPage && <DateChosen setDateChosen={setDateChosen} dateChosen={dateChosen} submittedWithoutDates={submittedWithoutDates} setSubmittedWithoutDates={setSubmittedWithoutDates}/>}

@@ -5,7 +5,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import Gazebo from '../../../../src/Components/NewBooking/Parts/gazebo.js';
-import { expect, jest, test } from '@jest/globals';
+import { expect, test } from '@jest/globals';
 
 describe('Gazebo Component', () => {
   test('renders with initial unchecked state and gazebo amount of 0', () => {
