@@ -31,29 +31,29 @@ const NavBar = ({user, userLoggedOut}) => {
     <div className="NavButtons">
             <Link to="/">
             <div id="Home-Button"   value="Home">
-              <img id="home-Image"  src={homeButton} />
+              <img id="home-Image"  src={homeButton} alt="Home Button"/>
             </div>
             </Link>
             <Link to="/book">
             <div id="Book-Button"  value="Book">
-              <img id="book-Image"  src={bookButton} />
+              <img id="book-Image"  src={bookButton} alt="Book Button"/>
             </div>
             </Link>
             <div id="Profile-Icon-DropDown">
-              <img id="profile-icon-image" src={userIcon}/>
+              <img id="profile-icon-image" src={userIcon} alt="User Icon"/>
 
               <div id="dropdown-content">
               { !user && <Link to="/login">
                 <div id="LogIn-Button"   value="LogIn" >
-                  <img id="logInFire1Image" className="logInFire1-images" src={logInButtonFire1} />
-                  <img id="logInFire2Image" className="logInFire2-images" src={logInButtonFire2} />
-                  <img id="logInFire3Image" className="logInFire3-images" src={logInButtonFire3} />
+                  <img id="logInFire1Image" className="logInFire1-images" src={logInButtonFire1} alt="Login Button"/>
+                  <img id="logInFire2Image" className="logInFire2-images" src={logInButtonFire2} alt="Login Button"/>
+                  <img id="logInFire3Image" className="logInFire3-images" src={logInButtonFire3} alt="Login Button"/>
                   <img className="logIn-images" src={logInButton}/>
                 </div>
               </Link>}
                 {user && <Link to="/account-page">
                   <div id="account-Button">
-                    <img id="account-image" src={accountImage}/>
+                    <img id="account-image" src={accountImage} alt="Account Button"/>
                   </div>
                 </Link>}
               </div>
